@@ -1,4 +1,4 @@
-# Apple stre
+# Apple store
 
 This application is designed as a single-page online store with various features for users. It allows users to explore products, add them to their cart or favorites, search for specific items, sort products according to their preferences, modify the number of products in their cart, and view detailed information about each product.
 
