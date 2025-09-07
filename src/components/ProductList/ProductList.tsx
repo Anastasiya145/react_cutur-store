@@ -1,61 +1,56 @@
-import React, {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { useSearchParams } from 'react-router-dom';
-import classNames from 'classnames';
-import { Product } from '../../types/Product';
-import { sortProducts } from '../../helpers/sortHelper';
-import { Dropdown } from '../Dropdown/Dropdown';
-import { SortTypeForDropdown } from '../../types/SortType';
-import { Pagination } from '../Pagination/Pagination';
-import { ProductCard } from '../ProductCard/ProductCard';
-import { NoSearchResults } from '../NoSearchResults/NoSearchResults';
-import './productList.scss';
-import { Loader } from '../Loader';
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import classNames from "classnames";
+import { Product } from "../../types/Product";
+import { sortProducts } from "../../helpers/sortHelper";
+import { Dropdown } from "../Dropdown/Dropdown";
+import { SortTypeForDropdown } from "../../types/SortType";
+import { Pagination } from "../Pagination/Pagination";
+import { ProductCard } from "../ProductCard/ProductCard";
+import { NoSearchResults } from "../NoSearchResults/NoSearchResults";
+import "./productList.scss";
+import { Loader } from "../Loader";
 
 export type Props = {
-  products: Product[],
-  isSortDropdownShown?: boolean,
-  isPaginationShown?: boolean,
-  handleVisibleProductsNumber:(number: number) => void,
+  products: Product[];
+  isSortDropdownShown?: boolean;
+  isPaginationShown?: boolean;
+  handleVisibleProductsNumber: (number: number) => void;
 };
 
-export const itemsOptions = ['4', '8', '16', 'All'];
+export const itemsOptions = ["4", "8", "16", "All"];
 
 export const ProductList: React.FC<Props> = ({
   products,
-  isSortDropdownShown,
-  isPaginationShown,
+  isSortDropdownShown = false,
+  isPaginationShown = false,
   handleVisibleProductsNumber,
 }) => {
   const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
-  const itemsOnPage = Number(searchParams.get('itemsOnPage'))
-    || products.length;
-  const sortBy = searchParams.get('sort') || '';
-  const page = Number(searchParams.get('page')) || 1;
-  const query = searchParams.get('query') || '';
+  const itemsOnPage =
+    Number(searchParams.get("itemsOnPage")) || products.length;
+  const sortBy = searchParams.get("sort") || "";
+  const page = Number(searchParams.get("page")) || 1;
+  const query = searchParams.get("query") || "";
   const start = (page - 1) * itemsOnPage;
   const end = start + itemsOnPage;
-  const isPaginationBarShown = isPaginationShown
-    && itemsOnPage !== products.length;
+  const isPaginationBarShown =
+    isPaginationShown && itemsOnPage !== products.length;
 
   const [visibleProducts, setVisibleProducts] = useState<Product[]>(products);
 
   const productsByQuery = (inputQuery: string) => {
     const queryNormalized = inputQuery.trim().toLowerCase();
 
-    return products.filter(item => {
+    return products.filter((item) => {
       return item.name.toLowerCase().includes(queryNormalized);
     });
   };
 
   const sortedProducts = useMemo(
     () => sortProducts(productsByQuery(query), sortBy),
-    [sortBy, products, query],
+    [sortBy, products, query]
   );
 
   const isRenderedRef = useRef(false);
@@ -80,10 +75,9 @@ export const ProductList: React.FC<Props> = ({
     return () => clearTimeout(timer);
   }, [products, sortBy, itemsOnPage, page, query]);
 
-  const startSortValue = sortBy.length === 0 ? 'Choose an option' : sortBy;
-  const startItemsValue = itemsOnPage === products.length
-    ? 'All'
-    : itemsOnPage.toString();
+  const startSortValue = sortBy.length === 0 ? "Choose an option" : sortBy;
+  const startItemsValue =
+    itemsOnPage === products.length ? "All" : itemsOnPage.toString();
 
   return (
     <>
@@ -112,10 +106,11 @@ export const ProductList: React.FC<Props> = ({
                 </div>
               )}
               {isPaginationBarShown && (
-                <div className={classNames(
-                  'product-list__pagination',
-                  'product-list__pagination_top',
-                )}
+                <div
+                  className={classNames(
+                    "product-list__pagination",
+                    "product-list__pagination_top"
+                  )}
                 >
                   <Pagination
                     total={sortedProducts.length}
@@ -153,14 +148,7 @@ export const ProductList: React.FC<Props> = ({
         </div>
       )}
 
-      {productsByQuery(query).length === 0 && !isLoading && (
-        <NoSearchResults />
-      )}
+      {productsByQuery(query).length === 0 && !isLoading && <NoSearchResults />}
     </>
   );
-};
-
-ProductList.defaultProps = {
-  isSortDropdownShown: false,
-  isPaginationShown: false,
 };

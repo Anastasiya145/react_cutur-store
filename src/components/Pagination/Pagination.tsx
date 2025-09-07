@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import classNames from 'classnames';
-import { getSearchWith } from '../../helpers/searchHelper';
-import './pagination.scss';
+import React, { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import classNames from "classnames";
+import { getSearchWith } from "../../helpers/searchHelper";
+import "./pagination.scss";
 
 export type Props = {
-  total: number,
-  itemsOnPage: number,
-  currentPage: number,
+  total: number;
+  itemsOnPage: number;
+  currentPage: number;
 };
 
 const DEFAULT_VISIBLE_PAGES = 4;
@@ -17,7 +17,7 @@ export const Pagination: React.FC<Props> = ({
   itemsOnPage,
   currentPage,
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams('');
+  const [searchParams, setSearchParams] = useSearchParams("");
   const lastPage = Math.ceil(total / itemsOnPage);
   const [visiblePages, setVisiblePages] = useState<number[]>([]);
 
@@ -36,8 +36,9 @@ export const Pagination: React.FC<Props> = ({
       }
     }
 
-    const numberOfPages = [...Array(endPage - startPage + 1)]
-      .map((_, index) => startPage + index);
+    const numberOfPages = [...Array(endPage - startPage + 1)].map(
+      (_, index) => startPage + index
+    );
 
     setVisiblePages(numberOfPages);
   }, [currentPage, lastPage]);
@@ -45,7 +46,7 @@ export const Pagination: React.FC<Props> = ({
   useEffect(() => {
     if (currentPage > lastPage) {
       setSearchParams((params) => {
-        params.set('page', '1');
+        params.set("page", "1");
 
         return params;
       });
@@ -61,14 +62,13 @@ export const Pagination: React.FC<Props> = ({
             page: (currentPage - 1).toString(),
           }),
         }}
-        className={classNames(
-          'pagination__arrow pagination__arrow_prev',
-          { disabled: currentPage === 1 },
-        )}
+        className={classNames("pagination__arrow pagination__arrow_prev", {
+          disabled: currentPage === 1,
+        })}
       />
 
       <ul className="pagination__list">
-        {visiblePages.map(pageNumber => (
+        {visiblePages.map((pageNumber) => (
           <li key={pageNumber} className="pagination__item">
             <Link
               to={{
@@ -76,10 +76,9 @@ export const Pagination: React.FC<Props> = ({
                   page: pageNumber.toString(),
                 }),
               }}
-              className={classNames(
-                'pagination__link',
-                { active: pageNumber === currentPage },
-              )}
+              className={classNames("pagination__link", {
+                active: pageNumber === currentPage,
+              })}
             >
               {pageNumber}
             </Link>
@@ -94,10 +93,9 @@ export const Pagination: React.FC<Props> = ({
             page: (currentPage + 1).toString(),
           }),
         }}
-        className={classNames(
-          'pagination__arrow pagination__arrow_next',
-          { disabled: currentPage === lastPage },
-        )}
+        className={classNames("pagination__arrow pagination__arrow_next", {
+          disabled: currentPage === lastPage,
+        })}
       />
     </div>
   );

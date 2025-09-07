@@ -1,34 +1,25 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import classNames from 'classnames';
-import { PathnamesApp } from '../../types/Pathnames';
-import './iconMenu.scss';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import classNames from "classnames";
+import { PathnamesApp } from "../../types/Pathnames";
+import "./iconMenu.scss";
 
 type Props = {
-  count: number,
-  link: PathnamesApp,
-  iconName: string,
+  count: number;
+  link: PathnamesApp;
+  children: React.ReactNode;
 };
 
-export const IconMenu: React.FC<Props> = ({
-  count,
-  link,
-  iconName,
-}) => {
+export const IconMenu: React.FC<Props> = ({ link, children, count }) => {
   return (
     <NavLink
       to={link}
-      className={({ isActive }) => classNames(
-        'icon',
-        { selected: isActive },
-      )}
+      className={({ isActive }) => classNames("icon", { selected: isActive })}
     >
-      <div className={`icon__img icon__img_${iconName}`} />
+      {children}
       {count > 0 && (
         <div className="icon__count">
-          <span className="icon__text">
-            {count}
-          </span>
+          <span className="icon__text">{count}</span>
         </div>
       )}
     </NavLink>

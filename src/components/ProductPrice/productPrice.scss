@@ -1,7 +1,6 @@
 @import "/src/styles/common";
 
 .price {
-
   &__container {
     display: flex;
     align-items: center;
@@ -9,7 +8,7 @@
 
   &__text {
     @extend %h2;
-    color: $main-gray-color;
+    color: $main-color;
     margin: 6px 8px 0;
 
     &_bold {
@@ -17,7 +16,7 @@
     }
 
     &_discount {
-      color: $second-gray-color;
+      color: $second-color;
       font-size: 22px;
       font-weight: 500;
       line-height: 28px;

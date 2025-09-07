@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import classNames from 'classnames';
-import { getSearchWith } from '../../helpers/searchHelper';
-import { useDebounce } from '../../helpers/hooks/useDebounce';
-import './searchBar.scss';
+import React, { useEffect, useState } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
+import classNames from "classnames";
+import { getSearchWith } from "../../helpers/searchHelper";
+import { useDebounce } from "../../helpers/hooks/useDebounce";
+import "./searchBar.scss";
 
 export const SearchBar: React.FC = () => {
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [appliedQuery, setAppliedQuery] = useState('');
+  const [appliedQuery, setAppliedQuery] = useState("");
   const debounceSearch = useDebounce(appliedQuery, 500) || null;
   const pathnameNormalized = pathname.substring(1);
   const isInputEmpty = appliedQuery.length === 0;
@@ -19,7 +19,7 @@ export const SearchBar: React.FC = () => {
   }, [debounceSearch]);
 
   const handleClearSearchInput = () => {
-    setAppliedQuery('');
+    setAppliedQuery("");
     setSearchParams(getSearchWith(searchParams, { query: null }));
     setIsSearchOpened(false);
   };
@@ -38,10 +38,10 @@ export const SearchBar: React.FC = () => {
 
   return (
     <>
-      <div className={classNames(
-        'search-bar',
-        { 'search-bar_opened': isSearchOpened },
-      )}
+      <div
+        className={classNames("search-bar", {
+          "search-bar_opened": isSearchOpened,
+        })}
       >
         <input
           type="text"
@@ -55,10 +55,10 @@ export const SearchBar: React.FC = () => {
           data-cy="searchDelete"
           type="button"
           className={classNames(
-            'search-bar__button',
+            "search-bar__button",
             isInputEmpty
-              ? 'search-bar__button_search'
-              : 'search-bar__button_close',
+              ? "search-bar__button_search"
+              : "search-bar__button_close"
           )}
           onClick={handleClearSearchInput}
         />

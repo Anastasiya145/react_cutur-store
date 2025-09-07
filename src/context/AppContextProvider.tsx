@@ -1,13 +1,13 @@
-import { createContext, useContext } from 'react';
-import { Product, ProductInCart } from '../types/Product';
+import { createContext, useContext } from "react";
+import { Product, ProductInCart } from "../types/Product";
 
 export type AppContextType = {
-  favorites: Product[],
-  cart: ProductInCart[],
-  toggleToFavorites: (product: Product) => void,
-  toggleToCart: (product: Product | ProductInCart) => void,
-  isProductSelected: (productId: string, products: Product[]) => boolean,
-  updateCountInCart: (id: string, newCount: number) => void,
+  favorites: Product[];
+  cart: ProductInCart[];
+  toggleToFavorites: (product: Product) => void;
+  toggleToCart: (product: Product | ProductInCart) => void;
+  isProductSelected: (productId: string, products: Product[]) => boolean;
+  updateCountInCart: (id: string, newCount: number) => void;
 };
 
 export const AppContext = createContext<AppContextType>({

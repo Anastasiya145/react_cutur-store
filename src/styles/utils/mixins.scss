@@ -1,37 +1,37 @@
 @mixin bgr-img() {
   background: center/contain no-repeat;
-};
+}
 
 @mixin button-transparent($width: 32px, $height: 32px) {
   height: $height;
   width: $width;
-  color: $main-gray-color;
-  border: 1px solid $light-gray-color;
+  color: $main-color;
+  border: 1px solid $light-color;
   background-color: transparent;
   position: relative;
   transition: all 0.3s;
 
-  &::before {
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    display: block;
-    content: "";
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    @include bgr-img;
-  }
+  // &::before {
+  //   width: 16px;
+  //   height: 16px;
+  //   position: absolute;
+  //   display: block;
+  //   content: "";
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   @include bgr-img;
+  // }
 
   &:hover {
     border-color: #000;
   }
-};
+}
 
 @mixin button-gray($width: 176px, $height: 40px) {
   height: $height;
   width: $width;
-  background-color: $main-gray-color;
+  background-color: $main-color;
   color: #fff;
   text-align: center;
   @extend %buttons;
@@ -44,9 +44,9 @@
   }
 
   &:active {
-    color: $accent-green;
+    color: $accent-green-color;
     background-color: #fff;
-    border: 1px solid $borders-gray-color;
+    border: 1px solid $border-color;
     box-shadow: none;
   }
 }
@@ -68,7 +68,6 @@
   }
 
   &_next {
-
     &::before {
       background-image: url($arrow-right);
     }
@@ -81,7 +80,7 @@
   &.disabled {
     pointer-events: none;
   }
-};
+}
 
 @mixin button-more-less($width: 32px, $height: 32px) {
   @include button-transparent;
@@ -92,11 +91,11 @@
     height: unset;
     font-family: inherit;
     font-size: 14px;
-    color: $main-gray-color;
+    color: $main-color;
   }
 
   &.disabled::before {
-    color: $light-gray-color;
+    color: $light-color;
   }
 
   &_prev {
@@ -114,7 +113,7 @@
   &.disabled {
     pointer-events: none;
   }
-};
+}
 
 @mixin button-header {
   height: 64px;

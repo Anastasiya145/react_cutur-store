@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import classNames from 'classnames';
-import './dropdown.scss';
-import { Link, useSearchParams } from 'react-router-dom';
-import { getSearchWith } from '../../helpers/searchHelper';
+import React, { useState } from "react";
+import classNames from "classnames";
+import "./dropdown.scss";
+import { Link, useSearchParams } from "react-router-dom";
+import { getSearchWith } from "../../helpers/searchHelper";
 
 export type Props = {
-  label: string,
-  classModificator: string,
-  options: string[],
-  startValue: string,
-  searchParamsKey: string,
+  label: string;
+  classModificator: string;
+  options: string[];
+  startValue: string;
+  searchParamsKey: string;
 };
 
 export const Dropdown: React.FC<Props> = ({
@@ -33,9 +33,9 @@ export const Dropdown: React.FC<Props> = ({
   };
 
   const getSearchParams = (params: string) => {
-    if (searchParamsKey === 'itemsOnPage') {
+    if (searchParamsKey === "itemsOnPage") {
       return getSearchWith(searchParams, {
-        page: '1',
+        page: "1",
         [searchParamsKey]: params,
       });
     }
@@ -47,10 +47,7 @@ export const Dropdown: React.FC<Props> = ({
 
   return (
     <div className={`dropdown dropdown_${classModificator}`}>
-      <label
-        htmlFor="dropdownSelect"
-        className="dropdown__label"
-      >
+      <label htmlFor="dropdownSelect" className="dropdown__label">
         {label}
       </label>
       <button
@@ -61,16 +58,15 @@ export const Dropdown: React.FC<Props> = ({
       >
         <span>{value}</span>
         <div
-          className={classNames(
-            'dropdown__arrow',
-            { dropdown__arrow_opened: isOpen },
-          )}
+          className={classNames("dropdown__arrow", {
+            dropdown__arrow_opened: isOpen,
+          })}
         />
       </button>
 
       {isOpen && (
         <ul className="dropdown__list">
-          {options.map(option => (
+          {options.map((option) => (
             /* eslint-disable-next-line */
             <li
               key={option}
@@ -82,10 +78,9 @@ export const Dropdown: React.FC<Props> = ({
                   search: getSearchParams(option),
                 }}
                 onClick={toggle}
-                className={classNames(
-                  'dropdown__link',
-                  { active: option === value },
-                )}
+                className={classNames("dropdown__link", {
+                  active: option === value,
+                })}
               >
                 {option}
               </Link>

@@ -1,9 +1,9 @@
-import { Product } from '../types/Product';
-import { SortType } from '../types/SortType';
+import { Product } from "../types/Product";
+import { SortType } from "../types/SortType";
 
 export const sortProducts = (
   products: Product[],
-  sortBy: string,
+  sortBy: string
 ): Product[] => {
   const copyOfProducts = [...products];
 

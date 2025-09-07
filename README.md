@@ -2,9 +2,9 @@
 
 This application is designed as a single-page online store with various features for users. It allows users to explore products, add them to their cart or favorites, search for specific items, sort products according to their preferences, modify the number of products in their cart, and view detailed information about each product.
 
-## 🔗 Link: [Demo](https://anastasiya145.github.io/react_apple-store)
+## 🔗 Link: [Demo](https://anastasiya145.github.io/react_cutur-store)
 
-![image](https://github.com/Anastasiya145/react_apple-store/assets/105457299/eb1199cc-3027-4c11-a3c7-e4d3209b7e78)
+![image](https://github.com/Anastasiya145/react_cutur-store/assets/105457299/eb1199cc-3027-4c11-a3c7-e4d3209b7e78)
 
 Functional components and React Hooks are utilized to build the application, resulting in a more efficient and maintainable codebase. The components are designed in an abstract manner, ensuring they can be easily reused throughout the application. This approach contributes to the overall scalability and flexibility of the project.
 
@@ -64,4 +64,5 @@ Moreover, the BEM methodology is adopted for naming and styling the components. 
 - Favorites are saved in the local storage.
 
 ## 🔗 Get in touch with me!
+
 [![Linkedin Badge](https://img.shields.io/badge/-linkedin-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/anastasiya-ivanova-494567109/)

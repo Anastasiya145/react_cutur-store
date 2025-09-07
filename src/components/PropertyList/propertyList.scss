@@ -14,7 +14,7 @@
     }
 
     &-list {
-      border-top: 1px solid $borders-gray-color;
+      border-top: 1px solid $border-color;
       padding-top: 16px;
       margin-top: 6px;
     }
@@ -22,10 +22,10 @@
 
   &__text {
     @extend %small-text;
-    color: $main-gray-color;
+    color: $main-color;
 
     &_light-gray {
-      color: $second-gray-color;
+      color: $second-color;
     }
   }
 }

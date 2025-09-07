@@ -1,20 +1,20 @@
-import React from 'react';
-import { CategoriesList } from '../../components/CategoriesList/CategoriesList';
-import { Product } from '../../types/Product';
-import { SortType } from '../../types/SortType';
-import { SlickSlider } from '../../components/SlickSlider/SlickSlider';
-import { Loader } from '../../components/Loader/Loader';
-import { SlickCarousel } from '../../components/SlickCarousel/SlickCarousel';
-import './homePage.scss';
+import React from "react";
+import { CategoriesList } from "../../components/CategoriesList/CategoriesList";
+import { Product } from "../../types/Product";
+import { SortType } from "../../types/SortType";
+import { SlickSlider } from "../../components/SlickSlider/SlickSlider";
+import { Loader } from "../../components/Loader/Loader";
+import { SlickCarousel } from "../../components/SlickCarousel/SlickCarousel";
+import "./homePage.scss";
 
 export type Props = {
-  products: Product[],
+  products: Product[];
   productsCounter: {
-    phones: number,
-    tablets: number,
-    accessories: number,
-  },
-  isLoading: boolean,
+    phones: number;
+    tablets: number;
+    accessories: number;
+  };
+  isLoading: boolean;
 };
 
 export const HomePage: React.FC<Props> = ({
@@ -32,10 +32,7 @@ export const HomePage: React.FC<Props> = ({
           </section>
           <section className="section">
             <h1 className="section__title">Hot prices</h1>
-            <SlickSlider
-              products={products}
-              sortBy={SortType.MaxDiscount}
-            />
+            <SlickSlider products={products} sortBy={SortType.MaxDiscount} />
           </section>
           <section className="section">
             <h1 className="section__title">Shop by category</h1>
@@ -43,10 +40,7 @@ export const HomePage: React.FC<Props> = ({
           </section>
           <section className="section">
             <h1 className="section__title">Brand new models</h1>
-            <SlickSlider
-              products={products}
-              sortBy={SortType.Newest}
-            />
+            <SlickSlider products={products} sortBy={SortType.Newest} />
           </section>
         </div>
       ) : (

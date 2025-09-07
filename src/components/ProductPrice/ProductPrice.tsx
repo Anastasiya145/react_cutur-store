@@ -1,9 +1,9 @@
-import React from 'react';
-import './productPrice.scss';
+import React from "react";
+import "./productPrice.scss";
 
 export type Props = {
-  discountPrice: number,
-  regularPrice: number,
+  discountPrice: number;
+  regularPrice: number;
 };
 
 export const ProductPrice: React.FC<Props> = ({

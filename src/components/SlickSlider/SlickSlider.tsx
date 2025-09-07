@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
-import { Product } from '../../types/Product';
-import { ProductCard } from '../ProductCard/ProductCard';
-import { sortProducts } from '../../helpers/sortHelper';
-import { SortType } from '../../types/SortType';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import './slickSlider.scss';
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
+import { Product } from "../../types/Product";
+import { ProductCard } from "../ProductCard/ProductCard";
+import { sortProducts } from "../../helpers/sortHelper";
+import { SortType } from "../../types/SortType";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./slickSlider.scss";
 
 export type Props = {
-  products: Product[],
-  sortBy: SortType,
+  products: Product[];
+  sortBy: SortType;
 };
 
 export const SlickSlider: React.FC<Props> = ({ products, sortBy }) => {

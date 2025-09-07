@@ -14,7 +14,7 @@
 
   &__label {
     @extend %uppercase;
-    color: $second-gray-color;
+    color: $second-color;
     margin-bottom: 4px;
   }
 
@@ -22,13 +22,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid $light-gray-color;
+    border: 1px solid $light-color;
     background-color: #fafbfc;
     padding: 10px;
     height: 40px;
     width: 100%;
     outline: none;
-    color: $main-gray-color;
+    color: $main-color;
     text-transform: capitalize;
     transition: 0.3s;
     appearance: none;
@@ -36,7 +36,7 @@
     -moz-appearance: none;
 
     &:hover {
-      border: 1px solid $main-gray-color;
+      border: 1px solid $main-color;
     }
   }
 
@@ -62,19 +62,19 @@
     width: 100%;
     margin-top: 4px;
     background-color: #fff;
-    border: 1px solid $borders-gray-color;
-    box-shadow: 0 2px 15px 0 rgba(0,0,0,0.05);
+    border: 1px solid $border-color;
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
   }
 
   &__link {
     display: block;
     width: 100%;
     padding: 6px 12px;
-    color: $second-gray-color;
+    color: $second-color;
     transition: all 0.3s linear;
 
     &.active {
-      color: $main-gray-color;
+      color: $main-color;
     }
   }
 }

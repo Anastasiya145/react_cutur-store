@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Product } from '../../types/Product';
-import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
-import { NotFound } from '../../components/NotFound/NotFound';
-import { ModelsCounter } from '../../components/ModelsCounter/ModelsCounter';
-import { ProductList } from '../../components/ProductList/ProductList';
-import { Loader } from '../../components/Loader';
-import { getProductByCategory } from '../../api/fetchData';
-import './categoryPage.scss';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { Product } from "../../types/Product";
+import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
+import { NotFound } from "../../components/NotFound/NotFound";
+import { ModelsCounter } from "../../components/ModelsCounter/ModelsCounter";
+import { ProductList } from "../../components/ProductList/ProductList";
+import { Loader } from "../../components/Loader";
+import { getProductByCategory } from "../../api/fetchData";
+import "./categoryPage.scss";
 
-export const CategoryPage:React.FC = () => {
+export const CategoryPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [productCount, setProductCount] = useState(products?.length);
@@ -48,10 +48,8 @@ export const CategoryPage:React.FC = () => {
 
           {!products.length ? (
             <NotFound
-              title={
-                `Sorry, we are temporarily not selling ${categoryName}. 
-                Please come back in a month.`
-              }
+              title={`Sorry, we are temporarily not selling ${categoryName}. 
+                Please come back in a month.`}
             />
           ) : (
             <ProductList

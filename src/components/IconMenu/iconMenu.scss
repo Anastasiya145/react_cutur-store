@@ -5,22 +5,23 @@
   position: relative;
 
   &.selected {
-    border-bottom: 3px solid $main-gray-color;
+    border-bottom: 3px solid $main-color;
   }
 
   &__img {
-    height: 20px;
-    width: 20px;
-    margin: 0 auto;
-    @include bgr-img;
+    color: $main-color;
+    // height: 20px;
+    // width: 20px;
+    // margin: 0 auto;
+    // @include bgr-img;
 
-    &_favorites {
-      background-image: url($icon-fav);
-    }
+    // &_favorites {
+    //   background-image: url($icon-fav);
+    // }
 
-    &_cart {
-      background-image: url($icon-cart);
-    }
+    // &_cart {
+    //   background-image: url($icon-cart);
+    // }
   }
 
   &__count {
@@ -35,7 +36,7 @@
     text-align: center;
     border: 1.5px solid #fff;
     border-radius: 50%;
-    background-color: $accent-red;
+    background-color: $accent-red-color;
   }
 
   &__text {
@@ -44,6 +45,6 @@
     left: 50%;
     font-size: 9px;
     line-height: 9px;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
   }
 }

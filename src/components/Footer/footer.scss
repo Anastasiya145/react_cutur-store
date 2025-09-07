@@ -1,7 +1,7 @@
 @import "/src/styles/common";
 
 .footer {
-  border-top: 1px solid $borders-gray-color;
+  border-top: 1px solid $border-color;
   height: 96px;
 
   &__container {
@@ -24,7 +24,6 @@
 }
 
 @media #{$tablet-media-query} {
-
   .footer {
     height: min-content;
     padding: 20px 0;
@@ -43,7 +42,6 @@
 }
 
 @supports (-webkit-touch-callout: none) {
-
   .footer {
     padding-bottom: 100px;
   }

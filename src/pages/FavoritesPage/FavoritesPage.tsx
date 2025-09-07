@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
-import { AppContext } from '../../context/AppContextProvider';
-import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
-import { NotFound } from '../../components/NotFound/NotFound';
-import { ModelsCounter } from '../../components/ModelsCounter/ModelsCounter';
-import { ProductList } from '../../components/ProductList/ProductList';
+import React, { useContext, useState } from "react";
+import { AppContext } from "../../context/AppContextProvider";
+import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
+import { NotFound } from "../../components/NotFound/NotFound";
+import { ModelsCounter } from "../../components/ModelsCounter/ModelsCounter";
+import { ProductList } from "../../components/ProductList/ProductList";
 
-export const FavoritesPage:React.FC = () => {
+export const FavoritesPage: React.FC = () => {
   const { favorites } = useContext(AppContext);
   const [productCount, setProductCount] = useState(favorites.length);
 
@@ -20,9 +20,7 @@ export const FavoritesPage:React.FC = () => {
       <ModelsCounter number={productCount} />
 
       {!favorites.length ? (
-        <NotFound
-          title="Your favorites list is empty"
-        />
+        <NotFound title="Your favorites list is empty" />
       ) : (
         <ProductList
           products={favorites}

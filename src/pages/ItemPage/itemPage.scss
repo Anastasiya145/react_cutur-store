@@ -4,9 +4,9 @@
   @extend %h2-reg;
   text-align: center;
   text-transform: uppercase;
-  color: $accent-red;
-  background-color: rgba(249,205,205,0.2);
-  border: 1px solid $accent-red;
+  color: $accent-red-color;
+  background-color: rgba(249, 205, 205, 0.2);
+  border: 1px solid $accent-red-color;
   border-radius: 15px;
   padding: 24px;
   max-width: 360px;
@@ -14,11 +14,10 @@
 }
 
 .product-details {
-  
   &__back {
     align-items: center;
     @extend %small-text;
-    color: $light-gray-color;
+    color: $light-color;
     position: relative;
     padding-left: 20px;
     margin-bottom: 16px;
@@ -27,7 +26,7 @@
   &__button-back {
     background: none;
     border: none;
-    color: $main-gray-color;
+    color: $main-color;
     @extend %small-text;
 
     &::before {
@@ -70,7 +69,7 @@
     @extend %h2;
     padding-bottom: 16px;
     margin-bottom: 32px;
-    border-bottom: 1px solid $borders-gray-color;
+    border-bottom: 1px solid $border-color;
   }
 
   &__content {
@@ -111,7 +110,7 @@
     width: 100%;
     height: min-content;
     padding-bottom: 24px;
-    border-bottom: 1px solid $borders-gray-color;
+    border-bottom: 1px solid $border-color;
   }
 }
 
@@ -161,11 +160,10 @@
 }
 
 .colors {
-
   &__title {
     @extend %small-text;
     margin-bottom: 8px;
-    color: $second-gray-color;
+    color: $second-color;
   }
 
   &__list {
@@ -176,11 +174,10 @@
 }
 
 .capacity {
-
   &__title {
     @extend %small-text;
     margin: 24px 0 8px;
-    color: $second-gray-color;
+    color: $second-color;
   }
 
   &__list {
@@ -189,7 +186,6 @@
 }
 
 .description {
-  
   &__item {
     margin-bottom: 32px;
   }
@@ -201,7 +197,7 @@
 
   &__text {
     @extend %body-text;
-    color: $second-gray-color;
+    color: $second-color;
   }
 
   &:last-child {
@@ -210,7 +206,6 @@
 }
 
 .tech-specifications {
-
   &__item {
     display: flex;
     justify-content: space-between;
@@ -219,7 +214,7 @@
 
   &__text {
     @extend %body-text;
-    color: $second-gray-color;
+    color: $second-color;
 
     &--bold {
       color: inherit;
@@ -244,7 +239,6 @@
 }
 
 @media #{$tablet-media-query} {
-
   .product-details {
     display: flex;
     flex-direction: column;

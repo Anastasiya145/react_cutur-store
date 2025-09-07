@@ -1,7 +1,7 @@
-import React from 'react';
-import './noSearchResults.scss';
+import React from "react";
+import "./noSearchResults.scss";
 
-export const NoSearchResults:React.FC = () => {
+export const NoSearchResults: React.FC = () => {
   return (
     <div className="no-results">
       <h2 className="no-results__title">

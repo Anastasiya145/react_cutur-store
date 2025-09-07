@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Product } from '../../types/Product';
+import { useState } from "react";
+import { Product } from "../../types/Product";
 
 export const useLocalStorage = (key: string, initialValue: Product[]) => {
   const [value, setValue] = useState(() => {

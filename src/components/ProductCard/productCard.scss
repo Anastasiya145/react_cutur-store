@@ -2,8 +2,9 @@
 
 .card {
   position: relative;
-  background-color: #fff;
-  border: 1px solid $borders-gray-color;
+  // background-color: #fff;
+  border: 1px solid $border-color;
+  // box-shadow: $box-shadow-color;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -14,7 +15,7 @@
   transition: all 0.3s;
 
   &:hover {
-    border-color: $main-gray-color;
+    border-color: $main-color;
   }
 
   &__image {
@@ -25,20 +26,18 @@
 
   &__title {
     margin-top: 24px;
-    color: $main-gray-color;
+    color: $main-color;
     @extend %body-text;
   }
 
   &__price {
     margin: 32px 0 6px;
-    border-bottom: 1px solid $borders-gray-color;
+    border-bottom: 1px solid $border-color;
   }
 }
 
 @media #{$tablet-media-query} {
-
   .card {
-
     &__title,
     &__price,
     &__properties {

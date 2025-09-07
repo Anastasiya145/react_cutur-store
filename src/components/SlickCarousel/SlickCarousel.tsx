@@ -1,13 +1,14 @@
-import React from 'react';
-import Slider from 'react-slick';
-import { PathnamesForNav } from '../../types/Pathnames';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import './slickCarousel.scss';
+import React from "react";
+import Slider from "react-slick";
+import { PathnamesForNav } from "../../types/Pathnames";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./slickCarousel.scss";
 
 export const SlickCarousel: React.FC = () => {
   const banners = Object.keys(PathnamesForNav)
-    .slice(1).map(path => path.toLowerCase());
+    .slice(1)
+    .map((path) => path.toLowerCase());
 
   const settings = {
     infinite: true,

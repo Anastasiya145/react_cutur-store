@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import classNames from 'classnames';
-import { Product } from '../../types/Product';
-import { SortType } from '../../types/SortType';
-import { sortProducts } from '../../helpers/sortHelper';
-import { ProductCard } from '../ProductCard/ProductCard';
-import './productsSlider.scss';
+import React, { useEffect, useState } from "react";
+import classNames from "classnames";
+import { Product } from "../../types/Product";
+import { SortType } from "../../types/SortType";
+import { sortProducts } from "../../helpers/sortHelper";
+import { ProductCard } from "../ProductCard/ProductCard";
+import "./productsSlider.scss";
 
 export type Props = {
-  products: Product[],
-  title: string,
-  sortBy: SortType,
+  products: Product[];
+  title: string;
+  sortBy: SortType;
 };
 
 export const ProductsSlider: React.FC<Props> = ({
@@ -19,7 +19,7 @@ export const ProductsSlider: React.FC<Props> = ({
 }) => {
   const [visibleProducts, setVisibleProducts] = useState<Product[]>([]);
   const [startIndex, setStartIndex] = useState(0);
-  const [transition, setTransition] = useState('');
+  const [transition, setTransition] = useState("");
 
   useEffect(() => {
     const sortedProducts = sortProducts(products, sortBy);
@@ -28,15 +28,15 @@ export const ProductsSlider: React.FC<Props> = ({
   }, [products]);
 
   const showPrevImage = () => {
-    setStartIndex(prevIndex => prevIndex - 1);
+    setStartIndex((prevIndex) => prevIndex - 1);
   };
 
   const showNextImage = () => {
-    setStartIndex(prevIndex => prevIndex + 1);
+    setStartIndex((prevIndex) => prevIndex + 1);
   };
 
   useEffect(() => {
-    setTransition(`${startIndex * (-280)}px`);
+    setTransition(`${startIndex * -280}px`);
   }, [startIndex]);
 
   const isFirstCard = () => {
@@ -54,19 +54,17 @@ export const ProductsSlider: React.FC<Props> = ({
         <div className="slider__nav">
           {/* eslint-disable-next-line */}
           <button
-            className={classNames(
-              'slider__button slider__button_prev',
-              { disabled: isFirstCard() },
-            )}
+            className={classNames("slider__button slider__button_prev", {
+              disabled: isFirstCard(),
+            })}
             type="button"
             onClick={showPrevImage}
           />
           {/* eslint-disable-next-line */}
           <button
-            className={classNames(
-              'slider__button slider__button_next',
-              { disabled: isLastCard() },
-            )}
+            className={classNames("slider__button slider__button_next", {
+              disabled: isLastCard(),
+            })}
             type="button"
             onClick={showNextImage}
           />

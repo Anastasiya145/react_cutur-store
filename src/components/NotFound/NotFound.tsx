@@ -1,14 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './notFound.scss';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./notFound.scss";
 
 export type Props = {
-  title: string,
+  title: string;
 };
 
-export const NotFound:React.FC<Props> = ({ title }) => {
+export const NotFound: React.FC<Props> = ({ title }) => {
   const navigate = useNavigate();
-  const handleNavigate = () => navigate('/');
+  const handleNavigate = () => navigate("/");
 
   return (
     <div className="not-found">

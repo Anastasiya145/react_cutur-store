@@ -1,51 +1,39 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
-import classNames from 'classnames';
-import { AppContext } from '../../context/AppContextProvider';
-import { Product } from '../../types/Product';
-import { DetailedProduct } from '../../types/DetailedProduct';
-import { colors, ColorsType } from '../../types/Colors';
-import { TechnicalSpecifications } from '../../types/TechSpecification';
-import { SortType } from '../../types/SortType';
-import { ProductPrice } from '../../components/ProductPrice/ProductPrice';
-import { PropertyList } from '../../components/PropertyList/PropertyList';
-import { getProductById } from '../../api/fetchData';
-import { Loader } from '../../components/Loader';
-import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
+import classNames from "classnames";
+import { AppContext } from "../../context/AppContextProvider";
+import { Product } from "../../types/Product";
+import { DetailedProduct } from "../../types/DetailedProduct";
+import { colors, ColorsType } from "../../types/ProductColors";
+import { TechnicalSpecifications } from "../../types/TechSpecification";
+import { SortType } from "../../types/SortType";
+import { ProductPrice } from "../../components/ProductPrice/ProductPrice";
+import { PropertyList } from "../../components/PropertyList/PropertyList";
+import { getProductById } from "../../api/fetchData";
+import { Loader } from "../../components/Loader";
+import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
 /* eslint-disable-next-line */
-import { ButtonAddToCart } from '../../components/ButtonAddToCart/ButtonAddToCart';
-import { SlickSlider } from '../../components/SlickSlider/SlickSlider';
-import './itemPage.scss';
+import { ButtonAddToCart } from "../../components/ButtonAddToCart/ButtonAddToCart";
+import { SlickSlider } from "../../components/SlickSlider/SlickSlider";
+import "./itemPage.scss";
 
-const calcValueSpecification = (
-  product: DetailedProduct,
-  spec: string,
-) => {
+const calcValueSpecification = (product: DetailedProduct, spec: string) => {
   const specValue = product[spec.toLowerCase() as keyof DetailedProduct];
 
-  return Array.isArray(specValue) ? specValue.join(', ') : specValue;
+  return Array.isArray(specValue) ? specValue.join(", ") : specValue;
 };
 
-const navigateTo = (
-  pathname: string,
-  paramOld: string,
-  paramNew: string,
-) => {
+const navigateTo = (pathname: string, paramOld: string, paramNew: string) => {
   const newLink = pathname.replace(
     paramOld.toLowerCase(),
-    paramNew.toLowerCase(),
+    paramNew.toLowerCase()
   );
 
   return `${newLink}`;
 };
 
 const chooseProperties = (product: DetailedProduct) => {
-  const {
-    screen,
-    resolution,
-    processor,
-    ram,
-  } = product;
+  const { screen, resolution, processor, ram } = product;
 
   const properties = {
     screen,
@@ -61,12 +49,12 @@ const bgrColor = (colorName: string) => {
   return colors[colorName as keyof ColorsType];
 };
 
-const findProductById = (id = '', products: Product[]) => {
+const findProductById = (id = "", products: Product[]) => {
   return products.find((product) => product.itemId === id);
 };
 
 export type Props = {
-  products: Product[],
+  products: Product[];
 };
 
 export const ItemPage: React.FC<Props> = ({ products }) => {
@@ -75,17 +63,18 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
   const [mainImg, setMainImg] = useState(product?.images[0]);
 
   const { pathname } = useLocation();
-  const { itemId = '' } = useParams();
+  const { itemId = "" } = useParams();
   const { favorites, cart, isProductSelected } = useContext(AppContext);
 
   const isProductSelectedinFav = isProductSelected(
-    product?.id || '', favorites,
+    product?.id || "",
+    favorites
   );
-  const isProductSelectedinCart = isProductSelected(product?.id || '', cart);
+  const isProductSelectedinCart = isProductSelected(product?.id || "", cart);
   const selectedItem = findProductById(product?.id, products);
   const isProductFind = product && selectedItem;
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   async function loadProductById(productId: string) {
     setIsLoading(true);
@@ -96,7 +85,7 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
       setProduct(detailedPproductFromServer);
       setMainImg(detailedPproductFromServer.images[0]);
     } catch {
-      setError('Product not found');
+      setError("Product not found");
     } finally {
       setIsLoading(false);
     }
@@ -143,7 +132,7 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
                 {product.images && (
                   <div className="product-details__images-container">
                     <div className="image-list">
-                      {product.images.map(img => (
+                      {product.images.map((img) => (
                         <button
                           type="button"
                           key={img}
@@ -153,10 +142,9 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
                           <img
                             alt="product"
                             src={img}
-                            className={classNames(
-                              'image image_small',
-                              { active: img === mainImg },
-                            )}
+                            className={classNames("image image_small", {
+                              active: img === mainImg,
+                            })}
                           />
                         </button>
                       ))}
@@ -176,17 +164,16 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
                   <div className="colors">
                     <h3 className="colors__title">Available colors</h3>
                     <div className="colors__list">
-                      {product.colorsAvailable.map(color => (
+                      {product.colorsAvailable.map((color) => (
                         <Link
                           key={color}
                           to={{
                             pathname: `${navigateTo(pathname, product.color, color)}`,
                           }}
                           style={{ background: `${bgrColor(color)}` }}
-                          className={classNames(
-                            'button button_circle',
-                            { active: product.color === color },
-                          )}
+                          className={classNames("button button_circle", {
+                            active: product.color === color,
+                          })}
                         />
                       ))}
                     </div>
@@ -198,16 +185,15 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
                       Select capacity
                     </h3>
                     <div className="capacity__list">
-                      {product.capacityAvailable.map(capacity => (
+                      {product.capacityAvailable.map((capacity) => (
                         <Link
                           key={capacity}
                           to={{
                             pathname: `${navigateTo(pathname, product.capacity, capacity)}`,
                           }}
-                          className={classNames(
-                            'button button_square',
-                            { active: product.capacity === capacity },
-                          )}
+                          className={classNames("button button_square", {
+                            active: product.capacity === capacity,
+                          })}
                         >
                           {capacity}
                         </Link>
@@ -231,8 +217,8 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
               <div className="product-details__section">
                 <h2 className="product-details__subtitle">About</h2>
                 <div data-cy="productDescription" className="description">
-                  {product.description && (
-                    product.description.map(description => (
+                  {product.description &&
+                    product.description.map((description) => (
                       <div
                         key={description.title}
                         className="description__item"
@@ -240,26 +226,22 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
                         <h3 className="description__title">
                           {description.title}
                         </h3>
-                        <p className="description__text">
-                          {description.text}
-                        </p>
+                        <p className="description__text">{description.text}</p>
                       </div>
-                    ))
-                  )}
+                    ))}
                 </div>
               </div>
               <div className="product-details__section">
                 <h2 className="product-details__subtitle">Tech specs</h2>
                 <div className="tech-specifications">
-                  {Object.keys(TechnicalSpecifications).map(spec => (
+                  {Object.keys(TechnicalSpecifications).map((spec) => (
                     <div key={spec} className="tech-specifications__item">
-                      <p className="tech-specifications__text">
-                        {spec}
-                      </p>
-                      <p className={classNames(
-                        'tech-specifications__text',
-                        'tech-specifications__text--bold',
-                      )}
+                      <p className="tech-specifications__text">{spec}</p>
+                      <p
+                        className={classNames(
+                          "tech-specifications__text",
+                          "tech-specifications__text--bold"
+                        )}
                       >
                         {calcValueSpecification(product, spec)}
                       </p>
@@ -279,10 +261,7 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
       {!isLoading && (
         <section className="section">
           <h1 className="section__title">You may also like</h1>
-          <SlickSlider
-            products={products}
-            sortBy={SortType.Random}
-          />
+          <SlickSlider products={products} sortBy={SortType.Random} />
         </section>
       )}
     </div>

@@ -6,18 +6,18 @@
   position: relative;
 
   &__input {
-    color: $light-gray-color;
+    color: $light-color;
     @extend %body-text;
     width: 100%;
     height: 100%;
     padding: 20px;
     outline: none;
     border: none;
-    border-left: 1px solid $borders-gray-color;
-    border-right: 1px solid $borders-gray-color;
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
 
     &::placeholder {
-      color: $light-gray-color;
+      color: $light-color;
     }
   }
 
@@ -47,7 +47,6 @@
 }
 
 @media #{$tablet-media-query} {
-
   .search-bar {
     position: fixed;
     top: 0;
@@ -58,8 +57,8 @@
     z-index: 1;
     transform: translateX(100%);
     transition: transform 0.3s;
-    background-color: #fff;
-    border: 2px solid $main-gray-color;
+    // background-color: #fff;
+    border: 2px solid $main-color;
 
     &_opened {
       transform: translateX(0);

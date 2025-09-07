@@ -2,7 +2,7 @@
 
 .checkout-card {
   display: flex;
-  border: 1px solid $borders-gray-color;
+  border: 1px solid $border-color;
   padding: 30px;
   margin-bottom: 16px;
   align-items: center;
@@ -31,7 +31,7 @@
       transform: scale(1.05);
     }
   }
-  
+
   &__img {
     width: 66px;
     height: 66px;
@@ -42,7 +42,7 @@
   &__title {
     width: 295px;
     @extend %body-text;
-    color: $main-gray-color;
+    color: $main-color;
     margin-right: 50px;
   }
 
@@ -58,7 +58,6 @@
 
     &_prev {
       content: "+";
-
     }
   }
 
@@ -70,12 +69,11 @@
 
   &__price {
     @extend %h2;
-    color: $main-gray-color;
+    color: $main-color;
   }
 }
 
 @media #{$tablet-media-query} {
-
   .checkout-card {
     display: flex;
     flex-direction: column;

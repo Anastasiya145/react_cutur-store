@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { AppProvider } from '../../context/AppContextProvider';
-import { Product, ProductInCart } from '../../types/Product';
-import { getProducts } from '../../api/fetchData';
-import { useLocalStorage } from '../../helpers/hooks/useLocalStorage';
-import ScrollToTop from '../../helpers/ScrollTop';
-import { Header } from '../../components/Header/Header';
-import { HomePage } from '../HomePage/HomePage';
-import { CategoryPage } from '../CategoryPage/CategoryPage';
-import { ItemPage } from '../ItemPage/ItemPage';
-import { FavoritesPage } from '../FavoritesPage/FavoritesPage';
-import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
-import { Footer } from '../../components/Footer/Footer';
-import { CartPage } from '../CartPage/CartPage';
-import './page.scss';
-import { PathnamesApp } from '../../types/Pathnames';
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AppProvider } from "../../context/AppContextProvider";
+import { Product, ProductInCart } from "../../types/Product";
+import { getProducts } from "../../api/fetchData";
+import { useLocalStorage } from "../../helpers/hooks/useLocalStorage";
+import ScrollToTop from "../../helpers/ScrollTop";
+import { Header } from "../../components/Header/Header";
+import { HomePage } from "../HomePage/HomePage";
+import { CategoryPage } from "../CategoryPage/CategoryPage";
+import { ItemPage } from "../ItemPage/ItemPage";
+import { FavoritesPage } from "../FavoritesPage/FavoritesPage";
+import { NotFoundPage } from "../NotFoundPage/NotFoundPage";
+import { Footer } from "../../components/Footer/Footer";
+import { CartPage } from "../CartPage/CartPage";
+import "./page.scss";
+import { PathnamesApp } from "../../types/Pathnames";
 
 export const Page: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -27,11 +27,11 @@ export const Page: React.FC = () => {
     tablets: 0,
     accessories: 0,
   });
-  const [favorites, setFavorites] = useLocalStorage('favorites', []);
-  const [cart, setCart] = useLocalStorage('cart', []);
+  const [favorites, setFavorites] = useLocalStorage("favorites", []);
+  const [cart, setCart] = useLocalStorage("cart", []);
   const { pathname } = useLocation();
 
-  const pathnameNormalized = pathname === '/' ? 'home' : pathname.substring(1);
+  const pathnameNormalized = pathname === "/" ? "home" : pathname.substring(1);
 
   async function loadProducts() {
     setIsLoading(true);
@@ -50,9 +50,9 @@ export const Page: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setPhones(products.filter(item => item.category === 'phones'));
-    setTablets(products.filter(item => item.category === 'tablets'));
-    setAccessories(products.filter(item => item.category === 'accessories'));
+    setPhones(products.filter((item) => item.category === "phones"));
+    setTablets(products.filter((item) => item.category === "tablets"));
+    setAccessories(products.filter((item) => item.category === "accessories"));
   }, [products]);
 
   useEffect(() => {
@@ -64,16 +64,19 @@ export const Page: React.FC = () => {
   }, [phones, tablets, accessories]);
 
   const isProductSelected = (
-    productId: string, productsGroup: Product[] | ProductInCart[],
+    productId: string,
+    productsGroup: Product[] | ProductInCart[]
   ): boolean => {
-    return Array.isArray(productsGroup)
-      && productsGroup.some(product => product.itemId === productId);
+    return (
+      Array.isArray(productsGroup) &&
+      productsGroup.some((product) => product.itemId === productId)
+    );
   };
 
   const toggleToFavorites = (item: Product) => {
     if (item && isProductSelected(item.itemId, favorites)) {
       const newFavorites = favorites.filter(
-        (product: Product) => product.itemId !== item.itemId,
+        (product: Product) => product.itemId !== item.itemId
       );
 
       setFavorites(newFavorites);
@@ -87,7 +90,7 @@ export const Page: React.FC = () => {
 
     if (item && isProductSelected(productWidthCount.itemId, cart)) {
       const newCart = cart.filter(
-        (product: Product) => product.itemId !== item.itemId,
+        (product: Product) => product.itemId !== item.itemId
       );
 
       setCart(newCart);
@@ -130,37 +133,25 @@ export const Page: React.FC = () => {
               <Route path={PathnamesApp.Home}>
                 <Route
                   index
-                  element={(
+                  element={
                     <HomePage
                       products={phones}
                       productsCounter={productsCounter}
                       isLoading={isLoading}
                     />
-                  )}
+                  }
                 />
                 <Route path={PathnamesApp.Phones}>
-                  <Route
-                    index
-                    element={(
-                      <CategoryPage />
-                    )}
-                  />
+                  <Route index element={<CategoryPage />} />
                   <Route
                     path=":itemId"
                     element={<ItemPage products={products} />}
                   />
                 </Route>
-                <Route
-                  path={PathnamesApp.Tablets}
-                  element={(
-                    <CategoryPage />
-                  )}
-                />
+                <Route path={PathnamesApp.Tablets} element={<CategoryPage />} />
                 <Route
                   path={PathnamesApp.Accessories}
-                  element={(
-                    <CategoryPage />
-                  )}
+                  element={<CategoryPage />}
                 />
                 <Route
                   path={PathnamesApp.Favorites}

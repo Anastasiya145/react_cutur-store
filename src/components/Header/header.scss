@@ -1,7 +1,7 @@
 @import "/src/styles/common";
 
 .header {
-  border-bottom: 1px solid $borders-gray-color;
+  border-bottom: 1px solid $border-color;
   height: 64px;
   display: flex;
   flex-direction: row;
@@ -41,7 +41,7 @@
     margin-right: 64px;
     height: 100%;
     @extend %uppercase;
-    color: $second-gray-color;
+    color: $second-color;
     transition: color 0.3s;
 
     &:last-child {
@@ -49,20 +49,18 @@
     }
 
     &.selected {
-      color: $main-gray-color;
-      border-bottom: 3px solid $main-gray-color;
+      color: $main-color;
+      border-bottom: 3px solid $main-color;
     }
 
     &:hover {
-      color: #000;
+      color: $main-color;
     }
   }
 }
 
 @media #{$desktop-smallest-media-query} {
-
   .header {
-
     &__menu-open-button {
       display: block;
       @include button-header;
@@ -138,7 +136,6 @@
 }
 
 @media #{$tablet-media-query} {
-
   .nav {
     flex-direction: column;
 

@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
-import classNames from 'classnames';
-import { AppContext } from '../../context/AppContextProvider';
-import { ProductInCart } from '../../types/Product';
-import { ModelsCounter } from '../../components/ModelsCounter/ModelsCounter';
-import { NotFound } from '../../components/NotFound/NotFound';
-import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
-import { CheckoutCard } from '../../components/CheckoutCard/CheckoutCard';
-import './cartPage.scss';
+import React, { useContext, useEffect, useState } from "react";
+import classNames from "classnames";
+import { AppContext } from "../../context/AppContextProvider";
+import { ProductInCart } from "../../types/Product";
+import { ModelsCounter } from "../../components/ModelsCounter/ModelsCounter";
+import { NotFound } from "../../components/NotFound/NotFound";
+import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
+import { CheckoutCard } from "../../components/CheckoutCard/CheckoutCard";
+import "./cartPage.scss";
 
-export const CartPage:React.FC = () => {
+export const CartPage: React.FC = () => {
   const { cart } = useContext(AppContext);
   const [isPopupShown, setIsPopupShown] = useState(false);
   const [totalSum, setTotalSum] = useState(0);
@@ -16,15 +16,16 @@ export const CartPage:React.FC = () => {
 
   useEffect(() => {
     if (cart.length > 0) {
-      const totalCost = cart.reduce((
-        accumulator,
-        item: ProductInCart,
-      ) => accumulator + item.price * item.count, 0);
+      const totalCost = cart.reduce(
+        (accumulator, item: ProductInCart) =>
+          accumulator + item.price * item.count,
+        0
+      );
 
-      const totalCount = cart.reduce((
-        accumulator,
-        item: ProductInCart,
-      ) => accumulator + item.count, 0);
+      const totalCount = cart.reduce(
+        (accumulator, item: ProductInCart) => accumulator + item.count,
+        0
+      );
 
       setTotalSum(totalCost);
       setTotalModelsCount(totalCount);
@@ -44,13 +45,11 @@ export const CartPage:React.FC = () => {
       <ModelsCounter number={cart.length} />
 
       {!cart.length ? (
-        <NotFound
-          title="Your cart is empty"
-        />
+        <NotFound title="Your cart is empty" />
       ) : (
         <div className="cart">
           <div className="cart__products">
-            {cart.map(item => (
+            {cart.map((item) => (
               <CheckoutCard key={item.id} item={item} />
             ))}
           </div>
@@ -69,10 +68,10 @@ export const CartPage:React.FC = () => {
               Checkout
             </button>
           </div>
-          <div className={classNames(
-            'cart__popup',
-            { cart__popup_shown: isPopupShown },
-          )}
+          <div
+            className={classNames("cart__popup", {
+              cart__popup_shown: isPopupShown,
+            })}
           >
             Sorry, this funtion is not implemented yet.
           </div>

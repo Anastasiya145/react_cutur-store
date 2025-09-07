@@ -1,13 +1,13 @@
-import React from 'react';
-import { PageNavLink } from '../../helpers/PageNavLink';
-import './footer.scss';
+import React from "react";
+import { PageNavLink } from "../../helpers/PageNavLink";
+import "./footer.scss";
 
 export const Footer: React.FC = () => {
   const scrollToElement = (elementId: string) => {
     const element = document.getElementById(elementId);
 
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
         <button
           className="button button_scroll"
           type="button"
-          onClick={() => scrollToElement('header')}
+          onClick={() => scrollToElement("header")}
         />
       </div>
     </div>

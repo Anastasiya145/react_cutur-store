@@ -1,12 +1,12 @@
-import { Product } from '../types/Product';
-import { DetailedProduct } from '../types/DetailedProduct';
+import { Product } from "../types/Product";
+import { DetailedProduct } from "../types/DetailedProduct";
 
-const BASE_URL = 'https://mate-academy.github.io/react_phone-catalog/_new/';
+const BASE_URL = "https://mate-academy.github.io/react_phone-catalog/_new/";
 
 function request<T>(url: string): Promise<T> {
-  return fetch(BASE_URL + url).then(response => {
+  return fetch(BASE_URL + url).then((response) => {
     if (!response.ok) {
-      throw new Error('Can not load data from server');
+      throw new Error("Can not load data from server");
     }
 
     return response.json();
@@ -14,7 +14,7 @@ function request<T>(url: string): Promise<T> {
 }
 
 export const getProducts = () => {
-  return request<Product[]>('/products.json');
+  return request<Product[]>("/products.json");
 };
 
 export const getProductById = (id: string) => {
@@ -22,11 +22,11 @@ export const getProductById = (id: string) => {
 };
 
 export const getProductByCategory = (categoryName: string) => {
-  return getProducts()
-    .then(products => {
-      const productsInCategory = products
-        .filter(product => product.category === categoryName);
+  return getProducts().then((products) => {
+    const productsInCategory = products.filter(
+      (product) => product.category === categoryName
+    );
 
-      return productsInCategory;
-    });
+    return productsInCategory;
+  });
 };
