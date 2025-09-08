@@ -3,6 +3,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import classNames from "classnames";
 import { getSearchWith } from "../../helpers/searchHelper";
 import "./pagination.scss";
+import { IconArrowLeft } from "../Icon/IconArrowLeft";
+import { IconArrowRight } from "../Icon/IconArrowRight";
 
 export type Props = {
   total: number;
@@ -62,10 +64,15 @@ export const Pagination: React.FC<Props> = ({
             page: (currentPage - 1).toString(),
           }),
         }}
-        className={classNames("pagination__arrow pagination__arrow_prev", {
+        className={classNames("pagination__arrow", {
           disabled: currentPage === 1,
         })}
-      />
+      >
+        <IconArrowLeft
+          style={{ width: 16, height: 16 }}
+          className="pagination__arrow_prev"
+        />
+      </Link>
 
       <ul className="pagination__list">
         {visiblePages.map((pageNumber) => (
@@ -93,10 +100,15 @@ export const Pagination: React.FC<Props> = ({
             page: (currentPage + 1).toString(),
           }),
         }}
-        className={classNames("pagination__arrow pagination__arrow_next", {
+        className={classNames("pagination__arrow ", {
           disabled: currentPage === lastPage,
         })}
-      />
+      >
+        <IconArrowRight
+          style={{ width: 16, height: 16 }}
+          className="pagination__arrow_next"
+        />
+      </Link>
     </div>
   );
 };

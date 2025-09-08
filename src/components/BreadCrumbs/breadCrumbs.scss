@@ -24,16 +24,7 @@
     text-transform: capitalize;
     display: flex;
     gap: 8px;
-
-    &::before {
-      content: "";
-      width: 16px;
-      height: 16px;
-      @include bgr-img;
-      background-image: url($arrow-right);
-      color: $light-color;
-      font-weight: 300;
-    }
+    align-items: center;
 
     &.disabled {
       pointer-events: none;

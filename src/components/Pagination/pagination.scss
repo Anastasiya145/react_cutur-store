@@ -19,11 +19,15 @@
   }
 
   &__arrow {
-    @include button-arrows;
+    color: $second-color;
 
-    &_prev,
-    &_next {
-      margin-right: 0;
+    &:hover {
+      color: $main-color;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      color: $border-color;
     }
   }
 

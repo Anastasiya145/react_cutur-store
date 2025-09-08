@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import "./breadCrumbs.scss";
 import { IconHome } from "../../icons/IconHome";
+import { IconArrowRight } from "../Icon/IconArrowRight";
 // import { $main-color } from "../../styles/utils/variables.scss";
 
 export const BreadCrumbs: React.FC = () => {
@@ -16,11 +17,9 @@ export const BreadCrumbs: React.FC = () => {
 
   return (
     <div data-cy="breadCrumbs" className="breadcrumbs">
-      <Link to="/">
-        <IconHome
-          className="breadcrumbs__home"
-          style={{ width: 16, height: 16 }}
-        />
+      <Link to="/" className="breadcrumbs__link">
+        <IconHome style={{ width: 16, height: 16 }} />
+        <IconArrowRight style={{ width: 16, height: 16 }} />
       </Link>
       {breadcrumbs.map((crumbs, index) => {
         const text = crumbs.split("-").join(" ");
@@ -36,6 +35,9 @@ export const BreadCrumbs: React.FC = () => {
             })}
           >
             {text}
+            {breadcrumbs.length - 1 !== index && (
+              <IconArrowRight style={{ width: 16, height: 16 }} />
+            )}
           </Link>
         );
       })}

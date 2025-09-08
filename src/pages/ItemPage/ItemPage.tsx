@@ -16,6 +16,7 @@ import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
 import { ButtonAddToCart } from "../../components/ButtonAddToCart/ButtonAddToCart";
 import { SlickSlider } from "../../components/SlickSlider/SlickSlider";
 import "./itemPage.scss";
+import { IconArrowLeft } from "../../components/Icon/IconArrowLeft";
 
 const calcValueSpecification = (product: DetailedProduct, spec: string) => {
   const specValue = product[spec.toLowerCase() as keyof DetailedProduct];
@@ -121,6 +122,7 @@ export const ItemPage: React.FC<Props> = ({ products }) => {
               className="product-details__button-back"
               onClick={goToPreviusPage}
             >
+              <IconArrowLeft style={{ width: 16, height: 16 }} />
               Back
             </button>
           </div>

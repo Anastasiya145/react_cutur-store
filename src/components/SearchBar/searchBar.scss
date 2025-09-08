@@ -15,6 +15,7 @@
     border: none;
     border-left: 1px solid $border-color;
     border-right: 1px solid $border-color;
+    background-color: unset;
 
     &::placeholder {
       color: $light-color;
@@ -28,17 +29,8 @@
     transform: translateY(-50%);
     border: none;
     cursor: pointer;
-    width: 16px;
-    height: 16px;
-    @include bgr-img;
-
-    &_search {
-      background-image: url($icon-search);
-    }
-
-    &_close {
-      background-image: url($icon-close);
-    }
+    color: $second-color;
+    background-color: unset;
   }
 
   &__icon {
@@ -65,13 +57,12 @@
     }
 
     &__icon {
-      top: 4px;
+      // top: 4px;
       display: block;
       @include button-header;
       border: none;
-      @include bgr-img;
-      background-image: url($icon-search);
-      background-size: 20px 20px;
+      background-color: unset;
+      color: $second-color;
     }
   }
 }

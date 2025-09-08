@@ -18,6 +18,7 @@ export const SlickCarousel: React.FC = () => {
     dots: true,
     autoplay: true,
     autoplaySpeed: 5000,
+    arrows: false,
   };
 
   return (

@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { ProductInCart } from "../../types/Product";
 import { AppContext } from "../../context/AppContextProvider";
 import "./checkoutCard.scss";
+import { IconClose } from "../Icon/IconClose";
 
 export type Props = {
   item: ProductInCart;
@@ -37,7 +38,9 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
         data-cy="cartDeleteButton"
         className="checkout-card__button-remove"
         onClick={() => toggleToCart(item)}
-      />
+      >
+        <IconClose style={{ width: 16, height: 16 }} />
+      </button>
       <div className="checkout-card__content">
         <img alt={item.name} src={item.image} className="checkout-card__img" />
         <Link

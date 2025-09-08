@@ -8,6 +8,8 @@ import { PathnamesApp, PathnamesForNav } from "../../types/Pathnames";
 import "./header.scss";
 import { IconMenuCart } from "../IconMenu/IconMenuCart";
 import { IconMenuFavorites } from "../IconMenu/IconMenuFavorites";
+import { IconMenu } from "../Icon/IconMenu";
+import { IconClose } from "../Icon/IconClose";
 
 const linkAddress = (pageName: string) => {
   return pageName === "Home" ? "/" : pageName.toLowerCase();
@@ -54,7 +56,9 @@ export const Header: React.FC = () => {
             type="button"
             className="header__menu-open-button"
             onClick={toggleMenu}
-          />
+          >
+            <IconMenu style={{ width: 20, height: 20 }} />
+          </button>
         </div>
       </div>
       <nav
@@ -69,7 +73,9 @@ export const Header: React.FC = () => {
             type="button"
             className="header__menu-open-button"
             onClick={toggleMenu}
-          />
+          >
+            <IconClose style={{ width: 20, height: 20 }} />
+          </button>
         </div>
         <div className="nav">
           {Object.keys(PathnamesForNav).map((item) => (

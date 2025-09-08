@@ -1,6 +1,7 @@
 import React from "react";
 import { PageNavLink } from "../../helpers/PageNavLink";
 import "./footer.scss";
+import { IconArrowTop } from "../Icon/IconArrowTop";
 
 export const Footer: React.FC = () => {
   const scrollToElement = (elementId: string) => {
@@ -25,7 +26,9 @@ export const Footer: React.FC = () => {
           className="button button_scroll"
           type="button"
           onClick={() => scrollToElement("header")}
-        />
+        >
+          <IconArrowTop style={{ width: 20, height: 20 }} className="" />
+        </button>
       </div>
     </div>
   );

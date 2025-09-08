@@ -29,6 +29,8 @@
 
   &__menu-open-button {
     display: none;
+    background-color: unset;
+    color: $second-color;
   }
 }
 
@@ -65,9 +67,6 @@
       display: block;
       @include button-header;
       border: none;
-      @include bgr-img;
-      background-image: url($icon-menu);
-      background-size: 20px 20px;
     }
 
     & .nav {
@@ -80,10 +79,6 @@
       align-items: center;
       width: 100%;
       margin-bottom: 64px;
-
-      & .header__menu-open-button {
-        background-image: url($icon-close);
-      }
     }
   }
 
@@ -126,6 +121,8 @@
 
     & .icon {
       width: 100%;
+      display: flex;
+      justify-content: center;
 
       & .icon__count {
         top: 40%;

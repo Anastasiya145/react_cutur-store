@@ -7,6 +7,8 @@ import { SortType } from "../../types/SortType";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./slickSlider.scss";
+import { IconArrowRight } from "../Icon/IconArrowRight";
+import { IconArrowLeft } from "../Icon/IconArrowLeft";
 
 export type Props = {
   products: Product[];
@@ -28,6 +30,18 @@ export const SlickSlider: React.FC<Props> = ({ products, sortBy }) => {
     slidesToShow: 4,
     slidesToScroll: 2,
     adaptiveHeight: true,
+    prevArrow: (
+      <IconArrowLeft
+        style={{ width: 40, height: 40 }}
+        className="slick-arrow"
+      />
+    ),
+    nextArrow: (
+      <IconArrowRight
+        style={{ width: 40, height: 40 }}
+        className="slick-arrow"
+      />
+    ),
     responsive: [
       {
         breakpoint: 1024,

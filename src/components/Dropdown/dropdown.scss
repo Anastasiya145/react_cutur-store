@@ -41,14 +41,8 @@
   }
 
   &__arrow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 16px;
-    height: 16px;
+    color: $second-color;
     transition: transform 0.3s;
-    @include bgr-img;
-    background-image: url("https://i.gstatvb.com/7b0c5a911403e372d5b0aace017605fc1689328395.rng.png");
 
     &_opened {
       transform: rotate(180deg);

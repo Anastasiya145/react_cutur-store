@@ -19,16 +19,12 @@
 
   &__button-remove {
     border: none;
-    height: 16px;
-    width: 16px;
-    @include bgr-img;
-    background-image: url($icon-close-light-gray);
+    color: $light-color;
     margin-right: 30px;
     transition: all 0.3s;
 
     &:hover {
-      background-image: url($icon-close);
-      transform: scale(1.05);
+      color: $main-color;
     }
   }
 

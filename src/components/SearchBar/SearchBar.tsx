@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { getSearchWith } from "../../helpers/searchHelper";
 import { useDebounce } from "../../helpers/hooks/useDebounce";
 import "./searchBar.scss";
+import { IconSearch } from "../Icon/IconSearch";
 
 export const SearchBar: React.FC = () => {
   const { pathname } = useLocation();
@@ -61,14 +62,14 @@ export const SearchBar: React.FC = () => {
               : "search-bar__button_close"
           )}
           onClick={handleClearSearchInput}
-        />
+        >
+          <IconSearch style={{ width: 16, height: 16 }} />
+        </button>
       </div>
       {/* eslint-disable-next-line */}
-      <button
-        type="button"
-        className="search-bar__icon"
-        onClick={toggleSearch}
-      />
+      <button type="button" onClick={toggleSearch} className="search-bar__icon">
+        <IconSearch style={{ width: 20, height: 20 }} />
+      </button>
     </>
   );
 };

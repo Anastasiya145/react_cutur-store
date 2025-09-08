@@ -3,6 +3,7 @@ import classNames from "classnames";
 import "./dropdown.scss";
 import { Link, useSearchParams } from "react-router-dom";
 import { getSearchWith } from "../../helpers/searchHelper";
+import { IconArrowDown } from "../Icon/IconArrowDown";
 
 export type Props = {
   label: string;
@@ -57,7 +58,8 @@ export const Dropdown: React.FC<Props> = ({
         onClick={toggle}
       >
         <span>{value}</span>
-        <div
+        <IconArrowDown
+          style={{ width: "16px", height: "16px" }}
           className={classNames("dropdown__arrow", {
             dropdown__arrow_opened: isOpen,
           })}
