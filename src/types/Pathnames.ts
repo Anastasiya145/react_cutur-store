@@ -1,17 +1,17 @@
 // eslint-disable-next-line no-shadow
 export enum PathnamesForNav {
   Home = "/",
-  Phones = "/phones",
-  Tablets = "/tablets",
-  Accessories = "/accessories",
+  Jouets = "/jouets",
+  Bavoirs = "/bavoirs",
+  Robes = "/robes",
 }
 
 // eslint-disable-next-line no-shadow
 export enum PathnamesApp {
   Home = "/",
-  Phones = "/phones",
-  Tablets = "/tablets",
-  Accessories = "/accessories",
+  Jouets = "/jouets",
+  Bavoirs = "/bavoirs",
+  Robes = "/robes",
   Favorites = "/favorites",
   Cart = "/cart",
 }

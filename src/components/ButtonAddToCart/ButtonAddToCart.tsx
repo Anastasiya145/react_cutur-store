@@ -43,14 +43,12 @@ export const ButtonAddToCart: React.FC<Props> = ({
         data-cy="addToFavorite"
         type="button"
         onClick={toggleToFav}
-        className="button"
+        // className="button"
+        className={classNames("button button_like", {
+          selected: isProductInFav,
+        })}
       >
-        <IconFav
-          style={{ width: 20, height: 20 }}
-          className={classNames("button_like", {
-            selected: isProductInFav,
-          })}
-        />
+        <IconFav style={{ width: 20, height: 20 }} isFilled={isProductInFav} />
       </button>
     </div>
   );

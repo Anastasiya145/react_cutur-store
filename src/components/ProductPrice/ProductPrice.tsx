@@ -1,20 +1,30 @@
 import React from "react";
 import "./productPrice.scss";
+import { Product } from "../../types/Product";
 
 export type Props = {
-  discountPrice: number;
-  regularPrice: number;
+  price: Product["price"];
+  discount: Product["discount"];
+  final_price: Product["final_price"];
 };
 
 export const ProductPrice: React.FC<Props> = ({
-  discountPrice,
-  regularPrice,
+  price,
+  discount,
+  final_price,
 }) => {
   return (
     <div className="price">
       <div className="price__container">
-        <p className="price__text price__text_bold">{`$${discountPrice}`}</p>
-        <p className="price__text price__text_discount">{`$${regularPrice}`}</p>
+        <p className="price__text price__text_bold">{`$${final_price}`}</p>
+        {discount > 0 && (
+          <>
+            <p className="price__text price__text_discount">{`$${price}`}</p>
+            {/* <span className="price__text price__text_discount-amount">
+              -{discount}
+            </span> */}
+          </>
+        )}
       </div>
     </div>
   );

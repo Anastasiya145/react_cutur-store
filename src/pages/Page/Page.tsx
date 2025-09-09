@@ -8,7 +8,7 @@ import ScrollToTop from "../../helpers/ScrollTop";
 import { Header } from "../../components/Header/Header";
 import { HomePage } from "../HomePage/HomePage";
 import { CategoryPage } from "../CategoryPage/CategoryPage";
-import { ItemPage } from "../ItemPage/ItemPage";
+// import { ItemPage } from "../ItemPage/ItemPage";
 import { FavoritesPage } from "../FavoritesPage/FavoritesPage";
 import { NotFoundPage } from "../NotFoundPage/NotFoundPage";
 import { Footer } from "../../components/Footer/Footer";
@@ -22,14 +22,12 @@ export const Page: React.FC = () => {
   const [tablets, setTablets] = useState<Product[]>([]);
   const [accessories, setAccessories] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [productsCounter, setProductsCounter] = useState({
-    phones: 0,
-    tablets: 0,
-    accessories: 0,
-  });
   const [favorites, setFavorites] = useLocalStorage("favorites", []);
   const [cart, setCart] = useLocalStorage("cart", []);
   const { pathname } = useLocation();
+
+  // delete later
+  console.log(accessories, tablets, phones);
 
   const pathnameNormalized = pathname === "/" ? "home" : pathname.substring(1);
 
@@ -55,28 +53,20 @@ export const Page: React.FC = () => {
     setAccessories(products.filter((item) => item.category === "accessories"));
   }, [products]);
 
-  useEffect(() => {
-    setProductsCounter({
-      phones: phones.length,
-      tablets: tablets.length,
-      accessories: accessories.length,
-    });
-  }, [phones, tablets, accessories]);
-
   const isProductSelected = (
-    productId: string,
+    productId: Product["id"],
     productsGroup: Product[] | ProductInCart[]
   ): boolean => {
     return (
       Array.isArray(productsGroup) &&
-      productsGroup.some((product) => product.itemId === productId)
+      productsGroup.some((product) => product.id === productId)
     );
   };
 
   const toggleToFavorites = (item: Product) => {
-    if (item && isProductSelected(item.itemId, favorites)) {
+    if (item && isProductSelected(item.id, favorites)) {
       const newFavorites = favorites.filter(
-        (product: Product) => product.itemId !== item.itemId
+        (product: Product) => product.id !== item.id
       );
 
       setFavorites(newFavorites);
@@ -88,10 +78,8 @@ export const Page: React.FC = () => {
   const toggleToCart = (item: Product | ProductInCart) => {
     const productWidthCount = { ...item, count: 1 };
 
-    if (item && isProductSelected(productWidthCount.itemId, cart)) {
-      const newCart = cart.filter(
-        (product: Product) => product.itemId !== item.itemId
-      );
+    if (item && isProductSelected(productWidthCount.id, cart)) {
+      const newCart = cart.filter((product: Product) => product.id !== item.id);
 
       setCart(newCart);
     } else {
@@ -99,9 +87,9 @@ export const Page: React.FC = () => {
     }
   };
 
-  const updateCountInCart = (productId: string, newCount: number) => {
+  const updateCountInCart = (productId: Product["id"], newCount: number) => {
     const updatedCart = cart.map((item: ProductInCart) => {
-      if (item.itemId === productId) {
+      if (item.id === productId) {
         return { ...item, count: newCount };
       }
 
@@ -133,26 +121,17 @@ export const Page: React.FC = () => {
               <Route path={PathnamesApp.Home}>
                 <Route
                   index
-                  element={
-                    <HomePage
-                      products={phones}
-                      productsCounter={productsCounter}
-                      isLoading={isLoading}
-                    />
-                  }
+                  element={<HomePage products={phones} isLoading={isLoading} />}
                 />
-                <Route path={PathnamesApp.Phones}>
+                <Route path={PathnamesApp.Jouets}>
                   <Route index element={<CategoryPage />} />
-                  <Route
-                    path=":itemId"
+                  {/* <Route
+                    path=":id"
                     element={<ItemPage products={products} />}
-                  />
+                  /> */}
                 </Route>
-                <Route path={PathnamesApp.Tablets} element={<CategoryPage />} />
-                <Route
-                  path={PathnamesApp.Accessories}
-                  element={<CategoryPage />}
-                />
+                <Route path={PathnamesApp.Bavoirs} element={<CategoryPage />} />
+                <Route path={PathnamesApp.Robes} element={<CategoryPage />} />
                 <Route
                   path={PathnamesApp.Favorites}
                   element={<FavoritesPage />}

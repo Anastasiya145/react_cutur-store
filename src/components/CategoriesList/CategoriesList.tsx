@@ -1,40 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Category } from "../../types/Category";
 import { CategoryCard } from "../CategoryCard/CategoryCard";
 import "./categoriesList.scss";
+import { getCategories } from "../../api/fetchData";
 
-export type Props = {
-  productsCounter: {
-    [key: string]: number;
-  };
-};
+export const CategoriesList: React.FC = () => {
+  const [categoriesList, setCategoriesList] = useState<Category[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-export const CategoriesList: React.FC<Props> = ({ productsCounter }) => {
-  const categories = [
-    { id: 1, title: "Mobile phones" },
-    { id: 2, title: "Tablets" },
-    { id: 3, title: "Accessories" },
-  ];
+  async function loadCategories() {
+    setIsLoading(true);
 
-  const normalizeNameCategory = (category: string): string => {
-    return category === "Mobile phones" ? "phones" : category.toLowerCase();
-  };
+    try {
+      const categoriesFromServer = await getCategories();
 
-  const categoriesNormalized: Category[] = categories.map((item) => {
-    const newName = normalizeNameCategory(item.title);
+      setCategoriesList(categoriesFromServer);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
-    return {
-      ...item,
-      name: newName,
-      itemCount: productsCounter[newName],
-    };
-  });
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
+  console.log(categoriesList, isLoading);
 
   return (
     <ul className="product-category">
-      {categoriesNormalized.map((category) => (
+      {categoriesList.map((category) => (
         <CategoryCard
-          key={category.name}
+          key={`${category.name}-${category.id}`}
           data-cy="categoryLinksContainer"
           category={category}
         />

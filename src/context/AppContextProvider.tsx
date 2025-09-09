@@ -6,8 +6,8 @@ export type AppContextType = {
   cart: ProductInCart[];
   toggleToFavorites: (product: Product) => void;
   toggleToCart: (product: Product | ProductInCart) => void;
-  isProductSelected: (productId: string, products: Product[]) => boolean;
-  updateCountInCart: (id: string, newCount: number) => void;
+  isProductSelected: (productId: Product["id"], products: Product[]) => boolean;
+  updateCountInCart: (id: Product["id"], newCount: number) => void;
 };
 
 export const AppContext = createContext<AppContextType>({

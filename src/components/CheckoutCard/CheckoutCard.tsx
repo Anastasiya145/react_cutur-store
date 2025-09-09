@@ -15,8 +15,8 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
   const [count, setCount] = useState(item.count);
 
   useEffect(() => {
-    updateCountInCart(item.itemId, count);
-  }, [item.itemId, count]);
+    updateCountInCart(item.id, count);
+  }, [item.id, count]);
 
   const totalPrice = () => {
     return item.price * count;
@@ -42,10 +42,15 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
         <IconClose style={{ width: 16, height: 16 }} />
       </button>
       <div className="checkout-card__content">
-        <img alt={item.name} src={item.image} className="checkout-card__img" />
+        <img
+          alt={item.name}
+          //change later
+          src={item.images[0]}
+          className="checkout-card__img"
+        />
         <Link
           className="checkout-card__title"
-          to={`/${item.category}/${item.itemId}`}
+          to={`/${item.category}/${item.id}`}
         >
           {item.name}
         </Link>

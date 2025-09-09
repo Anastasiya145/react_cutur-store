@@ -1,29 +1,29 @@
 export type ColorsType = {
-  black: string;
-  white: string;
-  red: string;
-  silver: string;
-  gold: string;
-  yellow: string;
-  rosegold: string;
-  spacegray: string;
-  coral: string;
-  midnightgreen: string;
-  green: string;
-  purple: string;
+  noir: string; // black
+  blanc: string; // white
+  rouge: string; // red
+  argent: string; // silver
+  or: string; // gold
+  jaune: string; // yellow
+  orrose: string; // rosegold
+  gris_espacial: string; // spacegray
+  corail: string; // coral
+  vert_nuit: string; // midnightgreen
+  vert: string; // green
+  violet: string; // purple
 };
 
 export const colors = {
-  black: "#000",
-  white: "#000",
-  red: "#ff0000",
-  silver: "#b5b5bd",
-  gold: "#d4af37",
-  yellow: "#ffff00",
-  rosegold: "#b76e79",
-  spacegray: "#717378",
-  coral: "#ff7f50",
-  midnightgreen: "#004953",
-  green: "#4CD887",
-  purple: "#EF7FFC",
+  noir: "#000", // black
+  blanc: "#fff", // white
+  rouge: "#ff0000", // red
+  argent: "#b5b5bd", // silver
+  or: "#d4af37", // gold
+  jaune: "#ffff00", // yellow
+  orrose: "#b76e79", // rosegold
+  gris_espacial: "#717378", // spacegray
+  corail: "#ff7f50", // coral
+  vert_nuit: "#004953", // midnightgreen
+  vert: "#4CD887", // green
+  violet: "#EF7FFC", // purple
 };

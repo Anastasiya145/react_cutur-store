@@ -9,19 +9,10 @@ import "./homePage.scss";
 
 export type Props = {
   products: Product[];
-  productsCounter: {
-    phones: number;
-    tablets: number;
-    accessories: number;
-  };
   isLoading: boolean;
 };
 
-export const HomePage: React.FC<Props> = ({
-  products,
-  productsCounter,
-  isLoading,
-}) => {
+export const HomePage: React.FC<Props> = ({ products, isLoading }) => {
   return (
     <>
       {!isLoading ? (
@@ -36,7 +27,7 @@ export const HomePage: React.FC<Props> = ({
           </section>
           <section className="section">
             <h1 className="section__title">Shop by category</h1>
-            <CategoriesList productsCounter={productsCounter} />
+            <CategoriesList />
           </section>
           <section className="section">
             <h1 className="section__title">Brand new models</h1>

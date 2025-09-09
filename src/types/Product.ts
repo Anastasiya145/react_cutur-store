@@ -1,17 +1,14 @@
 export type Product = {
-  id: string;
-  category: string;
-  phoneId: string;
-  itemId: string;
+  id: number;
   name: string;
-  fullPrice: number;
-  price: number;
-  screen: string;
-  capacity: string;
+  description: string;
   color: string;
-  ram: string;
-  year: number;
-  image: string;
+  price: number;
+  discount: number;
+  final_price: number;
+  material: string;
+  category: string;
+  images: string[];
 };
 
 export type ProductInCart = Product & {

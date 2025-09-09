@@ -23,10 +23,12 @@
 
   &_like {
     color: $main-color;
+    border: none;
+    background-color: unset;
 
-    &.selected {
-      color: $accent-red-color;
-    }
+    // &.selected {
+    //   color: $accent-red-color;
+    // }
   }
 
   &_add-to-cart {
