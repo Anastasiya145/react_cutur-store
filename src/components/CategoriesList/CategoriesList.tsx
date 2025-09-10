@@ -3,10 +3,11 @@ import { Category } from "../../types/Category";
 import { CategoryCard } from "../CategoryCard/CategoryCard";
 import "./categoriesList.scss";
 import { getCategories } from "../../api/fetchData";
+import { Loader } from "../Loader/Loader";
 
 export const CategoriesList: React.FC = () => {
   const [categoriesList, setCategoriesList] = useState<Category[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function loadCategories() {
     setIsLoading(true);
@@ -24,7 +25,9 @@ export const CategoriesList: React.FC = () => {
     loadCategories();
   }, []);
 
-  console.log(categoriesList, isLoading);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <ul className="product-category">

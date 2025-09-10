@@ -12,15 +12,13 @@
     align-items: center;
   }
 
-  &__menu {
-    display: none;
+  &__logo {
+    height: 100%;
+    margin-right: 20px;
   }
 
-  &__logo {
-    background: center/contain no-repeat url($logo);
-    height: 24px;
-    width: 40px;
-    margin: 0 64px 0 26px;
+  &__menu {
+    display: none;
   }
 
   &__container {
@@ -30,20 +28,20 @@
   &__menu-open-button {
     display: none;
     background-color: unset;
-    color: $second-color;
+    color: $main-color;
   }
 }
 
 .nav {
   display: flex;
+  gap: $gap;
 
   &__item {
     cursor: pointer;
     padding: 24px 0;
-    margin-right: 64px;
     height: 100%;
     @extend %uppercase;
-    color: $second-color;
+    color: $main-color;
     transition: color 0.3s;
 
     &:last-child {
@@ -51,12 +49,12 @@
     }
 
     &.selected {
-      color: $main-color;
-      border-bottom: 3px solid $main-color;
+      color: $accent-color;
+      border-bottom: 3px solid $accent-color;
     }
 
     &:hover {
-      color: $main-color;
+      color: $accent-color;
     }
   }
 }
@@ -89,7 +87,7 @@
     right: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
+    z-index: 100;
     overflow-y: auto;
     transform: translateX(100%);
     transition: transform 0.3s;

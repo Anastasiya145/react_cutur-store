@@ -30,7 +30,7 @@ export const CategoryPage: React.FC = () => {
 
   useEffect(() => {
     loadProducts();
-  }, []);
+  }, [categoryName]);
 
   const handleVisibleProductsNumber = (number: number) => {
     setProductCount(number);

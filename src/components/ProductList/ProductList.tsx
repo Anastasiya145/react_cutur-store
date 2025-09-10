@@ -90,14 +90,14 @@ export const ProductList: React.FC<Props> = ({
               {isSortDropdownShown && (
                 <div className="product-list__dropdowns">
                   <Dropdown
-                    label="Sort by"
+                    label="Trier par"
                     classModificator="sort"
                     options={Object.values(SortTypeForDropdown)}
                     startValue={startSortValue}
                     searchParamsKey="sort"
                   />
                   <Dropdown
-                    label="Items on page"
+                    label="Articles par page"
                     classModificator="items"
                     options={itemsOptions}
                     startValue={startItemsValue}

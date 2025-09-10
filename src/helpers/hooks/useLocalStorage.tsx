@@ -1,21 +1,19 @@
 import { useState } from "react";
-import { Product } from "../../types/Product";
 
-export const useLocalStorage = (key: string, initialValue: Product[]) => {
-  const [value, setValue] = useState(() => {
+export function useLocalStorage<T>(key: string, initialValue: T) {
+  const [value, setValue] = useState<T>(() => {
     try {
       const data = localStorage.getItem(key);
-
-      return data ? JSON.parse(data) : initialValue;
+      return data ? (JSON.parse(data) as T) : initialValue;
     } catch {
       return initialValue;
     }
   });
 
-  const save = (currentValue: Product) => {
+  const save = (currentValue: T) => {
     setValue(currentValue);
     localStorage.setItem(key, JSON.stringify(currentValue));
   };
 
-  return [value, save];
-};
+  return [value, save] as const;
+}

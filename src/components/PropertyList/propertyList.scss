@@ -22,10 +22,10 @@
 
   &__text {
     @extend %small-text;
-    color: $main-color;
+    color: $accent-color;
 
     &_light-gray {
-      color: $second-color;
+      color: $main-color;
     }
   }
 }

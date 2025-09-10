@@ -7,7 +7,7 @@
   margin-bottom: 40px;
 
   &__home {
-    color: $second-color;
+    color: $main-color;
   }
 
   &__list {
@@ -20,7 +20,7 @@
   &__link {
     align-items: center;
     @extend %small-text;
-    color: $second-color;
+    color: $main-color;
     text-transform: capitalize;
     display: flex;
     gap: 8px;
@@ -28,7 +28,7 @@
 
     &.disabled {
       pointer-events: none;
-      color: $main-color;
+      color: $accent-color;
     }
   }
 }

@@ -2,9 +2,9 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import "./breadCrumbs.scss";
-import { IconHome } from "../../icons/IconHome";
+import { IconHome } from "../Icon/IconHome";
 import { IconArrowRight } from "../Icon/IconArrowRight";
-// import { $main-color } from "../../styles/utils/variables.scss";
+// import { $accent-color } from "../../styles/utils/variables.scss";
 
 export const BreadCrumbs: React.FC = () => {
   const breadcrumbs = useLocation()

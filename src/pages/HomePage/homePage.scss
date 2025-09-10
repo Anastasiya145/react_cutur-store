@@ -5,7 +5,12 @@
 
   &__title {
     @extend %h1;
+    // color: $main-color;
     margin-bottom: 24px;
+  }
+
+  &__text {
+    @extend %body-text;
   }
 
   &:last-child {
@@ -14,7 +19,6 @@
 }
 
 @media #{$phone-media-query} {
-
   .section {
     margin-bottom: 60px;
 

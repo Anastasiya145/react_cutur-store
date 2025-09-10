@@ -1,0 +1,8 @@
+@import "../../styles/utils/variables.scss";
+@import "../../styles/utils/fonts.scss";
+.privacy__title {
+  @extend %h2;
+  color: $main-color;
+  margin-bottom: 8px;
+  text-align: center;
+}

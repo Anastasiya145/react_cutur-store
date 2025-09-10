@@ -1,16 +1,26 @@
-$main-color: #de968c;
-$second-color: #b8996b;
-$light-color: #b8996b;
-$border-color: #e0e4ea;
-$accent-green-color: #49d082;
-$accent-red-color: #eb5757;
-$site-background-color: #f2ede4;
+$main-color: #e1ad37;
+$accent-color: #ae7b37;
+$second-accent-color: #fff;
+
+$light-color: #ae7b37; //to change
+$border-color: #e0e4ea; //old
+$accent-green-color: #77a270;
+$accent-red-color: #f28b82;
+$site-background-color: #fff;
+
+$gap: 16px;
+//old colors
+// $accent-color: #de968c;
+// $main-color: #b8996b;
+// $light-color: #b8996b;
+// $border-color: #e0e4ea;
+// $accent-green-color: #49d082;
+// $accent-red-color: #eb5757;
+// $site-background-color: #f2ede4;
 // $product-card-background-color: #fff;
 $box-shadow-color:
   0 4px 24px 0 rgba(34, 60, 80, 0.1),
   0 1.5px 6px 0 rgba(34, 60, 80, 0.08);
-
-// --e-global-color-text: #B8996B;
 
 $logo: "https://i.gstatvb.com/c389a77ca305ee5d9f0ee6f87f74fcfb1688922827.rng.png";
 // $arrow-left: "https://i.gstatvb.com/666bd175cdc8706e8a3f147f985a8ebe1689008383.rng.png";

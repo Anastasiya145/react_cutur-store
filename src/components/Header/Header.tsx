@@ -10,6 +10,7 @@ import { IconMenuCart } from "../IconMenu/IconMenuCart";
 import { IconMenuFavorites } from "../IconMenu/IconMenuFavorites";
 import { IconMenu } from "../Icon/IconMenu";
 import { IconClose } from "../Icon/IconClose";
+import { Logo } from "../Logo/Logo";
 
 const linkAddress = (pageName: string) => {
   return pageName === "Home" ? "/" : pageName.toLowerCase();
@@ -37,7 +38,9 @@ export const Header: React.FC = () => {
     <>
       <div id="header" className="header">
         <div className="header__content">
-          <Link to={PathnamesApp.Home} className="header__logo" />
+          <Link to={PathnamesApp.Home} className="header__logo">
+            <Logo />
+          </Link>
           <div className="nav">
             {Object.keys(PathnamesForNav).map((item) => (
               <PageNavLink key={item} text={item} to={linkAddress(item)} />

@@ -5,11 +5,11 @@
   position: relative;
 
   &.selected {
-    border-bottom: 3px solid $main-color;
+    border-bottom: 3px solid $accent-color;
   }
 
   &__img {
-    color: $second-color;
+    color: $main-color;
   }
 
   &__count {

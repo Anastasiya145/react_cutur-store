@@ -27,7 +27,7 @@
 
   &__text {
     @extend %body-text;
-    color: $second-color;
+    color: $main-color;
     width: 100%;
     text-align: center;
     padding-bottom: 24px;
@@ -43,7 +43,7 @@
     &:hover,
     &:active,
     &:focus {
-      background-color: $main-color;
+      background-color: $accent-color;
       color: #fff;
     }
   }

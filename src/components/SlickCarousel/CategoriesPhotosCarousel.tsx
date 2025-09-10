@@ -3,9 +3,9 @@ import Slider from "react-slick";
 import { PathnamesForNav } from "../../types/Pathnames";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./slickCarousel.scss";
+import "./categoriesPhotosCarousel.scss";
 
-export const SlickCarousel: React.FC = () => {
+export const CategoriesPhotosCarousel: React.FC = () => {
   const banners = Object.keys(PathnamesForNav)
     .slice(1)
     .map((path) => path.toLowerCase());
@@ -28,7 +28,9 @@ export const SlickCarousel: React.FC = () => {
           <img
             key={bannerName}
             alt={`banner_${bannerName}`}
-            src={`./img/carousel/${bannerName}.png`}
+            src={
+              "https://drive.google.com/file/d/1DtxpiB_VhJbYiwDFbITRgk9TBkIBGAJh/view?usp=sharing"
+            }
           />
         ))}
       </Slider>

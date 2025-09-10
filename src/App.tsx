@@ -1,10 +1,12 @@
 import React from "react";
-import { Page } from "./pages/Page/Page";
+import AppPage from "./pages/Page";
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <Page />
+      <AppPage />
     </div>
   );
 };
+
+export default App;

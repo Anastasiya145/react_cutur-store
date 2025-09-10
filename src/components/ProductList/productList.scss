@@ -1,7 +1,6 @@
 @import "/src/styles/common";
 
 .product-list {
-
   &__container {
     display: flex;
     align-self: center;
@@ -14,8 +13,8 @@
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    column-gap: 16px;
-    row-gap: 40px;
+    column-gap: $gap;
+    row-gap: calc(3 * $gap);
   }
 
   &__item {
@@ -37,7 +36,6 @@
 }
 
 @media #{$desktop-media-query} {
-
   .product-list {
     align-items: center;
     display: flex;
@@ -46,9 +44,7 @@
 }
 
 @media #{$phone-media-query} {
-
   .product-list {
-
     &__content {
       flex-direction: column;
     }
@@ -60,7 +56,7 @@
     &__dropdowns {
       flex-direction: column;
       margin: 0 auto;
-  
+
       & .dropdown_items {
         width: 176px;
         margin-top: 20px;

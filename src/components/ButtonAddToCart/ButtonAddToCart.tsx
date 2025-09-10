@@ -18,14 +18,6 @@ export const ButtonAddToCart: React.FC<Props> = ({
 }) => {
   const { toggleToFavorites, toggleToCart } = useContext(AppContext);
 
-  const toggleToFav = () => {
-    toggleToFavorites(product);
-  };
-
-  const toggleToCheckout = () => {
-    toggleToCart(product);
-  };
-
   return (
     <div className="buttons-container">
       {/* eslint-disable-next-line */}
@@ -34,7 +26,7 @@ export const ButtonAddToCart: React.FC<Props> = ({
         className={classNames("button button_add-to-cart", {
           selected: isProductInCart,
         })}
-        onClick={toggleToCheckout}
+        onClick={() => toggleToCart(product)}
       >
         {isProductInCart ? "Added" : "Add to cart"}
       </button>
@@ -42,8 +34,7 @@ export const ButtonAddToCart: React.FC<Props> = ({
       <button
         data-cy="addToFavorite"
         type="button"
-        onClick={toggleToFav}
-        // className="button"
+        onClick={() => toggleToFavorites(product)}
         className={classNames("button button_like", {
           selected: isProductInFav,
         })}

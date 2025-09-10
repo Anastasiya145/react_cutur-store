@@ -24,7 +24,7 @@
   }
 
   &__button-back {
-    color: $second-color;
+    color: $main-color;
     background: none;
     border: none;
     align-items: center;
@@ -154,7 +154,7 @@
   &__title {
     @extend %small-text;
     margin-bottom: 8px;
-    color: $second-color;
+    color: $main-color;
   }
 
   &__list {
@@ -168,7 +168,7 @@
   &__title {
     @extend %small-text;
     margin: 24px 0 8px;
-    color: $second-color;
+    color: $main-color;
   }
 
   &__list {
@@ -188,7 +188,7 @@
 
   &__text {
     @extend %body-text;
-    color: $second-color;
+    color: $main-color;
   }
 
   &:last-child {
@@ -205,7 +205,7 @@
 
   &__text {
     @extend %body-text;
-    color: $second-color;
+    color: $main-color;
 
     &--bold {
       color: inherit;

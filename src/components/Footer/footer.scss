@@ -1,25 +1,95 @@
 @import "/src/styles/common";
-
 .footer {
   border-top: 1px solid $border-color;
-  height: 96px;
+  background-color: $accent-color;
+  color: $second-accent-color;
+  padding: 24px;
 
   &__container {
-    height: 100%;
-    width: 100%;
-    max-width: 1150px;
-    margin: 0 auto;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 96px;
+    gap: 0 32px;
   }
 
-  &__logo {
-    background: center/contain no-repeat url($logo);
-    height: 24px;
-    width: 40px;
-    margin: 0 64px 0 8px;
+  &__left,
+  &__right {
+    display: flex;
+    gap: $gap;
+  }
+
+  &__left {
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__right {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__logo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  &__link {
+    color: $second-accent-color;
+    @extend %body-text;
+  }
+
+  &__icon-link {
+    display: flex;
+    align-items: center;
+    color: $second-accent-color;
+    transition: color 0.2s;
+  }
+
+  @media (max-width: 900px) {
+    &__container {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 16px 0;
+      min-height: unset;
+    }
+    &__logo-link {
+      order: 1;
+      margin: 0 auto 12px auto;
+    }
+    &__left {
+      order: 2;
+      position: static;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    &__right {
+      order: 3;
+      position: static;
+      justify-content: center;
+      margin-top: 12px;
+    }
+  }
+
+  &__credit {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 14px;
+    color: $second-accent-color;
+
+    &-link {
+      color: $second-accent-color;
+      @extend %small-text;
+    }
   }
 }
 
@@ -30,14 +100,43 @@
 
     &__container {
       flex-direction: column;
-      align-items: unset;
+      align-items: center;
       padding: 0 24px;
+      position: static;
     }
 
-    &__logo {
-      margin: 0;
-      margin-bottom: 16px;
+    &__left,
+    &__right {
+      position: static;
+      min-width: unset;
+      gap: $gap;
+      margin-bottom: 8px;
+      padding: 0;
     }
+  }
+}
+
+@media #{$phone-media-query} {
+  .footer__container {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: static;
+    gap: $gap;
+  }
+  .footer__left,
+  .footer__right {
+    position: static;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 0;
+    min-width: unset;
+    gap: $gap;
+  }
+  .footer__logo-link {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
   }
 }
 

@@ -7,7 +7,7 @@
 
   .slick-dots li button:before {
     font-size: 16px;
-    color: $main-color;
+    color: $accent-color;
   }
 
   .slick-dots li.slick-active button:before {
@@ -29,5 +29,5 @@
 }
 
 .slick-arrow-custom {
-  color: $second-color;
+  color: $main-color;
 }

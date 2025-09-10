@@ -14,7 +14,7 @@
   &__title {
     @extend %h3;
     text-transform: capitalize;
-    color: $main-color;
+    color: $accent-color;
     margin-top: 24px;
   }
 }

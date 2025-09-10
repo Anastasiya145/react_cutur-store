@@ -31,6 +31,6 @@
 
 @media #{$tablet-media-query} {
   .product-slider .slick-track {
-    gap: 16px;
+    gap: $gap;
   }
 }

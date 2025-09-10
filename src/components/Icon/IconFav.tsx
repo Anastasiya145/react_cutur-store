@@ -17,8 +17,8 @@ export const IconFav: React.FC<IconHeartProps> = ({ isFilled, ...props }) => (
       d="M12 21s-6.5-4.35-9-7.5C-1.5 9.5 2.5 4 7.5 6.5c2.5 1.25 4.5 4.5 4.5 4.5s2-3.25 4.5-4.5C21.5 4 25.5 9.5 21 13.5c-2.5 3.15-9 7.5-9 7.5z"
       stroke="currentColor"
       strokeWidth="2"
-      fill={isFilled ? "red" : "none"}
-      color={isFilled ? "red" : "currentColor"}
+      fill={isFilled ? "#f28b82" : "none"}
+      color={isFilled ? "#f28b82" : "currentColor"}
     />
   </svg>
 );

@@ -5,30 +5,27 @@
   position: relative;
   width: 40px;
   height: 40px;
-  // @include button-transparent;
 
   &_scroll {
+    background-color: #fff;
     position: fixed;
     bottom: 40px;
     right: 40px;
     border-radius: 50%;
-    color: $second-color;
+    color: $main-color;
     border: 1px solid $light-color;
     box-shadow: $box-shadow-color;
+    transition: all 0.3s;
 
     &:hover {
-      color: $main-color;
+      color: $accent-color;
     }
   }
 
   &_like {
-    color: $main-color;
+    color: $accent-color;
     border: none;
     background-color: unset;
-
-    // &.selected {
-    //   color: $accent-red-color;
-    // }
   }
 
   &_add-to-cart {
@@ -62,7 +59,7 @@
     &.active,
     &:hover {
       border: 2px solid #fff;
-      outline: 1px solid $main-color;
+      outline: 1px solid $accent-color;
     }
 
     &.active {
@@ -88,15 +85,7 @@
     &.active {
       color: #fff;
       border-color: transparent;
-      background-color: $main-color;
+      background-color: $accent-color;
     }
   }
 }
-
-// @media #{$tablet-media-query} {
-//   .button {
-//     &_scroll {
-//       margin-left: 84px;
-//     }
-//   }
-// }

@@ -1,0 +1,48 @@
+@import "../../styles/common";
+
+.banner {
+  width: 100%;
+  height: 20px;
+  background: $accent-color;
+  color: #fff;
+  text-align: center;
+  @extend %body-text;
+  position: relative;
+  z-index: 3;
+}
+
+.banner__slider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.banner__text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: banner-slide 0.7s cubic-bezier(0.77, 0, 0.18, 1) both;
+}
+
+@keyframes banner-slide {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// @media #{$phone-media-query} {
+//   .banner {
+//     font-size: 0.98rem;
+//     padding: 8px 0;
+//   }
+// }

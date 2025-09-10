@@ -1,0 +1,94 @@
+@import "../../styles/utils/variables.scss";
+
+.contact {
+  max-width: 420px;
+  margin: 40px auto 0 auto;
+  padding: 32px 24px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: $box-shadow-color;
+  font-family: inherit;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $accent-color;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  &__desc {
+    color: $main-color;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: calc($gap/2);
+    margin-top: 18px;
+  }
+
+  &__label {
+    color: $accent-color;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__input {
+    background: transparent;
+    border: 1.5px solid $border-color;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 1rem;
+    color: $accent-color;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+    box-shadow: none;
+    &:focus {
+      border-color: $accent-green-color;
+    }
+    &::placeholder {
+      color: $border-color;
+      opacity: 1;
+    }
+  }
+
+  &__button {
+    background: $accent-color;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+    &:hover {
+      background: $accent-green-color;
+      color: #fff;
+    }
+  }
+
+  &__success {
+    color: $accent-green-color;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  &__error {
+    color: $accent-red-color;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 500;
+  }
+}

@@ -14,16 +14,16 @@
 
   &__label {
     @extend %uppercase;
-    color: $second-color;
-    margin-bottom: 4px;
+    color: $main-color;
+    margin-bottom: 8px;
   }
 
   &__select {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid $light-color;
-    background-color: #fafbfc;
+    border: 1px solid $border-color;
+    background-color: #fff;
     padding: 10px;
     height: 40px;
     width: 100%;
@@ -36,12 +36,12 @@
     -moz-appearance: none;
 
     &:hover {
-      border: 1px solid $main-color;
+      border: 1px solid $accent-color;
     }
   }
 
   &__arrow {
-    color: $second-color;
+    color: $main-color;
     transition: transform 0.3s;
 
     &_opened {
@@ -64,11 +64,11 @@
     display: block;
     width: 100%;
     padding: 6px 12px;
-    color: $second-color;
+    color: $main-color;
     transition: all 0.3s linear;
 
     &.active {
-      color: $main-color;
+      color: $accent-color;
     }
   }
 }

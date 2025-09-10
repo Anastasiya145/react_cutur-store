@@ -1,1 +1,1 @@
-export * from "./SlickCarousel";
+export * from "./CategoriesPhotosCarousel";

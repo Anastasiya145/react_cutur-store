@@ -14,4 +14,8 @@ export enum PathnamesApp {
   Robes = "/robes",
   Favorites = "/favorites",
   Cart = "/cart",
+  Deliveries = "/deliveries",
+  Contact = "/contact",
+  Terms = "/terms",
+  Privacy = "/privacy",
 }
