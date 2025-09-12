@@ -1,7 +1,13 @@
+export type ProductDescription = {
+  title: string;
+  text: string[];
+  advice: string;
+};
+
 export type Product = {
   id: number;
   name: string;
-  description: string;
+  description: ProductDescription[];
   color: string;
   price: number;
   discount: number;
@@ -9,6 +15,9 @@ export type Product = {
   material: string;
   category: string;
   images: string[];
+  mainImage?: string;
+  itemsLeft?: number;
+  colorsAvailable: string[];
 };
 
 export type ProductInCart = Product & {

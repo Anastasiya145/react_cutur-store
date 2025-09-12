@@ -17,7 +17,7 @@ export const CategoryCard: React.FC<Props> = ({ category }) => {
         <img
           alt={name}
           className="category-card__img"
-          src={`./img/categories/${name}.png`}
+          src={`../../img/categories/${name}.jpg`}
         />
       </div>
       <h1 className="category-card__title">{title}</h1>

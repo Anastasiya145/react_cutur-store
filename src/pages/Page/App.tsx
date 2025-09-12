@@ -5,7 +5,7 @@ import { Header } from "../../components/Header/Header";
 import Banner from "../../components/Banner/Banner";
 import { HomePage } from "../HomePage/HomePage";
 import { CategoryPage } from "../CategoryPage/CategoryPage";
-// import { ItemPage } from "../ItemPage/ItemPage";
+import { ItemPage } from "../ItemPage/ItemPage";
 import { FavoritesPage } from "../FavoritesPage/FavoritesPage";
 import { NotFoundPage } from "../NotFoundPage/NotFoundPage";
 import DeliveriesPage from "../DeliveriesPage/DeliveriesPage";
@@ -33,15 +33,12 @@ const App: React.FC = () => {
           <Routes>
             <Route path={PathnamesApp.Home}>
               <Route index element={<HomePage />} />
-              <Route path={PathnamesApp.Jouets}>
+              <Route path={PathnamesApp.Bavoirs}>
                 <Route index element={<CategoryPage />} />
-                {/* <Route
-									path=":id"
-									element={<ItemPage products={products} />}
-								/> */}
+                <Route path=":id" element={<ItemPage />} />
               </Route>
-              <Route path={PathnamesApp.Bavoirs} element={<CategoryPage />} />
-              <Route path={PathnamesApp.Robes} element={<CategoryPage />} />
+              <Route path={PathnamesApp.Béguins} element={<CategoryPage />} />
+              <Route path={PathnamesApp.Doudous} element={<CategoryPage />} />
               <Route
                 path={PathnamesApp.Favorites}
                 element={<FavoritesPage />}

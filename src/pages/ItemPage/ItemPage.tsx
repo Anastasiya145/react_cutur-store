@@ -1,39 +1,38 @@
-// import React, { useContext, useEffect, useState } from "react";
-// import { Link, useLocation, useParams } from "react-router-dom";
-// import classNames from "classnames";
-// import { AppContext } from "../../context/AppContextProvider";
-// import { Product } from "../../types/Product";
-// import { DetailedProduct } from "../../types/DetailedProduct";
-// import { colors, ColorsType } from "../../types/ProductColors";
-// import { TechnicalSpecifications } from "../../types/TechSpecification";
-// import { SortType } from "../../types/SortType";
-// import { ProductPrice } from "../../components/ProductPrice/ProductPrice";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
+import classNames from "classnames";
+import { AppContext } from "../../context/AppContextProvider";
+import { Product } from "../../types/Product";
+import { colors, ColorsType } from "../../types/ProductColors";
+import { TechnicalSpecifications } from "../../types/TechSpecification";
+import { SortType } from "../../types/SortType";
+import { ProductPrice } from "../../components/ProductPrice/ProductPrice";
 // import { PropertyList } from "../../components/PropertyList/PropertyList";
-// import { getProductById } from "../../api/fetchData";
-// import { Loader } from "../../components/Loader";
-// import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
-// /* eslint-disable-next-line */
-// import { ButtonAddToCart } from "../../components/ButtonAddToCart/ButtonAddToCart";
-// import { SlickSlider } from "../../components/SlickSlider/SlickSlider";
-// import "./itemPage.scss";
-// import { IconArrowLeft } from "../../components/Icon/IconArrowLeft";
+import { getProductByCategory, getProductById } from "../../api/fetchData";
+import { Loader } from "../../components/Loader";
+import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
+/* eslint-disable-next-line */
+import { ButtonAddToCart } from "../../components/ButtonAddToCart/ButtonAddToCart";
+import { SlickSlider } from "../../components/SlickSlider/SlickSlider";
+import "./itemPage.scss";
+import { IconArrowLeft } from "../../components/Icon/IconArrowLeft";
 
-// const calcValueSpecification = (product: DetailedProduct, spec: string) => {
-//   const specValue = product[spec.toLowerCase() as keyof DetailedProduct];
+const calcValueSpecification = (product: Product, spec: string) => {
+  const specValue = product[spec.toLowerCase() as keyof Product];
 
-//   return Array.isArray(specValue) ? specValue.join(", ") : specValue;
-// };
+  return Array.isArray(specValue) ? specValue.join(", ") : specValue;
+};
 
-// const navigateTo = (pathname: string, paramOld: string, paramNew: string) => {
-//   const newLink = pathname.replace(
-//     paramOld.toLowerCase(),
-//     paramNew.toLowerCase()
-//   );
+const navigateTo = (pathname: string, paramOld: string, paramNew: string) => {
+  const newLink = pathname.replace(
+    paramOld.toLowerCase(),
+    paramNew.toLowerCase()
+  );
 
-//   return `${newLink}`;
-// };
+  return `${newLink}`;
+};
 
-// const chooseProperties = (product: DetailedProduct) => {
+// const chooseProperties = (product: Product) => {
 //   const { screen, resolution, processor, ram } = product;
 
 //   const properties = {
@@ -46,230 +45,251 @@
 //   return properties;
 // };
 
-// const bgrColor = (colorName: string) => {
-//   return colors[colorName as keyof ColorsType];
-// };
+const bgrColor = (colorName: string) => {
+  return colors[colorName as keyof ColorsType];
+};
 
-// const findProductById = (id = "", products: Product[]) => {
-//   return products.find((product) => product.itemId === id);
-// };
+const findProductById = (id: number, products: Product[]) => {
+  return products.find((product) => product.id === id);
+};
 
-// export type Props = {
-//   products: Product[];
-// };
+export const ItemPage: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [mainImg, setMainImg] = useState(product?.mainImage);
 
-// export const ItemPage: React.FC<Props> = ({ products }) => {
-//   const [product, setProduct] = useState<DetailedProduct | null>(null);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [mainImg, setMainImg] = useState(product?.images[0]);
+  const { pathname } = useLocation();
+  const { itemId = "" } = useParams();
+  const { favorites, cart, isProductSelected } = useContext(AppContext);
 
-//   const { pathname } = useLocation();
-//   const { itemId = "" } = useParams();
-//   const { favorites, cart, isProductSelected } = useContext(AppContext);
+  const categoryName = pathname.slice(1);
 
-//   const isProductSelectedinFav = isProductSelected(
-//     product?.id || "",
-//     favorites
-//   );
-//   const isProductSelectedinCart = isProductSelected(product?.id || "", cart);
-//   const selectedItem = findProductById(product?.id, products);
-//   const isProductFind = product && selectedItem;
+  async function loadProducts() {
+    setIsLoading(true);
 
-//   const [error, setError] = useState("");
+    try {
+      const productsFromServer = await getProductByCategory(categoryName);
 
-//   async function loadProductById(productId: string) {
-//     setIsLoading(true);
+      setProducts(productsFromServer);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
-//     try {
-//       const detailedPproductFromServer = await getProductById(productId);
+  useEffect(() => {
+    loadProducts();
+  }, [categoryName]);
 
-//       setProduct(detailedPproductFromServer);
-//       setMainImg(detailedPproductFromServer.images[0]);
-//     } catch {
-//       setError("Product not found");
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   }
+  const isProductSelectedinFav = product
+    ? isProductSelected(product.id, favorites)
+    : false;
+  const isProductSelectedinCart = product
+    ? isProductSelected(product.id, cart)
+    : false;
+  const selectedItem = product
+    ? findProductById(product.id, products)
+    : undefined;
+  const isProductFind = product && selectedItem;
 
-//   useEffect(() => {
-//     loadProductById(itemId);
-//   }, [itemId]);
+  const [error, setError] = useState("");
 
-//   const onChangeImage = (img: string) => {
-//     setMainImg(img);
-//   };
+  async function loadProductById(productId: string) {
+    setIsLoading(true);
 
-//   const goToPreviusPage = () => {
-//     window.history.go(-1);
-//   };
+    try {
+      const detailedPproductFromServer = await getProductById(productId);
 
-//   return (
-//     <div className="page__item">
-//       {isLoading && (
-//         <div className="product-details__loader">
-//           <Loader />
-//         </div>
-//       )}
+      setProduct(detailedPproductFromServer);
+      setMainImg(detailedPproductFromServer.mainImage);
+    } catch {
+      setError("Product not found");
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
-//       {!isLoading && isProductFind && (
-//         <>
-//           <BreadCrumbs />
+  useEffect(() => {
+    loadProductById(itemId);
+  }, [itemId]);
 
-//           <div className="product-details__back">
-//             <button
-//               type="button"
-//               className="product-details__button-back"
-//               onClick={goToPreviusPage}
-//             >
-//               <IconArrowLeft style={{ width: 16, height: 16 }} />
-//               Back
-//             </button>
-//           </div>
+  const onChangeImage = (img: string) => {
+    setMainImg(img);
+  };
 
-//           <div className="product-details">
-//             <h1 className="product-details__title">{product.name}</h1>
-//             <div className="product-details__row">
-//               <div className="product-details__content">
-//                 {product.images && (
-//                   <div className="product-details__images-container">
-//                     <div className="image-list">
-//                       {product.images.map((img) => (
-//                         <button
-//                           type="button"
-//                           key={img}
-//                           className="image-list__box"
-//                           onClick={() => onChangeImage(img)}
-//                         >
-//                           <img
-//                             alt="product"
-//                             src={img}
-//                             className={classNames("image image_small", {
-//                               active: img === mainImg,
-//                             })}
-//                           />
-//                         </button>
-//                       ))}
-//                     </div>
-//                     <div className="image__box">
-//                       <img
-//                         alt="product main"
-//                         src={`${mainImg}`}
-//                         className="image image_main"
-//                       />
-//                     </div>
-//                   </div>
-//                 )}
-//               </div>
-//               <div className="product-details__action">
-//                 <div className="product-details__select">
-//                   <div className="colors">
-//                     <h3 className="colors__title">Available colors</h3>
-//                     <div className="colors__list">
-//                       {product.colorsAvailable.map((color) => (
-//                         <Link
-//                           key={color}
-//                           to={{
-//                             pathname: `${navigateTo(pathname, product.color, color)}`,
-//                           }}
-//                           style={{ background: `${bgrColor(color)}` }}
-//                           className={classNames("button button_circle", {
-//                             active: product.color === color,
-//                           })}
-//                         />
-//                       ))}
-//                     </div>
-//                   </div>
-//                 </div>
-//                 <div className="product-details__select">
-//                   <div className="capacity">
-//                     <h3 className="capacity__title capacity__title">
-//                       Select capacity
-//                     </h3>
-//                     <div className="capacity__list">
-//                       {product.capacityAvailable.map((capacity) => (
-//                         <Link
-//                           key={capacity}
-//                           to={{
-//                             pathname: `${navigateTo(pathname, product.capacity, capacity)}`,
-//                           }}
-//                           className={classNames("button button_square", {
-//                             active: product.capacity === capacity,
-//                           })}
-//                         >
-//                           {capacity}
-//                         </Link>
-//                       ))}
-//                     </div>
-//                   </div>
-//                 </div>
-//                 <ProductPrice
-//                   regularPrice={product.priceRegular}
-//                   discountPrice={product.priceDiscount}
-//                 />
-//                 <ButtonAddToCart
-//                   product={selectedItem}
-//                   isProductInFav={isProductSelectedinFav}
-//                   isProductInCart={isProductSelectedinCart}
-//                 />
-//                 <PropertyList properties={chooseProperties(product)} />
-//               </div>
-//             </div>
-//             <div className="product-details__row">
-//               <div className="product-details__section">
-//                 <h2 className="product-details__subtitle">About</h2>
-//                 <div data-cy="productDescription" className="description">
-//                   {product.description &&
-//                     product.description.map((description) => (
-//                       <div
-//                         key={description.title}
-//                         className="description__item"
-//                       >
-//                         <h3 className="description__title">
-//                           {description.title}
-//                         </h3>
-//                         <p className="description__text">{description.text}</p>
-//                       </div>
-//                     ))}
-//                 </div>
-//               </div>
-//               <div className="product-details__section">
-//                 <h2 className="product-details__subtitle">Tech specs</h2>
-//                 <div className="tech-specifications">
-//                   {Object.keys(TechnicalSpecifications).map((spec) => (
-//                     <div key={spec} className="tech-specifications__item">
-//                       <p className="tech-specifications__text">{spec}</p>
-//                       <p
-//                         className={classNames(
-//                           "tech-specifications__text",
-//                           "tech-specifications__text--bold"
-//                         )}
-//                       >
-//                         {calcValueSpecification(product, spec)}
-//                       </p>
-//                     </div>
-//                   ))}
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </>
-//       )}
+  const goToPreviusPage = () => {
+    window.history.go(-1);
+  };
 
-//       {error && !isProductFind && (
-//         <p className="page__title">Product not found</p>
-//       )}
+  return (
+    <div className="page__item">
+      {isLoading && (
+        <div className="product-details__loader">
+          <Loader />
+        </div>
+      )}
 
-//       {!isLoading && (
-//         <section className="section">
-//           <h1 className="section__title">You may also like</h1>
-//           <SlickSlider products={products} sortBy={SortType.Random} />
-//         </section>
-//       )}
-//     </div>
-//   );
-// };
+      {!isLoading && isProductFind && (
+        <>
+          <BreadCrumbs />
 
-export const ItemPage = () => {
-  return <div>Item Page is under maintenance</div>;
+          <div className="product-details__back">
+            <button
+              type="button"
+              className="product-details__button-back"
+              onClick={goToPreviusPage}
+            >
+              <IconArrowLeft style={{ width: 16, height: 16 }} />
+              Back
+            </button>
+          </div>
+
+          <div className="product-details">
+            <h1 className="product-details__title">{product.name}</h1>
+            <div className="product-details__row">
+              <div className="product-details__content">
+                {product.images && (
+                  <div className="product-details__images-container">
+                    <div className="image-list">
+                      {product.images.map((img) => (
+                        <button
+                          type="button"
+                          key={img}
+                          className="image-list__box"
+                          onClick={() => onChangeImage(img)}
+                        >
+                          <img
+                            alt="product"
+                            src={img}
+                            className={classNames("image image_small", {
+                              active: img === mainImg,
+                            })}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                    <div className="image__box">
+                      <img
+                        alt="product main"
+                        src={`${mainImg}`}
+                        className="image image_main"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="product-details__action">
+                <div className="product-details__select">
+                  <div className="colors">
+                    <h3 className="colors__title">Available colors</h3>
+                    <div className="colors__list">
+                      {product.colorsAvailable.map((color) => (
+                        <Link
+                          key={color}
+                          to={{
+                            pathname: `${navigateTo(pathname, product.color, color)}`,
+                          }}
+                          style={{ background: `${bgrColor(color)}` }}
+                          className={classNames("button button_circle", {
+                            active: product.color === color,
+                          })}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="product-details__select">
+                  <div className="capacity">
+                    <h3 className="capacity__title capacity__title">
+                      Select capacity
+                    </h3>
+                    <div className="capacity__list">
+                      {product.capacityAvailable.map((capacity) => (
+                        <Link
+                          key={capacity}
+                          to={{
+                            pathname: `${navigateTo(pathname, product.capacity, capacity)}`,
+                          }}
+                          className={classNames("button button_square", {
+                            active: product.capacity === capacity,
+                          })}
+                        >
+                          {capacity}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div> */}
+                <ProductPrice
+                  price={product.price}
+                  // discount={product.discount}
+                  final_price={product.final_price}
+                />
+                <ButtonAddToCart
+                  product={selectedItem}
+                  isProductInFav={isProductSelectedinFav}
+                  isProductInCart={isProductSelectedinCart}
+                />
+                {/* <PropertyList properties={chooseProperties(product)} /> */}
+              </div>
+            </div>
+            <div className="product-details__row">
+              <div className="product-details__section">
+                <h2 className="product-details__subtitle">About</h2>
+                <div data-cy="productDescription" className="description">
+                  {Array.isArray(product.description) &&
+                    product.description.map((desc, idx) => (
+                      <div
+                        className="description__item"
+                        key={desc.title || idx}
+                      >
+                        <h3 className="description__title">{desc.title}</h3>
+                        {Array.isArray(desc.text) &&
+                          desc.text.map((text, i) => (
+                            <p className="description__text" key={i}>
+                              {text}
+                            </p>
+                          ))}
+                        {desc.advice && (
+                          <p className="description__advice">{desc.advice}</p>
+                        )}
+                      </div>
+                    ))}
+                </div>
+              </div>
+              <div className="product-details__section">
+                <h2 className="product-details__subtitle">Tech specs</h2>
+                <div className="tech-specifications">
+                  {Object.keys(TechnicalSpecifications).map((spec) => (
+                    <div key={spec} className="tech-specifications__item">
+                      <p className="tech-specifications__text">{spec}</p>
+                      <p
+                        className={classNames(
+                          "tech-specifications__text",
+                          "tech-specifications__text--bold"
+                        )}
+                      >
+                        {calcValueSpecification(product, spec)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {error && !isProductFind && (
+        <p className="page__title">Product not found</p>
+      )}
+
+      {!isLoading && (
+        <section className="section">
+          <h1 className="section__title">You may also like</h1>
+          <SlickSlider products={products} sortBy={SortType.Random} />
+        </section>
+      )}
+    </div>
+  );
 };

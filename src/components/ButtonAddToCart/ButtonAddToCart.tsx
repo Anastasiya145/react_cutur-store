@@ -25,10 +25,16 @@ export const ButtonAddToCart: React.FC<Props> = ({
         type="button"
         className={classNames("button button_add-to-cart", {
           selected: isProductInCart,
+          disabled: product.itemsLeft === 0,
         })}
-        onClick={() => toggleToCart(product)}
+        onClick={() => product.itemsLeft !== 0 && toggleToCart(product)}
+        disabled={product.itemsLeft === 0}
       >
-        {isProductInCart ? "Added" : "Add to cart"}
+        {product.itemsLeft === 0
+          ? "Rupture de stock"
+          : isProductInCart
+            ? "Dans le panier"
+            : "Ajouter au panier"}
       </button>
       {/* eslint-disable-next-line */}
       <button

@@ -15,16 +15,20 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const isProductSelectedinFav = isProductSelected(product.id, favorites);
   const isProductSelectedinCart = isProductSelected(product.id, cart);
+  const isOutOfStock = product.itemsLeft === 0;
 
   return (
-    <div className="card">
-      <Link className="card__link" to={`/${product.category}/${product.id}`}>
+    <div className={"card" + (isOutOfStock ? " card--disabled" : "")}>
+      <Link
+        className="card__link"
+        to={`/${product.category}/${product.id}`}
+        tabIndex={0}
+      >
         {product.images[0] && (
           <img
             className="card__image"
             alt={product.name}
-            // src={`../../images/${product.images[0]}.jpg`}
-            src={`./images/products/${product.images[0]}.jpg`}
+            src={`/img/products/${product.mainImage}.jpg`}
           />
         )}
       </Link>
@@ -32,7 +36,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       <div className="card__price">
         <ProductPrice
           price={product.price}
-          discount={product.discount}
+          // discount={product.discount}
           final_price={product.final_price}
         />
       </div>

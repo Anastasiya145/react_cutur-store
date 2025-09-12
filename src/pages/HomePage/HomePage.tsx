@@ -33,19 +33,25 @@ export const HomePage: React.FC = () => {
       {!isLoading ? (
         <div className="page__home">
           <section className="section">
-            <h1 className="section__title">Welcome to my store!</h1>
+            <h1 className="section__title">Bienvenue chez Ma Douce Layette</h1>
+            <p className="section__text">
+              votre boutique en ligne dédiée aux accessoires bébé faits main,
+              aux cadeaux de naissance originaux et aux créations couture
+              artisanales. ✨ Ici, chaque pièce est pensée avec amour pour
+              accompagner les premiers instants de bébé tout en douceur
+            </p>
             <CategoriesPhotosCarousel />
           </section>
           <section className="section">
-            <h1 className="section__title">Hot prices</h1>
+            <h1 className="section__title">Prix ​​chaud</h1>
             <SlickSlider products={products} sortBy={SortType.MaxDiscount} />
           </section>
           <section className="section">
-            <h1 className="section__title">Shop by category</h1>
+            <h1 className="section__title">Par catégorie</h1>
             <CategoriesList />
           </section>
           <section className="section">
-            <h1 className="section__title">Brand new models</h1>
+            <h1 className="section__title">Nouveaux modèles</h1>
             <SlickSlider products={products} sortBy={SortType.Newest} />
           </section>
         </div>

@@ -44,8 +44,7 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
       <div className="checkout-card__content">
         <img
           alt={item.name}
-          //change later
-          src={item.images[0]}
+          src={item.mainImage}
           className="checkout-card__img"
         />
         <Link
