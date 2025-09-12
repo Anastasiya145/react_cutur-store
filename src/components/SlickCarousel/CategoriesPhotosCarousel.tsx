@@ -28,9 +28,7 @@ export const CategoriesPhotosCarousel: React.FC = () => {
           <img
             key={bannerName}
             alt={`banner_${bannerName}`}
-            src={
-              "https://drive.google.com/file/d/1DtxpiB_VhJbYiwDFbITRgk9TBkIBGAJh/view?usp=sharing"
-            }
+            src={`../../img/categories/${bannerName}.jpg`}
           />
         ))}
       </Slider>

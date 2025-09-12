@@ -33,6 +33,15 @@
     border: 1px solid $border-color;
     box-shadow: none;
   }
+
+  &.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
 
 @mixin button-more-less($width: 32px, $height: 32px) {

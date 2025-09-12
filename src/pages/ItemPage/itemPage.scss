@@ -188,7 +188,23 @@
 
   &__text {
     @extend %body-text;
+    margin-bottom: 8px;
+  }
+
+  &__advice {
+    @extend %body-text;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     color: $main-color;
+    background: rgba($main-color, 0.08);
+    border-radius: 0.75em;
+    padding: 0.3em 0.8em;
+  }
+
+  &__advice-icon {
+    font-size: 1.2em;
   }
 
   &:last-child {

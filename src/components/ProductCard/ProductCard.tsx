@@ -5,6 +5,7 @@ import { Product } from "../../types/Product";
 import { ProductPrice } from "../ProductPrice/ProductPrice";
 import { ButtonAddToCart } from "../ButtonAddToCart/ButtonAddToCart";
 import "./productCard.scss";
+import classNames from "classnames";
 
 export type Props = {
   product: Product;
@@ -15,10 +16,10 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const isProductSelectedinFav = isProductSelected(product.id, favorites);
   const isProductSelectedinCart = isProductSelected(product.id, cart);
-  const isOutOfStock = product.itemsLeft === 0;
+  const isOutOfStock = product.itemsleft === 0;
 
   return (
-    <div className={"card" + (isOutOfStock ? " card--disabled" : "")}>
+    <div className={classNames("card", { disabled: isOutOfStock })}>
       <Link
         className="card__link"
         to={`/${product.category}/${product.id}`}
@@ -28,7 +29,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           <img
             className="card__image"
             alt={product.name}
-            src={`/img/products/${product.mainImage}.jpg`}
+            src={`/img/products/${product.mainimage}.jpg`}
           />
         )}
       </Link>

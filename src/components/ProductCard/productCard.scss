@@ -15,20 +15,8 @@
     border-color: $accent-color;
   }
 
-  &--disabled {
-    opacity: 0.5;
-    filter: grayscale(0.7);
-    pointer-events: none;
-    user-select: none;
-    box-shadow: none;
-    border-color: $border-color;
-    /* Allow pointer events for children that should remain interactive */
-    .card__favorite,
-    .card__details-link {
-      pointer-events: auto;
-      opacity: 1;
-      filter: none;
-    }
+  &.disabled {
+    opacity: 0.7;
   }
 
   &__image {
