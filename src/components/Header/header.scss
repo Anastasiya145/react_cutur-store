@@ -30,6 +30,45 @@
     background-color: unset;
     color: $main-color;
   }
+
+  &__user-btn {
+    display: block;
+    @include button-header;
+    border: none;
+  }
+}
+
+// Выпадающее меню пользователя
+.header__user-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  min-width: 180px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header__user-menu-item {
+  padding: 10px 20px;
+  color: $main-color;
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.15s;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: left;
+
+  &:hover {
+    background-color: $accent-color;
+    color: #fff;
+  }
 }
 
 .nav {

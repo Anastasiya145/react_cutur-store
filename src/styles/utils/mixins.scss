@@ -18,7 +18,8 @@
   background-color: $accent-color;
   color: #fff;
   text-align: center;
-  @extend %buttons;
+  // font-family: "Mont SemiBold", sans-serif;
+  font-size: 14px;
   border: none;
   box-shadow: none;
   transition: all 0.3s;
@@ -87,4 +88,52 @@
   &:hover {
     color: $accent-color;
   }
+}
+
+@mixin form {
+  display: flex;
+  flex-direction: column;
+  gap: calc($gap/2);
+
+  // background: #fff;
+  border-radius: 18px;
+  padding: 16px 8px;
+  box-shadow: $box-shadow-color;
+}
+
+@mixin form-input {
+  background: transparent;
+  border: 1.5px solid $border-color;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  color: $accent-color;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+  box-shadow: none;
+
+  &:focus {
+    border-color: $accent-color;
+  }
+
+  &::placeholder {
+    color: $border-color;
+    opacity: 1;
+  }
+}
+
+@mixin form-label {
+  color: $accent-color;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@mixin form-button {
+  @include button-gray;
+  width: 100%;
 }

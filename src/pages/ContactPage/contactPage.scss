@@ -1,27 +1,33 @@
 @import "../../styles/utils/variables.scss";
+@import "../../styles/utils/fonts.scss";
+@import "../../styles/utils/mixins.scss";
 
-.contact {
-  max-width: 420px;
+.contact-page {
   margin: 40px auto 0 auto;
-  padding: 32px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  max-width: 900px;
   background: #fff;
   border-radius: 18px;
+  padding: 32px 24px;
   box-shadow: $box-shadow-color;
-  font-family: inherit;
-
-  &__title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: $accent-color;
-    margin-bottom: 8px;
-    text-align: center;
-  }
 
   &__desc {
-    color: $main-color;
-    font-size: 1rem;
-    margin-bottom: 12px;
-    text-align: center;
+    @extend %body-text;
+
+    & a {
+      color: $main-color;
+      text-decoration: none;
+      font-weight: inherit;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
   }
 
   &__form {
@@ -29,66 +35,53 @@
     flex-direction: column;
     gap: calc($gap/2);
     margin-top: 18px;
+    max-width: 420px;
+    width: 100%;
   }
 
   &__label {
-    color: $accent-color;
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    @include form-label;
   }
 
   &__input {
-    background: transparent;
-    border: 1.5px solid $border-color;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 1rem;
-    color: $accent-color;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
-    box-shadow: none;
-    &:focus {
-      border-color: $accent-green-color;
-    }
-    &::placeholder {
-      color: $border-color;
-      opacity: 1;
-    }
+    @include form-input;
   }
 
   &__button {
-    background: $accent-color;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 8px;
-    &:hover {
-      background: $accent-green-color;
-      color: #fff;
-    }
+    @include form-button;
   }
 
   &__success {
     color: $accent-green-color;
     margin-top: 10px;
-    text-align: center;
-    font-weight: 500;
+    @extend %body-text;
   }
 
   &__error {
     color: $accent-red-color;
     margin-top: 10px;
-    text-align: center;
-    font-weight: 500;
+    @extend %body-text;
+  }
+}
+
+@media #{$tablet-media-query} {
+  .contact-page {
+    flex-direction: column;
+    gap: 0;
+    max-width: unset;
+    padding: 0;
+    box-shadow: unset;
+
+    &__form {
+      margin-top: 32px;
+      @include form;
+    }
+
+    &__title,
+    &__desc,
+    &__success,
+    &__error {
+      text-align: center;
+    }
   }
 }

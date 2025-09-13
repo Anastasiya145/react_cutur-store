@@ -35,10 +35,11 @@ export const HomePage: React.FC = () => {
           <section className="section">
             <h1 className="section__title">Bienvenue chez Ma Douce Layette</h1>
             <p className="section__text">
-              votre boutique en ligne dédiée aux accessoires bébé faits main,
-              aux cadeaux de naissance originaux et aux créations couture
-              artisanales. ✨ Ici, chaque pièce est pensée avec amour pour
-              accompagner les premiers instants de bébé tout en douceur
+              Votre boutique en ligne dédiée aux accessoires bébé faits main, aux cadeaux de
+              naissance originaux et aux créations couture artisanales. ✨
+              <br />
+              Ici, chaque pièce est pensée avec amour pour accompagner les premiers instants de bébé
+              tout en douceur
             </p>
             <CategoriesPhotosCarousel />
           </section>

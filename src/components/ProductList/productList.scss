@@ -10,8 +10,8 @@
   &__content {
     margin-bottom: 40px;
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-wrap: wrap;
     column-gap: $gap;
     row-gap: calc(3 * $gap);

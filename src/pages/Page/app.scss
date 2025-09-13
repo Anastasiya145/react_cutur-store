@@ -35,7 +35,8 @@
           &:first-child {
             padding: 0;
 
-            & .section__title {
+            & .section__title,
+            & .section__text {
               padding: 0 24px;
             }
           }

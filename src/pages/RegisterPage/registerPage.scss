@@ -1,0 +1,74 @@
+@import "../../styles/utils/mixins.scss";
+@import "../../styles/utils/variables.scss";
+
+.register-page {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $accent-color;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  &__form {
+    @include form;
+  }
+
+  &__label {
+    @include form-label;
+  }
+
+  &__form input {
+    @include form-input;
+  }
+
+  &__form button {
+    @include form-button;
+  }
+
+  &__error {
+    color: $accent-red-color;
+    background: rgba($accent-red-color, 0.08);
+    border: 1px solid $accent-red-color;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  &__success {
+    color: $accent-green-color;
+    background: rgba($accent-green-color, 0.08);
+    border: 1px solid $accent-green-color;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  &__footer {
+    margin-top: 18px;
+    text-align: center;
+    color: $main-color;
+    font-size: 1rem;
+  }
+
+  &__link {
+    color: $accent-color;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 4px;
+
+    // &:hover {
+    //   color: $accent-green-color;
+    // }
+  }
+}

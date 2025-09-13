@@ -22,12 +22,14 @@ export const Footer: React.FC = () => {
           <Link to="/deliveries" className="footer__link">
             Livraisons
           </Link>
-
           <Link to="/terms" className="footer__link">
             Conditions Générales
           </Link>
           <Link to="/privacy" className="footer__link">
             Confidentialité
+          </Link>
+          <Link to="/contact" className="footer__link">
+            Contactez-nous
           </Link>
         </div>
         <Link to="/" className="footer__logo-link">
@@ -59,9 +61,7 @@ export const Footer: React.FC = () => {
         rel="noopener noreferrer"
         className="footer__credit-link"
       >
-        <div className="footer__credit">
-          Web site is made by Anastasiya Ivanova
-        </div>
+        <div className="footer__credit">© Web site is made by Anastasiya Ivanova</div>
       </a>
     </div>
   );

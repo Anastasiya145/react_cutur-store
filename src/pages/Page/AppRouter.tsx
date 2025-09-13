@@ -16,10 +16,15 @@ import { Footer } from "../../components/Footer/Footer";
 import { CartPage } from "../CartPage/CartPage";
 import "./app.scss";
 import { PathnamesApp } from "../../types/Pathnames";
+import AuthPage from "../AuthPage/AuthPage";
+import ProfilePage from "../ProfilePage/ProfilePage";
+import RegisterPage from "../RegisterPage/RegisterPage";
 
-const App: React.FC = () => {
+const AppRouter: React.FC = () => {
   const { pathname } = useLocation();
   const pathnameNormalized = pathname === "/" ? "home" : pathname.substring(1);
+
+  const categoryPaths = [PathnamesApp.Bavoirs, PathnamesApp.Béguins, PathnamesApp.Doudous];
 
   return (
     <div className="page">
@@ -27,30 +32,28 @@ const App: React.FC = () => {
       <Banner />
       <Header />
       <main className="page__main">
-        <div
-          className={`page__container page__container_${pathnameNormalized}`}
-        >
+        <div className={`page__container page__container_${pathnameNormalized}`}>
           <Routes>
+            <Route path="auth" element={<AuthPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="profile" element={<ProfilePage />} />
             <Route path={PathnamesApp.Home}>
               <Route index element={<HomePage />} />
-              <Route path={PathnamesApp.Bavoirs}>
-                <Route index element={<CategoryPage />} />
-                <Route path=":id" element={<ItemPage />} />
-              </Route>
-              <Route path={PathnamesApp.Béguins} element={<CategoryPage />} />
-              <Route path={PathnamesApp.Doudous} element={<CategoryPage />} />
-              <Route
-                path={PathnamesApp.Favorites}
-                element={<FavoritesPage />}
-              />
+              {categoryPaths.map((cat) => (
+                <Route key={cat} path={cat}>
+                  <Route index element={<CategoryPage />} />
+                  <Route path=":id" element={<ItemPage />} />
+                </Route>
+              ))}
+              <Route path={PathnamesApp.Favorites} element={<FavoritesPage />} />
               <Route path={PathnamesApp.Cart} element={<CartPage />} />
-              <Route
-                path={PathnamesApp.Deliveries}
-                element={<DeliveriesPage />}
-              />
+              <Route path={PathnamesApp.Deliveries} element={<DeliveriesPage />} />
               <Route path={PathnamesApp.Contact} element={<ContactPage />} />
               <Route path={PathnamesApp.Terms} element={<TermsPage />} />
               <Route path={PathnamesApp.Privacy} element={<PrivacyPage />} />
+
+              <Route path="auth" element={<AuthPage />} />
+              <Route path="profile" element={<ProfilePage />} />
             </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
@@ -61,4 +64,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default AppRouter;

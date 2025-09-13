@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import App from "./App";
 import { AppProvider } from "./context/AppContextProvider";
+import { AuthProvider } from "./context/AuthContext";
 
 const container = document.getElementById("root");
 if (container) {
@@ -9,9 +10,11 @@ if (container) {
 
   root.render(
     <AppProvider>
-      <HashRouter>
-        <App />
-      </HashRouter>
+      <AuthProvider>
+        <HashRouter>
+          <App />
+        </HashRouter>
+      </AuthProvider>
     </AppProvider>
   );
 }

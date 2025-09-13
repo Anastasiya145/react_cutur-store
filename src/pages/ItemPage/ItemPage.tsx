@@ -25,10 +25,7 @@ import { IconArrowLeft } from "../../components/Icon/IconArrowLeft";
 // };
 
 const navigateTo = (pathname: string, paramOld: string, paramNew: string) => {
-  const newLink = pathname.replace(
-    paramOld.toLowerCase(),
-    paramNew.toLowerCase()
-  );
+  const newLink = pathname.replace(paramOld.toLowerCase(), paramNew.toLowerCase());
 
   return `${newLink}`;
 };
@@ -80,12 +77,10 @@ export const ItemPage: React.FC = () => {
     loadProduct();
   }, [itemId]);
 
-  const isProductSelectedinFav = product
-    ? isProductSelected(product.id, favorites)
-    : false;
-  const isProductSelectedinCart = product
-    ? isProductSelected(product.id, cart)
-    : false;
+  console.log(product, itemId);
+
+  const isProductSelectedinFav = product ? isProductSelected(product.id, favorites) : false;
+  const isProductSelectedinCart = product ? isProductSelected(product.id, cart) : false;
 
   const [error, setError] = useState("");
 
@@ -240,9 +235,7 @@ export const ItemPage: React.FC = () => {
                 <div className="product-details__section">
                   <h2 className="product-details__subtitle">À propos</h2>
                   <div data-cy="productDescription" className="description">
-                    <h3 className="description__title">
-                      {product.description.title}
-                    </h3>
+                    <h3 className="description__title">{product.description.title}</h3>
                     {product.description.text?.map((text, i) => (
                       <p className="description__text" key={i}>
                         {text}

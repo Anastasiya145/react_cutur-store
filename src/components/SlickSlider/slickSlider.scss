@@ -34,3 +34,19 @@
     gap: $gap;
   }
 }
+
+@media #{$phone-media-query} {
+  .product-slider {
+    & .slick-track {
+      gap: 0;
+    }
+
+    & .slick-slide {
+      min-width: 80vw;
+      max-width: 95vw;
+      margin-right: 0 !important;
+      padding: 0 4vw;
+      box-sizing: border-box;
+    }
+  }
+}

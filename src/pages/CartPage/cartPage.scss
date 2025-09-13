@@ -1,3 +1,14 @@
+// ...existing code...
+.cart__error {
+  color: #d32f2f;
+  background: #fff3f3;
+  border: 1px solid #d32f2f;
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  text-align: center;
+}
 @import "../../styles/common";
 
 .cart {
