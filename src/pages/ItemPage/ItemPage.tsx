@@ -166,7 +166,7 @@ export const ItemPage: React.FC = () => {
                     <div className="image__box">
                       <img
                         alt="product main"
-                        src={`/img/products/${mainImg}.jpg`}
+                        src={`img/products/${mainImg}.jpg`}
                         className="image image_main"
                       />
                     </div>

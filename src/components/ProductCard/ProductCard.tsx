@@ -20,16 +20,12 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <div className={classNames("card", { disabled: isOutOfStock })}>
-      <Link
-        className="card__link"
-        to={`/${product.category}/${product.id}`}
-        tabIndex={0}
-      >
+      <Link className="card__link" to={`/${product.category}/${product.id}`} tabIndex={0}>
         {product.images[0] && (
           <img
             className="card__image"
             alt={product.name}
-            src={`/img/products/${product.mainimage}.jpg`}
+            src={`img/products/${product.mainimage}.jpg`}
           />
         )}
       </Link>

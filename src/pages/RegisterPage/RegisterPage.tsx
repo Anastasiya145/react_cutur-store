@@ -71,7 +71,7 @@ const RegisterPage: React.FC = () => {
         <button type="submit">S'inscrire</button>
       </form>
       <div className="register-page__footer">
-        Déjà inscrit ?{" "}
+        Déjà inscrit?
         <span className="register-page__link" onClick={() => navigate("/auth")}>
           Connectez-vous
         </span>

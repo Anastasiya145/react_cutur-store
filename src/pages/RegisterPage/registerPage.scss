@@ -6,18 +6,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #fff;
 
   &__title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: $accent-color;
-    margin-bottom: 8px;
-    text-align: center;
+    @extend %h1;
+    margin-bottom: 36px;
   }
 
   &__form {
     @include form;
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: calc($gap/2);
+    margin: 0 auto;
+    max-width: 420px;
+    width: 100%;
+    margin-bottom: 24px;
   }
 
   &__label {
@@ -42,32 +46,21 @@
     text-align: center;
   }
 
-  &__success {
-    color: $accent-green-color;
-    background: rgba($accent-green-color, 0.08);
-    border: 1px solid $accent-green-color;
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 8px;
-  }
-
   &__footer {
-    margin-top: 18px;
-    text-align: center;
-    color: $main-color;
-    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
   }
 
   &__link {
     color: $accent-color;
-    cursor: pointer;
     text-decoration: underline;
-    margin-left: 4px;
+    cursor: pointer;
+    transition: color 0.2s;
 
-    // &:hover {
-    //   color: $accent-green-color;
-    // }
+    &:hover {
+      color: darken($accent-color, 10%);
+    }
   }
 }
