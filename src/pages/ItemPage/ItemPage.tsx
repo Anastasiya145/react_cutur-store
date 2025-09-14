@@ -4,44 +4,19 @@ import classNames from "classnames";
 import { AppContext } from "../../context/AppContextProvider";
 import { Product } from "../../types/Product";
 import { colors, ColorsType } from "../../types/ProductColors";
-// import { TechnicalSpecifications } from "../../types/TechSpecification";
-// import { SortType } from "../../types/SortType";
 import { ProductPrice } from "../../components/ProductPrice/ProductPrice";
-// import { PropertyList } from "../../components/PropertyList/PropertyList";
 import { getProductById } from "../../api/fetchData";
 import { Loader } from "../../components/Loader";
 import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
-/* eslint-disable-next-line */
 import { ButtonAddToCart } from "../../components/ButtonAddToCart/ButtonAddToCart";
-// import { SlickSlider } from "../../components/SlickSlider/SlickSlider";
 import "./itemPage.scss";
 import { IconArrowLeft } from "../../components/Icon/IconArrowLeft";
-// import path from "path";
-
-// const calcValueSpecification = (product: Product, spec: string) => {
-//   const specValue = product[spec.toLowerCase() as keyof Product];
-
-//   return Array.isArray(specValue) ? specValue.join(", ") : specValue;
-// };
 
 const navigateTo = (pathname: string, paramOld: string, paramNew: string) => {
   const newLink = pathname.replace(paramOld.toLowerCase(), paramNew.toLowerCase());
 
   return `${newLink}`;
 };
-
-// const chooseProperties = (product: Product) => {
-//   const { screen, resolution, processor, ram } = product;
-
-//   const properties = {
-//     screen,
-//     resolution,
-//     processor,
-//     ram,
-//   };
-
-//   return properties;
-// };
 
 const bgrColor = (colorName: string) => {
   return colors[colorName as keyof ColorsType];
@@ -217,17 +192,12 @@ export const ItemPage: React.FC = () => {
                     </div>
                   </div>
                 </div> */}
-                <ProductPrice
-                  price={product.price}
-                  // discount={product.discount}
-                  final_price={product.final_price}
-                />
+                <ProductPrice price={product.price} final_price={product.final_price} />
                 <ButtonAddToCart
                   product={product}
                   isProductInFav={isProductSelectedinFav}
                   isProductInCart={isProductSelectedinCart}
                 />
-                {/* <PropertyList properties={chooseProperties(product)} /> */}
               </div>
             </div>
             {product.description && (

@@ -10,6 +10,12 @@
 
   &__img {
     color: $main-color;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 9px;
+    line-height: 9px;
+    transform: translate(-50%, -50%);
   }
 
   &__count {

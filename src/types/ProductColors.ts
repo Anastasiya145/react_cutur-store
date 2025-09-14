@@ -2,6 +2,8 @@ export type ColorsType = {
   noir: string; // black
   blanc: string; // white
   rouge: string; // red
+  peche: string; // peach
+  rose: string; // pink
   argent: string; // silver
   or: string; // gold
   jaune: string; // yellow
@@ -17,6 +19,8 @@ export const colors = {
   noir: "#000", // black
   blanc: "#fff", // white
   rouge: "#ff0000", // red
+  rose: "#ffb6c1", // pink
+  peche: "#d86818ff", // peach
   argent: "#b5b5bd", // silver
   or: "#d4af37", // gold
   jaune: "#ffff00", // yellow

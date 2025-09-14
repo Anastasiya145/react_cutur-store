@@ -6,6 +6,12 @@ export enum PathnamesForNav {
   Doudous = "/doudous",
 }
 
+export const CATEGORY_NAME_MAP: Record<string, string> = {
+  bavoirs: "bavoirs",
+  beguins: "béguins",
+  doudous: "doudous",
+};
+
 // eslint-disable-next-line no-shadow
 export enum PathnamesApp {
   Home = "/",

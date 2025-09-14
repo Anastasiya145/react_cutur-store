@@ -1,71 +1,103 @@
 @import "/src/styles/common";
 
 .search-bar {
-  height: 48px;
-  min-width: 240px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: $header-height;
+  min-width: 48px;
   width: 100%;
   max-width: 340px;
-  position: relative;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition:
+    max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s,
+    border 0.3s,
+    box-shadow 0.3s;
 
-  &__input {
-    color: $main-color;
-    @extend %body-text;
-    width: 100%;
-    height: 100%;
-    padding: 0 18px;
-    outline: none;
-    border: none;
-    background: transparent;
-    font-size: 16px;
-    &::placeholder {
-      color: #bdbdbd;
-    }
-  }
-
-  &__button {
-    position: absolute;
-    top: 50%;
-    right: 24px;
-    transform: translateY(-50%);
-    border: none;
-    cursor: pointer;
-    color: $main-color;
-    background-color: unset;
+  &_opened {
+    max-width: 340px;
+    background: #fff;
+    border: 1px solid $border-color;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    transition:
+      max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background 0.3s,
+      border 0.3s,
+      box-shadow 0.3s;
   }
 
   &__icon {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+  }
+
+  &__input {
+    flex: 1;
+    height: 48px;
+    border: none;
+    outline: none;
+    padding: 0 48px 0 18px;
+    font-size: 16px;
+    background: transparent;
+    color: $main-color;
+    opacity: 1;
+    transition: opacity 0.25s;
+  }
+
+  .search-bar__button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 2;
+    transition: all 0.2s;
   }
 }
 
+// Свернутое состояние — только иконка
+.search-bar:not(.search-bar_opened) {
+  @include button-header;
+  transition:
+    max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    "background" 0.3s,
+    "border" 0.3s,
+    "box-shadow" 0.3s;
+}
+
 @media #{$tablet-media-query} {
-  .search-bar {
+  .search-bar_opened {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    height: 64px;
-    z-index: 1;
-    transform: translateX(100%);
-    transition: transform 0.3s;
-    // background-color: #fff;
-    border: 2px solid $accent-color;
-
-    &_opened {
-      transform: translateX(0);
-    }
-
-    &__icon {
-      // top: 4px;
-      display: block;
-      @include button-header;
-      border: none;
-      background-color: unset;
-      color: $main-color;
-    }
+    height: calc($banner-height + $header-height);
+    width: 100vw;
+    max-width: 100vw;
+    z-index: 100;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    transition:
+      max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      "background" 0.3s,
+      "border" 0.3s,
+      "box-shadow" 0.3s;
   }
 }

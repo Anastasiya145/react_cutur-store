@@ -1,8 +1,8 @@
-@import "/src/styles/common";
+@import "../../styles/common";
 
 .header {
   border-bottom: 1px solid $border-color;
-  height: 64px;
+  height: $header-height;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -10,11 +10,23 @@
   &__content {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    height: $header-height;
+    // padding: 0 24px;
+    // min-height: 72px;
   }
 
   &__logo {
-    height: 100%;
-    margin-right: 20px;
+    width: 120px;
+    height: 90%;
+    display: block;
+    background-image: url("/img/logo.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+
+    margin-right: 16px;
   }
 
   &__menu {
@@ -23,6 +35,10 @@
 
   &__container {
     display: flex;
+    // align-items: center;
+    // gap: 20px;
+    // padding-right: 24px;
+    // min-height: 72px;
   }
 
   &__menu-open-button {
@@ -56,14 +72,10 @@
 
 .header__user-menu-item {
   padding: 10px 20px;
-  color: $main-color;
+  // color: $text-color;
   text-decoration: none;
   font-size: 15px;
-  transition: all 0.15s;
-  cursor: pointer;
-  border: none;
-  background: none;
-  text-align: left;
+  transition: all 0.2s;
 
   &:hover {
     background-color: $accent-color;
@@ -74,6 +86,7 @@
 .nav {
   display: flex;
   gap: $gap;
+  height: v;
 
   &__item {
     cursor: pointer;
@@ -114,8 +127,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: $header-height;
       width: 100%;
-      margin-bottom: 64px;
+      margin-bottom: 32px;
     }
   }
 

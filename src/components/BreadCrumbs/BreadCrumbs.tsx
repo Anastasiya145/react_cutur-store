@@ -4,10 +4,17 @@ import classNames from "classnames";
 import "./breadCrumbs.scss";
 import { IconHome } from "../Icon/IconHome";
 import { IconArrowRight } from "../Icon/IconArrowRight";
+import { CATEGORY_NAME_MAP } from "../../types/Pathnames";
 
 export const BreadCrumbs: React.FC = () => {
   const breadcrumbs = useLocation()
     .pathname.split("/")
+    .map((item) => {
+      const slug = decodeURIComponent(item);
+      const decodedItem = CATEGORY_NAME_MAP[slug] || slug;
+
+      return decodedItem;
+    })
     .filter((item) => item !== "");
 
   const isLastLink = (index: number) => {
