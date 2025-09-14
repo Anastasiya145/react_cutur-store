@@ -7,7 +7,6 @@ import { ModelsCounter } from "../../components/ModelsCounter/ModelsCounter";
 import { ProductList } from "../../components/ProductList/ProductList";
 import { Loader } from "../../components/Loader";
 import { getProductByCategory } from "../../api/fetchData";
-import "./categoryPage.scss";
 
 export const CategoryPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -43,7 +42,7 @@ export const CategoryPage: React.FC = () => {
       {!isLoading && (
         <div className={`page__${categoryName}`}>
           <BreadCrumbs />
-          <h1 className="main-title">{categoryName}</h1>
+          <h1 className="page__title">{categoryName}</h1>
           <ModelsCounter number={productCount} />
 
           {!products.length ? (

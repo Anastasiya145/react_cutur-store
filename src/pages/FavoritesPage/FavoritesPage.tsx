@@ -4,6 +4,7 @@ import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
 import { NotFound } from "../../components/NotFound/NotFound";
 import { ModelsCounter } from "../../components/ModelsCounter/ModelsCounter";
 import { ProductList } from "../../components/ProductList/ProductList";
+import "./favoritesPage.scss";
 
 export const FavoritesPage: React.FC = () => {
   const { favorites } = useContext(AppContext);
@@ -16,9 +17,9 @@ export const FavoritesPage: React.FC = () => {
   console.log(favorites);
 
   return (
-    <div className="page__favorites">
+    <div className=".favorites-page">
       <BreadCrumbs />
-      <h1 className="main-title">Favorites</h1>
+      <h1 className="favorites-page__title">Favorites</h1>
       <ModelsCounter number={productCount} />
 
       {!favorites.length ? (

@@ -31,10 +31,10 @@ export const HomePage: React.FC = () => {
   return (
     <>
       {!isLoading ? (
-        <div className="page__home">
-          <section className="section">
-            <h1 className="section__title">Bienvenue chez Ma Douce Layette</h1>
-            <p className="section__text">
+        <div className="home-page__home">
+          <section className="home-page__section">
+            <h1 className="home-page__title">Bienvenue chez Ma Douce Layette</h1>
+            <p className="home-page__text">
               Votre boutique en ligne dédiée aux accessoires bébé faits main, aux cadeaux de
               naissance originaux et aux créations couture artisanales. ✨
               <br />
@@ -43,16 +43,16 @@ export const HomePage: React.FC = () => {
             </p>
             <CategoriesPhotosCarousel />
           </section>
-          <section className="section">
-            <h1 className="section__title">Prix ​​chaud</h1>
+          <section className="home-page__section">
+            <h1 className="home-page__title">Prix ​​chaud</h1>
             <SlickSlider products={products} sortBy={SortType.MaxDiscount} />
           </section>
-          <section className="section">
-            <h1 className="section__title">Par catégorie</h1>
+          <section className="home-page__section">
+            <h1 className="home-page__title">Par catégorie</h1>
             <CategoriesList />
           </section>
-          <section className="section">
-            <h1 className="section__title">Nouveaux modèles</h1>
+          <section className="home-page__section">
+            <h1 className="home-page__title">Nouveaux modèles</h1>
             <SlickSlider products={products} sortBy={SortType.Newest} />
           </section>
         </div>

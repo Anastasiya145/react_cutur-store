@@ -1,18 +1,12 @@
-// ...existing code...
-.cart__error {
-  color: #d32f2f;
-  background: #fff3f3;
-  border: 1px solid #d32f2f;
-  border-radius: 6px;
-  padding: 10px 16px;
-  margin-bottom: 16px;
-  font-size: 15px;
-  text-align: center;
-}
-@import "../../styles/common";
+@import "../../styles/common.scss";
 
-.cart {
+.cart-page {
   display: flex;
+
+  &__title {
+    @extend %h1;
+    margin-bottom: 36px;
+  }
 
   &__products {
     display: flex;
@@ -32,7 +26,6 @@
 
   &__budget {
     @extend %h1;
-    text-transform: capitalize;
     margin-bottom: -4px;
   }
 
@@ -68,7 +61,6 @@
     padding: 20px;
     border-radius: 10px;
     border: 1px solid $accent-green-color;
-    background-color: #fafbfc;
     color: $accent-green-color;
     transition: all 0.3s linear;
     transform: translateX(150%);
@@ -77,10 +69,20 @@
       transform: translateX(0);
     }
   }
+
+  &__error {
+    color: $accent-red-color;
+    border: 1px solid $accent-red-color;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    text-align: center;
+  }
 }
 
 @media #{$desktop-media-query} {
-  .cart {
+  .cart-page {
     flex-direction: column-reverse;
 
     &__container {
@@ -95,7 +97,7 @@
 }
 
 @media #{$tablet-media-query} {
-  .cart {
+  .cart-page {
     max-width: 320px;
     margin: 0 auto;
 

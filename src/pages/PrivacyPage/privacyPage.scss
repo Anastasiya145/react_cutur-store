@@ -1,8 +1,16 @@
-@import "../../styles/utils/variables.scss";
-@import "../../styles/utils/fonts.scss";
-.privacy__title {
-  @extend %h2;
-  color: $main-color;
-  margin-bottom: 8px;
-  text-align: center;
+@import "../../styles/common.scss";
+
+.privacy-page {
+  // &__section {
+  //   margin-bottom: 36px;
+  // }
+
+  &__title {
+    @extend %h1;
+    margin-bottom: 36px;
+  }
+
+  &__text {
+    @extend %body-text;
+  }
 }

@@ -137,3 +137,16 @@
   @include button-gray;
   width: 100%;
 }
+
+@mixin email-link {
+  color: $main-color;
+  text-decoration: none;
+  font-weight: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $accent-color;
+  }
+}

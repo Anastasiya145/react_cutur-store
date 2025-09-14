@@ -1,21 +1,27 @@
-@import "../../styles/utils/mixins.scss";
-@import "../ContactPage/contactPage.scss";
+@import "../../styles/common.scss";
 
-// Центрирование формы по вертикали и горизонтали
 .auth-page {
   min-height: 60vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
+  &__title {
+    @extend %h1;
+    margin-bottom: 36px;
+  }
+
   &__form {
     @include form;
+    padding: 36px 24px;
     display: flex;
     flex-direction: column;
     gap: calc($gap/2);
     margin: 0 auto;
     max-width: 420px;
     width: 100%;
+    margin-bottom: 24px;
   }
 
   &__label {
@@ -38,5 +44,28 @@
     padding: 8px 12px;
     font-size: 14px;
     text-align: center;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-top: 24px;
+
+    &-link-block {
+      width: 50%;
+      text-align: center;
+    }
+
+    .auth-page__link {
+      color: $accent-color;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s;
+
+      &:hover {
+        color: darken($accent-color, 10%);
+      }
+    }
   }
 }

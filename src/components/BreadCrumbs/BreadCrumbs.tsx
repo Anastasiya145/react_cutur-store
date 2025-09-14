@@ -4,7 +4,6 @@ import classNames from "classnames";
 import "./breadCrumbs.scss";
 import { IconHome } from "../Icon/IconHome";
 import { IconArrowRight } from "../Icon/IconArrowRight";
-// import { $accent-color } from "../../styles/utils/variables.scss";
 
 export const BreadCrumbs: React.FC = () => {
   const breadcrumbs = useLocation()

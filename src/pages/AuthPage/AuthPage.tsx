@@ -20,40 +20,47 @@ const AuthPage: React.FC = () => {
 
   return (
     <div className="auth-page">
-      <section className="section">
-        <h1 className="auth-page__title section__title">Connexion</h1>
-        <form className="auth-page__form" onSubmit={handleSubmit}>
-          <label className="auth-page__label">
-            E-mail
-            <input
-              type="email"
-              placeholder="Entrez votre e-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-            />
-          </label>
-          <label className="auth-page__label">
-            Mot de passe
-            <input
-              type="password"
-              placeholder="Entrez votre mot de passe"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-            />
-          </label>
-          {error && <div className="auth-page__error">{error}</div>}
-          <button type="submit">Se connecter</button>
-        </form>
-        <div className="auth-page__footer">
-          Pas encore de compte ?
-          <span className="auth-page__link" onClick={() => navigate("/register")}>
-            {" "}
-            Inscrivez-vous
+      <h1 className="auth-page__title">Connexion</h1>
+      <form className="auth-page__form" onSubmit={handleSubmit}>
+        <label className="auth-page__label">
+          E-mail
+          <input
+            type="email"
+            placeholder="Entrez votre e-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
+          />
+        </label>
+        <label className="auth-page__label">
+          Mot de passe
+          <input
+            type="password"
+            placeholder="Entrez votre mot de passe"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+          />
+        </label>
+        {error && <div className="auth-page__error">{error}</div>}
+        <button type="submit">Se connecter</button>
+      </form>
+      <div className="auth-page__footer">
+        <div className="auth-page__footer-link-block">
+          <span className="auth-page__link" onClick={() => navigate("/forgot-password")}>
+            Mot de passe oublié ?
           </span>
         </div>
-      </section>
+        <div className="auth-page__footer-link-block">
+          <span>
+            Pas encore de compte ?
+            <span className="auth-page__link" onClick={() => navigate("/register")}>
+              {" "}
+              Inscrivez-vous
+            </span>
+          </span>
+        </div>
+      </div>
     </div>
   );
 };

@@ -59,9 +59,9 @@ export const Footer: React.FC = () => {
         href="https://www.linkedin.com/in/anastasiya-ivanova-494567109/"
         target="_blank"
         rel="noopener noreferrer"
-        className="footer__credit-link"
+        className="footer__licence-link"
       >
-        <div className="footer__credit">© Web site is made by Anastasiya Ivanova</div>
+        <div className="footer__licence">© Web site is made by Anastasiya Ivanova</div>
       </a>
     </div>
   );

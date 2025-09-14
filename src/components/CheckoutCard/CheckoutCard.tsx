@@ -44,13 +44,10 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
       <div className="checkout-card__content">
         <img
           alt={item.name}
-          src={`../../img/products/${item.mainimage}.jpg`}
+          src={`img/products/${item.mainimage}.jpg`}
           className="checkout-card__img"
         />
-        <Link
-          className="checkout-card__title"
-          to={`/${item.category}/${item.id}`}
-        >
+        <Link className="checkout-card__title" to={`/${item.category}/${item.id}`}>
           {item.name}
         </Link>
       </div>
@@ -59,10 +56,9 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
           {/* eslint-disable-next-line */}
           <button
             type="button"
-            className={classNames(
-              "checkout-card__button checkout-card__button_prev",
-              { disabled: count === 1 }
-            )}
+            className={classNames("checkout-card__button checkout-card__button_prev", {
+              disabled: count === 1,
+            })}
             onClick={handleDecrease}
           />
           <div className="checkout-card__count">{count}</div>

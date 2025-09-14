@@ -80,7 +80,7 @@
     }
   }
 
-  &__credit {
+  &__licence {
     margin-top: 36px;
     text-align: center;
     font-size: 14px;
@@ -89,6 +89,10 @@
     &-link {
       color: $second-accent-color;
       @extend %small-text;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

@@ -12,7 +12,7 @@ import "./cartPage.scss";
 export const CartPage: React.FC = () => {
   const { cart } = useContext(AppContext);
   const navigate = useNavigate();
-  // Проверка на недоступные товары
+
   const unavailableItems = useMemo(() => cart.filter((item) => item.itemsleft === 0), [cart]);
   const hasUnavailable = unavailableItems.length > 0;
   const [isPopupShown, setIsPopupShown] = useState(false);
@@ -42,7 +42,6 @@ export const CartPage: React.FC = () => {
     }, 3000);
   }, [isPopupShown]);
 
-  // Проверка авторизации
   const isAuthenticated = Boolean(localStorage.getItem("user"));
 
   const handleCheckout = () => {
@@ -54,33 +53,33 @@ export const CartPage: React.FC = () => {
   };
 
   return (
-    <div className="page__cart">
+    <div className="cart-page__cart">
       <BreadCrumbs />
-      <h1 className="main-title">Cart</h1>
+      <h1 className="cart-page__title">Cart</h1>
       <ModelsCounter number={cart.length} />
 
       {!cart.length ? (
         <NotFound title="Your cart is empty" />
       ) : (
-        <div className="cart">
-          <div className="cart__products">
+        <div className="cart-page">
+          <div className="cart-page__products">
             {cart.map((item) => (
               <CheckoutCard key={item.id} item={item} />
             ))}
           </div>
-          <div className="cart__container">
+          <div className="cart-page__container">
             {hasUnavailable && (
-              <div className="cart__error">
+              <div className="cart-page__error">
                 Some items in your cart are out of stock. Please remove them to proceed.
               </div>
             )}
-            <h1 data-cy="productQauntity" className="cart__budget">
+            <h1 data-cy="productQauntity" className="cart-page__budget">
               {`$${totalSum}`}
             </h1>
-            <p className="cart__text">{`Total for ${totalModelsCount} items`}</p>
+            <p className="cart-page__text">{`Total for ${totalModelsCount} items`}</p>
             <button
               type="button"
-              className="cart__checkout"
+              className="cart-page__checkout"
               onClick={handleCheckout}
               disabled={hasUnavailable}
               style={hasUnavailable ? { opacity: 0.5, cursor: "not-allowed" } : {}}
@@ -89,8 +88,8 @@ export const CartPage: React.FC = () => {
             </button>
           </div>
           <div
-            className={classNames("cart__popup", {
-              cart__popup_shown: isPopupShown,
+            className={classNames("cart-page__popup", {
+              "cart-page__popup_shown": isPopupShown,
             })}
           >
             Sorry, this funtion is not implemented yet.

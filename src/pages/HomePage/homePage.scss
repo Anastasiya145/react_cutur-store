@@ -1,12 +1,18 @@
 @import "../../styles/common";
 
-.section {
-  margin-bottom: 80px;
+.home-page {
+  &__section {
+    margin-bottom: 80px;
+  }
 
   &__title {
     @extend %h1;
-    // color: $main-color;
-    margin-bottom: 24px;
+    margin-bottom: 36px;
+  }
+
+  &__subtitle {
+    @extend %h2;
+    margin-bottom: 16px;
   }
 
   &__text {
@@ -20,8 +26,10 @@
 }
 
 @media #{$phone-media-query} {
-  .section {
-    margin-bottom: 60px;
+  .home-page {
+    &__section {
+      margin-bottom: 60px;
+    }
 
     &__title {
       text-align: center;

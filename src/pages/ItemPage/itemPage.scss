@@ -1,18 +1,5 @@
 @import "../../styles/common";
 
-.page__title {
-  @extend %h2-reg;
-  text-align: center;
-  text-transform: uppercase;
-  color: $accent-red-color;
-  background-color: rgba(249, 205, 205, 0.2);
-  border: 1px solid $accent-red-color;
-  border-radius: 15px;
-  padding: 24px;
-  max-width: 360px;
-  margin: 64px auto;
-}
-
 .product-details {
   &__back {
     align-items: center;
@@ -174,17 +161,17 @@
   }
 }
 
-.capacity {
-  &__title {
-    @extend %small-text;
-    margin: 24px 0 8px;
-    color: $main-color;
-  }
+// .capacity {
+//   &__title {
+//     @extend %small-text;
+//     margin: 24px 0 8px;
+//     color: $main-color;
+//   }
 
-  &__list {
-    display: flex;
-  }
-}
+//   &__list {
+//     display: flex;
+//   }
+// }
 
 .description {
   &__item {
@@ -222,26 +209,26 @@
   }
 }
 
-.tech-specifications {
-  &__item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
+// .tech-specifications {
+//   &__item {
+//     display: flex;
+//     justify-content: space-between;
+//     margin-bottom: 16px;
+//   }
 
-  &__text {
-    @extend %body-text;
-    color: $main-color;
+//   &__text {
+//     @extend %body-text;
+//     color: $main-color;
 
-    &--bold {
-      color: inherit;
-    }
-  }
+//     &--bold {
+//       color: inherit;
+//     }
+//   }
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
+//   &:last-child {
+//     margin-bottom: 0;
+//   }
+// }
 
 @media #{$desktop-media-query} {
   .product-details {

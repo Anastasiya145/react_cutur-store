@@ -28,7 +28,7 @@ export const CategoriesPhotosCarousel: React.FC = () => {
           <img
             key={bannerName}
             alt={`banner_${bannerName}`}
-            src={`../../img/categories/${bannerName}.jpg`}
+            src={`img/categories/${bannerName}.jpg`}
           />
         ))}
       </Slider>

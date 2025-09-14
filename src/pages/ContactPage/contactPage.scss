@@ -1,6 +1,4 @@
-@import "../../styles/utils/variables.scss";
-@import "../../styles/utils/fonts.scss";
-@import "../../styles/utils/mixins.scss";
+@import "../../styles/common.scss";
 
 .contact-page {
   margin: 40px auto 0 auto;
@@ -13,21 +11,22 @@
   padding: 32px 24px;
   box-shadow: $box-shadow-color;
 
+  &__container {
+    flex: 1;
+    flex-direction: column;
+  }
+
+  &__title {
+    @extend %h1;
+    margin-bottom: 36px;
+  }
+
   &__desc {
     @extend %body-text;
+  }
 
-    & a {
-      color: $main-color;
-      text-decoration: none;
-      font-weight: inherit;
-      cursor: pointer;
-      text-decoration: underline;
-      transition: color 0.2s;
-
-      &:hover {
-        color: $accent-color;
-      }
-    }
+  &__link {
+    @include email-link;
   }
 
   &__form {
