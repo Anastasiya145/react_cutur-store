@@ -1,5 +1,6 @@
 import React from "react";
 import "./termsPage.scss";
+import { ContactEmailLink } from "../../components/ContactEmailLink/ContactEmailLink";
 
 const TermsPage: React.FC = () => (
   <div className="terms-page">
@@ -12,11 +13,7 @@ const TermsPage: React.FC = () => (
         fabriqués à la main et peuvent présenter de légères variations. Les prix sont indiqués en
         euros, toutes taxes comprises. Le paiement est exigible à la commande. La livraison
         s'effectue à l'adresse indiquée par le client. En cas de litige, le droit français
-        s'applique. Pour toute question, contactez-nous à{" "}
-        <a href="mailto:contact@my-brand.fr" className="terms-page__link">
-          contact@my-brand.fr
-        </a>
-        .
+        s'applique. Pour toute question, contactez-nous à <ContactEmailLink />.
       </p>
     </section>
   </div>

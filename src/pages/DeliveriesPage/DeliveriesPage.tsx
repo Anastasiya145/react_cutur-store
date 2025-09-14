@@ -1,5 +1,6 @@
 import React from "react";
 import "./deliveriesPage.scss";
+import { ContactEmailLink } from "../../components/ContactEmailLink/ContactEmailLink";
 
 const DeliveriesPage: React.FC = () => (
   <div className="deliveries-page">
@@ -12,8 +13,9 @@ const DeliveriesPage: React.FC = () => (
         métropolitaine et Belgique dès 130€ d'achat via Mondial Relay. Expédition par Mondial Relay
         ou Colissimo. Les délais sont donnés à titre indicatif. Le risque du transport est à la
         charge de l'acheteur. En cas de problème à la réception, contactez-nous sous 5 jours à
-        contact@my-brand.fr. Les produits sont expédiés après réception du paiement total. En cas
-        d'adresse incorrecte, la réexpédition sera à la charge de l'acheteur.
+        <ContactEmailLink />
+        Les produits sont expédiés après réception du paiement total. En cas d'adresse incorrecte,
+        la réexpédition sera à la charge de l'acheteur.
       </p>
     </section>
     <section className="deliveries-page__section">

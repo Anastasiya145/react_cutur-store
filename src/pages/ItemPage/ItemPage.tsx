@@ -166,7 +166,7 @@ export const ItemPage: React.FC = () => {
                     <div className="image__box">
                       <img
                         alt="product main"
-                        src={`../img/products/${mainImg}.jpg`}
+                        src={`/img/products/${mainImg}.jpg`}
                         className="image image_main"
                       />
                     </div>
@@ -176,7 +176,7 @@ export const ItemPage: React.FC = () => {
               <div className="product-details__action">
                 <div className="product-details__select">
                   <div className="colors">
-                    <h3 className="colors__title">Available colors</h3>
+                    <h3 className="colors__title">Couleurs disponibles</h3>
                     {product.colorsavailable && (
                       <div className="colors__list">
                         {product.colorsavailable?.map((color) => (

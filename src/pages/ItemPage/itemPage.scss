@@ -123,12 +123,12 @@
     cursor: pointer;
 
     &:hover {
-      border-color: #000;
+      border-color: $main-color;
     }
   }
 
   &.active {
-    border-color: #000;
+    border-color: $main-color;
   }
 
   &-list {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./contactPage.scss";
+import { ContactEmailLink } from "../../components/ContactEmailLink/ContactEmailLink";
 
 const ContactPage: React.FC = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -39,10 +40,7 @@ const ContactPage: React.FC = () => {
       <div className="contact-page__container">
         <h1 className="contact-page__title">Contactez-nous</h1>
         <p className="contact-page__desc">
-          Contactez-nous via ce formulaire ou à{" "}
-          <a href="mailto:contact@my-brand.fr" className="contact-page__link">
-            contact@my-brand.fr
-          </a>
+          Contactez-nous via ce formulaire ou à <ContactEmailLink />
         </p>
         <p className="contact-page__desc">
           <b>Important :</b> Nos articles sont fabriqués à la main exclusivement pour vous. Le délai

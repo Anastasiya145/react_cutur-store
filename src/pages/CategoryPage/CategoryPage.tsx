@@ -8,12 +8,23 @@ import { ProductList } from "../../components/ProductList/ProductList";
 import { Loader } from "../../components/Loader";
 import { getProductByCategory } from "../../api/fetchData";
 
+const CATEGORY_NAME_MAP: Record<string, string> = {
+  bavoirs: "bavoirs",
+  beguins: "béguins",
+  doudous: "doudous",
+};
+
 export const CategoryPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [productCount, setProductCount] = useState(products?.length);
   const { pathname } = useLocation();
-  const categoryName = pathname.slice(1);
+
+  const rawSlug = pathname.slice(1);
+  const slug = decodeURIComponent(rawSlug);
+  const categoryName = CATEGORY_NAME_MAP[slug] || slug;
+
+  console.log(slug, categoryName);
 
   async function loadProducts() {
     setIsLoading(true);

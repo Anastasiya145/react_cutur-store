@@ -95,7 +95,6 @@
   flex-direction: column;
   gap: calc($gap/2);
 
-  // background: #fff;
   border-radius: 18px;
   padding: 16px 8px;
   box-shadow: $box-shadow-color;
@@ -140,7 +139,7 @@
 
 @mixin email-link {
   color: $main-color;
-  text-decoration: none;
+  // text-decoration: none;
   font-weight: inherit;
   cursor: pointer;
   text-decoration: underline;
