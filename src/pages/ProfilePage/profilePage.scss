@@ -1,17 +1,24 @@
 @import "../../styles/common";
 
-.profile-page__info button {
-  background: $accent-color;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 18px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
+.profile-page {
+  &__title {
+    @extend %h1;
+    margin-bottom: 36px;
+  }
 
-  &:hover {
-    background: darken($accent-color, 10%);
+  &__info button {
+    background: $accent-color;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: darken($accent-color, 10%);
+    }
   }
 }

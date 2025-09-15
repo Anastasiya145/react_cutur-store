@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./contactPage.scss";
 import { ContactEmailLink } from "../../components/ContactEmailLink/ContactEmailLink";
-import { contactUs } from "../../api/fetchData";
+import { contactUs } from "../../api/contactApi";
 import { TextInput } from "../../components/Form/TextInput";
 
 const ContactPage: React.FC = () => {

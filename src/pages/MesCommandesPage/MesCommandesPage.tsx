@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./mesCommandesPage.scss";
-import { getOrdersByUserEmail } from "../../api/fetchData";
+import { getOrdersByUserEmail } from "../../api/ordersApi";
 import { Order } from "../../types/Order";
 import { useAuth } from "../../context/AuthContext";
+import { Loader } from "../../components/Loader/Loader";
 
 const MesCommandesPage: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -21,7 +22,7 @@ const MesCommandesPage: React.FC = () => {
   return (
     <div className="mes-commandes-page">
       <h1 className="mes-commandes-page__title">Mes commandes</h1>
-      {loading && <div>Chargement...</div>}
+      {loading && <Loader />}
       {error && <div style={{ color: "red" }}>{error}</div>}
       {!loading && !error && orders.length === 0 && (
         <div>Aucune commande trouvée.</div>

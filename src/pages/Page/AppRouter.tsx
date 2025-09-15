@@ -21,6 +21,7 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../AuthPage/LoginPage";
 import MesCommandesPage from "../MesCommandesPage/MesCommandesPage";
 import RequireAuth from "../../components/RequireAuth/RequireAuth";
+import CheckoutPage from "../CheckoutPage/CheckoutPage";
 
 const AppRouter: React.FC = () => {
   const { pathname } = useLocation();
@@ -44,7 +45,7 @@ const AppRouter: React.FC = () => {
           <Routes>
             <Route path="register" element={<RegisterPage />} />
             <Route path="profile" element={<ProfilePage />} />
-            <Route path={PathnamesApp.Home}>
+            <Route path={PathnamesApp.Accueil}>
               <Route index element={<HomePage />} />
               {categoryPaths.map((cat) => (
                 <Route key={cat} path={cat}>
@@ -52,20 +53,22 @@ const AppRouter: React.FC = () => {
                   <Route path=":id" element={<ItemPage />} />
                 </Route>
               ))}
+              <Route path={PathnamesApp.Favoris} element={<FavoritesPage />} />
+              <Route path={PathnamesApp.Panier} element={<CartPage />} />
               <Route
-                path={PathnamesApp.Favorites}
-                element={<FavoritesPage />}
-              />
-              <Route path={PathnamesApp.Cart} element={<CartPage />} />
-              <Route
-                path={PathnamesApp.Deliveries}
+                path={PathnamesApp.Livraisons}
                 element={<DeliveriesPage />}
               />
               <Route path={PathnamesApp.Contact} element={<ContactPage />} />
-              <Route path={PathnamesApp.Terms} element={<TermsPage />} />
-              <Route path={PathnamesApp.Privacy} element={<PrivacyPage />} />
+              <Route path={PathnamesApp.Conditions} element={<TermsPage />} />
+              <Route
+                path={PathnamesApp.Confidentialité}
+                element={<PrivacyPage />}
+              />
 
-              <Route path={PathnamesApp.Login} element={<LoginPage />} />
+              <Route path={PathnamesApp.Connexion} element={<LoginPage />} />
+
+              <Route path={PathnamesApp.Paiement} element={<CheckoutPage />} />
 
               <Route
                 path={PathnamesApp.Commandes}
@@ -76,7 +79,7 @@ const AppRouter: React.FC = () => {
                 }
               />
               <Route
-                path={PathnamesApp.Profile}
+                path={PathnamesApp.Profil}
                 element={
                   <RequireAuth>
                     <ProfilePage />

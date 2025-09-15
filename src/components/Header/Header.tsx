@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IconUser } from "../Icon/IconUser";
 import classNames from "classnames";
 import { PageNavLink } from "../../helpers/PageNavLink";
 import { AppContext } from "../../context/AppContextProvider";
 import { useAuth } from "../../context/AuthContext";
 import { SearchBar } from "../SearchBar/SearchBar";
-import { PathnamesApp, PathnamesForNav } from "../../types/Pathnames";
+import {
+  PathnamesApp,
+  PathnamesForNav,
+  PathnamesForUserMenu,
+} from "../../types/Pathnames";
 import "./header.scss";
 import { IconMenuCart } from "../IconMenu/IconMenuCart";
 import { IconMenuFavorites } from "../IconMenu/IconMenuFavorites";
@@ -89,18 +93,14 @@ export const Header: React.FC = () => {
               </button>
               {showUserMenu && (
                 <div className="header__user-menu">
-                  <Link
-                    to={PathnamesApp.Commandes}
-                    className="header__user-menu-item"
-                  >
-                    Mes commandes
-                  </Link>
-                  <Link
-                    to={PathnamesApp.Profile}
-                    className="header__user-menu-item"
-                  >
-                    Paramètres du compte
-                  </Link>
+                  {Object.keys(PathnamesForUserMenu).map((item) => (
+                    <PageNavLink
+                      key={item}
+                      text={item}
+                      to={linkAddress(item)}
+                      // className="header__user-menu-item"
+                    />
+                  ))}
                 </div>
               )}
             </div>
@@ -109,9 +109,9 @@ export const Header: React.FC = () => {
           )}
           <IconMenuFavorites
             count={favorites.length}
-            link={PathnamesApp.Favorites}
+            link={PathnamesApp.Favoris}
           />
-          <IconMenuCart count={cart.length} link={PathnamesApp.Cart} />
+          <IconMenuCart count={cart.length} link={PathnamesApp.Panier} />
           {/* eslint-disable-next-line */}
           <button
             type="button"
@@ -148,9 +148,9 @@ export const Header: React.FC = () => {
           <div className="header__container">
             <IconMenuFavorites
               count={favorites.length}
-              link={PathnamesApp.Favorites}
+              link={PathnamesApp.Favoris}
             />
-            <IconMenuCart count={cart.length} link={PathnamesApp.Cart} />
+            <IconMenuCart count={cart.length} link={PathnamesApp.Panier} />
           </div>
         </div>
       </nav>

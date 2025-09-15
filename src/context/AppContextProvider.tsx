@@ -12,6 +12,7 @@ export type AppContextType = {
     products: Product[] | ProductInCart[]
   ) => boolean;
   updateCountInCart: (id: Product["id"], newCount: number) => void;
+  clearCart: () => void;
 };
 
 export const AppContext = createContext<AppContextType>({
@@ -21,6 +22,7 @@ export const AppContext = createContext<AppContextType>({
   toggleToCart: () => {},
   isProductSelected: () => false,
   updateCountInCart: () => {},
+  clearCart: () => {},
 });
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -53,6 +55,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   const updateCountInCart = (productId: Product["id"], newCount: number) => {
     const updatedCart = cart.map((item: ProductInCart) => {
       if (item.id === productId) {
@@ -72,6 +78,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
         toggleToCart,
         isProductSelected,
         updateCountInCart,
+        clearCart,
       }}
     >
       {children}

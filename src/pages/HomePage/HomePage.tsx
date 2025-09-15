@@ -5,7 +5,7 @@ import { SortType } from "../../types/SortType";
 import { SlickSlider } from "../../components/SlickSlider/SlickSlider";
 import { Loader } from "../../components/Loader/Loader";
 import "./homePage.scss";
-import { getProducts } from "../../api/fetchData";
+import { getProducts } from "../../api/productsApi";
 import { CategoriesPhotosCarousel } from "../../components/SlickCarousel/CategoriesPhotosCarousel";
 
 export const HomePage: React.FC = () => {

@@ -13,3 +13,11 @@ export type Order = {
   total: number;
   items: OrderItem[];
 };
+
+export type CreateOrderRequest = {
+  user_email: string;
+  date: string;
+  status: string;
+  total: number;
+  items: OrderItem[];
+};

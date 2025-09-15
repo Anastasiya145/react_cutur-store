@@ -8,12 +8,16 @@ import { NotFound } from "../../components/NotFound/NotFound";
 import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
 import { CheckoutCard } from "../../components/CheckoutCard/CheckoutCard";
 import "./cartPage.scss";
+import { PathnamesApp } from "../../types/Pathnames";
 
 export const CartPage: React.FC = () => {
   const { cart } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const unavailableItems = useMemo(() => cart.filter((item) => item.itemsleft === 0), [cart]);
+  const unavailableItems = useMemo(
+    () => cart.filter((item) => item.itemsleft === 0),
+    [cart]
+  );
   const hasUnavailable = unavailableItems.length > 0;
   const [isPopupShown, setIsPopupShown] = useState(false);
   const [totalSum, setTotalSum] = useState(0);
@@ -22,7 +26,8 @@ export const CartPage: React.FC = () => {
   useEffect(() => {
     if (cart.length > 0) {
       const totalCost = cart.reduce(
-        (accumulator, item: ProductInCart) => accumulator + item.price * item.count,
+        (accumulator, item: ProductInCart) =>
+          accumulator + item.price * item.count,
         0
       );
 
@@ -43,12 +48,13 @@ export const CartPage: React.FC = () => {
   }, [isPopupShown]);
 
   const isAuthenticated = Boolean(localStorage.getItem("user"));
+  console.log(localStorage);
 
   const handleCheckout = () => {
     if (!isAuthenticated) {
       navigate("/auth");
     } else {
-      setIsPopupShown(true);
+      navigate(PathnamesApp.Paiement);
     }
   };
 
@@ -70,7 +76,8 @@ export const CartPage: React.FC = () => {
           <div className="cart-page__container">
             {hasUnavailable && (
               <div className="cart-page__error">
-                Some items in your cart are out of stock. Please remove them to proceed.
+                Some items in your cart are out of stock. Please remove them to
+                proceed.
               </div>
             )}
             <h1 data-cy="productQauntity" className="cart-page__budget">
@@ -82,7 +89,9 @@ export const CartPage: React.FC = () => {
               className="cart-page__checkout"
               onClick={handleCheckout}
               disabled={hasUnavailable}
-              style={hasUnavailable ? { opacity: 0.5, cursor: "not-allowed" } : {}}
+              style={
+                hasUnavailable ? { opacity: 0.5, cursor: "not-allowed" } : {}
+              }
             >
               Checkout
             </button>

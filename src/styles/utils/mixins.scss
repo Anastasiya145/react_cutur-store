@@ -1,3 +1,23 @@
+@mixin nav-link {
+  cursor: pointer;
+  height: 100%;
+  @extend %uppercase;
+  color: $main-color;
+  transition: color 0.3s;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &.selected {
+    color: $accent-color;
+    border-bottom: 3px solid $accent-color;
+  }
+
+  &:hover {
+    color: $accent-color;
+  }
+}
 @mixin button-transparent($width: 32px, $height: 32px) {
   height: $height;
   width: $width;
@@ -29,7 +49,7 @@
   }
 }
 
-@mixin button-gray($width: 176px, $height: 40px) {
+@mixin button-square($width: 176px, $height: 40px) {
   height: $height;
   width: $width;
   background-color: $accent-color;
@@ -150,7 +170,7 @@
 }
 
 @mixin form-button {
-  @include button-gray;
+  @include button-square;
   width: 100%;
 }
 

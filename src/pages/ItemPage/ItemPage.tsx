@@ -5,7 +5,7 @@ import { AppContext } from "../../context/AppContextProvider";
 import { Product } from "../../types/Product";
 import { colors, ColorsType } from "../../types/ProductColors";
 import { ProductPrice } from "../../components/ProductPrice/ProductPrice";
-import { getProductById } from "../../api/fetchData";
+import { getProductById } from "../../api/productsApi";
 import { Loader } from "../../components/Loader";
 import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
 import { ButtonAddToCart } from "../../components/ButtonAddToCart/ButtonAddToCart";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { register } from "../../api/fetchData";
+import { register } from "../../api/authApi";
 import { TextInput } from "../../components/Form/TextInput";
 import { PasswordInput } from "../../components/Form/PasswordInput";
 import "./registerPage.scss";

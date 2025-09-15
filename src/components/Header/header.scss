@@ -50,6 +50,7 @@
   &__user-btn {
     display: block;
     @include button-header;
+    background: none;
     border: none;
   }
 }
@@ -71,16 +72,8 @@
 }
 
 .header__user-menu-item {
-  padding: 10px 20px;
-  // color: $text-color;
-  text-decoration: none;
-  font-size: 15px;
-  transition: all 0.2s;
-
-  &:hover {
-    background-color: $accent-color;
-    color: #fff;
-  }
+  @include nav-link;
+  padding: 8px;
 }
 
 .nav {
@@ -89,25 +82,8 @@
   height: v;
 
   &__item {
-    cursor: pointer;
+    @include nav-link;
     padding: 24px 0;
-    height: 100%;
-    @extend %uppercase;
-    color: $main-color;
-    transition: color 0.3s;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &.selected {
-      color: $accent-color;
-      border-bottom: 3px solid $accent-color;
-    }
-
-    &:hover {
-      color: $accent-color;
-    }
   }
 }
 

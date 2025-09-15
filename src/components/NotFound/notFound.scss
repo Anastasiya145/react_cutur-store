@@ -20,7 +20,7 @@
   }
 
   &__button {
-    @include button-gray;
+    @include button-square;
     height: 40px;
     max-width: 185px;
     text-transform: uppercase;

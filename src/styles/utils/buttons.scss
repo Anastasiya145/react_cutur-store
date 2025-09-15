@@ -21,7 +21,7 @@
   }
 
   &_add-to-cart {
-    @include button-gray;
+    @include button-square;
     margin-right: 8px;
 
     &.selected {

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../api/fetchData";
+// import { login } from "../../api/authApi";
 import { TextInput } from "../../components/Form/TextInput";
 import { PasswordInput } from "../../components/Form/PasswordInput";
 import { useAuth } from "../../context/AuthContext";
 import "./loginPage.scss";
+import { PathnamesApp } from "../../types/Pathnames";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -16,27 +17,32 @@ const LoginPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    if (!email || !password) {
-      setError("Veuillez saisir l'e-mail et le mot de passe");
-      return;
-    }
-    try {
-      const response = await login({ email, password });
+    loginUser("asiva@ukr.net");
+    navigate(PathnamesApp.Paiement);
 
-      console.log(response);
-      // Можно сохранить токен или user в localStorage, если сервер возвращает
-      if (response.token) {
-        localStorage.setItem("token", response.token);
-        if (response.email) {
-          loginUser(response.email);
-        }
-        navigate("/profile");
-      } else {
-        setError("Erreur d'authentification");
-      }
-    } catch (err: any) {
-      setError(err.message || "Erreur d'authentification");
-    }
+    // if (!email || !password) {
+    //   setError("Veuillez saisir l'e-mail et le mot de passe");
+    //   return;
+    // }
+    // try {
+    //   const response = await login({ email, password });
+
+    //   console.log(response);
+    //   // Можно сохранить токен или user в localStorage, если сервер возвращает
+    //   if (response.token) {
+    //     localStorage.setItem("token", response.token);
+
+    //     if (response.email) {
+    //       loginUser(response.email);
+    //     }
+
+    //     navigate(PathnamesApp.Checkout);
+    //   } else {
+    //     setError("Erreur d'authentification");
+    //   }
+    // } catch (err: any) {
+    //   setError(err.message || "Erreur d'authentification");
+    // }
   };
 
   return (

@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-shadow
 export enum PathnamesForNav {
-  Home = "/",
+  Accueil = "/",
   Béguins = "/béguins",
   Bavoirs = "/bavoirs",
   Doudous = "/doudous",
@@ -12,20 +12,26 @@ export const CATEGORY_NAME_MAP: Record<string, string> = {
   doudous: "doudous",
 };
 
+export enum PathnamesForUserMenu {
+  Commandes = "/commandes",
+  Profil = "/profil",
+}
+
 // eslint-disable-next-line no-shadow
 export enum PathnamesApp {
-  Home = "/",
+  Accueil = "/",
   Béguins = "/béguins",
   Bavoirs = "/bavoirs",
   Doudous = "/doudous",
-  Favorites = "/favorites",
-  Cart = "/cart",
-  Deliveries = "/deliveries",
+  Favoris = "/favoris",
+  Panier = "/panier",
+  Livraisons = "/livraisons",
   Contact = "/contact",
-  Terms = "/terms",
-  Privacy = "/privacy",
-  Login = "/login",
+  Conditions = "/conditions",
+  Confidentialité = "/confidentialite",
+  Connexion = "/connexion",
 
   Commandes = "/commandes",
-  Profile = "/profile",
+  Profil = "/profil",
+  Paiement = "/paiement",
 }

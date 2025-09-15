@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Category } from "../../types/Category";
 import { CategoryCard } from "../CategoryCard/CategoryCard";
 import "./categoriesList.scss";
-import { getCategories } from "../../api/fetchData";
+import { getCategories } from "../../api/productsApi";
 import { Loader } from "../Loader/Loader";
 
 export const CategoriesList: React.FC = () => {
