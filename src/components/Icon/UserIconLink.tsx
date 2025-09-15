@@ -13,10 +13,13 @@ const UserIconLink: React.FC<UserIconLinkProps> = ({
   selected = false,
 }) => {
   const location = useLocation();
-  const isSelected = selected || location.pathname === PathnamesApp.Auth;
+  const isSelected = selected || location.pathname === PathnamesApp.Login;
 
   return (
-    <Link to={PathnamesApp.Auth} className={className + (isSelected ? " selected" : "")}>
+    <Link
+      to={PathnamesApp.Login}
+      className={className + (isSelected ? " selected" : "")}
+    >
       <IconUser className="icon__img" style={{ width: 24, height: 24 }} />
     </Link>
   );

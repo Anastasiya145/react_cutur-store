@@ -24,5 +24,5 @@ export enum PathnamesApp {
   Contact = "/contact",
   Terms = "/terms",
   Privacy = "/privacy",
-  Auth = "/auth",
+  Login = "/login",
 }

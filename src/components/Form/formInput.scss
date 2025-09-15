@@ -1,0 +1,19 @@
+@import "../../styles/common";
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  @extend %body-text;
+  margin-bottom: 16px;
+}
+
+.form-input {
+  @include form-input;
+  margin-top: 8px;
+  width: 100%;
+  position: relative;
+
+  &__icon {
+    @include form-password-icon;
+  }
+}

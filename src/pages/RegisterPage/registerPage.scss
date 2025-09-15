@@ -1,4 +1,4 @@
-@import "../../styles/common.scss";
+@import "../../styles/common";
 
 .register-page {
   min-height: 60vh;
@@ -24,15 +24,7 @@
     margin-bottom: 24px;
   }
 
-  &__label {
-    @include form-label;
-  }
-
-  &__form input {
-    @include form-input;
-  }
-
-  &__form button {
+  &__button {
     @include form-button;
   }
 

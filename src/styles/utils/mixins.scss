@@ -154,6 +154,18 @@
   width: 100%;
 }
 
+@mixin form-password-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-30%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: $border-color;
+}
+
 @mixin email-link {
   color: $main-color;
   // text-decoration: none;
