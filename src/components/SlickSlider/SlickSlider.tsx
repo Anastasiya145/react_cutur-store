@@ -48,6 +48,7 @@ export const SlickSlider: React.FC<Props> = ({ products, sortBy }) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 2,
+          arrows: false,
         },
       },
       {

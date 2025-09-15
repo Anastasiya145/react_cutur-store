@@ -31,8 +31,10 @@
       margin-bottom: 60px;
     }
 
-    &__title {
-      text-align: center;
+    &__title,
+    &__text {
+      margin-right: 16px;
+      margin-left: 16px;
     }
   }
 }

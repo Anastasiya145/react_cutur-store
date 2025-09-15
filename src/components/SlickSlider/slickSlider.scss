@@ -21,10 +21,21 @@
     }
 
     &-arrow {
-      @include button-transparent;
+      @include button-round;
+
       position: absolute;
       top: 50%;
       z-index: 2;
+    }
+
+    &-prev {
+      left: 8px;
+      transform: translateY(-50%);
+    }
+
+    &-next {
+      right: 8px;
+      transform: translateY(-50%);
     }
   }
 }

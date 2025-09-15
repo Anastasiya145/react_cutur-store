@@ -13,7 +13,10 @@ import "./itemPage.scss";
 import { IconArrowLeft } from "../../components/Icon/IconArrowLeft";
 
 const navigateTo = (pathname: string, paramOld: string, paramNew: string) => {
-  const newLink = pathname.replace(paramOld.toLowerCase(), paramNew.toLowerCase());
+  const newLink = pathname.replace(
+    paramOld.toLowerCase(),
+    paramNew.toLowerCase()
+  );
 
   return `${newLink}`;
 };
@@ -54,8 +57,12 @@ export const ItemPage: React.FC = () => {
 
   console.log(product, itemId);
 
-  const isProductSelectedinFav = product ? isProductSelected(product.id, favorites) : false;
-  const isProductSelectedinCart = product ? isProductSelected(product.id, cart) : false;
+  const isProductSelectedinFav = product
+    ? isProductSelected(product.id, favorites)
+    : false;
+  const isProductSelectedinCart = product
+    ? isProductSelected(product.id, cart)
+    : false;
 
   const [error, setError] = useState("");
 
@@ -192,7 +199,10 @@ export const ItemPage: React.FC = () => {
                     </div>
                   </div>
                 </div> */}
-                <ProductPrice price={product.price} final_price={product.final_price} />
+                <ProductPrice
+                  price={product.price}
+                  final_price={product.final_price}
+                />
                 <ButtonAddToCart
                   product={product}
                   isProductInFav={isProductSelectedinFav}
@@ -205,7 +215,9 @@ export const ItemPage: React.FC = () => {
                 <div className="product-details__section">
                   <h2 className="product-details__subtitle">À propos</h2>
                   <div data-cy="productDescription" className="description">
-                    <h3 className="description__title">{product.description.title}</h3>
+                    <h3 className="description__title">
+                      {product.description.title}
+                    </h3>
                     {product.description.text?.map((text, i) => (
                       <p className="description__text" key={i}>
                         {text}

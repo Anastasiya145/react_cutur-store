@@ -19,6 +19,7 @@
     "react-slick": "latest",
     "sass": "latest",
     "slick-carousel": "latest",
+    "swiper": "^12.0.1",
     "typescript": "latest",
     "typescript-eslint-parser": "latest",
     "web-vitals": "latest"
