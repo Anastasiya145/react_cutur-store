@@ -82,14 +82,23 @@ export const Header: React.FC = () => {
                 onClick={() => setShowUserMenu((v) => !v)}
                 type="button"
               >
-                <IconUser className="icon__img" style={{ width: 24, height: 24 }} />
+                <IconUser
+                  className="icon__img"
+                  style={{ width: 24, height: 24 }}
+                />
               </button>
               {showUserMenu && (
                 <div className="header__user-menu">
-                  <Link to="/orders" className="header__user-menu-item">
+                  <Link
+                    to={PathnamesApp.Commandes}
+                    className="header__user-menu-item"
+                  >
                     Mes commandes
                   </Link>
-                  <Link to="/profile" className="header__user-menu-item">
+                  <Link
+                    to={PathnamesApp.Profile}
+                    className="header__user-menu-item"
+                  >
                     Paramètres du compte
                   </Link>
                 </div>
@@ -98,10 +107,17 @@ export const Header: React.FC = () => {
           ) : (
             <UserIconLink />
           )}
-          <IconMenuFavorites count={favorites.length} link={PathnamesApp.Favorites} />
+          <IconMenuFavorites
+            count={favorites.length}
+            link={PathnamesApp.Favorites}
+          />
           <IconMenuCart count={cart.length} link={PathnamesApp.Cart} />
           {/* eslint-disable-next-line */}
-          <button type="button" className="header__menu-open-button" onClick={toggleMenu}>
+          <button
+            type="button"
+            className="header__menu-open-button"
+            onClick={toggleMenu}
+          >
             <IconMenu style={{ width: 20, height: 20 }} />
           </button>
         </div>
@@ -117,7 +133,11 @@ export const Header: React.FC = () => {
           </div> */}
           <div className="header__logo" />
           {/* eslint-disable-next-line */}
-          <button type="button" className="header__menu-open-button" onClick={toggleMenu}>
+          <button
+            type="button"
+            className="header__menu-open-button"
+            onClick={toggleMenu}
+          >
             <IconClose style={{ width: 20, height: 20 }} />
           </button>
         </div>
@@ -126,7 +146,10 @@ export const Header: React.FC = () => {
             <PageNavLink key={item} text={item} to={linkAddress(item)} />
           ))}
           <div className="header__container">
-            <IconMenuFavorites count={favorites.length} link={PathnamesApp.Favorites} />
+            <IconMenuFavorites
+              count={favorites.length}
+              link={PathnamesApp.Favorites}
+            />
             <IconMenuCart count={cart.length} link={PathnamesApp.Cart} />
           </div>
         </div>

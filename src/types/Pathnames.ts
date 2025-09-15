@@ -25,4 +25,7 @@ export enum PathnamesApp {
   Terms = "/terms",
   Privacy = "/privacy",
   Login = "/login",
+
+  Commandes = "/commandes",
+  Profile = "/profile",
 }

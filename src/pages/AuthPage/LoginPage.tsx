@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../api/fetchData";
 import { TextInput } from "../../components/Form/TextInput";
 import { PasswordInput } from "../../components/Form/PasswordInput";
+import { useAuth } from "../../context/AuthContext";
 import "./loginPage.scss";
 
 const LoginPage: React.FC = () => {
@@ -10,6 +11,7 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { loginUser } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,6 +27,9 @@ const LoginPage: React.FC = () => {
       // Можно сохранить токен или user в localStorage, если сервер возвращает
       if (response.token) {
         localStorage.setItem("token", response.token);
+        if (response.email) {
+          loginUser(response.email);
+        }
         navigate("/profile");
       } else {
         setError("Erreur d'authentification");

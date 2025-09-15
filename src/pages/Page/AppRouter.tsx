@@ -19,6 +19,8 @@ import { PathnamesApp } from "../../types/Pathnames";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../AuthPage/LoginPage";
+import MesCommandesPage from "../MesCommandesPage/MesCommandesPage";
+import RequireAuth from "../../components/RequireAuth/RequireAuth";
 
 const AppRouter: React.FC = () => {
   const { pathname } = useLocation();
@@ -64,7 +66,23 @@ const AppRouter: React.FC = () => {
               <Route path={PathnamesApp.Privacy} element={<PrivacyPage />} />
 
               <Route path={PathnamesApp.Login} element={<LoginPage />} />
-              <Route path="profile" element={<ProfilePage />} />
+
+              <Route
+                path={PathnamesApp.Commandes}
+                element={
+                  <RequireAuth>
+                    <MesCommandesPage />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path={PathnamesApp.Profile}
+                element={
+                  <RequireAuth>
+                    <ProfilePage />
+                  </RequireAuth>
+                }
+              />
             </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

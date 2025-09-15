@@ -1,0 +1,47 @@
+@import "../../styles/common";
+
+.parametres-page {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 32px 16px;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: $main-color;
+  }
+
+  &__form {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__success {
+    color: $success-color;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  &__button {
+    background: $accent-color;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+    &:hover {
+      background: darken($accent-color, 10%);
+    }
+  }
+}

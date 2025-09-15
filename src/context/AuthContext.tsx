@@ -2,21 +2,21 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface AuthContextType {
   user: string | null;
-  login: (username: string) => void;
-  logout: () => void;
+  loginUser: (username: string) => void;
+  logoutUser: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<string | null>("asiva@ukr.net");
 
-  const login = (username: string) => {
+  const loginUser = (username: string) => {
     setUser(username);
     localStorage.setItem("user", username);
   };
 
-  const logout = () => {
+  const logoutUser = () => {
     setUser(null);
     localStorage.removeItem("user");
   };
@@ -26,7 +26,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (storedUser) setUser(storedUser);
   }, []);
 
-  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, loginUser, logoutUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => {

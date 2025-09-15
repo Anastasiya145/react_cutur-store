@@ -10,6 +10,7 @@ import {
   ResetPasswordRequest,
   ResetPasswordResponse,
 } from "../types/Auth";
+import { Order } from "../types/Order";
 // Импортируйте нужные типы для аутентификации и контактов
 
 const BASE_URL = "https://nodecutur-store.vercel.app";
@@ -67,6 +68,28 @@ export const contactUs = (data: {
   message: string;
 }) =>
   request<{ message: string }>("/contact-us", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+// Получить все заказы
+export const getOrders = () => request<Order[]>("/commandes");
+
+// Получить заказы по email пользователя
+export const getOrdersByUserEmail = (userEmail: string) =>
+  request<Order[]>(`/commandes/${userEmail}`);
+
+// Получить заказ по id
+export const getOrderById = (id: number) => request<Order>(`/commande/${id}`);
+
+// Создать новый заказ
+export type CreateOrderRequest = Omit<
+  Order,
+  "id" | "created_at" | "updated_at"
+>;
+export const createOrder = (data: CreateOrderRequest) =>
+  request<Order>("/commandes", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
