@@ -29,9 +29,9 @@
   }
 
   &__error {
-    color: $accent-red-color;
-    background: rgba($accent-red-color, 0.08);
-    border: 1px solid $accent-red-color;
+    color: $error-color;
+    background: rgba($error-color, 0.08);
+    border: 1px solid $error-color;
     border-radius: 6px;
     padding: 8px 12px;
     font-size: 14px;

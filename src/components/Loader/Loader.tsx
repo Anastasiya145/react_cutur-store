@@ -1,3 +1,9 @@
 import "./loader.scss";
 
-export const Loader = () => <div className="loader" />;
+type LoaderProps = {
+  variant?: "small" | "normal" | "large";
+};
+
+export const Loader = ({ variant = "normal" }: LoaderProps) => (
+  <div className={`loader loader--${variant}`} />
+);

@@ -4,6 +4,7 @@ import { register } from "../../api/authApi";
 import { TextInput } from "../../components/Form/TextInput";
 import { PasswordInput } from "../../components/Form/PasswordInput";
 import "./registerPage.scss";
+import { PathnamesApp } from "../../types/Pathnames";
 
 const RegisterPage: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -31,11 +32,14 @@ const RegisterPage: React.FC = () => {
       return;
     }
     try {
-      await register({ username, email, password });
-      setSuccess(
-        "Inscription réussie ! Vous pouvez maintenant vous connecter."
-      );
-      setTimeout(() => navigate("/auth"), 1500);
+      const response = await register({ username, email, password });
+
+      if (response.email) {
+        setSuccess(
+          "Inscription réussie ! Vous pouvez maintenant vous connecter."
+        );
+        navigate(PathnamesApp.Connexion);
+      }
     } catch (err: any) {
       setError(err.message || "Erreur lors de l'inscription");
     }

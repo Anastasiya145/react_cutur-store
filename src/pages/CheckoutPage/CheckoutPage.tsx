@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { createOrder } from "../../api/ordersApi";
 import { useAppContext } from "../../context/AppContextProvider";
 import { useAuth } from "../../context/AuthContext";
-import { OrderItem, CreateOrderRequest } from "../../types/Order";
+import { CreateOrderRequest } from "../../types/Order";
 import "./CheckoutPage.scss";
+import { useNavigate } from "react-router-dom";
+import { PathnamesForUserMenu } from "../../types/Pathnames";
+import { LoadingButton } from "../../components/LoadingButton";
 
 const CheckoutPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -12,22 +15,16 @@ const CheckoutPage: React.FC = () => {
   const { cart, clearCart } = useAppContext();
   const { user } = useAuth();
 
-  // Build order items from cart
-  const orderItems: OrderItem[] = cart.map((item) => ({
-    name: item.name,
-    quantity: item.count,
-    price: item.price,
-    image: item.images[0] || "",
-  }));
+  const navigate = useNavigate();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
 
-  const orderData: CreateOrderRequest = {
+  const orderDataForMutation: CreateOrderRequest = {
     user_email: user || "",
-    date: new Date().toISOString(),
-    status: "pending",
-    total,
-    items: orderItems,
+    items: cart.map((item) => ({
+      id: item.id,
+      quantity: item.count,
+    })),
   };
 
   const handleCheckout = async () => {
@@ -35,10 +32,10 @@ const CheckoutPage: React.FC = () => {
     setError(null);
     setSuccess(false);
     try {
-      await createOrder(orderData);
+      await createOrder(orderDataForMutation);
       setSuccess(true);
-      // Clear cart after success
       clearCart();
+      navigate(PathnamesForUserMenu.Commandes);
     } catch (err: any) {
       setError(err.message || "Erreur lors de la commande.");
     } finally {
@@ -64,13 +61,12 @@ const CheckoutPage: React.FC = () => {
         )}
         <div className="checkout-page__total">Total: {total}€</div>
       </div>
-      <button
-        className="checkout-page__button"
-        onClick={handleCheckout}
+      <LoadingButton
+        text="Confirmer la commande"
+        loading={loading}
         disabled={loading || success || cart.length === 0}
-      >
-        {loading ? "Envoi en cours..." : "Confirmer la commande"}
-      </button>
+        onClick={handleCheckout}
+      />
       {error && <div className="checkout-page__error-message">{error}</div>}
       {success && (
         <div className="checkout-page__success-message">Commande réussie !</div>

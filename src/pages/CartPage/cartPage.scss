@@ -60,8 +60,8 @@
     height: min-content;
     padding: 20px;
     border-radius: 10px;
-    border: 1px solid $accent-green-color;
-    color: $accent-green-color;
+    border: 1px solid $success-color;
+    color: $success-color;
     transition: all 0.3s linear;
     transform: translateX(150%);
 
@@ -71,8 +71,8 @@
   }
 
   &__error {
-    color: $accent-red-color;
-    border: 1px solid $accent-red-color;
+    color: $error-color;
+    border: 1px solid $error-color;
     border-radius: 8px;
     padding: 10px 16px;
     margin-bottom: 16px;

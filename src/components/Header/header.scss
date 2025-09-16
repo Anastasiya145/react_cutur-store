@@ -74,6 +74,9 @@
 .header__user-menu-item {
   @include nav-link;
   padding: 8px;
+  background-color: unset;
+  border: none;
+  text-align: left;
 }
 
 .nav {

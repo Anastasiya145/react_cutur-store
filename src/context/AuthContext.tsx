@@ -5,10 +5,11 @@ import {
   ReactNode,
   useEffect,
 } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   user: string | null;
-  loginUser: (username: string) => void;
+  loginUser: (username: string, token: string) => void;
   logoutUser: () => void;
 }
 
@@ -16,15 +17,19 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  const loginUser = (username: string) => {
-    setUser(username);
+  const loginUser = (username: string, token: string) => {
     localStorage.setItem("user", username);
+    localStorage.setItem("token", token);
+    setUser(username);
   };
 
   const logoutUser = () => {
     setUser(null);
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   useEffect(() => {

@@ -1,0 +1,133 @@
+@import "../../styles/common";
+
+.commande-card {
+  border-radius: 16px;
+  box-shadow: $box-shadow-color;
+  margin-bottom: 32px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    @extend %h2;
+  }
+
+  &__id {
+    color: $main-color;
+    font-weight: bold;
+    margin-right: 16px;
+  }
+
+  &__date {
+    color: $light-color;
+    @extend %body-text;
+    margin-left: 8px;
+  }
+
+  &__status {
+    padding: 4px 12px;
+    border-radius: 8px;
+    text-transform: capitalize;
+    @extend %body-text;
+
+    &--created {
+      background: #e3f7e3;
+      color: $success-color;
+    }
+    &--processing {
+      background: #fff8e1;
+      color: $warning-color;
+    }
+    &--cancelled {
+      background: #ffeaea;
+      color: $error-color;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    background: $light-grey-color;
+    border-radius: 8px;
+    padding: 8px 12px;
+    gap: 12px;
+    min-width: 180px;
+    width: 100%;
+  }
+
+  &__item-img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    // background: #fff;
+    border: 1px solid $border-color;
+  }
+
+  &__item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__item-name {
+    font-weight: 500;
+    color: $main-color;
+  }
+
+  &__item-qty {
+    @extend %body-text;
+    color: $light-color;
+  }
+
+  &__item-price {
+    font-size: 0.95em;
+    color: $accent-color;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  &__total {
+    @extend %h3;
+    font-weight: bold;
+    color: $main-color;
+  }
+
+  &__cancel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  &__cancel-btn {
+    @include button-square;
+  }
+
+  &__cancel-hint {
+    @extend %body-text;
+    margin-top: 2px;
+  }
+
+  &__cancel-error {
+    color: $error-color;
+    @extend %body-text;
+    margin-top: 2px;
+  }
+}

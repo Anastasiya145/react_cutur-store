@@ -51,13 +51,13 @@
   }
 
   &__success {
-    color: $accent-green-color;
+    color: $success-color;
     margin-top: 10px;
     @extend %body-text;
   }
 
   &__error {
-    color: $accent-red-color;
+    color: $error-color;
     margin-top: 10px;
     @extend %body-text;
   }

@@ -5,14 +5,15 @@ import { NavLink } from "react-router-dom";
 export type Props = {
   to: string;
   text: string;
+  class_name?: string;
 };
 
-export const PageNavLink: React.FC<Props> = ({ to, text }) => {
+export const PageNavLink: React.FC<Props> = ({ to, text, class_name }) => {
   return (
     <NavLink
       to={to}
       className={({ isActive }) =>
-        classNames("nav__item", { selected: isActive })
+        class_name && classNames(class_name, { selected: isActive })
       }
     >
       {text}

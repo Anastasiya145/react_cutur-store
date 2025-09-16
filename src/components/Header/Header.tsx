@@ -25,7 +25,7 @@ const linkAddress = (pageName: string) => {
 
 export const Header: React.FC = () => {
   const { favorites, cart } = useContext(AppContext);
-  const { user } = useAuth();
+  const { user, logoutUser } = useAuth();
   const { pathname } = useLocation();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
@@ -72,7 +72,12 @@ export const Header: React.FC = () => {
           <div className="header__logo" onClick={() => navigate("/")} />
           <div className="nav">
             {Object.keys(PathnamesForNav).map((item) => (
-              <PageNavLink key={item} text={item} to={linkAddress(item)} />
+              <PageNavLink
+                key={item}
+                text={item}
+                to={linkAddress(item)}
+                class_name="nav__item"
+              />
             ))}
           </div>
         </div>
@@ -98,9 +103,16 @@ export const Header: React.FC = () => {
                       key={item}
                       text={item}
                       to={linkAddress(item)}
-                      // className="header__user-menu-item"
+                      class_name="header__user-menu-item"
                     />
                   ))}
+                  <button
+                    className="header__user-menu-item"
+                    type="button"
+                    onClick={() => logoutUser()}
+                  >
+                    Se déconnecter
+                  </button>
                 </div>
               )}
             </div>
@@ -143,7 +155,12 @@ export const Header: React.FC = () => {
         </div>
         <div className="nav">
           {Object.keys(PathnamesForNav).map((item) => (
-            <PageNavLink key={item} text={item} to={linkAddress(item)} />
+            <PageNavLink
+              key={item}
+              text={item}
+              to={linkAddress(item)}
+              class_name="nav__item"
+            />
           ))}
           <div className="header__container">
             <IconMenuFavorites

@@ -24,8 +24,10 @@ export type LoginRequest = {
 };
 
 export type LoginResponse = {
+  id: number;
   email: string;
   username: string;
+  role: "Admin" | "User";
   token: string;
 };
 

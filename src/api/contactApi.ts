@@ -1,4 +1,4 @@
-import { BASE_URL } from "./constants";
+import { BASE_URL } from "./api";
 
 function request<T>(url: string, options?: RequestInit): Promise<T> {
   return fetch(BASE_URL + url, options).then((response) => {
