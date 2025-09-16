@@ -23,7 +23,10 @@ export const LoadingButton: React.FC<LoadingButtonProps> = ({
     type={type}
     className={`button-loading ${className}`}
     disabled={disabled || loading}
-    onClick={onClick}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick && onClick(e);
+    }}
   >
     {loading ? <Loader variant="small" /> : text}
   </button>

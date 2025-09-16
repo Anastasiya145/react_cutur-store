@@ -4,12 +4,20 @@ export type CreateOrderItem = {
 };
 
 export enum OrderStatus {
-  Created = "Created",
-  Pending = "En cours de traitement",
-  Shipped = "Shipped",
-  Delivered = "Delivered",
-  Cancelled = "Cancelled",
+  Created = "created",
+  Pending = "pending",
+  Shipped = "shipped",
+  Delivered = "delivered",
+  Cancelled = "cancelled",
 }
+
+export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
+  [OrderStatus.Created]: "créée",
+  [OrderStatus.Pending]: "en cours de traitement",
+  [OrderStatus.Shipped]: "en cours de livraison",
+  [OrderStatus.Delivered]: "livré",
+  [OrderStatus.Cancelled]: "annulé",
+};
 
 export type CreateOrderRequest = {
   user_email: string;

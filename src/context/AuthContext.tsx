@@ -6,6 +6,7 @@ import {
   useEffect,
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { PathnamesApp } from "../types/Pathnames";
 
 interface AuthContextType {
   user: string | null;
@@ -29,7 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    navigate("/");
+    navigate(PathnamesApp.Accueil);
   };
 
   useEffect(() => {

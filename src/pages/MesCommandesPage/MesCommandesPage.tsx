@@ -10,11 +10,20 @@ const MesCommandesPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const loadOrders = async () => {
+    setLoading(true);
+    try {
+      const data = await getOrdersForConnectedUser();
+      setOrders(data);
+    } catch {
+      setError("Erreur lors du chargement des commandes.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    getOrdersForConnectedUser()
-      .then((data: Order[]) => setOrders(data))
-      .catch(() => setError("Erreur lors du chargement des commandes."))
-      .finally(() => setLoading(false));
+    loadOrders();
   }, []);
 
   return (
@@ -27,7 +36,9 @@ const MesCommandesPage: React.FC = () => {
       )}
       {!loading &&
         !error &&
-        orders.map((order) => <CommandeCard key={order.id} order={order} />)}
+        orders.map((order) => (
+          <CommandeCard key={order.id} order={order} loadOrders={loadOrders} />
+        ))}
     </div>
   );
 };

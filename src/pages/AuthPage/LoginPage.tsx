@@ -6,11 +6,14 @@ import { useAuth } from "../../context/AuthContext";
 import "./loginPage.scss";
 import { PathnamesApp } from "../../types/Pathnames";
 import { login } from "../../api/authApi";
+import { LoadingButton } from "../../components/LoadingButton";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { loginUser } = useAuth();
 
@@ -23,6 +26,7 @@ const LoginPage: React.FC = () => {
       return;
     }
     try {
+      setLoading(true);
       const response = await login({ email, password });
 
       console.log(response);
@@ -36,6 +40,8 @@ const LoginPage: React.FC = () => {
       }
     } catch (err: any) {
       setError(err.message || "Erreur d'authentification");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -61,15 +67,19 @@ const LoginPage: React.FC = () => {
           required
         />
         {error && <div className="auth-page__error">{error}</div>}
-        <button type="submit" className="auth-page__button">
-          Se connecter
-        </button>
+
+        <LoadingButton
+          text="Se connecter"
+          loading={loading}
+          onClick={handleSubmit}
+          disabled={loading}
+        />
       </form>
       <div className="auth-page__footer">
         <div className="auth-page__footer-link-block">
           <span
             className="auth-page__link"
-            onClick={() => navigate("/forgot-password")}
+            onClick={() => navigate(PathnamesApp.ForgotPassword)}
           >
             Mot de passe oublié ?
           </span>
@@ -79,7 +89,7 @@ const LoginPage: React.FC = () => {
             Pas encore de compte ?
             <span
               className="auth-page__link"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate(PathnamesApp.Register)}
             >
               {" "}
               Inscrivez-vous

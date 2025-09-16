@@ -32,8 +32,8 @@
     @include form-input;
   }
 
-  &__button {
-    @include form-button;
+  & .button-loading {
+    width: 100%;
   }
 
   &__error {
@@ -48,13 +48,13 @@
 
   &__footer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 0;
-    margin-top: 24px;
+    gap: 16px;
 
     &-link-block {
-      width: 50%;
-      text-align: center;
+      width: 100%;
+      text-align: left;
     }
   }
 

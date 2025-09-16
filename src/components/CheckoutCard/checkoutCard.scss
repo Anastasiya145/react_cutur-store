@@ -2,8 +2,9 @@
 
 .checkout-card {
   display: flex;
-  border: 1px solid $border-color;
-  padding: 30px;
+  border-radius: 16px;
+  box-shadow: $box-shadow-color;
+  padding: 24px;
   margin-bottom: 16px;
   align-items: center;
 

@@ -1,22 +1,27 @@
 import { FC, useState } from "react";
 import { useFormatDate } from "../../helpers/hooks/useFormatDate";
-import { Order, OrderItem, OrderStatus } from "../../types/Order";
-import { CancelOrderButton } from "./CancelOrderButton";
+import {
+  Order,
+  ORDER_STATUS_LABELS,
+  OrderItem,
+  OrderStatus,
+} from "../../types/Order";
 import "./commandeCard.scss";
 import { deleteOrder } from "../../api/ordersApi";
 import { LoadingButton } from "../../components/LoadingButton";
 
 type CommandeCardProps = {
   order: Order;
+  loadOrders: () => void;
 };
 
-export const CommandeCard: FC<CommandeCardProps> = ({ order }) => {
+export const CommandeCard: FC<CommandeCardProps> = ({ order, loadOrders }) => {
   const formatDate = useFormatDate();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleCancel = async () => {
+  const handleOrderCancel = async () => {
     setLoading(true);
     setError(null);
     try {
@@ -24,7 +29,7 @@ export const CommandeCard: FC<CommandeCardProps> = ({ order }) => {
         id_commande: order.id,
         user_email: order.user_email,
       });
-      //   setCancelled(true);
+      loadOrders();
     } catch (err: any) {
       setError(err.message || "Erreur lors de l'annulation.");
     } finally {
@@ -44,7 +49,7 @@ export const CommandeCard: FC<CommandeCardProps> = ({ order }) => {
         <span
           className={`commande-card__status commande-card__status--${order.status}`}
         >
-          {order.status}
+          {ORDER_STATUS_LABELS[order.status]}
         </span>
       </div>
       <div className="commande-card__items">
@@ -73,14 +78,16 @@ export const CommandeCard: FC<CommandeCardProps> = ({ order }) => {
         <div className="commande-card__total">
           Total: <b>{order.total} €</b>
         </div>
-        <LoadingButton text="Annuler la commande" loading={true} />
-        <CancelOrderButton
-          handleCancel={handleCancel}
-          disabled={order.status !== OrderStatus.Created}
-          loading={loading}
-          error={error}
-        />
+        {order.status === OrderStatus.Created && (
+          <LoadingButton
+            text="Annuler la commande"
+            loading={loading}
+            onClick={handleOrderCancel}
+            disabled={loading}
+          />
+        )}
       </div>
+      {error && <div className="commande-card__error">{error}</div>}
     </div>
   );
 };

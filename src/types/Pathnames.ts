@@ -29,7 +29,11 @@ export enum PathnamesApp {
   Contact = "/contact",
   Conditions = "/conditions",
   Confidentialité = "/confidentialite",
+
   Connexion = "/connexion",
+  Register = "/register",
+  ForgotPassword = "/forgot-password",
+  ResetPassword = "/reset-password",
 
   Commandes = "/commandes",
   Profil = "/profil",

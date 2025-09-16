@@ -43,8 +43,8 @@ const AppRouter: React.FC = () => {
           className={`page__container page__container_${pathnameNormalized}`}
         >
           <Routes>
-            <Route path="register" element={<RegisterPage />} />
-            <Route path="profile" element={<ProfilePage />} />
+            <Route path={PathnamesApp.Register} element={<RegisterPage />} />
+            <Route path={PathnamesApp.Profil} element={<ProfilePage />} />
             <Route path={PathnamesApp.Accueil}>
               <Route index element={<HomePage />} />
               {categoryPaths.map((cat) => (
@@ -70,6 +70,7 @@ const AppRouter: React.FC = () => {
 
               <Route path={PathnamesApp.Paiement} element={<CheckoutPage />} />
 
+              {/* RequireAuth */}
               <Route
                 path={PathnamesApp.Commandes}
                 element={
@@ -87,6 +88,7 @@ const AppRouter: React.FC = () => {
                 }
               />
             </Route>
+
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>

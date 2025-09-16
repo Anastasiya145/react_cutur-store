@@ -5,12 +5,14 @@ import { TextInput } from "../../components/Form/TextInput";
 import { PasswordInput } from "../../components/Form/PasswordInput";
 import "./registerPage.scss";
 import { PathnamesApp } from "../../types/Pathnames";
+import { LoadingButton } from "../../components/LoadingButton";
 
 const RegisterPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ const RegisterPage: React.FC = () => {
       return;
     }
     try {
+      setLoading(true);
       const response = await register({ username, email, password });
 
       if (response.email) {
@@ -42,6 +45,8 @@ const RegisterPage: React.FC = () => {
       }
     } catch (err: any) {
       setError(err.message || "Erreur lors de l'inscription");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -85,9 +90,13 @@ const RegisterPage: React.FC = () => {
         />
         {error && <div className="register-page__error">{error}</div>}
         {success && <div className="register-page__success">{success}</div>}
-        <button type="submit" className="register-page__button">
-          S'inscrire
-        </button>
+
+        <LoadingButton
+          text="Se connecter"
+          loading={loading}
+          onClick={handleSubmit}
+          disabled={loading}
+        />
       </form>
       <div className="register-page__footer">
         Déjà inscrit?

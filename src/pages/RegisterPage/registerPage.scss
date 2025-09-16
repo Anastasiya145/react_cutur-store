@@ -24,8 +24,8 @@
     margin-bottom: 24px;
   }
 
-  &__button {
-    @include form-button;
+  & .button-loading {
+    width: 100%;
   }
 
   &__error {

@@ -14,6 +14,14 @@
   position: relative;
 
   &__icon {
-    @include form-password-icon;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-30%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: $border-color;
   }
 }

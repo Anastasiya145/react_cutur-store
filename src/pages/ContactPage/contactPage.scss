@@ -46,8 +46,8 @@
     @include form-input;
   }
 
-  &__button {
-    @include form-button;
+  & .button-loading {
+    width: 100%;
   }
 
   &__success {

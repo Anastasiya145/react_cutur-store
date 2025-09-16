@@ -3,9 +3,11 @@ import "./contactPage.scss";
 import { ContactEmailLink } from "../../components/ContactEmailLink/ContactEmailLink";
 import { contactUs } from "../../api/contactApi";
 import { TextInput } from "../../components/Form/TextInput";
+import { LoadingButton } from "../../components/LoadingButton";
 
 const ContactPage: React.FC = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
 
@@ -19,7 +21,9 @@ const ContactPage: React.FC = () => {
     e.preventDefault();
     setError("");
     setSent(false);
+
     try {
+      setLoading(true);
       await contactUs({
         name: form.name,
         email: form.email,
@@ -29,6 +33,8 @@ const ContactPage: React.FC = () => {
       setForm({ name: "", email: "", message: "" });
     } catch {
       setError("Erreur lors de l'envoi. Veuillez réessayer.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,11 +86,14 @@ const ContactPage: React.FC = () => {
             rows={5}
           />
         </label>
-        <button className="contact-page__button" type="submit">
-          Envoyer
-        </button>
         {sent && <div className="contact-page__success">Message envoyé !</div>}
         {error && <div className="contact-page__error">{error}</div>}
+        <LoadingButton
+          text="Envoyer"
+          loading={loading}
+          onClick={handleSubmit}
+          disabled={loading}
+        />
       </form>
     </div>
   );
