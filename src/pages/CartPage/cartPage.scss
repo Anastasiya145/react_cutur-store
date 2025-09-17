@@ -71,13 +71,7 @@
   }
 
   &__error {
-    color: $error-color;
-    border: 1px solid $error-color;
-    border-radius: 8px;
-    padding: 10px 16px;
-    margin-bottom: 16px;
-    font-size: 15px;
-    text-align: center;
+    @include error;
   }
 }
 

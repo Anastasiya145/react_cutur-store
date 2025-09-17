@@ -67,9 +67,9 @@ const CheckoutPage: React.FC = () => {
         disabled={loading || success || cart.length === 0}
         onClick={handleCheckout}
       />
-      {error && <div className="checkout-page__error-message">{error}</div>}
+      {error && <div className="checkout-page__error">{error}</div>}
       {success && (
-        <div className="checkout-page__success-message">Commande réussie !</div>
+        <div className="checkout-page__success">Commande réussie !</div>
       )}
     </div>
   );

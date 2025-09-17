@@ -7,6 +7,7 @@
   padding: 24px;
   margin-bottom: 16px;
   align-items: center;
+  justify-content: space-between;
 
   &:last-child {
     margin-bottom: 0;
@@ -16,18 +17,6 @@
   &__container {
     display: flex;
     align-items: center;
-  }
-
-  &__button-remove {
-    background-color: unset;
-    border: none;
-    color: $light-color;
-    margin-right: 30px;
-    transition: all 0.3s;
-
-    &:hover {
-      color: $accent-color;
-    }
   }
 
   &__img {
@@ -42,27 +31,6 @@
     @extend %body-text;
     color: $accent-color;
     margin-right: 50px;
-  }
-
-  &__actions {
-    display: flex;
-    height: 32px;
-    align-items: center;
-    margin-right: 16px;
-  }
-
-  &__button {
-    @include button-more-less;
-
-    &_prev {
-      content: "+";
-    }
-  }
-
-  &__count {
-    margin-right: 16px;
-    @extend %body-text;
-    color: #000;
   }
 
   &__price {
@@ -80,21 +48,12 @@
     gap: $gap;
     padding: 16px;
 
-    &__button-remove {
-      margin-bottom: 24px;
-    }
-
     &__content,
     &__container {
       width: 100%;
       justify-content: space-between;
       grid-gap: $gap;
       gap: 16px;
-    }
-
-    &__actions,
-    &__title {
-      margin: 0 0 16px;
     }
   }
 }

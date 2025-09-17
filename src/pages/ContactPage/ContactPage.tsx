@@ -1,40 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import "./contactPage.scss";
 import { ContactEmailLink } from "../../components/ContactEmailLink/ContactEmailLink";
 import { contactUs } from "../../api/contactApi";
-import { TextInput } from "../../components/Form/TextInput";
+import { TextInput } from "../../components/forms/TextInput/TextInput";
 import { LoadingButton } from "../../components/LoadingButton";
+import { EmailInput } from "../../components/forms/EmailInput/EmailInput";
+
+type ContactFormInputs = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 const ContactPage: React.FC = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isSubmitSuccessful, isValid },
+    setError,
+  } = useForm<ContactFormInputs>({ mode: "onChange" });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setSent(false);
-
+  const onSubmit = async (data: ContactFormInputs) => {
     try {
-      setLoading(true);
-      await contactUs({
-        name: form.name,
-        email: form.email,
-        message: form.message,
-      });
-      setSent(true);
-      setForm({ name: "", email: "", message: "" });
+      await contactUs(data);
+      reset();
     } catch {
-      setError("Erreur lors de l'envoi. Veuillez réessayer.");
-    } finally {
-      setLoading(false);
+      setError("root", {
+        message: "Erreur lors de l'envoi. Veuillez réessayer.",
+      });
     }
   };
 
@@ -56,43 +51,71 @@ const ContactPage: React.FC = () => {
         </p>
       </div>
 
-      <form className="contact-page__form" onSubmit={handleSubmit}>
+      <form
+        className="contact-page__form"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
         <TextInput
           label="Nom"
           type="text"
-          name="name"
           placeholder="Votre nom"
-          value={form.name}
-          onChange={handleChange}
           required
+          {...register("name", {
+            required: "Le nom est requis",
+            minLength: {
+              value: 2,
+              message: "Le nom doit contenir au moins 2 caractères",
+            },
+          })}
         />
-        <TextInput
-          label="Email"
-          type="email"
-          name="email"
-          placeholder="Votre e-mail"
-          value={form.email}
-          onChange={handleChange}
-          required
+        {errors.name && (
+          <div className="contact-page__error">{errors.name.message}</div>
+        )}
+
+        <EmailInput
+          {...register("email", {
+            required: "L'e-mail est requis",
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Veuillez saisir un e-mail valide",
+            },
+          })}
         />
+        {errors.email && (
+          <div className="contact-page__error">{errors.email.message}</div>
+        )}
+
         <label className="contact-page__label">
           Message
           <textarea
             className="contact-page__input"
-            name="message"
-            value={form.message}
-            onChange={handleChange}
+            {...register("message", {
+              required: "Le message est requis",
+              minLength: {
+                value: 10,
+                message: "Le message doit contenir au moins 10 caractères",
+              },
+            })}
             required
             rows={5}
           />
         </label>
-        {sent && <div className="contact-page__success">Message envoyé !</div>}
-        {error && <div className="contact-page__error">{error}</div>}
+        {errors.message && (
+          <div className="contact-page__error">{errors.message.message}</div>
+        )}
+
+        {isSubmitSuccessful && (
+          <div className="contact-page__success">Message envoyé !</div>
+        )}
+        {errors.root && (
+          <div className="contact-page__error">{errors.root.message}</div>
+        )}
         <LoadingButton
+          type="submit"
           text="Envoyer"
-          loading={loading}
-          onClick={handleSubmit}
-          disabled={loading}
+          loading={isSubmitting}
+          disabled={isSubmitting || !isValid}
         />
       </form>
     </div>

@@ -8,7 +8,7 @@ import { ProductPrice } from "../../components/ProductPrice/ProductPrice";
 import { getProductById } from "../../api/productsApi";
 import { Loader } from "../../components/Loader";
 import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
-import { ButtonAddToCart } from "../../components/ButtonAddToCart/ButtonAddToCart";
+import { ButtonAddToCart } from "../../components/Buttons/ButtonAddToCart/ButtonAddToCart";
 import "./itemPage.scss";
 import { IconArrowLeft } from "../../components/Icon/IconArrowLeft";
 

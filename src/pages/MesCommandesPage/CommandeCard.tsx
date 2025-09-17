@@ -13,9 +13,14 @@ import { LoadingButton } from "../../components/LoadingButton";
 type CommandeCardProps = {
   order: Order;
   loadOrders: () => void;
+  orderNumber: number;
 };
 
-export const CommandeCard: FC<CommandeCardProps> = ({ order, loadOrders }) => {
+export const CommandeCard: FC<CommandeCardProps> = ({
+  order,
+  loadOrders,
+  orderNumber,
+}) => {
   const formatDate = useFormatDate();
 
   const [loading, setLoading] = useState(false);
@@ -41,7 +46,7 @@ export const CommandeCard: FC<CommandeCardProps> = ({ order, loadOrders }) => {
     <div className="commande-card">
       <div className="commande-card__header">
         <div>
-          <span className="commande-card__id">Commande n°{order.id}</span>
+          <span className="commande-card__id">Commande n°{orderNumber}</span>
           <span className="commande-card__date">
             {formatDate(order.created_at)}
           </span>

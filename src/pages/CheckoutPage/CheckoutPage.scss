@@ -19,15 +19,12 @@
   &__button {
     @include button-square;
   }
-  &__error-message {
-    color: $error-color;
-    margin-top: 18px;
-    text-align: center;
+
+  &__error {
+    @include error;
   }
-  &__success-message {
-    color: $success-color;
-    margin-top: 18px;
-    text-align: center;
-    font-weight: bold;
+
+  &__success {
+    @include success;
   }
 }

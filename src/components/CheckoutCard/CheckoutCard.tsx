@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import classNames from "classnames";
 import { ProductInCart } from "../../types/Product";
 import { AppContext } from "../../context/AppContextProvider";
 import "./checkoutCard.scss";
-import { IconClose } from "../Icon/IconClose";
+import { ButtonRemove } from "../Buttons/ButtonRemove/ButtonRemove";
+import { ButtonsMoreLess } from "../Buttons/ButtonsMoreLess";
 
 export type Props = {
   item: ProductInCart;
@@ -13,10 +13,17 @@ export type Props = {
 export const CheckoutCard: React.FC<Props> = ({ item }) => {
   const { toggleToCart, updateCountInCart } = useContext(AppContext);
   const [count, setCount] = useState(item.count);
+  const [warningText, setWarningText] = useState<string | null>(null);
 
   useEffect(() => {
     updateCountInCart(item.id, count);
   }, [item.id, count]);
+
+  useEffect(() => {
+    setWarningText(
+      count >= (item.itemsleft ?? Infinity) ? "Stock maximal atteint" : null
+    );
+  }, [count, item.itemsleft]);
 
   const totalPrice = () => {
     return item.price * count;
@@ -27,48 +34,39 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
   };
 
   const handleIncrease = () => {
-    setCount((prevCount: number) => prevCount + 1);
+    if (item.itemsleft === undefined || count < item.itemsleft) {
+      setCount((prevCount: number) => prevCount + 1);
+    }
   };
+
+  const maxReached = item.itemsleft !== undefined && count >= item.itemsleft;
 
   return (
     <div className="checkout-card">
       {/* eslint-disable-next-line */}
-      <button
-        type="button"
-        data-cy="cartDeleteButton"
-        className="checkout-card__button-remove"
-        onClick={() => toggleToCart(item)}
-      >
-        <IconClose style={{ width: 16, height: 16 }} />
-      </button>
       <div className="checkout-card__content">
+        <ButtonRemove onClick={() => toggleToCart(item)} />
+
         <img
           alt={item.name}
           src={`img/products/${item.mainimage}.jpg`}
           className="checkout-card__img"
         />
-        <Link className="checkout-card__title" to={`/${item.category}/${item.id}`}>
+        <Link
+          className="checkout-card__title"
+          to={`/${item.category}/${item.id}`}
+        >
           {item.name}
         </Link>
       </div>
       <div className="checkout-card__container">
-        <div className="checkout-card__actions">
-          {/* eslint-disable-next-line */}
-          <button
-            type="button"
-            className={classNames("checkout-card__button checkout-card__button_prev", {
-              disabled: count === 1,
-            })}
-            onClick={handleDecrease}
-          />
-          <div className="checkout-card__count">{count}</div>
-          {/* eslint-disable-next-line */}
-          <button
-            type="button"
-            className="checkout-card__button checkout-card__button_next"
-            onClick={handleIncrease}
-          />
-        </div>
+        <ButtonsMoreLess
+          count={count}
+          maxReached={maxReached}
+          warningText={warningText}
+          handleDecrease={handleDecrease}
+          handleIncrease={handleIncrease}
+        />
         <p className="checkout-card__price">{`$${totalPrice()}`}</p>
       </div>
     </div>

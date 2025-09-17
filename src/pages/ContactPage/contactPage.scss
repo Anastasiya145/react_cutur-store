@@ -38,28 +38,16 @@
     width: 100%;
   }
 
-  &__label {
-    @include form-label;
-  }
-
-  &__input {
-    @include form-input;
-  }
-
   & .button-loading {
     width: 100%;
   }
 
   &__success {
-    color: $success-color;
-    margin-top: 10px;
-    @extend %body-text;
+    @include success;
   }
 
   &__error {
-    color: $error-color;
-    margin-top: 10px;
-    @extend %body-text;
+    @include error;
   }
 }
 
@@ -76,11 +64,11 @@
       @include form;
     }
 
-    &__title,
-    &__desc,
-    &__success,
-    &__error {
-      text-align: center;
-    }
+    // &__title,
+    // &__desc,
+    // &__success,
+    // &__error {
+    //   text-align: center;
+    // }
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Loader } from "./Loader/Loader";
 import "./loadingButton.scss";
+import classNames from "classnames";
 
 type LoadingButtonProps = {
   loading: boolean;
@@ -21,12 +22,9 @@ export const LoadingButton: React.FC<LoadingButtonProps> = ({
 }) => (
   <button
     type={type}
-    className={`button-loading ${className}`}
+    className={classNames("button-loading", className, { disabled })}
     disabled={disabled || loading}
-    onClick={(e) => {
-      e.preventDefault();
-      onClick && onClick(e);
-    }}
+    onClick={onClick}
   >
     {loading ? <Loader variant="small" /> : text}
   </button>

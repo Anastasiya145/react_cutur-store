@@ -23,10 +23,7 @@
   }
 
   &__success {
-    color: $success-color;
-    font-weight: 600;
-    margin-bottom: 8px;
-    text-align: center;
+    @include success;
   }
 
   &__button {

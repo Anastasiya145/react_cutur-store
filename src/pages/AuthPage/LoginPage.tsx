@@ -1,78 +1,95 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { TextInput } from "../../components/Form/TextInput";
-import { PasswordInput } from "../../components/Form/PasswordInput";
+import { PasswordInput } from "../../components/forms/PasswordInput/PasswordInput";
 import { useAuth } from "../../context/AuthContext";
 import "./loginPage.scss";
 import { PathnamesApp } from "../../types/Pathnames";
 import { login } from "../../api/authApi";
 import { LoadingButton } from "../../components/LoadingButton";
+import { EmailInput } from "../../components/forms/EmailInput/EmailInput";
+
+type LoginFormInputs = {
+  email: string;
+  password: string;
+};
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
+    // formState: { errors },
+    setError,
+  } = useForm<LoginFormInputs>({ mode: "onChange" });
 
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { loginUser } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    if (!email || !password) {
-      setError("Veuillez saisir l'e-mail et le mot de passe");
-      return;
-    }
+  const onSubmit = async (data: LoginFormInputs) => {
     try {
-      setLoading(true);
-      const response = await login({ email, password });
-
-      console.log(response);
+      const response = await login(data);
 
       if (response.token) {
         loginUser(response.email, response.token);
-
         navigate(PathnamesApp.Profil);
       } else {
-        setError("Erreur d'authentification");
+        setError("root", { message: "Erreur d'authentification" });
       }
     } catch (err: any) {
-      setError(err.message || "Erreur d'authentification");
-    } finally {
-      setLoading(false);
+      setError("root", { message: err.message || "Erreur d'authentification" });
     }
   };
+
+  console.log(isValid, isSubmitting);
 
   return (
     <div className="auth-page">
       <h1 className="auth-page__title">Connexion</h1>
-      <form className="auth-page__form" onSubmit={handleSubmit}>
-        <TextInput
-          label="E-mail"
-          type="email"
-          placeholder="Entrez votre e-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          autoComplete="email"
-          required
+      <form
+        className="auth-page__form"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
+        <EmailInput
+          {...register("email", {
+            required: "L'e-mail est requis",
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Veuillez saisir un e-mail valide",
+            },
+          })}
         />
+        {errors.email && (
+          <div className="auth-page__error">{errors.email.message}</div>
+        )}
+
         <PasswordInput
           label="Mot de passe"
           placeholder="Entrez votre mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
           required
+          {...register("password", {
+            required: "Le mot de passe est requis",
+            minLength: {
+              value: 6,
+              message: "Le mot de passe doit contenir au moins 6 caractères",
+            },
+          })}
         />
-        {error && <div className="auth-page__error">{error}</div>}
+        {errors.password && (
+          <div className="auth-page__error">{errors.password.message}</div>
+        )}
+
+        {errors.root && (
+          <div className="auth-page__error">{errors.root.message}</div>
+        )}
 
         <LoadingButton
+          type="submit"
           text="Se connecter"
-          loading={loading}
-          onClick={handleSubmit}
-          disabled={loading}
+          loading={isSubmitting}
+          disabled={isSubmitting || !isValid}
         />
       </form>
       <div className="auth-page__footer">

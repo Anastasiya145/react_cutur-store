@@ -1,0 +1,60 @@
+@import "src/styles/common";
+
+.button-more-less {
+  height: 32px;
+  width: 32px;
+  color: $light-color;
+  background-color: unset;
+  border: 1px solid $light-color;
+  position: relative;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: $accent-color;
+  }
+
+  &:before {
+    width: unset;
+    height: unset;
+    font-family: inherit;
+    font-size: 14px;
+  }
+
+  &--prev::before {
+    content: "-";
+  }
+
+  &--next::before {
+    content: "+";
+  }
+
+  &.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &::before {
+      color: $light-color;
+    }
+  }
+}
+
+.buttons-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 24px;
+
+  &__text {
+    @extend %small-text;
+    color: $error-color;
+    margin-top: 8px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+}

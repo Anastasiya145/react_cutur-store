@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../../context/AppContextProvider";
 import { Product } from "../../types/Product";
 import { ProductPrice } from "../ProductPrice/ProductPrice";
-import { ButtonAddToCart } from "../ButtonAddToCart/ButtonAddToCart";
+import { ButtonAddToCart } from "../Buttons/ButtonAddToCart/ButtonAddToCart";
 import "./productCard.scss";
 import classNames from "classnames";
 
@@ -20,7 +20,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <div className={classNames("card", { disabled: isOutOfStock })}>
-      <Link className="card__link" to={`/${product.category}/${product.id}`} tabIndex={0}>
+      <Link
+        className="card__link"
+        to={`/${product.category}/${product.id}`}
+        tabIndex={0}
+      >
         {product.images[0] && (
           <img
             className="card__image"

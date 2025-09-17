@@ -24,26 +24,12 @@
     margin-bottom: 24px;
   }
 
-  &__label {
-    @include form-label;
-  }
-
-  &__form input {
-    @include form-input;
-  }
-
   & .button-loading {
     width: 100%;
   }
 
   &__error {
-    color: $error-color;
-    background: rgba($error-color, 0.08);
-    border: 1px solid $error-color;
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 14px;
-    text-align: center;
+    @include error;
   }
 
   &__footer {

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./parametresPage.scss";
-import { TextInput } from "../../components/Form/TextInput";
-import { PasswordInput } from "../../components/Form/PasswordInput";
+import { TextInput } from "../../components/forms/TextInput/TextInput";
+import { PasswordInput } from "../../components/forms/PasswordInput/PasswordInput";
+import { LoadingButton } from "../../components/LoadingButton";
 
 const ParametresPage: React.FC = () => {
   const [username, setUsername] = useState("TestUser");
@@ -26,7 +27,7 @@ const ParametresPage: React.FC = () => {
   return (
     <div className="parametres-page">
       <h1 className="parametres-page__title">Paramètres du compte</h1>
-      <form className="parametres-page__form" onSubmit={handleSubmit}>
+      <form className="parametres-page__form" noValidate>
         <TextInput
           label="Nom d'utilisateur"
           value={username}
@@ -46,9 +47,7 @@ const ParametresPage: React.FC = () => {
           required
         />
         {success && <div className="parametres-page__success">{success}</div>}
-        <button type="submit" className="parametres-page__button">
-          Enregistrer
-        </button>
+        <LoadingButton text="Enregistrer" loading={false} type="submit" />
       </form>
     </div>
   );

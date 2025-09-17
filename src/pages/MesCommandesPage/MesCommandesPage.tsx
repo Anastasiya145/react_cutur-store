@@ -34,11 +34,18 @@ const MesCommandesPage: React.FC = () => {
       {!loading && !error && orders.length === 0 && (
         <div>Aucune commande trouvée.</div>
       )}
-      {!loading &&
-        !error &&
-        orders.map((order) => (
-          <CommandeCard key={order.id} order={order} loadOrders={loadOrders} />
-        ))}
+      {!loading && !error && (
+        <div className="mes-commandes-page__orders">
+          {orders.map((order, inx) => (
+            <CommandeCard
+              key={order.id}
+              order={order}
+              loadOrders={loadOrders}
+              orderNumber={orders.length - inx}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

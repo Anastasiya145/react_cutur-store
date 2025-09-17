@@ -10,80 +10,9 @@
     margin-bottom: 32px;
   }
 
-  &__order-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-    padding: 24px 20px;
-    margin-bottom: 32px;
-  }
-
-  &__order-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.1rem;
-    margin-bottom: 18px;
-    color: $main-color;
-    font-weight: 500;
-  }
-
-  &__order-status {
-    background: $accent-color;
-    color: #fff;
-    border-radius: 6px;
-    padding: 2px 12px;
-    font-size: 0.95rem;
-    font-weight: 600;
-  }
-
-  &__order-items {
+  &__orders {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    margin-bottom: 18px;
-  }
-
-  &__item {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    background: #f8f8f8;
-    border-radius: 8px;
-    padding: 10px 14px;
-  }
-
-  &__item-img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 6px;
-    background: #eee;
-  }
-
-  &__item-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  &__item-name {
-    font-weight: 600;
-    color: $main-color;
-  }
-
-  &__item-qty,
-  &__item-price {
-    font-size: 0.98rem;
-    color: #666;
-  }
-
-  &__order-total {
-    text-align: right;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: $main-color;
-    margin-top: 10px;
+    gap: 24px;
   }
 }
