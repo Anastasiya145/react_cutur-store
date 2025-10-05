@@ -1,0 +1,119 @@
+@import "../../styles/utils/variables";
+
+.product-slider {
+  position: relative;
+
+  .swiper {
+    padding: 0 40px 40px 40px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+
+    @media (max-width: 768px) {
+      padding: 0 20px 40px 20px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 0 10px 40px 10px;
+    }
+  }
+
+  .swiper-slide {
+    height: auto;
+    flex-shrink: 0;
+
+    // Очень маленькие экраны - полная ширина
+    @media (max-width: 479px) {
+      width: 100%;
+    }
+
+    // Средние экраны (480-767px) - фиксированная ширина для множественного отображения
+    @media (min-width: 480px) and (max-width: 767px) {
+      width: 200px;
+      max-width: 200px;
+    }
+
+    // Большие экраны - стандартная ширина для auto режима
+    @media (min-width: 768px) {
+      width: 300px;
+      max-width: 300px;
+    }
+  }
+
+  .swiper-wrapper {
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+    background: white;
+    border-radius: 50%;
+    color: $main-color;
+    border: $light-color 1px solid;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    & svg {
+      width: 50%;
+      height: 50%;
+    }
+
+    &:after {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    &:hover {
+      background: white;
+      color: $accent-color;
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    &.swiper-button-disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+
+      &:hover {
+        transform: none;
+        background: white;
+        color: $main-color;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .swiper-button-next {
+    right: 10px;
+  }
+
+  .swiper-button-prev {
+    left: 10px;
+  }
+
+  // Скрываем стрелки на мобильных устройствах
+  @media (max-width: 768px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
+  }
+
+  .swiper-pagination {
+    bottom: 8px;
+
+    .swiper-pagination-bullet {
+      background: $main-color;
+      opacity: 0.3;
+      transition: all 0.3s ease;
+
+      &.swiper-pagination-bullet-active {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+  }
+}

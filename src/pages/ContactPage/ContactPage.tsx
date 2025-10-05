@@ -40,15 +40,16 @@ const ContactPage: React.FC = () => {
         <p className="contact-page__desc">
           Contactez-nous via ce formulaire ou à <ContactEmailLink />
         </p>
-        <p className="contact-page__desc">
-          <b>Important :</b> Nos articles sont fabriqués à la main exclusivement
-          pour vous. Le délai de fabrication est de 3 à 6 semaines à partir de
-          la date de commande.
+        <div className="contact-page__important">
+          <span className="contact-page__important-icon">✨ Important :</span>
+          Nos articles sont fabriqués à la main exclusivement pour vous. Le
+          délai de fabrication est de 3 à 6 semaines à partir de la date de
+          commande.
           <br />
           Malheureusement, nous ne pouvons pas être plus précis sur ce délai.
           <br />
           Merci de votre compréhension.
-        </p>
+        </div>
       </div>
 
       <form
@@ -86,21 +87,20 @@ const ContactPage: React.FC = () => {
           <div className="contact-page__error">{errors.email.message}</div>
         )}
 
-        <label className="contact-page__label">
-          Message
-          <textarea
-            className="contact-page__input"
-            {...register("message", {
-              required: "Le message est requis",
-              minLength: {
-                value: 10,
-                message: "Le message doit contenir au moins 10 caractères",
-              },
-            })}
-            required
-            rows={5}
-          />
-        </label>
+        <TextInput
+          label="Message"
+          type="textarea"
+          placeholder="Votre message"
+          required
+          rows={5}
+          {...register("message", {
+            required: "Le message est requis",
+            minLength: {
+              value: 10,
+              message: "Le message doit contenir au moins 10 caractères",
+            },
+          })}
+        />
         {errors.message && (
           <div className="contact-page__error">{errors.message.message}</div>
         )}

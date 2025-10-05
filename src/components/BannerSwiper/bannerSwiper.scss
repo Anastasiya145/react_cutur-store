@@ -1,0 +1,57 @@
+@import "../../styles/utils/variables";
+
+.banner-swiper {
+  position: relative;
+  width: 100%;
+
+  .swiper {
+    width: 100%;
+    height: auto;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // Стилизация точек пагинации
+  .swiper-pagination {
+    bottom: 20px;
+    text-align: center;
+
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      margin: 0 6px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      opacity: 1;
+      transition: all 0.3s ease;
+
+      &.swiper-pagination-bullet-active {
+        background: $main-color;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .swiper-pagination {
+      bottom: 15px;
+
+      .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        margin: 0 4px;
+      }
+    }
+  }
+}

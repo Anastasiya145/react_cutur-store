@@ -288,4 +288,34 @@
   .image-list {
     flex-direction: row;
   }
+
+  .product-details__related {
+    margin-top: 40px;
+
+    &-title {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+// Стили для секции с похожими продуктами
+.product-details {
+  &__related {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid $border-color;
+
+    &-title {
+      @extend %h2;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+  }
+
+  &__loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
 }

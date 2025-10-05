@@ -18,3 +18,12 @@
     margin-top: 24px;
   }
 }
+
+@media #{$phone-media-query} {
+  .category-card {
+    &__title,
+    &__counter {
+      padding: 0 16px;
+    }
+  }
+}

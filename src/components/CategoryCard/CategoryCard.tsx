@@ -14,10 +14,16 @@ export const CategoryCard: React.FC<Props> = ({ category }) => {
   return (
     <Link key={id} to={`/${name}`} className="category-card">
       <div className="category-card__image-container">
-        <img alt={name} className="category-card__img" src={`img/categories/${name}.jpg`} />
+        <img
+          alt={name}
+          className="category-card__img"
+          src={`img/categories/${name}.jpg`}
+        />
       </div>
       <h1 className="category-card__title">{title}</h1>
-      <ModelsCounter number={itemcount} />
+      <div className="category-card__counter">
+        <ModelsCounter number={itemcount} />
+      </div>
     </Link>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import ScrollToTop from "../../helpers/ScrollTop";
 import { Header } from "../../components/Header/Header";
 import Banner from "../../components/Banner/Banner";
 import { HomePage } from "../HomePage/HomePage";
@@ -22,6 +21,7 @@ import MesCommandesPage from "../MesCommandesPage/MesCommandesPage";
 import RequireAuth from "../../components/RequireAuth/RequireAuth";
 import CheckoutPage from "../CheckoutPage/CheckoutPage";
 import ForgotPasswordPage from "../ForgotPassword/ForgotPasswordPage";
+import { ScrollToTop } from "../../components/ScrollButtonToTop/ScrollToTop";
 
 const App: React.FC = () => {
   const { pathname } = useLocation();

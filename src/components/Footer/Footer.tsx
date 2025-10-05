@@ -1,21 +1,11 @@
 import React from "react";
-
 import { IconInstagram } from "../Icon/IconInstagram";
 import "./footer.scss";
-import { IconArrowTop } from "../Icon/IconArrowTop";
 import { Logo } from "../Logo/Logo";
 import { Link } from "react-router-dom";
 import { PathnamesApp } from "../../types/Pathnames";
 
 export const Footer: React.FC = () => {
-  const scrollToElement = (elementId: string) => {
-    const element = document.getElementById(elementId);
-
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <div className="footer">
       <div className="footer__container">
@@ -47,14 +37,6 @@ export const Footer: React.FC = () => {
             <IconInstagram style={{ width: 20, height: 20 }} />
           </a>
         </div>
-        {/* eslint-disable-next-line */}
-        <button
-          className="button button_scroll"
-          type="button"
-          onClick={() => scrollToElement("header")}
-        >
-          <IconArrowTop style={{ width: 20, height: 20 }} className="" />
-        </button>
       </div>
       <a
         href="https://www.linkedin.com/in/anastasiya-ivanova-494567109/"

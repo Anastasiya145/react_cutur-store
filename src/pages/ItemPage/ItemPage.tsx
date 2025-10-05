@@ -14,6 +14,9 @@ import { ProductBackButton } from "./ProductBackButton";
 import { ProductPrice } from "../../components/ProductPrice";
 import { ButtonAddToCart } from "../../components/Buttons/ButtonAddToCart";
 import AnimatedTextButton from "../../components/AnimatedButton/AnimatedTextButton";
+import { SwiperSlider } from "../../components/SwiperSlider/SwiperSlider";
+import { getProducts } from "../../api/productsApi";
+import { SortType } from "../../types/SortType";
 
 const navigateTo = (pathname: string, paramOld: string, paramNew: string) => {
   const newLink = pathname.replace(
@@ -31,6 +34,8 @@ export const ItemPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [mainImg, setMainImg] = useState<string | undefined>(undefined);
   const [error, setError] = useState("");
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [isLoadingRelated, setIsLoadingRelated] = useState(false);
 
   const { pathname } = useLocation();
   const parts = pathname.split("/").filter(Boolean);
@@ -43,12 +48,32 @@ export const ItemPage: React.FC = () => {
         const productFromServer = await getProductById(productId);
         setProduct(productFromServer);
         setMainImg(productFromServer.mainimage);
+
+        // Загружаем продукты той же категории
+        await loadRelatedProducts(productFromServer.category);
       } catch {
         setError("Product not found");
       } finally {
         setIsLoading(false);
       }
     }
+
+    async function loadRelatedProducts(category: string) {
+      setIsLoadingRelated(true);
+      try {
+        const allProducts = await getProducts();
+        // Filter products of the same category, excluding the current product
+        const sameCategory = allProducts.filter(
+          (p) => p.category === category && p.id.toString() !== itemId
+        );
+        setRelatedProducts(sameCategory);
+      } catch (error) {
+        console.error("Error loading related products:", error);
+      } finally {
+        setIsLoadingRelated(false);
+      }
+    }
+
     loadProductById(itemId);
   }, [itemId]);
 
@@ -119,6 +144,24 @@ export const ItemPage: React.FC = () => {
               <ProductDescription description={product.description} />
             )}
           </div>
+
+          {relatedProducts.length > 0 && (
+            <section className="product-details__related">
+              <h2 className="product-details__related-title">
+                Vous pourriez aussi aimer
+              </h2>
+              {isLoadingRelated ? (
+                <div className="product-details__loader">
+                  <Loader />
+                </div>
+              ) : (
+                <SwiperSlider
+                  products={relatedProducts}
+                  sortBy={SortType.Newest}
+                />
+              )}
+            </section>
+          )}
         </>
       )}
 

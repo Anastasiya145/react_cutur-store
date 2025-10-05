@@ -1,9 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, A11y } from "swiper/modules";
+import { Navigation, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
+import "./swiperSlider.scss";
 import { Product } from "../../types/Product";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { sortProducts } from "../../helpers/sortHelper";
@@ -20,24 +20,48 @@ export const SwiperSlider: React.FC<Props> = ({ products, sortBy }) => {
   return (
     <div className="product-slider">
       <Swiper
-        modules={[Navigation, Pagination, A11y]}
+        modules={[Navigation, A11y, Autoplay]}
         spaceBetween={16}
-        slidesPerView={4}
-        navigation
-        pagination={{ clickable: true }}
-        breakpoints={{
-          1024: { slidesPerView: 4, navigation: false },
-          800: { slidesPerView: 3, navigation: false },
-          620: { slidesPerView: 1, navigation: false },
+        slidesPerView={1}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         }}
+        breakpoints={{
+          480: {
+            slidesPerView: 1,
+            spaceBetween: 12,
+          },
+          768: {
+            slidesPerView: "auto",
+            spaceBetween: 16,
+          },
+        }}
+        autoplay={
+          sortedProducts.length > 4
+            ? {
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }
+            : false
+        }
+        slidesPerGroup={1}
+        speed={600}
+        grabCursor={true}
+        centeredSlides={false}
+        watchSlidesProgress={true}
         a11y={{ enabled: true }}
-        style={{ padding: "0 8px" }}
+        loop={sortedProducts.length > 4}
       >
         {sortedProducts.map((item) => (
           <SwiperSlide key={item.id}>
             <ProductCard product={item} />
           </SwiperSlide>
         ))}
+
+        <div className="swiper-button-next"></div>
+        <div className="swiper-button-prev"></div>
       </Swiper>
     </div>
   );
