@@ -1,0 +1,22 @@
+@import "../../styles/common.scss";
+
+.deliveries-drawer {
+  &__section {
+    margin-bottom: 36px;
+  }
+
+  &__title {
+    @extend %h1;
+    margin-bottom: 36px;
+  }
+
+  &__subtitle {
+    @extend %h2;
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    @extend %body-text;
+    margin-bottom: 16px;
+  }
+}

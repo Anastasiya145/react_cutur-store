@@ -1,0 +1,36 @@
+.loader {
+  display: block;
+  margin: 32px auto;
+  border: 3px solid gray;
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  animation: loader 2s linear infinite;
+
+  &--small {
+    height: 30px;
+    width: 30px;
+    border-width: 3px;
+  }
+
+  &--normal {
+    height: 50px;
+    width: 50px;
+    border-width: 5px;
+  }
+
+  &--large {
+    height: 70px;
+    width: 70px;
+    border-width: 7px;
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

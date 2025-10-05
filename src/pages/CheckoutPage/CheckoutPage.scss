@@ -1,0 +1,30 @@
+@import "../../styles/common";
+
+.checkout-page {
+  &__title {
+    @extend %h1;
+    margin-bottom: 32px;
+  }
+
+  &__subtitle {
+    @extend %h2;
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    @extend %body-text;
+    margin-bottom: 16px;
+  }
+
+  &__button {
+    @include button-square;
+  }
+
+  &__error {
+    @include error;
+  }
+
+  &__success {
+    @include success;
+  }
+}

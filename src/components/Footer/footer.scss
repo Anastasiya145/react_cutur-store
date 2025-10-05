@@ -1,0 +1,151 @@
+@import "/src/styles/common";
+.footer {
+  border-top: 1px solid $border-color;
+  background-color: $accent-color;
+  color: $second-accent-color;
+  padding: 24px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 96px;
+    gap: 0 32px;
+  }
+
+  &__left,
+  &__right {
+    display: flex;
+    gap: $gap;
+  }
+
+  &__left {
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__right {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__logo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  &__link {
+    color: $second-accent-color;
+    @extend %body-text;
+  }
+
+  &__icon-link {
+    display: flex;
+    align-items: center;
+    color: $second-accent-color;
+    transition: color 0.2s;
+  }
+
+  @media (max-width: 900px) {
+    &__container {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 16px 0;
+      min-height: unset;
+    }
+    &__logo-link {
+      order: 1;
+      margin: 0 auto 12px auto;
+    }
+    &__left {
+      order: 2;
+      position: static;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    &__right {
+      order: 3;
+      position: static;
+      justify-content: center;
+      margin-top: 12px;
+    }
+  }
+
+  &__licence {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 14px;
+    color: $second-accent-color;
+
+    &-link {
+      color: $second-accent-color;
+      @extend %small-text;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media #{$tablet-media-query} {
+  .footer {
+    height: min-content;
+    padding: 20px 0;
+
+    &__container {
+      flex-direction: column;
+      align-items: center;
+      padding: 0 24px;
+      position: static;
+    }
+
+    &__left,
+    &__right {
+      position: static;
+      min-width: unset;
+      gap: $gap;
+      margin-bottom: 8px;
+      padding: 0;
+    }
+  }
+}
+
+@media #{$phone-media-query} {
+  .footer__container {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: static;
+    gap: $gap;
+  }
+  .footer__left,
+  .footer__right {
+    position: static;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 0;
+    min-width: unset;
+    gap: $gap;
+  }
+  .footer__logo-link {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .footer {
+    padding-bottom: 100px;
+  }
+}

@@ -1,0 +1,40 @@
+@import "../../styles/common";
+
+.home-page {
+  &__section {
+    margin-bottom: 80px;
+  }
+
+  &__title {
+    @extend %h1;
+    margin-bottom: 36px;
+  }
+
+  &__subtitle {
+    @extend %h2;
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    @extend %body-text;
+    margin-bottom: 16px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media #{$phone-media-query} {
+  .home-page {
+    &__section {
+      margin-bottom: 60px;
+    }
+
+    &__title,
+    &__text {
+      margin-right: 16px;
+      margin-left: 16px;
+    }
+  }
+}

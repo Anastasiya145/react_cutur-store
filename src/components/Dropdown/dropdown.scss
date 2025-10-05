@@ -1,0 +1,74 @@
+@import "/src/styles/common";
+
+.dropdown {
+  position: relative;
+
+  &_sort {
+    width: 176px;
+    margin-right: 24px;
+  }
+
+  &_items {
+    width: 128px;
+  }
+
+  &__label {
+    @extend %uppercase;
+    color: $main-color;
+    margin-bottom: 8px;
+  }
+
+  &__select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid $border-color;
+    background-color: #fff;
+    padding: 10px;
+    height: 40px;
+    width: 100%;
+    outline: none;
+    color: $main-color;
+    text-transform: capitalize;
+    transition: 0.3s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:hover {
+      border: 1px solid $accent-color;
+    }
+  }
+
+  &__arrow {
+    color: $main-color;
+    transition: transform 0.3s;
+
+    &_opened {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__list {
+    position: absolute;
+    text-transform: capitalize;
+    z-index: 1;
+    width: 100%;
+    margin-top: 4px;
+    background-color: #fff;
+    border: 1px solid $border-color;
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  &__link {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    color: $main-color;
+    transition: all 0.3s linear;
+
+    &.active {
+      color: $accent-color;
+    }
+  }
+}

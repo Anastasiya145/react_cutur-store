@@ -1,0 +1,7 @@
+@import "/src/styles/common";
+
+.models {
+  @extend %body-text;
+  color: $main-color;
+  margin-bottom: 40px;
+}

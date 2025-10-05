@@ -1,0 +1,63 @@
+@import "/src/styles/common";
+
+.product-slider {
+  .slick {
+    &-list {
+      overflow: hidden;
+    }
+
+    &-track {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    &-slider {
+      padding: 0 10px;
+      position: relative;
+    }
+
+    &-slide {
+      margin-right: 16px;
+    }
+
+    &-arrow {
+      @include button-round;
+
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+    }
+
+    &-prev {
+      left: 8px;
+      transform: translateY(-50%);
+    }
+
+    &-next {
+      right: 8px;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+@media #{$tablet-media-query} {
+  .product-slider .slick-track {
+    gap: $gap;
+  }
+}
+
+@media #{$phone-media-query} {
+  .product-slider {
+    & .slick-track {
+      gap: 0;
+    }
+
+    & .slick-slide {
+      min-width: 80vw;
+      max-width: 95vw;
+      margin-right: 0 !important;
+      padding: 0 4vw;
+      box-sizing: border-box;
+    }
+  }
+}

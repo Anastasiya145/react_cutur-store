@@ -1,0 +1,8 @@
+@import "../styles/common";
+
+.button-loading {
+  @include button-square;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,20 @@
+@import "../../styles/common";
+
+.terms-page {
+  &__section {
+    margin-bottom: 36px;
+  }
+
+  &__title {
+    @extend %h1;
+    margin-bottom: 36px;
+  }
+
+  &__text {
+    @extend %body-text;
+  }
+
+  &__link {
+    @include email-link;
+  }
+}

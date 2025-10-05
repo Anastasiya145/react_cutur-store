@@ -1,0 +1,16 @@
+@import "../../../styles/common";
+
+.text-input,
+.email-input {
+  &__input {
+    @include form-input;
+    margin-top: 8px;
+    width: 100%;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    @extend %body-text;
+  }
+}

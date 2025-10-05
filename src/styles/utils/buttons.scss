@@ -1,0 +1,83 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+
+  &_scroll {
+    @include button-round;
+
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+  }
+
+  &_like {
+    color: $accent-color;
+    border: none;
+    background-color: unset;
+  }
+
+  &_add-to-cart {
+    @include button-square;
+    margin-right: 8px;
+
+    &.selected {
+      width: 176px;
+      height: 40px;
+      color: $success-color;
+      background-color: #fff;
+      border: 1px solid $border-color;
+      margin-right: 8px;
+    }
+  }
+
+  &_circle {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    outline: 1px solid $border-color;
+    margin-right: 8px;
+    transition: all 0.3s;
+
+    &::before {
+      content: none;
+    }
+
+    &.active,
+    &:hover {
+      border: 2px solid #fff;
+      outline: 1px solid $accent-color;
+    }
+
+    &.active {
+      pointer-events: none;
+    }
+  }
+
+  &_square {
+    width: min-content;
+    height: min-content;
+    padding: 8px;
+    margin-right: 8px;
+    transition: all 0.3s;
+
+    &::before {
+      content: none;
+    }
+
+    &:hover {
+      border-color: #000;
+    }
+
+    &.active {
+      color: #fff;
+      border-color: transparent;
+      background-color: $accent-color;
+    }
+  }
+}

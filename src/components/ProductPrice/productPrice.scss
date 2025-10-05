@@ -1,0 +1,27 @@
+@import "/src/styles/common";
+
+.price {
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__text {
+    @extend %h2;
+    color: $accent-color;
+    margin: 6px 8px 0;
+
+    &_bold {
+      font-family: "Mont Bold", sans-serif;
+    }
+
+    &_discount {
+      color: $main-color;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 28px;
+      text-decoration: line-through;
+      margin-right: 0;
+    }
+  }
+}

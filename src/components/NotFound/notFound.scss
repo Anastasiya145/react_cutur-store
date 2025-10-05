@@ -1,0 +1,41 @@
+@import "/src/styles/common";
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+
+  &__container {
+    max-width: 540px;
+  }
+
+  &__title {
+    @extend %h2;
+    text-align: center;
+    color: $main-color;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    @include button-square;
+    height: 40px;
+    max-width: 185px;
+    text-transform: uppercase;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $accent-color;
+      color: #fff;
+    }
+  }
+}
+
+@media #{$tablet-media-query} {
+  .not-found {
+    margin: 50px 0;
+  }
+}

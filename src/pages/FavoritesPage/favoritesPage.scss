@@ -1,0 +1,12 @@
+@import "../../styles/common.scss";
+
+.favorites-page {
+  &__section {
+    margin-bottom: 36px;
+  }
+
+  &__title {
+    @extend %h1;
+    margin-bottom: 36px;
+  }
+}

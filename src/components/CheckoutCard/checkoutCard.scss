@@ -1,0 +1,59 @@
+@import "/src/styles/common";
+
+.checkout-card {
+  display: flex;
+  border-radius: 16px;
+  box-shadow: $box-shadow-color;
+  padding: 24px;
+  margin-bottom: 16px;
+  align-items: center;
+  justify-content: space-between;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__content,
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__img {
+    width: 66px;
+    height: 66px;
+    object-fit: contain;
+    margin-right: 30px;
+  }
+
+  &__title {
+    width: 295px;
+    @extend %body-text;
+    color: $accent-color;
+    margin-right: 50px;
+  }
+
+  &__price {
+    @extend %h2;
+    color: $accent-color;
+  }
+}
+
+@media #{$tablet-media-query} {
+  .checkout-card {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    grid-gap: $gap;
+    gap: $gap;
+    padding: 16px;
+
+    &__content,
+    &__container {
+      width: 100%;
+      justify-content: space-between;
+      grid-gap: $gap;
+      gap: 16px;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+$main-color: #e1ad37;
+$accent-color: #ae7b37;
+$second-accent-color: #fff;
+
+$light-color: #5b5858; //to change
+$border-color: #e0e4ea; //old
+$success-color: #77a270;
+$warning-color: #f2c94c;
+$error-color: #f28b82;
+$site-background-color: #fff;
+
+$light-grey-color: #f7f7f7;
+
+$gap: 16px;
+$header-height: 64px;
+$banner-height: 20px;
+//old colors
+// $accent-color: #de968c;
+// $main-color: #b8996b;
+// $light-color: #b8996b;
+// $border-color: #e0e4ea;
+// $success-color: #49d082;
+// $error-color: #eb5757;
+// $site-background-color: #f2ede4;
+// $product-card-background-color: #fff;
+$box-shadow-color:
+  0 4px 24px 0 rgba(34, 60, 80, 0.1),
+  0 1.5px 6px 0 rgba(34, 60, 80, 0.08);
+
+$logo: "https://i.gstatvb.com/c389a77ca305ee5d9f0ee6f87f74fcfb1688922827.rng.png";
+// $arrow-left: "https://i.gstatvb.com/666bd175cdc8706e8a3f147f985a8ebe1689008383.rng.png";
+// $arrow-right: "https://i.gstatvb.com/8f63a520b73400d453500cf67939b8ab1689008556.rng.png";
+// $arrow-top: "https://i.gstatvb.com/8b770ea465d99dee199c967e195be3071689017099.rng.png";
+// $arrow-down-for-dropdown: "https://i.gstatvb.com/7b0c5a911403e372d5b0aace017605fc1689328395.rng.png";
+// $icon-home: "https://i.gstatvb.com/a1e15ca62daaa6c9b8b36df2e04be2bf1689190203.rng.png";
+// $icon-close: "https://i.gstatvb.com/17e6ffa6dc2773ee256fe64be642bca21689500914.rng.png";
+// $heart-gray-icon: "https://i.gstatvb.com/5cd474fd6e823704785256852e48373d1688905044.rng.png";
+// $heart-red-icon: "https://i.gstatvb.com/8d884803928628aa7b15861d143e5ee01689508609.rng.svg";
+// $icon-search: "https://i.gstatvb.com/d83bcf9ad76f2609371932eca8d554011690049021.rng.png";
+// $icon-fav: "https://i.gstatvb.com/5cd474fd6e823704785256852e48373d1688905044.rng.png";
+// $icon-cart: "https://i.gstatvb.com/971cae570aad5e050cfd09d9d4d295ea1689103935.rng.png";
+// $icon-menu: "https://i.gstatvb.com/a40a8ebf82ae69be5aa3a14758410e641690179741.rng.svg";
+
+$desktop-media-query: "only screen and (max-width : 1220px)";
+$desktop-smallest-media-query: "only screen and (max-width : 1024px)";
+$tablet-media-query: "only screen and (max-width : 768px)";
+$phone-media-query: "only screen and (max-width : 540px)";
+$phone-smallest-media-query: "only screen and (max-width : 374px)";
