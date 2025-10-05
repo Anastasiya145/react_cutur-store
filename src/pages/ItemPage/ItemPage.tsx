@@ -5,7 +5,7 @@ import { Product } from "../../types/Product";
 import { getProductById } from "../../api/productsApi";
 import { Loader } from "../../components/Loader";
 import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
-// import { DeliveriesDrawer } from "../DeliveriesPage/DeliveriesDrawer";
+import { DeliveriesDrawer } from "../DeliveriesPage/DeliveriesDrawer";
 import { ProductImages } from "./ProductImages";
 import { ProductColors } from "./ProductColors";
 import { ProductDescription } from "./ProductDescription";
@@ -13,6 +13,7 @@ import "./itemPage.scss";
 import { ProductBackButton } from "./ProductBackButton";
 import { ProductPrice } from "../../components/ProductPrice";
 import { ButtonAddToCart } from "../../components/Buttons/ButtonAddToCart";
+import AnimatedTextButton from "../../components/AnimatedButton/AnimatedTextButton";
 
 const navigateTo = (pathname: string, paramOld: string, paramNew: string) => {
   const newLink = pathname.replace(
@@ -86,7 +87,7 @@ export const ItemPage: React.FC = () => {
                   />
                 )}
               </div>
-              <div className="product-details__content">
+              <div className="product-details__column">
                 {product.colorsavailable && (
                   <ProductColors
                     colorsAvailable={product.colorsavailable}
@@ -106,12 +107,11 @@ export const ItemPage: React.FC = () => {
                     isProductInCart={isProductSelectedinCart}
                   />
                 </div>
-                <button
+                <AnimatedTextButton
                   className="deliveries-page__open-btn"
                   onClick={() => setIsDrawerOpen(true)}
-                >
-                  Infos livraisons & retours
-                </button>
+                  text="Infos livraisons & retours"
+                />
               </div>
             </div>
 
@@ -124,7 +124,7 @@ export const ItemPage: React.FC = () => {
 
       {error && !product && <p className="page__title">Product not found</p>}
 
-      {/* <DeliveriesDrawer open={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} /> */}
+      <DeliveriesDrawer open={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
     </div>
   );
 };

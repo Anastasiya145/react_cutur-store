@@ -10,7 +10,6 @@ export const DeliveriesDrawer: React.FC<{
   return (
     <CustomDrawer
       open={open}
-      title="Livraisons et retours"
       onClose={() => setIsDrawerOpen(false)}
       className="deliveries-drawer"
     >
@@ -25,10 +24,9 @@ export const DeliveriesDrawer: React.FC<{
             Relay ou Colissimo. Les délais sont donnés à titre indicatif. Le
             risque du transport est à la charge de l'acheteur. En cas de
             problème à la réception, contactez-nous sous 5 jours à{" "}
-            <ContactEmailLink />
-            Les produits sont expédiés après réception du paiement total. En cas
-            d'adresse incorrecte, la réexpédition sera à la charge de
-            l'acheteur.
+            <ContactEmailLink />.<br /> Les produits sont expédiés après
+            réception du paiement total. En cas d'adresse incorrecte, la
+            réexpédition sera à la charge de l'acheteur.
           </p>
         </section>
         <section className="deliveries-drawer__section">

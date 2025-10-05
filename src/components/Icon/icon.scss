@@ -1,0 +1,14 @@
+@import "../../styles/utils/variables";
+
+.icon {
+  transition:
+    color 0.3s ease,
+    transform 0.2s ease;
+  cursor: pointer;
+  color: currentColor;
+
+  &:hover {
+    color: $main-color;
+    transform: scale(1.05);
+  }
+}

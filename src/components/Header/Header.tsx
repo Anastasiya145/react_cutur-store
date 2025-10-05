@@ -16,12 +16,7 @@ import { IconMenuCart } from "../IconMenu/IconMenuCart";
 import { IconMenuFavorites } from "../IconMenu/IconMenuFavorites";
 import { IconMenu } from "../Icon/IconMenu";
 import { IconClose } from "../Icon/IconClose";
-// import { Logo } from "../Logo/Logo";
 import UserIconLink from "../Icon/UserIconLink";
-
-const linkAddress = (pageName: string) => {
-  return pageName === "Home" ? "/" : pageName.toLowerCase();
-};
 
 export const Header: React.FC = () => {
   const { favorites, cart } = useContext(AppContext);
@@ -75,7 +70,7 @@ export const Header: React.FC = () => {
               <PageNavLink
                 key={item}
                 text={item}
-                to={linkAddress(item)}
+                to={PathnamesForNav[item as keyof typeof PathnamesForNav]}
                 class_name="nav__item"
               />
             ))}
@@ -102,7 +97,11 @@ export const Header: React.FC = () => {
                     <PageNavLink
                       key={item}
                       text={item}
-                      to={linkAddress(item)}
+                      to={
+                        PathnamesForUserMenu[
+                          item as keyof typeof PathnamesForUserMenu
+                        ]
+                      }
                       class_name="header__user-menu-item"
                     />
                   ))}
@@ -158,7 +157,7 @@ export const Header: React.FC = () => {
             <PageNavLink
               key={item}
               text={item}
-              to={linkAddress(item)}
+              to={PathnamesForNav[item as keyof typeof PathnamesForNav]}
               class_name="nav__item"
             />
           ))}

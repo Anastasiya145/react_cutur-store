@@ -23,7 +23,7 @@ import RequireAuth from "../../components/RequireAuth/RequireAuth";
 import CheckoutPage from "../CheckoutPage/CheckoutPage";
 import ForgotPasswordPage from "../ForgotPassword/ForgotPasswordPage";
 
-const AppRouter: React.FC = () => {
+const App: React.FC = () => {
   const { pathname } = useLocation();
   const pathnameNormalized = pathname === "/" ? "home" : pathname.substring(1);
 
@@ -97,4 +97,4 @@ const AppRouter: React.FC = () => {
   );
 };
 
-export default AppRouter;
+export default App;

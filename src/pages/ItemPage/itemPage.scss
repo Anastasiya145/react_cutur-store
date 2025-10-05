@@ -55,6 +55,12 @@
     justify-content: space-between;
   }
 
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
   &__images-container {
     display: flex;
     width: 100%;

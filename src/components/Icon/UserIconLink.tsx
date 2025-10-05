@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IconUser } from "./IconUser";
 import { PathnamesApp } from "../../types/Pathnames";
+import "./icon.scss";
 
 interface UserIconLinkProps {
   className?: string;

@@ -3,6 +3,16 @@
 .icon {
   @include button-header;
   position: relative;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $main-color;
+    transform: scale(1.05);
+
+    .icon__img {
+      color: $main-color;
+    }
+  }
 
   &.selected {
     border-bottom: 3px solid $accent-color;

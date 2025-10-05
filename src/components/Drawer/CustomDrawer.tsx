@@ -5,7 +5,6 @@ import { IconClose } from "../Icon/IconClose";
 
 type CustomDrawerProps = {
   open: boolean;
-  title?: string;
   children?: React.ReactNode;
   onClose?: () => void;
   className?: string;
@@ -13,7 +12,6 @@ type CustomDrawerProps = {
 
 export const CustomDrawer: React.FC<CustomDrawerProps> = ({
   open,
-  title,
   children,
   onClose,
   className = "",
@@ -22,31 +20,21 @@ export const CustomDrawer: React.FC<CustomDrawerProps> = ({
     <>
       {/* Overlay */}
       <div
-        className={classNames("custom-drawer__overlay", {
-          "custom-drawer__overlay--open": open,
+        className={classNames("drawer__overlay", {
+          "drawer__overlay--open": open,
         })}
         onClick={onClose}
       />
       {/* Drawer */}
       <div
-        className={classNames(
-          "custom-drawer",
-          { "custom-drawer--open": open },
-          className
-        )}
+        className={classNames("drawer", { "drawer--open": open }, className)}
       >
-        <button
-          className="custom-drawer__close"
-          onClick={onClose}
-          aria-label="Fermer"
-          type="button"
-        >
-          <IconClose />
-        </button>
-        <div className="custom-drawer__content">
-          {title && <h2 className="custom-drawer__title">{title}</h2>}
-          {children}
+        <div className="drawer__header">
+          <button className="drawer__close" onClick={onClose} type="button">
+            <IconClose />
+          </button>
         </div>
+        <div className="drawer__content">{children}</div>
       </div>
     </>
   );

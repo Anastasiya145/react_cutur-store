@@ -1,4 +1,5 @@
 import React from "react";
+import "./icon.scss";
 
 export const IconArrowTop: React.FC<React.SVGProps<SVGSVGElement>> = (
   props
@@ -9,6 +10,7 @@ export const IconArrowTop: React.FC<React.SVGProps<SVGSVGElement>> = (
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
+    className={`icon ${props.className || ""}`}
     {...props}
   >
     <path

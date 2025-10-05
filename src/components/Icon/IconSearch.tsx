@@ -1,4 +1,5 @@
 import React from "react";
+import "./icon.scss";
 
 export const IconSearch: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
@@ -7,6 +8,7 @@ export const IconSearch: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
+    className={`icon ${props.className || ""}`}
     {...props}
   >
     <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />

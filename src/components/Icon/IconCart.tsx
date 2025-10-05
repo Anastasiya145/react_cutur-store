@@ -1,4 +1,5 @@
 import React from "react";
+import "./icon.scss";
 
 export const IconCart: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
@@ -7,6 +8,7 @@ export const IconCart: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
+    className={`icon ${props.className || ""}`}
     {...props}
   >
     <circle cx="9" cy="21" r="1" fill="currentColor" />

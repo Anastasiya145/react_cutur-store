@@ -1,4 +1,5 @@
 import React from "react";
+import "./icon.scss";
 
 type IconHeartProps = React.SVGProps<SVGSVGElement> & {
   isFilled?: boolean;
@@ -11,6 +12,7 @@ export const IconFav: React.FC<IconHeartProps> = ({ isFilled, ...props }) => (
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
+    className={`icon ${props.className || ""}`}
     {...props}
   >
     <path

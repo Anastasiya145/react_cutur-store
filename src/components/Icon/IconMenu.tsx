@@ -1,4 +1,5 @@
 import React from "react";
+import "./icon.scss";
 
 export const IconMenu: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
@@ -7,6 +8,7 @@ export const IconMenu: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
+    className={`icon ${props.className || ""}`}
     {...props}
   >
     <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor" />
