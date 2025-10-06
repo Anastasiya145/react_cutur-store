@@ -72,4 +72,8 @@
       background-color: $accent-color;
     }
   }
+
+  &_square-outline {
+    @include button-square-outline;
+  }
 }

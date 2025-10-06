@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { PasswordInput } from "../../components/forms/PasswordInput/PasswordInput";
 import { useAuth } from "../../context/AuthContext";
+import { useNotification } from "../../context/NotificationContext";
 import "./loginPage.scss";
 import { PathnamesApp } from "../../types/Pathnames";
 import { login } from "../../api/authApi";
@@ -19,12 +20,11 @@ const LoginPage: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
-    // formState: { errors },
-    setError,
   } = useForm<LoginFormInputs>({ mode: "onChange" });
 
   const navigate = useNavigate();
   const { loginUser } = useAuth();
+  const { showError } = useNotification();
 
   const onSubmit = async (data: LoginFormInputs) => {
     try {
@@ -34,10 +34,10 @@ const LoginPage: React.FC = () => {
         loginUser(response.email, response.token);
         navigate(PathnamesApp.Profil);
       } else {
-        setError("root", { message: "Erreur d'authentification" });
+        showError("Erreur d'authentification");
       }
     } catch (err: any) {
-      setError("root", { message: err.message || "Erreur d'authentification" });
+      showError(err.message || "Erreur d'authentification");
     }
   };
 
@@ -79,10 +79,6 @@ const LoginPage: React.FC = () => {
         />
         {errors.password && (
           <div className="auth-page__error">{errors.password.message}</div>
-        )}
-
-        {errors.root && (
-          <div className="auth-page__error">{errors.root.message}</div>
         )}
 
         <LoadingButton

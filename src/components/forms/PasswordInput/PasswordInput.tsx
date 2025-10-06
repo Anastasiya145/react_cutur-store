@@ -13,7 +13,14 @@ export type PasswordInputProps = {
 
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
   (
-    { label, name, placeholder, autoComplete, required = false, ...rest },
+    {
+      label,
+      name,
+      placeholder = "Entrer le mot de passe",
+      autoComplete,
+      required = false,
+      ...rest
+    },
     ref
   ) => {
     const [show, setShow] = useState(false);

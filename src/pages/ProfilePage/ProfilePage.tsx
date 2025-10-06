@@ -1,137 +1,209 @@
 import React, { useEffect, useState } from "react";
 import "./profilePage.scss";
 import { useAuth } from "../../context/AuthContext";
-import { getUserByEmail, updateUserAddress } from "../../api/userApi";
-import { TextInput } from "../../components/forms/TextInput/TextInput";
-import { ConnectedUser } from "../../types/User";
+import { useNotification } from "../../context/NotificationContext";
+import {
+  getUserByEmail,
+  updateUserAddress,
+  updateUsername,
+  updateUserPassword,
+} from "../../api/userApi";
+import { ConnectedUser, Address } from "../../types/User";
 import { Loader } from "../../components/Loader/Loader";
-import { useForm } from "react-hook-form";
-
-type ProfileFormInputs = {
-  address: string;
-};
+import {
+  EmailSection,
+  UsernameSection,
+  PasswordSection,
+  AddressSection,
+} from "./components";
 
 const ProfilePage: React.FC = () => {
   const { user } = useAuth();
+  const { showError, showSuccess } = useNotification();
   const [userData, setUserData] = useState<ConnectedUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [editAddress, setEditAddress] = useState(false);
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setValue,
-    formState: { errors, isSubmitting, isValid },
-  } = useForm<ProfileFormInputs>({ mode: "onChange" });
+  const [editEmail, setEditEmail] = useState(false);
+  const [editUsername, setEditUsername] = useState(false);
+  const [editPassword, setEditPassword] = useState(false);
 
   useEffect(() => {
-    if (!user) return;
-    setLoading(true);
-    getUserByEmail(user)
-      .then((data) => {
-        setUserData(data);
-        setValue("address", data.address || "");
-      })
-      .catch(() => setError("Erreur lors du chargement du profil."))
-      .finally(() => setLoading(false));
-  }, [user, setValue]);
+    const fetchUserData = async () => {
+      if (user) {
+        try {
+          const data = await getUserByEmail(user);
+          setUserData(data);
+        } catch (error) {
+          console.error(
+            "Erreur lors de la récupération des données utilisateur:",
+            error
+          );
+          showError("Erreur lors de la récupération des données utilisateur");
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
 
-  const onSubmit = async (data: ProfileFormInputs) => {
-    setError("");
-    setSuccess("");
-    if (!userData) return;
+    fetchUserData();
+  }, [user]);
+
+  // Обработчики для Email
+  const handleEditEmail = () => {
+    setEditEmail(true);
+  };
+
+  const handleCancelEmailEdit = () => {
+    setEditEmail(false);
+  };
+
+  const handleSubmitEmail = async (data: { email: string }) => {
     try {
-      const updated = await updateUserAddress(userData.email, data.address);
-      setUserData(updated);
-      setSuccess("Adresse enregistrée avec succès !");
-      setEditAddress(false);
-      reset({ address: updated.address || "" });
-    } catch {
-      setError("Erreur lors de la sauvegarde de l'adresse.");
+      if (!userData) return;
+      // TODO: Ajouter l'endpoint PUT /users/:email/email sur le backend
+      showError("La modification de l'email n'est pas encore disponible");
+
+      console.log("Nouveau email:", data);
+      setEditEmail(false);
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour de l'email:", error);
+      showError("Erreur lors de la mise à jour de l'email");
     }
   };
 
+  // Обработчики для Username
+  const handleEditUsername = () => {
+    setEditUsername(true);
+  };
+
+  const handleCancelUsernameEdit = () => {
+    setEditUsername(false);
+  };
+
+  const handleSubmitUsername = async (data: { username: string }) => {
+    try {
+      if (!userData) return;
+      await updateUsername(userData.email, data.username);
+      setUserData({ ...userData, username: data.username });
+      setEditUsername(false);
+      showSuccess("Nom d'utilisateur mis à jour avec succès");
+    } catch (error) {
+      console.error(
+        "Erreur lors de la mise à jour du nom d'utilisateur:",
+        error
+      );
+      showError("Erreur lors de la mise à jour du nom d'utilisateur");
+    }
+  };
+
+  // Обработчики для Password
+  const handleEditPassword = () => {
+    setEditPassword(true);
+  };
+
+  const handleCancelPasswordEdit = () => {
+    setEditPassword(false);
+  };
+
+  const handleSubmitPassword = async (data: {
+    currentPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+  }) => {
+    try {
+      if (!userData) return;
+      if (data.newPassword !== data.confirmPassword) {
+        showError("Les mots de passe ne correspondent pas");
+        return;
+      }
+
+      const result = await updateUserPassword(
+        userData.email,
+        data.currentPassword,
+        data.newPassword
+      );
+      showSuccess(result.message || "Mot de passe mis à jour avec succès");
+      setEditPassword(false);
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour du mot de passe:", error);
+      showError("Erreur lors de la mise à jour du mot de passe");
+    }
+  };
+
+  // Обработчики для Address
+  const handleEditAddress = () => {
+    setEditAddress(true);
+  };
+
+  const handleCancelAddressEdit = () => {
+    setEditAddress(false);
+  };
+
+  const handleSubmitAddress = async (data: Address) => {
+    try {
+      if (!userData) return;
+      await updateUserAddress(userData.email, data);
+      setUserData({ ...userData, address: data });
+      setEditAddress(false);
+      showSuccess("Adresse mise à jour avec succès");
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour de l'adresse:", error);
+      showError("Erreur lors de la mise à jour de l'adresse");
+    }
+  };
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (!userData) {
+    return (
+      <div className="profile-page">
+        <div className="profile-page__error">
+          Erreur lors du chargement des données utilisateur
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="profile-page">
-      <h1 className="profile-page__title">Profil utilisateur</h1>
-      {loading && <Loader />}
-      {error && <div className="profile-page__error">{error}</div>}
-      {userData && !loading && (
-        <div className="profile-page__info">
-          <div>
-            <div className="profile-page__label">Email</div>
-            <div className="profile-page__value">{userData.email}</div>
-          </div>
-          <div>
-            <div className="profile-page__label">Nom d'utilisateur</div>
-            <div className="profile-page__value">{userData.username}</div>
-          </div>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="profile-page__input-row"
-          >
-            <div>
-              <div className="profile-page__label">Adresse</div>
-              {userData.address && !editAddress ? (
-                <div className="profile-page__value">
-                  {userData.address}
-                  <button
-                    type="button"
-                    className="profile-page__edit-btn"
-                    onClick={() => setEditAddress(true)}
-                  >
-                    Modifier
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <TextInput
-                    label=""
-                    placeholder="Ajouter ou modifier votre adresse"
-                    required
-                    {...register("address", {
-                      required: "L'adresse est requise",
-                      minLength: {
-                        value: 2,
-                        message:
-                          "L'adresse doit contenir au moins 2 caractères.",
-                      },
-                    })}
-                  />
-                  {errors.address && (
-                    <div className="profile-page__error">
-                      {errors.address.message}
-                    </div>
-                  )}
-                  <button
-                    type="submit"
-                    className="profile-page__button"
-                    disabled={isSubmitting || !isValid}
-                  >
-                    Enregistrer
-                  </button>
-                  {userData.address && (
-                    <button
-                      type="button"
-                      className="profile-page__button profile-page__button--cancel"
-                      onClick={() => {
-                        setEditAddress(false);
-                        reset({ address: userData.address || "" });
-                      }}
-                    >
-                      Annuler
-                    </button>
-                  )}
-                </>
-              )}
-            </div>
-          </form>
-          {success && <div className="profile-page__success">{success}</div>}
+      <div className="profile-page__container">
+        <h1 className="profile-page__title">Mon Profil</h1>
+
+        <div className="profile-page__content">
+          <EmailSection
+            email={userData.email}
+            isEditing={editEmail}
+            onEdit={handleEditEmail}
+            onCancel={handleCancelEmailEdit}
+            onSubmit={handleSubmitEmail}
+          />
+
+          <UsernameSection
+            username={userData.username}
+            isEditing={editUsername}
+            onEdit={handleEditUsername}
+            onCancel={handleCancelUsernameEdit}
+            onSubmit={handleSubmitUsername}
+          />
+
+          <PasswordSection
+            isEditing={editPassword}
+            onEdit={handleEditPassword}
+            onCancel={handleCancelPasswordEdit}
+            onSubmit={handleSubmitPassword}
+          />
+
+          <AddressSection
+            address={userData.address || null}
+            isEditing={editAddress}
+            onEdit={handleEditAddress}
+            onCancel={handleCancelAddressEdit}
+            onSubmit={handleSubmitAddress}
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 };

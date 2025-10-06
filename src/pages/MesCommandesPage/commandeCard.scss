@@ -117,7 +117,7 @@
   }
 
   &__cancel-btn {
-    @include button-square;
+    @include button-square-outline;
   }
 
   &__cancel-hint {

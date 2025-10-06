@@ -1,7 +1,6 @@
 @import "../../../styles/common";
 
-.text-input,
-.email-input {
+.text-input {
   &__input {
     @include form-input;
     margin-top: 8px;

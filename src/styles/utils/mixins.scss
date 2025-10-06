@@ -37,16 +37,16 @@
 @mixin button-square($width: 176px, $height: 40px) {
   height: $height;
   width: $width;
-  background-color: $accent-color;
-  color: #fff;
-  text-align: center;
-  // font-family: "Mont SemiBold", sans-serif;
-  font-size: 14px;
+  background: $accent-color;
+  color: white;
   border: none;
-  box-shadow: none;
+  border-radius: 6px;
+  @extend %body-text;
+  cursor: pointer;
   transition: all 0.3s;
 
   &:hover {
+    background: darken($accent-color, 10%);
     box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.26);
   }
 
@@ -63,6 +63,39 @@
 
     &:hover {
       box-shadow: none;
+    }
+  }
+}
+
+@mixin button-square-outline($width: 176px, $height: 40px) {
+  height: $height;
+  width: $width;
+  background: transparent;
+  color: $main-color;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  align-items: center;
+  @extend %body-text;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #f5f5f5;
+    box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.13);
+  }
+
+  &:active {
+    background: #e8e8e8;
+    box-shadow: none;
+  }
+
+  &.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+
+    &:hover {
+      box-shadow: none;
+      background: transparent;
     }
   }
 }
@@ -95,7 +128,7 @@
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 1rem;
-  color: $accent-color;
+  color: currentColor;
   outline: none;
   transition: border-color 0.2s;
   resize: none;

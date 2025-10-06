@@ -1,22 +1,42 @@
-import { ConnectedUser } from "../types/User";
+import {
+  Address,
+  UpdateAddressRequest,
+  UpdatePasswordRequest,
+  GetUserResponse,
+  UpdateAddressResponse,
+} from "../types/User";
+import { request } from "./api";
 
-const BASE_URL = "https://nodecutur-store.vercel.app";
+export const getUserByEmail = (email: string): Promise<GetUserResponse> =>
+  request<GetUserResponse>(`/users/${email}`);
 
-function request<T>(url: string, options?: RequestInit): Promise<T> {
-  return fetch(BASE_URL + url, options).then((response) => {
-    if (!response.ok) {
-      throw new Error("Can not load data from server");
-    }
-    return response.json();
-  });
-}
-
-export const getUserByEmail = (email: string) =>
-  request<ConnectedUser>(`/users/${email}`);
-
-export const updateUserAddress = (email: string, address: string) =>
-  request<ConnectedUser>(`/users/${email}/address`, {
+export const updateUserAddress = (
+  email: string,
+  address: Address
+): Promise<UpdateAddressResponse> =>
+  request<UpdateAddressResponse>(`/users/${email}/address`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ address }),
+    body: JSON.stringify({ address } as UpdateAddressRequest),
+  });
+
+export const updateUsername = (
+  email: string,
+  username: string
+): Promise<GetUserResponse> =>
+  request<GetUserResponse>(`/users/${email}/username`, {
+    method: "PUT",
+    body: JSON.stringify({ username }),
+  });
+
+export const updateUserPassword = (
+  email: string,
+  currentPassword: string,
+  newPassword: string
+): Promise<{ message: string }> =>
+  request<{ message: string }>(`/users/${email}/password`, {
+    method: "PUT",
+    body: JSON.stringify({
+      currentPassword,
+      newPassword,
+    } as UpdatePasswordRequest),
   });

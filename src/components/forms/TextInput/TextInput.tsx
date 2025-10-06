@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import "./textInput.scss";
 
 type Props = {
@@ -8,7 +8,6 @@ type Props = {
   placeholder?: string;
   autoComplete?: string;
   required?: boolean;
-  className?: string;
   autoFocus?: boolean;
   [key: string]: any;
 };
@@ -19,24 +18,23 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(
       label,
       name,
       type = "text",
-      placeholder,
+      placeholder = "Entrer le texte",
       autoComplete,
       required = false,
-      className = "text-input",
       autoFocus = false,
       ...rest
     },
     ref
   ) => (
-    <label className={className}>
-      <span className={`${className}__label`}>{label}</span>
+    <label className="text-input">
+      <span className="text-input__label">{label}</span>
       <input
         type={type}
         name={name}
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
-        className={`${className}__input`}
+        className="text-input__input"
         autoFocus={autoFocus}
         ref={ref}
         {...rest}
