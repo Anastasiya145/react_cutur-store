@@ -20,7 +20,7 @@ import UserIconLink from "../Icons/UserIconLink";
 
 export const Header: React.FC = () => {
   const { favorites, cart } = useContext(AppContext);
-  const { user, logoutUser } = useAuth();
+  const { logoutUser, isAuthenticated } = useAuth();
   const { pathname } = useLocation();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
@@ -31,7 +31,6 @@ export const Header: React.FC = () => {
   const isSearchBarShown = Object.keys(PathnamesForNav).some(
     (path) => path.toLowerCase() === pathnameNormalized
   );
-  const isAuthenticated = Boolean(user);
 
   useEffect(() => {
     setIsMenuOpened(false);

@@ -21,7 +21,6 @@ import MesCommandesPage from "../MesCommandesPage/MesCommandesPage";
 import RequireAuth from "../../components/RequireAuth/RequireAuth";
 import CheckoutPage from "../CheckoutPage/CheckoutPage";
 import ForgotPasswordPage from "../ForgotPassword/ForgotPasswordPage";
-import { ScrollToTop } from "../../components/ScrollButtonToTop/ScrollToTop";
 
 const App: React.FC = () => {
   const { pathname } = useLocation();
@@ -35,7 +34,6 @@ const App: React.FC = () => {
 
   return (
     <div className="page">
-      <ScrollToTop />
       <Banner />
       <Header />
       <main className="page__main">

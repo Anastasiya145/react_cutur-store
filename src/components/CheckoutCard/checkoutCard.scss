@@ -1,59 +1,272 @@
 @import "/src/styles/common";
 
 .checkout-card {
-  display: flex;
+  background: white;
   border-radius: 16px;
-  box-shadow: $box-shadow-color;
-  padding: 24px;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
-  align-items: center;
-  justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  &:hover {
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.1),
+      0 3px 6px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  }
 
   &:last-child {
     margin-bottom: 0;
   }
 
-  &__content,
-  &__container {
+  &__header {
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
+    padding: 16px 20px 0;
   }
 
-  &__img {
-    width: 66px;
-    height: 66px;
-    object-fit: contain;
-    margin-right: 30px;
+  &__body {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 20px 16px;
+    gap: 16px;
+  }
+
+  &__image-container {
+    flex-shrink: 0;
+    background: $bg-light;
+    border-radius: 12px;
+    padding: 8px;
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__details {
+    flex: 1;
+    min-width: 0; // Важно для text-overflow
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
   &__title {
-    width: 295px;
-    @extend %body-text;
-    color: $accent-color;
-    margin-right: 50px;
+    color: $text-primary;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    // Многострочный текст с ellipsis
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-wrap: break-word;
+    hyphens: auto;
+
+    &:hover {
+      color: $main-color;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__unit-price {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    font-weight: 500;
+  }
+
+  &__stock-warning {
+    font-size: 0.75rem;
+    color: $warning-color;
+    font-weight: 600;
+    background: rgba(245, 158, 11, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    align-self: flex-start;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: $bg-light;
+    border-top: 1px solid $border-light;
+    gap: 16px;
+  }
+
+  &__controls {
+    flex-shrink: 0;
+  }
+
+  &__price-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  &__price-label {
+    font-size: 0.75rem;
+    color: $text-secondary;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   &__price {
-    @extend %h2;
-    color: $accent-color;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $main-color;
+    margin: 0;
+    line-height: 1.2;
   }
 }
 
+// Адаптивность для планшетов
 @media #{$tablet-media-query} {
   .checkout-card {
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    grid-gap: $gap;
-    gap: $gap;
-    padding: 16px;
+    &__body {
+      padding: 0 16px 12px;
+      gap: 12px;
+    }
 
-    &__content,
-    &__container {
-      width: 100%;
+    &__header {
+      padding: 12px 16px 0;
+    }
+
+    &__image {
+      width: 70px;
+      height: 70px;
+    }
+
+    &__title {
+      font-size: 0.9rem;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+
+    &__footer {
+      padding: 12px 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    &__price {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+// Адаптивность для мобильных
+@media #{$phone-media-query} {
+  .checkout-card {
+    margin-bottom: 12px;
+
+    &__header {
+      padding: 10px 12px 0;
+    }
+
+    &__body {
+      padding: 0 12px 10px;
+      gap: 10px;
+    }
+
+    &__image-container {
+      padding: 6px;
+    }
+
+    &__image {
+      width: 60px;
+      height: 60px;
+    }
+
+    &__title {
+      font-size: 0.85rem;
+      -webkit-line-clamp: 3; // Больше строк на мобильном
+      line-clamp: 3;
+    }
+
+    &__meta {
+      gap: 2px;
+    }
+
+    &__unit-price {
+      font-size: 0.8rem;
+    }
+
+    &__stock-warning {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+    }
+
+    &__footer {
+      padding: 10px 12px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+
+    &__controls {
+      align-self: center;
+    }
+
+    &__price-section {
+      align-items: center;
+      flex-direction: row;
       justify-content: space-between;
-      grid-gap: $gap;
-      gap: 16px;
+    }
+
+    &__price-label {
+      font-size: 0.7rem;
+    }
+
+    &__price {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Очень маленькие экраны
+@media #{$phone-smallest-media-query} {
+  .checkout-card {
+    &__title {
+      font-size: 0.8rem;
+    }
+
+    &__image {
+      width: 50px;
+      height: 50px;
+    }
+
+    &__unit-price {
+      font-size: 0.75rem;
+    }
+
+    &__price {
+      font-size: 0.9rem;
     }
   }
 }

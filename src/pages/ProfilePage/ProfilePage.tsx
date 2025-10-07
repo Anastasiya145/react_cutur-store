@@ -16,9 +16,11 @@ import {
   PasswordSection,
   AddressSection,
 } from "./components";
+import { useAuthCheck } from "../../helpers/hooks/useAuthCheck";
 
 const ProfilePage: React.FC = () => {
   const { user } = useAuth();
+  useAuthCheck(); // Проверяем аутентификацию
   const { showError, showSuccess } = useNotification();
   const [userData, setUserData] = useState<ConnectedUser | null>(null);
   const [loading, setLoading] = useState(true);

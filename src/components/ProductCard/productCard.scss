@@ -2,48 +2,241 @@
 
 .card {
   position: relative;
-  border: 1px solid $border-color;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
-  width: 270px;
-  padding: 24px;
-  transition: all 0.3s;
+  width: 280px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: inherit;
 
   &:hover {
-    border-color: $accent-color;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    border-color: rgba($main-color, 0.3);
+
+    .card__image {
+      transform: scale(1.05);
+    }
+
+    .card__overlay {
+      opacity: 1;
+    }
   }
 
-  &.disabled {
+  &--disabled {
     opacity: 0.7;
+    filter: grayscale(0.3);
+
+    &:hover {
+      transform: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &--on-sale {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, $main-color, $accent-color);
+      z-index: 2;
+    }
+  }
+
+  &__image-container {
+    position: relative;
+    overflow: hidden;
+    background: #f8f9fa;
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
   }
 
   &__image {
     width: 100%;
-    height: 208px;
+    height: 220px;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &__badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+
+    &--sale {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    &--out-of-stock {
+      background: rgba(107, 114, 128, 0.9);
+      box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      45deg,
+      rgba($main-color, 0.9),
+      rgba($accent-color, 0.9)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &__overlay-text {
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+
+  &__content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   &__title {
-    margin-top: 24px;
-    color: $accent-color;
-    @extend %body-text;
+    margin: 0 0 12px 0;
+    color: $dark-blue-color;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.8em;
   }
 
   &__price {
-    margin: 32px 0 6px;
-    border-bottom: 1px solid $border-color;
+    margin: 8px 0 16px 0;
+    flex: 1;
+  }
+
+  &__actions {
+    margin-top: auto;
   }
 }
 
+// Адаптивность
 @media #{$tablet-media-query} {
   .card {
-    &__title,
-    &__price,
-    &__properties {
-      margin-top: 16px;
+    width: 260px;
+
+    &__image {
+      height: 200px;
+    }
+
+    &__content {
+      padding: 16px;
+    }
+
+    &__title {
+      font-size: 0.9rem;
+    }
+
+    &__badge {
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      top: 10px;
+      right: 10px;
+    }
+  }
+}
+
+@media #{$phone-media-query} {
+  .card {
+    width: 100%;
+    max-width: 320px;
+
+    &__image {
+      height: 180px;
+    }
+
+    &__content {
+      padding: 14px;
+    }
+
+    &__title {
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    &__price {
+      margin: 6px 0 12px 0;
+    }
+
+    &__badge {
+      padding: 3px 8px;
+      font-size: 0.65rem;
+      top: 8px;
+      right: 8px;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Темная тема
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: $dark-blue-color;
+    border-color: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      border-color: rgba($main-color, 0.4);
+    }
+
+    &__image-container {
+      background: #374151;
+    }
+
+    &__title {
+      color: #f9fafb;
+    }
+
+    &__overlay {
+      background: linear-gradient(
+        45deg,
+        rgba(31, 41, 55, 0.9),
+        rgba(55, 65, 81, 0.9)
+      );
     }
   }
 }

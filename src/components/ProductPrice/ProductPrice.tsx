@@ -16,10 +16,10 @@ export const ProductPrice: React.FC<Props> = ({
   return (
     <div className="price">
       <div className="price__container">
-        <p className="price__text price__text_bold">{`$${final_price}`}</p>
+        <p className="price__text price__text_bold">{`${final_price}€`}</p>
         {final_price !== price && (
           <>
-            <p className="price__text price__text_discount">{`$${price}`}</p>
+            <p className="price__text price__text_discount">{`${price} €`}</p>
             {/* <span className="price__text price__text_discount-amount">
               -{discount}
             </span> */}

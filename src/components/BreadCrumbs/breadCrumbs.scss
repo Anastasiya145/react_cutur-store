@@ -25,7 +25,7 @@
     align-items: center;
     gap: 0.375rem;
     text-decoration: none;
-    color: #6b7280;
+    color: $dark-blue-color;
     font-size: 0.875rem;
     font-weight: 500;
     padding: 0.375rem 0.5rem;
@@ -44,7 +44,7 @@
     }
 
     &:focus {
-      outline: 2px solid #3b82f6;
+      outline: 2px solid $focus-color;
       outline-offset: 2px;
     }
   }
@@ -71,7 +71,7 @@
   }
 
   &__separator {
-    color: #d1d5db;
+    color: $light-color;
     display: flex;
     align-items: center;
     flex-shrink: 0;
@@ -107,32 +107,6 @@
     &__separator svg {
       width: 0.875rem;
       height: 0.875rem;
-    }
-  }
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .breadcrumbs {
-    &__link {
-      color: #9ca3af;
-
-      &:hover {
-        color: #f9fafb;
-        background-color: #374151;
-      }
-    }
-
-    &__current {
-      color: #f9fafb;
-    }
-
-    &__separator {
-      color: #6b7280;
-    }
-
-    &__home-icon {
-      color: #fbbf24; // Lighter version of main color for dark mode
     }
   }
 }

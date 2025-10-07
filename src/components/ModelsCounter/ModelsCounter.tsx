@@ -6,5 +6,9 @@ export type Props = {
 };
 
 export const ModelsCounter: React.FC<Props> = ({ number = 0 }) => {
-  return <p className="models">{`${number} models`}</p>;
+  return (
+    <div className="models-counter">
+      {number} modèle{number > 1 ? "s" : ""}
+    </div>
+  );
 };

@@ -3,25 +3,28 @@
 .price {
   &__container {
     display: flex;
-    align-items: center;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
   &__text {
-    @extend %h2;
-    color: $accent-color;
-    margin: 6px 8px 0;
+    margin: 0;
+    font-weight: 700;
 
     &_bold {
+      color: $text-primary;
+      font-size: 1.25rem;
+      line-height: 1.2;
       font-family: "Mont Bold", sans-serif;
     }
 
     &_discount {
-      color: $main-color;
-      font-size: 22px;
+      color: $text-muted;
+      font-size: 1rem;
       font-weight: 500;
-      line-height: 28px;
       text-decoration: line-through;
-      margin-right: 0;
+      opacity: 0.7;
     }
   }
 }

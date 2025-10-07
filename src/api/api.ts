@@ -19,6 +19,18 @@ export function request<T>(url: string, options?: RequestInit): Promise<T> {
     headers,
   }).then(async (response) => {
     if (!response.ok) {
+      // Проверяем на ошибку авторизации (истечение токена)
+      if (response.status === 401) {
+        // Очищаем localStorage и уведомляем о необходимости повторной аутентификации
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+
+        // Запускаем событие для AuthContext
+        window.dispatchEvent(new CustomEvent("token-expired"));
+
+        throw new Error("Сессия истекла. Необходимо войти в систему снова.");
+      }
+
       let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
 
       try {

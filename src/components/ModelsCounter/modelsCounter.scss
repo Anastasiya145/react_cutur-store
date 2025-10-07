@@ -1,7 +1,21 @@
-@import "/src/styles/common";
+@import "src/styles/common";
 
-.models {
-  @extend %body-text;
+.models-counter {
+  display: inline-flex;
+  align-items: center;
+  background: rgba($main-color, 0.1);
   color: $main-color;
-  margin-bottom: 40px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 24px;
+  border: 1px solid rgba($main-color, 0.2);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba($main-color, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba($main-color, 0.2);
+  }
 }

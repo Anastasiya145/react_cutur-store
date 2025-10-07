@@ -43,31 +43,57 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
 
   return (
     <div className="checkout-card">
-      {/* eslint-disable-next-line */}
-      <div className="checkout-card__content">
+      <div className="checkout-card__header">
         <ButtonRemove onClick={() => toggleToCart(item)} />
-
-        <img
-          alt={item.name}
-          src={`img/products/${item.mainimage}.jpg`}
-          className="checkout-card__img"
-        />
-        <Link
-          className="checkout-card__title"
-          to={`/${item.category}/${item.id}`}
-        >
-          {item.name}
-        </Link>
       </div>
-      <div className="checkout-card__container">
-        <ButtonsMoreLess
-          count={count}
-          maxReached={maxReached}
-          warningText={warningText}
-          handleDecrease={handleDecrease}
-          handleIncrease={handleIncrease}
-        />
-        <p className="checkout-card__price">{`$${totalPrice()}`}</p>
+
+      <div className="checkout-card__body">
+        <div className="checkout-card__image-container">
+          <img
+            alt={item.name}
+            src={`img/products/${item.mainimage}.jpg`}
+            className="checkout-card__image"
+            loading="lazy"
+          />
+        </div>
+
+        <div className="checkout-card__details">
+          <Link
+            className="checkout-card__title"
+            to={`/${item.category}/${item.id}`}
+            title={item.name}
+          >
+            {item.name}
+          </Link>
+
+          <div className="checkout-card__meta">
+            <span className="checkout-card__unit-price">
+              Prix unitaire: {item.price}€
+            </span>
+            {item.itemsleft !== undefined && item.itemsleft < 5 && (
+              <span className="checkout-card__stock-warning">
+                Plus que {item.itemsleft} en stock
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="checkout-card__footer">
+        <div className="checkout-card__controls">
+          <ButtonsMoreLess
+            count={count}
+            maxReached={maxReached}
+            warningText={warningText}
+            handleDecrease={handleDecrease}
+            handleIncrease={handleIncrease}
+          />
+        </div>
+
+        <div className="checkout-card__price-section">
+          <span className="checkout-card__price-label">Total:</span>
+          <p className="checkout-card__price">{`${totalPrice()}€`}</p>
+        </div>
       </div>
     </div>
   );

@@ -1,57 +1,153 @@
-@import "/src/styles/common";
+@import "src/styles/common";
 
-.pagination,
-.pagination__item,
-.pagination__link {
+.pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.pagination {
-  grid-gap: $gap;
-  gap: $gap;
+  gap: 12px;
 
   &__list {
     display: flex;
-    grid-gap: $gap;
-    gap: $gap;
+    gap: 8px;
   }
 
   &__arrow {
-    color: $main-color;
+    height: 40px;
+    width: 40px;
+    border: 2px solid $border-color;
+    border-radius: 8px;
+    background: $site-background-color;
+    color: $text-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    text-decoration: none;
 
-    &:hover {
-      color: $accent-color;
+    &:hover:not(.disabled) {
+      border-color: $main-color;
+      color: $main-color;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(225, 173, 55, 0.15);
+    }
+
+    &:active:not(.disabled) {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $main-color;
+      box-shadow: 0 0 0 3px rgba(225, 173, 55, 0.2);
     }
 
     &.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
       pointer-events: none;
-      color: $border-color;
+      color: $text-secondary;
+      border-color: $border-color;
+      transform: none;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
   }
 
   &__item {
-    width: 32px;
-    height: 32px;
-    border: 1px solid $light-color;
-    background-color: transparent;
-    transition: all 0.3s;
-    fill: $accent-color;
-
-    &:hover {
-      border-color: $accent-color;
-    }
+    display: flex;
   }
 
   &__link {
-    width: 100%;
-    height: 100%;
-    color: $accent-color;
+    height: 40px;
+    width: 40px;
+    border: 2px solid $border-color;
+    border-radius: 8px;
+    background: $site-background-color;
+    color: $text-primary;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    text-decoration: none;
+    user-select: none;
+
+    &:hover {
+      border-color: $main-color;
+      color: $main-color;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(225, 173, 55, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $main-color;
+      box-shadow: 0 0 0 3px rgba(225, 173, 55, 0.2);
+    }
 
     &.active {
-      background-color: $accent-color;
+      background: linear-gradient(
+        135deg,
+        $main-color 0%,
+        darken($main-color, 10%) 100%
+      );
       color: #fff;
+      border-color: $main-color;
+      box-shadow: 0 4px 12px rgba(225, 173, 55, 0.3);
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(225, 173, 55, 0.4);
+      }
+    }
+  }
+}
+
+// Адаптивность для планшетов
+@media (max-width: 768px) {
+  .pagination {
+    gap: 8px;
+
+    &__list {
+      gap: 6px;
+    }
+
+    &__arrow,
+    &__link {
+      height: 36px;
+      width: 36px;
+      font-size: 14px;
+    }
+  }
+}
+
+// Адаптивность для мобильных устройств
+@media (max-width: 480px) {
+  .pagination {
+    gap: 6px;
+
+    &__list {
+      gap: 4px;
+    }
+
+    &__arrow,
+    &__link {
+      height: 32px;
+      width: 32px;
+      font-size: 14px;
+      border-width: 1px;
     }
   }
 }

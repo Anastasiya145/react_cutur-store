@@ -27,7 +27,11 @@ export const ButtonAddToCart: React.FC<Props> = ({
           selected: isProductInCart,
           disabled: product.itemsleft === 0,
         })}
-        onClick={() => product.itemsleft !== 0 && toggleToCart(product)}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          product.itemsleft !== 0 && toggleToCart(product);
+        }}
         disabled={product.itemsleft === 0}
       >
         {product.itemsleft === 0
@@ -40,7 +44,11 @@ export const ButtonAddToCart: React.FC<Props> = ({
       <button
         data-cy="addToFavorite"
         type="button"
-        onClick={() => toggleToFavorites(product)}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleToFavorites(product);
+        }}
         className={classNames("button button_like", {
           selected: isProductInFav,
         })}

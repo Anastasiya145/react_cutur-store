@@ -19,33 +19,60 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const isOutOfStock = product.itemsleft === 0;
 
   return (
-    <div className={classNames("card", { disabled: isOutOfStock })}>
-      <Link
-        className="card__link"
-        to={`/${product.category}/${product.id}`}
-        tabIndex={0}
-      >
+    <Link
+      className={classNames("card", {
+        "card--disabled": isOutOfStock,
+        "card--on-sale": product.final_price !== product.price,
+      })}
+      to={`/${product.category}/${product.id}`}
+    >
+      <div className="card__image-container">
         {product.images[0] && (
           <img
             className="card__image"
             alt={product.name}
             src={`img/products/${product.mainimage}.jpg`}
+            loading="lazy"
           />
         )}
-      </Link>
-      <h1 className="card__title">{product.name}</h1>
-      <div className="card__price">
-        <ProductPrice
-          price={product.price}
-          // discount={product.discount}
-          final_price={product.final_price}
-        />
+
+        {product.final_price !== product.price && (
+          <div className="card__badge card__badge--sale">
+            -
+            {Math.round(
+              ((product.price - product.final_price) / product.price) * 100
+            )}
+            %
+          </div>
+        )}
+
+        {isOutOfStock && (
+          <div className="card__badge card__badge--out-of-stock">Épuisé</div>
+        )}
+
+        <div className="card__overlay">
+          <span className="card__overlay-text">Voir les détails</span>
+        </div>
       </div>
-      <ButtonAddToCart
-        product={product}
-        isProductInFav={isProductSelectedinFav}
-        isProductInCart={isProductSelectedinCart}
-      />
-    </div>
+
+      <div className="card__content">
+        <h3 className="card__title">{product.name}</h3>
+
+        <div className="card__price">
+          <ProductPrice
+            price={product.price}
+            final_price={product.final_price}
+          />
+        </div>
+
+        <div className="card__actions">
+          <ButtonAddToCart
+            product={product}
+            isProductInFav={isProductSelectedinFav}
+            isProductInCart={isProductSelectedinCart}
+          />
+        </div>
+      </div>
+    </Link>
   );
 };

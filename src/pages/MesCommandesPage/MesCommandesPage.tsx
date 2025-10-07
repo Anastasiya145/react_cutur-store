@@ -4,8 +4,10 @@ import { getOrdersForConnectedUser } from "../../api/ordersApi";
 import { Order } from "../../types/Order";
 import { Loader } from "../../components/Loader/Loader";
 import { CommandeCard } from "./CommandeCard";
+import { useAuthCheck } from "../../helpers/hooks/useAuthCheck";
 
 const MesCommandesPage: React.FC = () => {
+  useAuthCheck(); // Проверяем аутентификацию
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
