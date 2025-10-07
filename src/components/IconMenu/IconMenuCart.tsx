@@ -1,7 +1,7 @@
 import React from "react";
 import { PathnamesApp } from "../../types/Pathnames";
 import "./iconMenu.scss";
-import { IconCart } from "../Icon/IconCart";
+import { IconCart } from "../Icons/IconCart";
 import { IconMenu } from "./IconMenu";
 
 type Props = {

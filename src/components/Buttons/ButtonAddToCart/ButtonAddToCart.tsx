@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { AppContext } from "../../../context/AppContextProvider";
 import { Product } from "../../../types/Product";
 import "./buttonAddToCart.scss";
-import { IconFav } from "../../Icon/IconFav";
+import { IconFav } from "../../Icons/IconFav";
 
 export type Props = {
   isProductInFav: boolean;

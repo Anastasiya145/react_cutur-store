@@ -1,5 +1,5 @@
 import React from "react";
-import { IconArrowLeft } from "../../components/Icon/IconArrowLeft";
+import { IconArrowLeft } from "../../components/Icons/IconArrowLeft";
 
 export const ProductBackButton: React.FC<{ onClick: () => void }> = ({
   onClick,

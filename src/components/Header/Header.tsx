@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IconUser } from "../Icon/IconUser";
+import { IconUser } from "../Icons/IconUser";
 import classNames from "classnames";
 import { PageNavLink } from "../../helpers/PageNavLink";
 import { AppContext } from "../../context/AppContextProvider";
@@ -14,9 +14,9 @@ import {
 import "./header.scss";
 import { IconMenuCart } from "../IconMenu/IconMenuCart";
 import { IconMenuFavorites } from "../IconMenu/IconMenuFavorites";
-import { IconMenu } from "../Icon/IconMenu";
-import { IconClose } from "../Icon/IconClose";
-import UserIconLink from "../Icon/UserIconLink";
+import { IconMenu } from "../Icons/IconMenu";
+import { IconClose } from "../Icons/IconClose";
+import UserIconLink from "../Icons/UserIconLink";
 
 export const Header: React.FC = () => {
   const { favorites, cart } = useContext(AppContext);

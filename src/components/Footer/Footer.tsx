@@ -1,5 +1,5 @@
 import React from "react";
-import { IconInstagram } from "../Icon/IconInstagram";
+import { IconInstagram } from "../Icons/IconInstagram";
 import "./footer.scss";
 import { Logo } from "../Logo/Logo";
 import { Link } from "react-router-dom";

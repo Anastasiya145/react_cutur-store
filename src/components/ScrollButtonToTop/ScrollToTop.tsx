@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./scrollToTop.scss";
-import { IconArrowTop } from "../Icon";
+import { IconArrowTop } from "../Icons";
 
 export const ScrollToTop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      window.pageYOffset > 400 ? setIsVisible(true) : setIsVisible(false);
+      if (window.pageYOffset > 400) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
     };
 
     window.addEventListener("scroll", toggleVisibility);

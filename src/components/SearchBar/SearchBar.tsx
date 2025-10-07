@@ -3,8 +3,8 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { getSearchWith } from "../../helpers/searchHelper";
 import { useDebounce } from "../../helpers/hooks/useDebounce";
 import "./searchBar.scss";
-import { IconClose } from "../Icon/IconClose";
-import { IconSearch } from "../Icon/IconSearch";
+import { IconClose } from "../Icons/IconClose";
+import { IconSearch } from "../Icons/IconSearch";
 import classNames from "classnames";
 
 export const SearchBar: React.FC = () => {
@@ -40,7 +40,11 @@ export const SearchBar: React.FC = () => {
   const openSearch = () => setIsSearchOpened(true);
 
   return (
-    <div className={classNames("search-bar", { "search-bar_opened": isSearchOpened })}>
+    <div
+      className={classNames("search-bar", {
+        "search-bar_opened": isSearchOpened,
+      })}
+    >
       {!isSearchOpened && (
         <button className="search-bar__icon" type="button" onClick={openSearch}>
           <IconSearch style={{ width: 20, height: 20 }} className="icon__img" />
@@ -56,7 +60,11 @@ export const SearchBar: React.FC = () => {
             onChange={handleChangeSearchInput}
             autoFocus
           />
-          <button className="search-bar__button" type="button" onClick={handleClearSearchInput}>
+          <button
+            className="search-bar__button"
+            type="button"
+            onClick={handleClearSearchInput}
+          >
             <IconClose />
           </button>
         </>

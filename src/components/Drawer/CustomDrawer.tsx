@@ -1,7 +1,7 @@
 import React from "react";
 import "./customDrawer.scss";
 import classNames from "classnames";
-import { IconClose } from "../Icon/IconClose";
+import { IconClose } from "../Icons/IconClose";
 
 type CustomDrawerProps = {
   open: boolean;

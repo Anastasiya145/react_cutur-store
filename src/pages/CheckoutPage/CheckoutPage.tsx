@@ -1,76 +1,144 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { createOrder } from "../../api/ordersApi";
 import { useAppContext } from "../../context/AppContextProvider";
 import { useAuth } from "../../context/AuthContext";
 import { CreateOrderRequest } from "../../types/Order";
-import "./CheckoutPage.scss";
+import { Address } from "../../types/User";
+import { useNotification } from "../../context/NotificationContext";
+import "./checkoutPage.scss";
+import "./components/OrderItem.scss";
 import { useNavigate } from "react-router-dom";
 import { PathnamesForUserMenu } from "../../types/Pathnames";
-import { LoadingButton } from "../../components/LoadingButton";
+import {
+  CheckoutHeader,
+  ShippingForm,
+  ConfirmationStep,
+  OrderSummary,
+  EmptyCart,
+} from "./components";
+
+type CheckoutFormData = {
+  shippingAddress: Address;
+  billingAddress: Address;
+  sameAsShipping: boolean;
+  notes?: string;
+};
 
 const CheckoutPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
   const { cart, clearCart } = useAppContext();
   const { user } = useAuth();
-
+  const { showError, showSuccess } = useNotification();
   const navigate = useNavigate();
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<CheckoutFormData>({
+    defaultValues: {
+      sameAsShipping: true,
+      shippingAddress: {
+        country: "France",
+        city: "",
+        street: "",
+        postalCode: "",
+        apartment: "",
+      },
+    },
+  });
+
+  const sameAsShipping = watch("sameAsShipping");
+  const shippingAddress = watch("shippingAddress");
+
+  // Pre-fill address could be added later when user profile is available
+
+  // Auto-fill billing address when same as shipping is checked
+  useEffect(() => {
+    if (sameAsShipping) {
+      setValue("billingAddress", shippingAddress);
+    }
+  }, [sameAsShipping, shippingAddress, setValue]);
+
   const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
+  const shippingCost = total >= 50 ? 0 : 5.99;
+  const finalTotal = total + shippingCost;
 
-  const orderDataForMutation: CreateOrderRequest = {
-    user_email: user || "",
-    items: cart.map((item) => ({
-      id: item.id,
-      quantity: item.count,
-    })),
-  };
+  const onSubmit = async () => {
+    if (currentStep === 1) {
+      setCurrentStep(2);
+      return;
+    }
 
-  const handleCheckout = async () => {
     setLoading(true);
-    setError(null);
-    setSuccess(false);
     try {
-      await createOrder(orderDataForMutation);
-      setSuccess(true);
+      const orderData: CreateOrderRequest = {
+        user_email: user || "",
+        items: cart.map((item) => ({
+          id: item.id,
+          quantity: item.count,
+        })),
+      };
+
+      await createOrder(orderData);
+      showSuccess("Commande passée avec succès!");
       clearCart();
       navigate(PathnamesForUserMenu.Commandes);
     } catch (err: any) {
-      setError(err.message || "Erreur lors de la commande.");
+      showError(err.message || "Erreur lors de la commande.");
     } finally {
       setLoading(false);
     }
   };
 
+  if (cart.length === 0) {
+    return <EmptyCart />;
+  }
+
   return (
     <div className="checkout-page">
-      <h1 className="checkout-page__title">Finaliser la commande</h1>
-      <div className="checkout-page__summary">
-        <h2 className="checkout-page__subtitle">Résumé de la commande</h2>
-        {cart.length === 0 ? (
-          <div className="checkout-page__text">Votre panier est vide.</div>
-        ) : (
-          <ul className="checkout-page__list">
-            {cart.map((item) => (
-              <li key={item.id} className="checkout-page__item">
-                {item.name} x {item.count} — {item.price}€
-              </li>
-            ))}
-          </ul>
-        )}
-        <div className="checkout-page__total">Total: {total}€</div>
+      <div className="checkout-page__container">
+        <CheckoutHeader currentStep={currentStep} />
+
+        <form onSubmit={handleSubmit(onSubmit)} className="checkout-page__form">
+          <div className="checkout-page__content">
+            <div className="checkout-page__main">
+              {currentStep === 1 && (
+                <ShippingForm
+                  register={register}
+                  errors={errors}
+                  shippingCost={shippingCost}
+                />
+              )}
+
+              {currentStep === 2 && (
+                <ConfirmationStep
+                  shippingAddress={shippingAddress}
+                  cart={cart}
+                  onEditAddress={() => setCurrentStep(1)}
+                />
+              )}
+            </div>
+
+            <div className="checkout-page__sidebar">
+              <OrderSummary
+                cart={cart}
+                total={total}
+                shippingCost={shippingCost}
+                finalTotal={finalTotal}
+                currentStep={currentStep}
+                loading={loading}
+                onBack={() => setCurrentStep(1)}
+                onContinue={handleSubmit(onSubmit)}
+              />
+            </div>
+          </div>
+        </form>
       </div>
-      <LoadingButton
-        text="Confirmer la commande"
-        loading={loading}
-        disabled={loading || success || cart.length === 0}
-        onClick={handleCheckout}
-      />
-      {error && <div className="checkout-page__error">{error}</div>}
-      {success && (
-        <div className="checkout-page__success">Commande réussie !</div>
-      )}
     </div>
   );
 };

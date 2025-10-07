@@ -2,7 +2,7 @@ import React from "react";
 import { PathnamesApp } from "../../types/Pathnames";
 import "./iconMenu.scss";
 import { IconMenu } from "./IconMenu";
-import { IconFav } from "../Icon/IconFav";
+import { IconFav } from "../Icons/IconFav";
 
 type Props = {
   count: number;

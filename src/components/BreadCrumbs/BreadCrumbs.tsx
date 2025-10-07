@@ -1,52 +1,101 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import classNames from "classnames";
 import "./breadCrumbs.scss";
-import { IconHome } from "../Icon/IconHome";
-import { IconArrowRight } from "../Icon/IconArrowRight";
 import { CATEGORY_NAME_MAP } from "../../types/Pathnames";
+import { IconHome } from "../Icons";
+
+export interface BreadcrumbItem {
+  label: string;
+  path: string;
+  isActive: boolean;
+}
 
 export const BreadCrumbs: React.FC = () => {
-  const breadcrumbs = useLocation()
-    .pathname.split("/")
-    .map((item) => {
-      const slug = decodeURIComponent(item);
-      const decodedItem = CATEGORY_NAME_MAP[slug] || slug;
+  const location = useLocation();
 
-      return decodedItem;
-    })
-    .filter((item) => item !== "");
+  const generateBreadcrumbs = (): BreadcrumbItem[] => {
+    const pathSegments = location.pathname
+      .split("/")
+      .filter((segment) => segment !== "");
+    const breadcrumbs: BreadcrumbItem[] = [];
 
-  const isLastLink = (index: number) => {
-    return index === breadcrumbs.length - 1;
+    // Always start with Home
+    breadcrumbs.push({
+      label: "Accueil",
+      path: "/",
+      isActive: pathSegments.length === 0,
+    });
+
+    // Build breadcrumbs from path segments
+    let currentPath = "";
+    pathSegments.forEach((segment, index) => {
+      const decodedSegment = decodeURIComponent(segment);
+      const displayName = CATEGORY_NAME_MAP[decodedSegment] || decodedSegment;
+
+      currentPath += `/${segment}`;
+
+      breadcrumbs.push({
+        label: displayName.split("-").join(" "),
+        path: currentPath,
+        isActive: index === pathSegments.length - 1,
+      });
+    });
+
+    return breadcrumbs;
   };
 
+  const breadcrumbItems = generateBreadcrumbs();
+
+  if (breadcrumbItems.length <= 1) {
+    return null; // Don't show breadcrumbs on home page
+  }
+
   return (
-    <div data-cy="breadCrumbs" className="breadcrumbs">
-      <Link to="/" className="breadcrumbs__link">
-        <IconHome style={{ width: 16, height: 16 }} />
-        <IconArrowRight style={{ width: 16, height: 16 }} />
-      </Link>
-      {breadcrumbs.map((crumbs, index) => {
-        const text = crumbs.split("-").join(" ");
-
-        const linkTO = `/${crumbs.toLowerCase()}`;
-
-        return (
-          <Link
-            key={crumbs}
-            to={linkTO}
-            className={classNames("breadcrumbs__link", {
-              disabled: isLastLink(index),
-            })}
-          >
-            {text}
-            {breadcrumbs.length - 1 !== index && (
-              <IconArrowRight style={{ width: 16, height: 16 }} />
+    <nav
+      className="breadcrumbs"
+      aria-label="Fil d'Ariane"
+      data-cy="breadCrumbs"
+    >
+      <ol className="breadcrumbs__list">
+        {breadcrumbItems.map((item, index) => (
+          <li key={item.path} className="breadcrumbs__item">
+            {item.isActive ? (
+              <span className="breadcrumbs__current" aria-current="page">
+                {item.label}
+              </span>
+            ) : (
+              <Link
+                to={item.path}
+                className="breadcrumbs__link"
+                title={`Aller à ${item.label}`}
+              >
+                {index === 0 && (
+                  <IconHome
+                    className="breadcrumbs__home-icon"
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                  />
+                )}
+                <span className="breadcrumbs__text">{item.label}</span>
+              </Link>
             )}
-          </Link>
-        );
-      })}
-    </div>
+            {!item.isActive && (
+              <span className="breadcrumbs__separator" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M6 4L10 8L6 12"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
   );
 };

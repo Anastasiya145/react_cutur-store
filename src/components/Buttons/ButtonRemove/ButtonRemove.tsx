@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IconClose } from "../../Icon/IconClose";
+import { IconClose } from "../../Icons/IconClose";
 import "./buttonRemove.scss";
 
 type ButtonRemoveProps = {

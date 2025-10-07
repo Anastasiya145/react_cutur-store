@@ -3,8 +3,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import classNames from "classnames";
 import { getSearchWith } from "../../helpers/searchHelper";
 import "./pagination.scss";
-import { IconArrowLeft } from "../Icon/IconArrowLeft";
-import { IconArrowRight } from "../Icon/IconArrowRight";
+import { IconArrowLeft } from "../Icons/IconArrowLeft";
+import { IconArrowRight } from "../Icons/IconArrowRight";
 
 export type Props = {
   total: number;

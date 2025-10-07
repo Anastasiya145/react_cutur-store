@@ -3,7 +3,7 @@ import classNames from "classnames";
 import "./dropdown.scss";
 import { Link, useSearchParams } from "react-router-dom";
 import { getSearchWith } from "../../helpers/searchHelper";
-import { IconArrowDown } from "../Icon/IconArrowDown";
+import { IconArrowDown } from "../Icons/IconArrowDown";
 
 export type Props = {
   label: string;
