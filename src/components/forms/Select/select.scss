@@ -67,7 +67,7 @@
 
     &--filled {
       .custom-select__text {
-        color: $main-color;
+        color: $text-primary;
       }
     }
 
@@ -96,6 +96,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-transform: capitalize;
 
     &--placeholder {
       color: $light-color;
@@ -133,23 +134,8 @@
   }
 
   &__option {
-    padding: 12px 16px;
-    font-family: "Mont-Regular";
-    font-size: 16px;
-    color: $accent-color;
-    cursor: pointer;
-    transition: $transition-fast;
-
-    &:hover {
-      background: $bg-light;
-      color: $main-color;
-    }
-
-    &--selected {
-      background: $bg-light;
-      color: $main-color;
-      font-weight: 600;
-    }
+    @include menu-item-vertical;
+    color: $text-primary !important;
 
     &:last-child {
       border-radius: 0 0 8px 8px;

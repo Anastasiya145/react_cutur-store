@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./filterSelect.scss";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { getSearchWith } from "../../helpers/searchHelper";
 import { Select, SelectOption } from "../forms/Select/Select";
 
@@ -19,9 +19,8 @@ export const FilterSelect: React.FC<FilterSelectProps> = ({
   startValue,
   searchParamsKey,
 }) => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState(startValue);
-  const navigate = useNavigate();
 
   const handleChangeValue = (selectedValue: string) => {
     setValue(selectedValue);
@@ -29,15 +28,23 @@ export const FilterSelect: React.FC<FilterSelectProps> = ({
     // Построение новых параметров URL
     const newSearchParams = getSearchParams(selectedValue);
 
-    // Навигация к новому URL
-    navigate({
-      pathname: window.location.pathname,
-      search: newSearchParams,
-    });
+    // Обновляем только параметры поиска (оставляем текущий путь)
+    // getSearchWith возвращает строку без ведущего '?', setSearchParams
+    // принимает URLSearchParams или объект, поэтому создаём объект
+    setSearchParams(new URLSearchParams(newSearchParams));
   };
 
   const getSearchParams = (params: string) => {
     if (searchParamsKey === "itemsOnPage") {
+      // if user selects 'All', remove the itemsOnPage param so ProductList
+      // will treat it as showing all items (it falls back to products.length)
+      if (params === "All") {
+        return getSearchWith(searchParams, {
+          page: "1",
+          [searchParamsKey]: null,
+        });
+      }
+
       return getSearchWith(searchParams, {
         page: "1",
         [searchParamsKey]: params,

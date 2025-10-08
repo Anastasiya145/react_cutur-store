@@ -26,7 +26,7 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
     {
       label,
       options,
-      placeholder = "Выберите опцию",
+      placeholder = "Choisissez une option",
       required = false,
       value,
       defaultValue,
@@ -190,8 +190,7 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
                 <li
                   key={option.value}
                   className={classNames("custom-select__option", {
-                    "custom-select__option--selected":
-                      option.value === selectedValue,
+                    active: option.value === selectedValue,
                   })}
                   onClick={() => handleOptionSelect(option.value)}
                   role="option"

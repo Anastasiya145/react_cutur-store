@@ -88,7 +88,7 @@ export const ProductList: React.FC<Props> = ({
           {(isPaginationShown || isSortDropdownShown) && (
             <div className="product-list__container">
               {isSortDropdownShown && (
-                <div className="product-list__dropdowns">
+                <div className="product-list__select-group">
                   <FilterSelect
                     label="Trier par"
                     classModificator="sort"

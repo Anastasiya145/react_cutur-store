@@ -329,23 +329,3 @@
     opacity: 1;
   }
 }
-
-@mixin error {
-  color: $error-color;
-  background: rgba($error-color, 0.08);
-  border: 1px solid $error-color;
-  border-radius: 6px;
-  padding: 8px 12px;
-  font-size: 14px;
-  text-align: center;
-}
-
-@mixin success {
-  color: $success-color;
-  background: rgba($success-color, 0.08);
-  border: 1px solid $success-color;
-  border-radius: 6px;
-  padding: 8px 12px;
-  font-size: 14px;
-  text-align: center;
-}

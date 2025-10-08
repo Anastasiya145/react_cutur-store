@@ -23,8 +23,9 @@
     display: block;
   }
 
-  &__dropdowns {
+  &__select-group {
     display: flex;
+    gap: $gap;
   }
 
   &__pagination {
@@ -54,7 +55,7 @@
       flex-direction: column;
     }
 
-    &__dropdowns {
+    &__select-group {
       flex-direction: column;
       margin: 0 auto;
     }

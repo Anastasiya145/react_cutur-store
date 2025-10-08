@@ -194,11 +194,6 @@
     }
   }
 
-  &__error,
-  &__error-message {
-    @include error;
-  }
-
   &__input-wrapper {
     flex: 1;
     display: flex;
