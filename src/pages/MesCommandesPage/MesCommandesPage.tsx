@@ -32,7 +32,7 @@ const MesCommandesPage: React.FC = () => {
     <div className="mes-commandes-page">
       <h1 className="mes-commandes-page__title">Mes commandes</h1>
       {loading && <Loader />}
-      {error && <div style={{ color: "red" }}>{error}</div>}
+      {error && <div className="mes-commandes-page__error">{error}</div>}
       {!loading && !error && orders.length === 0 && (
         <div>Aucune commande trouvée.</div>
       )}

@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 280px;
+  width: 250px;
   background: white;
   border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -68,29 +68,24 @@
     height: 220px;
     object-fit: cover;
     display: block;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__badge {
     position: absolute;
     top: 12px;
     right: 12px;
-    padding: 6px 12px;
+    padding: 4px 8px;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 600;
     color: white;
-    z-index: 2;
-    backdrop-filter: blur(10px);
 
     &--sale {
-      background: linear-gradient(135deg, #ef4444, #dc2626);
-      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+      background: $error-color;
     }
 
     &--out-of-stock {
-      background: rgba(107, 114, 128, 0.9);
-      box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+      background: $text-secondary;
     }
   }
 
@@ -100,24 +95,17 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-      45deg,
-      rgba($main-color, 0.9),
-      rgba($accent-color, 0.9)
-    );
+    background: rgba($main-color, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
   }
 
   &__overlay-text {
     color: white;
     font-weight: 600;
     font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
     text-align: center;
   }
 
@@ -152,7 +140,6 @@
   }
 }
 
-// Адаптивность
 @media #{$tablet-media-query} {
   .card {
     width: 260px;
@@ -205,38 +192,6 @@
       font-size: 0.65rem;
       top: 8px;
       right: 8px;
-    }
-
-    &:hover {
-      transform: translateY(-2px);
-    }
-  }
-}
-
-// Темная тема
-@media (prefers-color-scheme: dark) {
-  .card {
-    background: $dark-blue-color;
-    border-color: rgba(255, 255, 255, 0.1);
-
-    &:hover {
-      border-color: rgba($main-color, 0.4);
-    }
-
-    &__image-container {
-      background: #374151;
-    }
-
-    &__title {
-      color: #f9fafb;
-    }
-
-    &__overlay {
-      background: linear-gradient(
-        45deg,
-        rgba(31, 41, 55, 0.9),
-        rgba(55, 65, 81, 0.9)
-      );
     }
   }
 }

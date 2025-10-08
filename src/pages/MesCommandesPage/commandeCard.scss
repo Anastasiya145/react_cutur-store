@@ -36,11 +36,11 @@
     @extend %body-text;
 
     &--created {
-      background: #e3f7e3;
+      background: lighten($success-color, 45%);
       color: $success-color;
     }
     &--processing {
-      background: #fff8e1;
+      background: lighten($warning-color, 35%);
       color: $warning-color;
     }
     &--cancelled {

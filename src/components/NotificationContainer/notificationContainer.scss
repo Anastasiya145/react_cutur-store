@@ -30,38 +30,38 @@
   align-items: center;
 
   &--error {
-    border-left-color: #dc3545;
-    background: #fef2f2;
+    border-left-color: $error-color;
+    background: lighten($error-color, 40%);
 
     .notification__message {
-      color: #991b1b;
+      color: darken($error-color, 20%);
     }
   }
 
   &--success {
-    border-left-color: #28a745;
-    background: #f0fdf4;
+    border-left-color: $success-color;
+    background: lighten($success-color, 40%);
 
     .notification__message {
-      color: #166534;
+      color: darken($success-color, 20%);
     }
   }
 
   &--warning {
-    border-left-color: #ffc107;
-    background: #fffbeb;
+    border-left-color: $warning-color;
+    background: lighten($warning-color, 40%);
 
     .notification__message {
-      color: #92400e;
+      color: darken($warning-color, 20%);
     }
   }
 
   &--info {
-    border-left-color: #17a2b8;
-    background: #f0f9ff;
+    border-left-color: $info-color;
+    background: lighten($info-color, 40%);
 
     .notification__message {
-      color: #0369a1;
+      color: darken($info-color, 20%);
     }
   }
 
@@ -87,7 +87,7 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    color: #6b7280;
+    color: $light-color;
     padding: 0;
     width: 24px;
     height: 24px;
@@ -100,7 +100,7 @@
 
     &:hover {
       background: rgba(0, 0, 0, 0.1);
-      color: #374151;
+      color: $dark-blue-color;
     }
   }
 }

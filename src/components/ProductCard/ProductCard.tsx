@@ -38,11 +38,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
         {product.final_price !== product.price && (
           <div className="card__badge card__badge--sale">
-            -
-            {Math.round(
-              ((product.price - product.final_price) / product.price) * 100
-            )}
-            %
+            -{Math.round(product.discount)}%
           </div>
         )}
 

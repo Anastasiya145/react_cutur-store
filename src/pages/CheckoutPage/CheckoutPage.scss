@@ -23,7 +23,6 @@
     @extend %h1;
     margin: 0 0 24px 0;
     text-align: center;
-    // color: $dark-blue-color;
   }
 
   &__steps {
@@ -37,7 +36,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #6c757d;
+    color: $light-color;
     transition: color 0.3s;
 
     &.active {
@@ -55,7 +54,7 @@
     height: 32px;
     border-radius: 50%;
     background: #e9ecef;
-    color: #6c757d;
+    color: $light-color;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +82,7 @@
     grid-template-columns: 1fr 380px;
     gap: 24px;
 
-    @media (max-width: 1024px) {
+    @media #{$desktop-smallest-media-query} {
       grid-template-columns: 1fr;
     }
   }
@@ -161,7 +160,7 @@
     }
 
     &::placeholder {
-      color: #6c757d;
+      color: $light-color;
     }
   }
 
@@ -223,7 +222,7 @@
 
   &__delivery-time {
     font-size: 14px;
-    color: #6c757d;
+    color: $light-color;
   }
 
   &__delivery-price {
@@ -334,7 +333,7 @@
   }
 
   &__summary-item-name {
-    color: #6c757d;
+    color: $light-color;
     flex: 1;
     margin-right: 8px;
   }
@@ -423,14 +422,14 @@
   &__text {
     @extend %body-text;
     margin: 16px 0 32px 0;
-    color: #6c757d;
+    color: $light-color;
   }
 
   &__button {
     @include button-square;
   }
 
-  @media (max-width: 1024px) {
+  @media #{$desktop-smallest-media-query} {
     &__content {
       gap: 20px;
     }

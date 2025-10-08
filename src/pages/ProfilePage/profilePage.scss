@@ -72,9 +72,9 @@
     font-weight: 500;
 
     &--coming-soon {
-      background: rgba(255, 193, 7, 0.1);
-      color: #856404;
-      border: 1px solid rgba(255, 193, 7, 0.3);
+      background: rgba($warning-color, 0.1);
+      color: $warning-text;
+      border: 1px solid rgba($warning-color, 0.3);
     }
   }
 

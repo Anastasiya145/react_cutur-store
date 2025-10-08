@@ -9,11 +9,11 @@
     width: 100%;
     max-width: 100%;
 
-    @media (max-width: 768px) {
+    @media #{$tablet-media-query} {
       padding: 0 20px 40px 20px;
     }
 
-    @media (max-width: 480px) {
+    @media #{$phone-media-query} {
       padding: 0 10px 40px 10px;
     }
   }
@@ -22,19 +22,16 @@
     height: auto;
     flex-shrink: 0;
 
-    // Очень маленькие экраны - полная ширина
-    @media (max-width: 479px) {
+    @media #{$phone-media-query} {
       width: 100%;
     }
 
-    // Средние экраны (480-767px) - фиксированная ширина для множественного отображения
-    @media (min-width: 480px) and (max-width: 767px) {
+    @media #{$tablet-media-query} {
       width: 200px;
       max-width: 200px;
     }
 
-    // Большие экраны - стандартная ширина для auto режима
-    @media (min-width: 768px) {
+    @media #{$desktop-smallest-media-query} {
       width: 300px;
       max-width: 300px;
     }
@@ -95,7 +92,7 @@
   }
 
   // Скрываем стрелки на мобильных устройствах
-  @media (max-width: 768px) {
+  @media #{$tablet-media-query} {
     .swiper-button-next,
     .swiper-button-prev {
       display: none;

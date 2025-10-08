@@ -60,10 +60,6 @@
   &.disabled {
     opacity: 0.7;
     pointer-events: none;
-
-    &:hover {
-      box-shadow: none;
-    }
   }
 }
 
@@ -77,16 +73,13 @@
   align-items: center;
   @extend %body-text;
   cursor: pointer;
-  transition: all 0.3s;
 
   &:hover {
-    background: #f5f5f5;
-    box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.13);
+    background: $bg-lighter;
   }
 
   &:active {
-    background: #e8e8e8;
-    box-shadow: none;
+    background: darken($bg-lighter, 5%);
   }
 
   &.disabled {

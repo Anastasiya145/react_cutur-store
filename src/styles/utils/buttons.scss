@@ -50,30 +50,4 @@
       pointer-events: none;
     }
   }
-
-  &_square {
-    width: min-content;
-    height: min-content;
-    padding: 8px;
-    margin-right: 8px;
-    transition: all 0.3s;
-
-    &::before {
-      content: none;
-    }
-
-    &:hover {
-      border-color: #000;
-    }
-
-    &.active {
-      color: #fff;
-      border-color: transparent;
-      background-color: $accent-color;
-    }
-  }
-
-  &_square-outline {
-    @include button-square-outline;
-  }
 }

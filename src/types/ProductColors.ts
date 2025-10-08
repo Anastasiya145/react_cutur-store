@@ -18,16 +18,16 @@ export type ColorsType = {
 export const colors = {
   noir: "#000", // black
   blanc: "#fff", // white
-  rouge: "#ff0000", // red
+  rouge: "#f28b82", // red - using error color
   rose: "#ffb6c1", // pink
   peche: "#d86818ff", // peach
   argent: "#b5b5bd", // silver
   or: "#d4af37", // gold
-  jaune: "#ffff00", // yellow
+  jaune: "#f2c94c", // yellow - using warning color
   orrose: "#b76e79", // rosegold
   gris_espacial: "#717378", // spacegray
   corail: "#ff7f50", // coral
   vert_nuit: "#004953", // midnightgreen
-  vert: "#4CD887", // green
+  vert: "#77a270", // green - using success color
   violet: "#EF7FFC", // purple
 };

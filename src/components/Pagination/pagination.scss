@@ -115,8 +115,7 @@
   }
 }
 
-// Адаптивность для планшетов
-@media (max-width: 768px) {
+@media #{$tablet-media-query} {
   .pagination {
     gap: 8px;
 
@@ -133,8 +132,7 @@
   }
 }
 
-// Адаптивность для мобильных устройств
-@media (max-width: 480px) {
+@media #{$phone-media-query} {
   .pagination {
     gap: 6px;
 

@@ -52,7 +52,7 @@
     transform: translateY(0);
   }
 
-  @media (min-width: 768px) {
+  @media #{$tablet-media-query} {
     width: 480px;
     max-width: 90vw;
     height: 100vh;
