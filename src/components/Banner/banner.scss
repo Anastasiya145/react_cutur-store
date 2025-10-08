@@ -30,22 +30,7 @@
 .banner__text {
   display: inline-block;
   white-space: nowrap;
-  animation: banner-slide 0.7s cubic-bezier(0.77, 0, 0.18, 1) both;
-}
-
-@keyframes banner-slide {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  animation: $animation-slide-in;
 }
 
 // @media #{$phone-media-query} {

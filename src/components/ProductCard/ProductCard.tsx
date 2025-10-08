@@ -4,8 +4,11 @@ import { AppContext } from "../../context/AppContextProvider";
 import { Product } from "../../types/Product";
 import { ProductPrice } from "../ProductPrice/ProductPrice";
 import { ButtonAddToCart } from "../Buttons/ButtonAddToCart/ButtonAddToCart";
+import { Badge } from "../Badges/Badge";
+import { useStockBadge } from "../../hooks/useStockBadge";
 import "./productCard.scss";
 import classNames from "classnames";
+import { DiscountBadge } from "../Badges/DiscountBadge";
 
 export type Props = {
   product: Product;
@@ -17,6 +20,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const isProductSelectedinFav = isProductSelected(product.id, favorites);
   const isProductSelectedinCart = isProductSelected(product.id, cart);
   const isOutOfStock = product.itemsleft === 0;
+  const stockBadge = useStockBadge({ itemsleft: product.itemsleft, count: 1 });
 
   return (
     <Link
@@ -37,13 +41,18 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         )}
 
         {product.final_price !== product.price && (
-          <div className="card__badge card__badge--sale">
-            -{Math.round(product.discount)}%
-          </div>
+          <DiscountBadge
+            text={`-${Math.round(((product.price - product.final_price) / product.price) * 100)}%`}
+            className="card__badge"
+          />
         )}
 
-        {isOutOfStock && (
-          <div className="card__badge card__badge--out-of-stock">Épuisé</div>
+        {stockBadge.show && (
+          <Badge
+            type={stockBadge.type}
+            text={stockBadge.text}
+            className="card__badge card__badge--stock"
+          />
         )}
 
         <div className="card__overlay">

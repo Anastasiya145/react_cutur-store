@@ -3,7 +3,7 @@
   height: 100%;
   @extend %uppercase;
   color: $main-color;
-  transition: color 0.3s;
+  transition: $transition-color;
 
   &:last-child {
     margin-right: 0;
@@ -27,7 +27,7 @@
   color: $main-color;
   border: 1px solid $light-color;
   box-shadow: $box-shadow-color;
-  transition: all 0.3s;
+  transition: $transition-smooth;
 
   &:hover {
     color: $accent-color;
@@ -43,7 +43,7 @@
   border-radius: 6px;
   @extend %body-text;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: $transition-smooth;
 
   &:hover {
     background: darken($accent-color, 10%);
@@ -123,7 +123,7 @@
   font-size: 1rem;
   color: currentColor;
   outline: none;
-  transition: border-color 0.2s;
+  transition: $transition-fast;
   resize: none;
   box-shadow: none;
 
@@ -139,11 +139,10 @@
 
 @mixin email-link {
   color: $main-color;
-  // text-decoration: none;
   font-weight: inherit;
   cursor: pointer;
   text-decoration: underline;
-  transition: color 0.2s;
+  transition: $transition-color;
 
   &:hover {
     color: $accent-color;

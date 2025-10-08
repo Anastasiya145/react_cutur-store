@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ProductInCart } from "../../types/Product";
 import { AppContext } from "../../context/AppContextProvider";
+import { Badge } from "../Badges/Badge";
+import { useStockBadge } from "../../hooks/useStockBadge";
 import "./checkoutCard.scss";
 import { ButtonRemove } from "../Buttons/ButtonRemove/ButtonRemove";
 import { ButtonsMoreLess } from "../Buttons/ButtonsMoreLess";
@@ -13,17 +15,11 @@ export type Props = {
 export const CheckoutCard: React.FC<Props> = ({ item }) => {
   const { toggleToCart, updateCountInCart } = useContext(AppContext);
   const [count, setCount] = useState(item.count);
-  const [warningText, setWarningText] = useState<string | null>(null);
+  const stockBadge = useStockBadge({ itemsleft: item.itemsleft, count });
 
   useEffect(() => {
     updateCountInCart(item.id, count);
   }, [item.id, count]);
-
-  useEffect(() => {
-    setWarningText(
-      count >= (item.itemsleft ?? Infinity) ? "Stock maximal atteint" : null
-    );
-  }, [count, item.itemsleft]);
 
   const totalPrice = () => {
     return item.price * count;
@@ -70,10 +66,12 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
             <span className="checkout-card__unit-price">
               Prix unitaire: {item.price}€
             </span>
-            {item.itemsleft !== undefined && item.itemsleft < 5 && (
-              <span className="checkout-card__stock-warning">
-                Plus que {item.itemsleft} en stock
-              </span>
+            {stockBadge.show && (
+              <Badge
+                type={stockBadge.type}
+                text={stockBadge.text}
+                className="checkout-card__stock-badge"
+              />
             )}
           </div>
         </div>
@@ -84,7 +82,11 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
           <ButtonsMoreLess
             count={count}
             maxReached={maxReached}
-            warningText={warningText}
+            warningText={
+              stockBadge.show && stockBadge.type === "error"
+                ? stockBadge.text
+                : null
+            }
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
           />

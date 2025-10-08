@@ -24,7 +24,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-left: 4px solid;
-  animation: slideIn 0.3s ease-out;
+  animation: $animation-slide-in;
   min-height: 60px;
   display: flex;
   align-items: center;
@@ -95,34 +95,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 4px;
-    transition: all 0.2s;
+    transition: $transition-fast;
     flex-shrink: 0;
 
     &:hover {
       background: rgba(0, 0, 0, 0.1);
       color: $dark-blue-color;
     }
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideOut {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(100%);
-    opacity: 0;
   }
 }

@@ -15,8 +15,8 @@ export type Product = {
   material: string;
   category: string;
   images: string[];
-  mainimage?: string;
-  itemsleft?: number;
+  mainimage: string;
+  itemsleft: number;
   colorsavailable: string[];
 };
 

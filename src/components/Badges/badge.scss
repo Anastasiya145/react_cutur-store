@@ -1,0 +1,67 @@
+@import "../../styles/common";
+
+.badge {
+  display: inline-flex;
+  text-transform: capitalize;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: $transition-fast;
+
+  &__icon {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  &__text {
+    white-space: nowrap;
+  }
+
+  &--warning {
+    background: rgba($warning-color, 0.1);
+    color: darken($warning-color, 20%);
+    border: 1px solid rgba($warning-color, 0.3);
+  }
+
+  &--error {
+    background: rgba($error-color, 0.1);
+    color: darken($error-color, 10%);
+    border: 1px solid rgba($error-color, 0.3);
+  }
+
+  &--success {
+    background: rgba($success-color, 0.1);
+    color: darken($success-color, 20%);
+    border: 1px solid rgba($success-color, 0.3);
+  }
+
+  &--info {
+    background: rgba($info-color, 0.1);
+    color: darken($info-color, 20%);
+    border: 1px solid rgba($info-color, 0.3);
+  }
+}
+
+.discount-badge {
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  background: $main-color;
+}
+
+@media #{$phone-media-query} {
+  .badge {
+    font-size: 11px;
+    padding: 3px 6px;
+
+    &__icon {
+      font-size: 12px;
+    }
+  }
+}

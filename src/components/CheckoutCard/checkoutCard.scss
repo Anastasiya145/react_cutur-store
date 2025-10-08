@@ -8,7 +8,7 @@
     0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: $transition-smooth;
   border: 1px solid rgba(0, 0, 0, 0.08);
 
   &:hover {
@@ -48,7 +48,7 @@
     height: 80px;
     object-fit: cover;
     border-radius: 8px;
-    transition: transform 0.3s ease;
+    transition: $transition-transform;
 
     &:hover {
       transform: scale(1.05);
@@ -69,7 +69,7 @@
     font-size: 1rem;
     line-height: 1.4;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: $transition-color;
 
     // Многострочный текст с ellipsis
     display: -webkit-box;
@@ -97,13 +97,7 @@
     font-weight: 500;
   }
 
-  &__stock-warning {
-    font-size: 0.75rem;
-    color: $warning-color;
-    font-weight: 600;
-    background: rgba(245, 158, 11, 0.1);
-    padding: 4px 8px;
-    border-radius: 6px;
+  &__stock-badge {
     align-self: flex-start;
   }
 
@@ -215,11 +209,6 @@
 
     &__unit-price {
       font-size: 0.8rem;
-    }
-
-    &__stock-warning {
-      font-size: 0.7rem;
-      padding: 2px 6px;
     }
 
     &__footer {

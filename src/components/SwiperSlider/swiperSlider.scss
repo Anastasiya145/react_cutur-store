@@ -51,7 +51,7 @@
     color: $main-color;
     border: $light-color 1px solid;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: $transition-smooth;
 
     & svg {
       width: 50%;
@@ -105,7 +105,7 @@
     .swiper-pagination-bullet {
       background: $main-color;
       opacity: 0.3;
-      transition: all 0.3s ease;
+      transition: $transition-smooth;
 
       &.swiper-pagination-bullet-active {
         opacity: 1;

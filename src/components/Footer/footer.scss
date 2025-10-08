@@ -51,7 +51,7 @@
     display: flex;
     align-items: center;
     color: $second-accent-color;
-    transition: color 0.2s;
+    transition: $transition-color;
   }
 
   @media (max-width: 900px) {

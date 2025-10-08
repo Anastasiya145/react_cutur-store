@@ -3,7 +3,7 @@
 .icon {
   @include button-header;
   position: relative;
-  transition: all 0.3s ease;
+  transition: $transition-smooth;
 
   &:hover {
     color: $main-color;

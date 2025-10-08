@@ -1,14 +1,10 @@
 import { FC, useState } from "react";
 import { useFormatDate } from "../../helpers/hooks/useFormatDate";
-import {
-  Order,
-  ORDER_STATUS_LABELS,
-  OrderItem,
-  OrderStatus,
-} from "../../types/Order";
+import { Order, OrderItem, OrderStatus } from "../../types/Order";
 import "./commandeCard.scss";
 import { deleteOrder } from "../../api/ordersApi";
 import { LoadingButton } from "../../components/LoadingButton";
+import { OrderStatusBadge } from "../../components/OrderStatusBadge";
 
 type CommandeCardProps = {
   order: Order;
@@ -51,11 +47,10 @@ export const CommandeCard: FC<CommandeCardProps> = ({
             {formatDate(order.created_at)}
           </span>
         </div>
-        <span
-          className={`commande-card__status commande-card__status--${order.status}`}
-        >
-          {ORDER_STATUS_LABELS[order.status]}
-        </span>
+        <OrderStatusBadge
+          status={order.status}
+          className="commande-card__status"
+        />
       </div>
       <div className="commande-card__items">
         {order.items.map((item: OrderItem) => (

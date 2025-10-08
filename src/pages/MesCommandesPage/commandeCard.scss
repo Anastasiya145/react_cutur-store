@@ -29,26 +29,6 @@
     margin-left: 8px;
   }
 
-  &__status {
-    padding: 4px 12px;
-    border-radius: 8px;
-    text-transform: capitalize;
-    @extend %body-text;
-
-    &--created {
-      background: lighten($success-color, 45%);
-      color: $success-color;
-    }
-    &--processing {
-      background: lighten($warning-color, 35%);
-      color: $warning-color;
-    }
-    &--cancelled {
-      background: #ffeaea;
-      color: $error-color;
-    }
-  }
-
   &__items {
     display: flex;
     flex-wrap: wrap;

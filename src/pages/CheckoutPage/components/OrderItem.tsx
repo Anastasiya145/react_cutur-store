@@ -1,5 +1,6 @@
 import React from "react";
 import { ProductInCart } from "../../../types/Product";
+import { QuantityBadge } from "../../../components/QuantityBadge";
 
 interface OrderItemProps {
   item: ProductInCart;
@@ -20,7 +21,7 @@ export const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
           alt={item.name}
           className="order-item__img"
         />
-        <div className="order-item__quantity">{item.count}</div>
+        <QuantityBadge quantity={item.count} />
       </div>
 
       <div className="order-item__details">

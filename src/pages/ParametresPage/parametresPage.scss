@@ -35,7 +35,7 @@
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: $transition-fast;
     margin-top: 8px;
     &:hover {
       background: darken($accent-color, 10%);

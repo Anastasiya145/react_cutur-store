@@ -10,7 +10,7 @@
   border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: $transition-smooth;
   border: 1px solid rgba(0, 0, 0, 0.08);
   text-decoration: none;
   color: inherit;
@@ -74,19 +74,6 @@
     position: absolute;
     top: 12px;
     right: 12px;
-    padding: 4px 8px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: white;
-
-    &--sale {
-      background: $error-color;
-    }
-
-    &--out-of-stock {
-      background: $text-secondary;
-    }
   }
 
   &__overlay {
@@ -95,7 +82,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba($main-color, 0.8);
+    background: linear-gradient(
+      45deg,
+      rgba($main-color, 0.9),
+      rgba($accent-color, 0.9)
+    );
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,6 +97,8 @@
     color: white;
     font-weight: 600;
     font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     text-align: center;
   }
 
@@ -155,13 +148,6 @@
     &__title {
       font-size: 0.9rem;
     }
-
-    &__badge {
-      padding: 4px 10px;
-      font-size: 0.7rem;
-      top: 10px;
-      right: 10px;
-    }
   }
 }
 
@@ -185,13 +171,6 @@
 
     &__price {
       margin: 6px 0 12px 0;
-    }
-
-    &__badge {
-      padding: 3px 8px;
-      font-size: 0.65rem;
-      top: 8px;
-      right: 8px;
     }
   }
 }

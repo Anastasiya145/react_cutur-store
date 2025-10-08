@@ -37,7 +37,7 @@
     align-items: center;
     gap: 8px;
     color: $light-color;
-    transition: color 0.3s;
+    transition: $transition-color;
 
     &.active {
       color: $accent-color;
@@ -59,7 +59,7 @@
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    transition: all 0.3s;
+    transition: $transition-smooth;
   }
 
   &__step-label {
@@ -148,9 +148,7 @@
     border: 2px solid #e9ecef;
     border-radius: 8px;
     font-size: 16px;
-    transition:
-      border-color 0.3s,
-      box-shadow 0.3s;
+    transition: $transition-smooth;
     background: white;
 
     &:focus {
@@ -190,7 +188,7 @@
     border-radius: 8px;
     background: white;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: $transition-smooth;
 
     &:hover {
       border-color: $accent-color;
@@ -277,7 +275,7 @@
     font-size: 14px;
     cursor: pointer;
     text-decoration: underline;
-    transition: color 0.3s;
+    transition: $transition-color;
 
     &:hover {
       color: darken($accent-color, 10%);
@@ -395,7 +393,7 @@
     border-radius: 8px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: $transition-smooth;
 
     &:hover {
       background: $light-grey-color;

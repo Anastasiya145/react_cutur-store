@@ -48,7 +48,7 @@
     color: $accent-color;
     text-decoration: underline;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: $transition-color;
 
     &:hover {
       color: darken($accent-color, 10%);
