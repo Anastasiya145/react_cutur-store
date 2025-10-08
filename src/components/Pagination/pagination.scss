@@ -104,7 +104,7 @@
         darken($main-color, 10%) 100%
       );
       color: #fff;
-      border-color: $main-color;
+      border: none;
       box-shadow: 0 4px 12px rgba(225, 173, 55, 0.3);
 
       &:hover {

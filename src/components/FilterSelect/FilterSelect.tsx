@@ -69,7 +69,6 @@ export const FilterSelect: React.FC<FilterSelectProps> = ({
         options={selectOptions}
         value={value}
         onChange={handleChangeValue}
-        placeholder="Выберите опцию"
       />
     </div>
   );
