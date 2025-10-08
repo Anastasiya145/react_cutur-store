@@ -22,17 +22,24 @@ export const SwiperSlider: React.FC<Props> = ({ products, sortBy }) => {
       <Swiper
         modules={[Navigation, A11y, Autoplay]}
         spaceBetween={16}
-        slidesPerView={1}
+        // Use 'auto' so Swiper will show as many slides as fit the viewport
+        slidesPerView={"auto"}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
+        // keep a simple breakpoint: on very small screens show 1 slide
         breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 12,
+          },
           480: {
             slidesPerView: 1,
             spaceBetween: 12,
           },
           768: {
+            // from tablet upwards use auto sizing so multiple cards fit
             slidesPerView: "auto",
             spaceBetween: 16,
           },

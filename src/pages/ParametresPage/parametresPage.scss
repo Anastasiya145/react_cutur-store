@@ -22,10 +22,6 @@
     gap: 18px;
   }
 
-  &__success {
-    @include success;
-  }
-
   &__button {
     background: $accent-color;
     color: #fff;

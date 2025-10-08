@@ -7,9 +7,7 @@
   height: 40px;
 
   &_like {
-    color: $accent-color;
-    border: none;
-    background-color: unset;
+    @include button-like;
   }
 
   &_add-to-cart {
@@ -27,27 +25,6 @@
   }
 
   &_circle {
-    flex: 0 0 auto;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    outline: 1px solid $border-color;
-    margin-right: 8px;
-    transition: $transition-smooth;
-
-    &::before {
-      content: none;
-    }
-
-    &.active,
-    &:hover {
-      border: 2px solid #fff;
-      outline: 1px solid $accent-color;
-    }
-
-    &.active {
-      pointer-events: none;
-    }
+    @include button-circle(32px, #fff);
   }
 }

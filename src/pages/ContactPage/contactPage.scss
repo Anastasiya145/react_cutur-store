@@ -25,10 +25,6 @@
     @extend %body-text;
   }
 
-  &__link {
-    @include email-link;
-  }
-
   &__important {
     @extend %body-text;
     font-style: italic;
@@ -60,14 +56,6 @@
   & .button-loading {
     width: 100%;
   }
-
-  &__success {
-    @include success;
-  }
-
-  &__error {
-    @include error;
-  }
 }
 
 @media #{$tablet-media-query} {
@@ -82,12 +70,5 @@
       margin-top: 32px;
       @include form;
     }
-
-    // &__title,
-    // &__desc,
-    // &__success,
-    // &__error {
-    //   text-align: center;
-    // }
   }
 }

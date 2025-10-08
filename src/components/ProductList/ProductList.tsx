@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import classNames from "classnames";
 import { Product } from "../../types/Product";
 import { sortProducts } from "../../helpers/sortHelper";
-import { Dropdown } from "../Dropdown/Dropdown";
+import { FilterSelect } from "../FilterSelect/FilterSelect";
 import { SortTypeForDropdown } from "../../types/SortType";
 import { Pagination } from "../Pagination/Pagination";
 import { ProductCard } from "../ProductCard/ProductCard";
@@ -89,14 +89,14 @@ export const ProductList: React.FC<Props> = ({
             <div className="product-list__container">
               {isSortDropdownShown && (
                 <div className="product-list__dropdowns">
-                  <Dropdown
+                  <FilterSelect
                     label="Trier par"
                     classModificator="sort"
                     options={Object.values(SortTypeForDropdown)}
                     startValue={startSortValue}
                     searchParamsKey="sort"
                   />
-                  <Dropdown
+                  <FilterSelect
                     label="Articles par page"
                     classModificator="items"
                     options={itemsOptions}

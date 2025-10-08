@@ -13,7 +13,11 @@ export const PageNavLink: React.FC<Props> = ({ to, text, class_name }) => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        class_name && classNames(class_name, { selected: isActive })
+        class_name &&
+        classNames(class_name, {
+          selected: isActive,
+          active: isActive,
+        })
       }
     >
       {text}

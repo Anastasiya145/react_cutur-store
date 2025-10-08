@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { TextInput } from "../../../components/forms/TextInput/TextInput";
+import AddressForm from "../../../components/forms/AddressForm/AddressForm";
 import { LoadingButton } from "../../../components/LoadingButton";
 import { ProfileSection } from "./ProfileSection";
 import { Address } from "../../../types/User";
@@ -95,67 +95,20 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
           onSubmit={handleSubmit(handleFormSubmit)}
           className="profile-page__form"
         >
-          <div className="profile-page__form-row profile-page__form-row--split">
-            <div className="profile-page__input-wrapper">
-              <TextInput
-                label="Pays"
-                placeholder="Entrez le pays"
-                {...register("country", { required: "Le pays est requis" })}
-              />
-              {errors.country && (
-                <span className="profile-page__error-message">
-                  {errors.country.message}
-                </span>
-              )}
-            </div>
-            <div className="profile-page__input-wrapper">
-              <TextInput
-                label="Ville"
-                placeholder="Entrez la ville"
-                {...register("city", { required: "La ville est requise" })}
-              />
-              {errors.city && (
-                <span className="profile-page__error-message">
-                  {errors.city.message}
-                </span>
-              )}
-            </div>
-          </div>
-          <div className="profile-page__form-row">
-            <TextInput
-              label="Rue"
-              placeholder="Entrez la rue"
-              {...register("street", { required: "La rue est requise" })}
-            />
-            {errors.street && (
-              <span className="profile-page__error-message">
-                {errors.street.message}
-              </span>
-            )}
-          </div>
-          <div className="profile-page__form-row profile-page__form-row--split">
-            <div className="profile-page__input-wrapper">
-              <TextInput
-                label="Code postal"
-                placeholder="Entrez le code postal"
-                {...register("postalCode", {
-                  required: "Le code postal est requis",
-                })}
-              />
-              {errors.postalCode && (
-                <span className="profile-page__error-message">
-                  {errors.postalCode.message}
-                </span>
-              )}
-            </div>
-            <div className="profile-page__input-wrapper">
-              <TextInput
-                label="Appartement (optionnel)"
-                placeholder="Numéro d'appartement"
-                {...register("apartment")}
-              />
-            </div>
-          </div>
+          <AddressForm
+            register={register}
+            errors={errors}
+            validation={{
+              country: { required: "Le pays est requis" },
+              city: { required: "La ville est requise" },
+              street: { required: "La rue est requise" },
+              postalCode: {
+                required: "Le code postal est requis",
+                pattern: { value: /^\d{5}$/, message: "Code postal invalide" },
+              },
+            }}
+          />
+
           <div className="profile-page__form-actions">
             <LoadingButton
               type="submit"

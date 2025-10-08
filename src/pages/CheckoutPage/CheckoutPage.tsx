@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { CreateOrderRequest } from "../../types/Order";
 import { Address } from "../../types/User";
 import { useNotification } from "../../context/NotificationContext";
+import { updateUserAddress } from "../../api/userApi";
 import "./checkoutPage.scss";
 import "./components/OrderItem.scss";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,7 @@ type CheckoutFormData = {
   shippingAddress: Address;
   billingAddress: Address;
   sameAsShipping: boolean;
+  saveAddress?: boolean;
   notes?: string;
 };
 
@@ -44,6 +46,7 @@ const CheckoutPage: React.FC = () => {
   } = useForm<CheckoutFormData>({
     defaultValues: {
       sameAsShipping: true,
+      saveAddress: false,
       shippingAddress: {
         country: "France",
         city: "",
@@ -72,6 +75,18 @@ const CheckoutPage: React.FC = () => {
 
   const onSubmit = async () => {
     if (currentStep === 1) {
+      // If user chose to save address, persist it to their profile
+      try {
+        const saveAddress = watch("saveAddress") as unknown as boolean;
+        if (user && saveAddress) {
+          // shippingAddress is already read from watch above
+          await updateUserAddress(user, shippingAddress);
+          showSuccess("Adresse sauvegardée dans le profil");
+        }
+      } catch (err: any) {
+        showError(err.message || "Erreur lors de la sauvegarde de l'adresse");
+      }
+
       setCurrentStep(2);
       return;
     }
@@ -114,6 +129,7 @@ const CheckoutPage: React.FC = () => {
                   register={register}
                   errors={errors}
                   shippingCost={shippingCost}
+                  setValue={setValue}
                 />
               )}
 

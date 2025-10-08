@@ -9,17 +9,18 @@
 
   &__content {
     margin-bottom: 40px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    column-gap: $gap;
-    row-gap: calc(3 * $gap);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); // 4 columns on desktop
+    gap: $gap calc(3 * $gap);
+    align-items: start;
   }
 
   &__item {
     cursor: pointer;
     height: 100%;
+    // ensure the card fills the grid cell width
+    width: 100%;
+    display: block;
   }
 
   &__dropdowns {
@@ -60,6 +61,26 @@
 
     &__pagination_top {
       display: block;
+    }
+  }
+}
+
+// tablet breakpoint: 2 columns
+@media #{$tablet-media-query} {
+  .product-list {
+    &__content {
+      grid-template-columns: repeat(2, 1fr);
+      gap: calc(2 * $gap) $gap;
+    }
+  }
+}
+
+// phone: single column (override earlier flex-direction change)
+@media #{$phone-media-query} {
+  .product-list {
+    &__content {
+      grid-template-columns: 1fr;
+      gap: $gap $gap;
     }
   }
 }

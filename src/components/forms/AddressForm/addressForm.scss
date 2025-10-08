@@ -1,0 +1,24 @@
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__row--split {
+    flex-direction: row;
+    gap: 12px;
+
+    & > * {
+      flex: 1 1 0;
+    }
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+    }
+  }
+}

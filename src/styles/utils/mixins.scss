@@ -1,36 +1,198 @@
-@mixin nav-link {
+/* ============================================
+   MENU SYSTEM MIXINS
+   ============================================
+   
+   Универсальная система стилей для меню с активными состояниями:
+   
+   @mixin menu-item-base - Базовые стили для всех элементов меню
+   @mixin menu-item-vertical - Вертикальные меню (dropdown, user menu) с палочкой слева
+   @mixin menu-item-horizontal - Горизонтальная навигация с палочкой снизу
+   @mixin nav-link - Алиас для горизонтальной навигации (обратная совместимость)
+   
+   Использование:
+   - Dropdown: @include menu-item-vertical
+   - User Menu: @include menu-item-vertical  
+   - Header Nav: @include menu-item-horizontal или @include nav-link
+*/
+
+// Общие стили для активных элементов меню
+@mixin menu-item-base {
+  color: $accent-color;
+  font-weight: 500;
+  text-decoration: none;
+  transition: $transition-fast;
   cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: $main-color;
+    background: linear-gradient(
+      90deg,
+      rgba($main-color, 0.08) 0%,
+      rgba($main-color, 0.04) 100%
+    );
+  }
+
+  &:focus {
+    outline: none;
+    background: linear-gradient(
+      90deg,
+      rgba($main-color, 0.1) 0%,
+      rgba($main-color, 0.05) 100%
+    );
+  }
+}
+
+// Миксин для вертикального меню (dropdown, user menu) - палочка слева
+@mixin menu-item-vertical {
+  @include menu-item-base;
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: none;
+  background: none;
+  text-align: left;
+
+  &:hover {
+    padding-left: 20px;
+  }
+
+  &.active {
+    color: $main-color;
+    background: linear-gradient(
+      90deg,
+      rgba($main-color, 0.1) 0%,
+      rgba($main-color, 0.05) 100%
+    );
+    font-weight: 600;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(
+        180deg,
+        $main-color 0%,
+        darken($main-color, 15%) 100%
+      );
+      border-radius: 0 4px 4px 0;
+    }
+  }
+}
+
+// Миксин для горизонтальной навигации - палочка снизу
+@mixin menu-item-horizontal {
+  @include menu-item-base;
   height: 100%;
   @extend %uppercase;
   color: $main-color;
-  transition: $transition-color;
+  padding: 24px 0;
 
   &:last-child {
     margin-right: 0;
   }
 
-  &.selected {
-    color: $accent-color;
-    border-bottom: 3px solid $accent-color;
-  }
-
   &:hover {
     color: $accent-color;
+  }
+
+  &.active,
+  &.selected {
+    color: $accent-color;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        $accent-color 0%,
+        darken($accent-color, 10%) 100%
+      );
+      border-radius: 3px 3px 0 0;
+    }
   }
 }
 
-@mixin button-round($width: 44px, $height: 44px) {
+@mixin nav-link {
+  @include menu-item-horizontal;
+}
+
+@mixin button-round(
+  $width: 44px,
+  $height: 44px,
+  $bg: $site-background-color,
+  $borderColor: $light-color,
+  $shadowColor: rgba(23, 32, 49, 0.08)
+) {
   height: $height;
   width: $width;
-  background-color: $site-background-color;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, lighten($bg, 2%), $bg);
   border-radius: 50%;
   color: $main-color;
-  border: 1px solid $light-color;
-  box-shadow: $box-shadow-color;
-  transition: $transition-smooth;
+  border: 1px solid $borderColor;
+  box-shadow:
+    0 6px 18px $shadowColor,
+    $box-shadow-color;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    color 160ms ease;
+  cursor: pointer;
+
+  // ensure any inline svg/icon scales nicely
+  & svg,
+  & > i {
+    width: 56%;
+    height: 56%;
+    display: block;
+  }
 
   &:hover {
     color: $accent-color;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+      0 12px 34px rgba(23, 32, 49, 0.14),
+      $box-shadow-color;
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.99);
+    box-shadow:
+      0 6px 18px $shadowColor,
+      $box-shadow-color;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow:
+      0 0 0 6px rgba($accent-color, 0.08),
+      0 6px 18px $shadowColor;
+  }
+
+  &.disabled,
+  &.swiper-button-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  // Respect reduced motion preferences
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    transform: none;
   }
 }
 
@@ -95,13 +257,44 @@
 
 @mixin button-header {
   height: 100%;
-  // height: 64px;
   width: 48px;
   position: relative;
-  // padding: 25px 0;
 
   &:hover {
     color: $accent-color;
+  }
+}
+
+@mixin button-like {
+  color: $accent-color;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+@mixin button-circle($size: 32px, $borderColor: #fff) {
+  flex: 0 0 auto;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  border: 2px solid $borderColor;
+  outline: 1px solid $border-color;
+  margin-right: 8px;
+  transition: $transition-smooth;
+
+  &::before {
+    content: none;
+  }
+
+  &.active,
+  &:hover {
+    border: 2px solid $borderColor;
+    outline: 1px solid $accent-color;
+  }
+
+  &.active {
+    pointer-events: none;
   }
 }
 
@@ -134,18 +327,6 @@
   &::placeholder {
     color: $border-color;
     opacity: 1;
-  }
-}
-
-@mixin email-link {
-  color: $main-color;
-  font-weight: inherit;
-  cursor: pointer;
-  text-decoration: underline;
-  transition: $transition-color;
-
-  &:hover {
-    color: $accent-color;
   }
 }
 

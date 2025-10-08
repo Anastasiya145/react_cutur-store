@@ -29,6 +29,7 @@ export const EmailInput = forwardRef<HTMLInputElement, EmailInputProps>(
         autoComplete={autoComplete}
         required={required}
         ref={ref}
+        error={rest.error}
         {...rest}
       />
     );

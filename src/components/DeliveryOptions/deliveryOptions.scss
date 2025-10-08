@@ -1,0 +1,63 @@
+@import "../../styles/common";
+
+.delivery-options {
+  margin: 32px 0;
+  padding: 20px;
+  background: $light-grey-color;
+  border-radius: 8px;
+
+  &__title {
+    @extend %h3;
+    margin: 0 0 16px 0;
+    color: $dark-blue-color;
+    font-size: 16px;
+  }
+
+  &__method {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: $transition-smooth;
+
+    &:hover {
+      border-color: $accent-color;
+    }
+  }
+
+  &__radio {
+    margin-right: 12px;
+    accent-color: $accent-color;
+  }
+
+  &__radio-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__name {
+    font-weight: 500;
+    color: $main-color;
+    margin-bottom: 4px;
+  }
+
+  &__time {
+    font-size: 14px;
+    color: $light-color;
+  }
+
+  &__price {
+    font-weight: 600;
+    color: $accent-color;
+  }
+}

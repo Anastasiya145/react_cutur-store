@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from "react";
 import "./passwordInput.scss";
-import { VisibilityIcon } from "../VisibilityIcon";
+import { VisibilityIcon } from "../../Icons/VisibilityIcon";
 
 export type PasswordInputProps = {
   label: string;

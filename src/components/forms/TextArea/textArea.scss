@@ -1,6 +1,6 @@
 @import "../../../styles/common";
 
-.text-input {
+.text-area {
   &__input {
     @include form-input;
     margin-top: 8px;
@@ -8,12 +8,9 @@
   }
 
   &__label {
+    display: flex;
+    flex-direction: column;
     @extend %body-text;
-    margin-bottom: 4px;
-
-    .custom-select--disabled & {
-      color: $light-color;
-    }
   }
 
   &__required {
@@ -22,7 +19,7 @@
     margin-left: 2px;
   }
 
-  &__input {
+  &__textarea {
     &--error {
       border-color: $error-color;
 

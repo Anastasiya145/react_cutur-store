@@ -8,6 +8,7 @@ import "./registerPage.scss";
 import { PathnamesApp } from "../../types/Pathnames";
 import { LoadingButton } from "../../components/LoadingButton";
 import { EmailInput } from "../../components/forms/EmailInput/EmailInput";
+import { useNotification } from "../../context/NotificationContext";
 
 type RegisterFormInputs = {
   username: string;
@@ -26,6 +27,7 @@ const RegisterPage: React.FC = () => {
   } = useForm<RegisterFormInputs>({ mode: "onChange" });
 
   const navigate = useNavigate();
+  const { showError, showSuccess } = useNotification();
 
   const onSubmit = async (data: RegisterFormInputs) => {
     if (data.password !== data.confirmPassword) {
@@ -42,12 +44,13 @@ const RegisterPage: React.FC = () => {
       });
 
       if (response.email) {
+        showSuccess(
+          "Inscription réussie! Vous pouvez maintenant vous connecter."
+        );
         navigate(PathnamesApp.Connexion);
       }
     } catch (err: any) {
-      setError("root", {
-        message: err.message || "Erreur lors de l'inscription",
-      });
+      showError(err.message || "Erreur lors de l'inscription");
     }
   };
 

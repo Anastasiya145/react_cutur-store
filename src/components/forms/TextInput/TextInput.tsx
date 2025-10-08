@@ -9,6 +9,7 @@ type Props = {
   autoComplete?: string;
   required?: boolean;
   autoFocus?: boolean;
+  error?: string;
   [key: string]: any;
 };
 
@@ -22,23 +23,28 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(
       autoComplete,
       required = false,
       autoFocus = false,
+      error,
       ...rest
     },
     ref
   ) => (
     <label className="text-input">
-      <span className="text-input__label">{label}</span>
+      <span className="text-input__label">
+        {label}
+        {required && <span className="text-input__required">*</span>}
+      </span>
       <input
         type={type}
         name={name}
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
-        className="text-input__input"
+        className={`text-input__input ${error ? "text-input__input--error" : ""}`}
         autoFocus={autoFocus}
         ref={ref}
         {...rest}
       />
+      {error && <span className="text-input__error">{error}</span>}
     </label>
   )
 );

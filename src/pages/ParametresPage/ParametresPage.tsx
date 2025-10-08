@@ -3,12 +3,15 @@ import "./parametresPage.scss";
 import { TextInput } from "../../components/forms/TextInput/TextInput";
 import { PasswordInput } from "../../components/forms/PasswordInput/PasswordInput";
 import { LoadingButton } from "../../components/LoadingButton";
+import { useNotification } from "../../context/NotificationContext";
 
 const ParametresPage: React.FC = () => {
   const [username, setUsername] = useState("TestUser");
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { showError, showSuccess } = useNotification();
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUsername(e.target.value);
@@ -17,11 +20,21 @@ const ParametresPage: React.FC = () => {
   const handleNewPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setNewPassword(e.target.value);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSuccess("Modifications enregistrées avec succès !");
-    setPassword("");
-    setNewPassword("");
+    setLoading(true);
+
+    try {
+      // Симуляция API вызова
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      showSuccess("Modifications enregistrées avec succès !");
+      setPassword("");
+      setNewPassword("");
+    } catch (error: any) {
+      showError(error.message || "Erreur lors de l'enregistrement");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,8 +59,8 @@ const ParametresPage: React.FC = () => {
           onChange={handleNewPasswordChange}
           required
         />
-        {success && <div className="parametres-page__success">{success}</div>}
-        <LoadingButton text="Enregistrer" loading={false} type="submit" />
+
+        <LoadingButton text="Enregistrer" loading={loading} type="submit" />
       </form>
     </div>
   );

@@ -1,0 +1,16 @@
+@import "src/styles/common";
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__input {
+    accent-color: $accent-color;
+  }
+
+  &__label {
+    @extend %body-text;
+    cursor: pointer;
+  }
+}

@@ -1,5 +1,13 @@
 @import "../../styles/common.scss";
 
 .email-link {
-  @include email-link;
+  color: $main-color;
+  font-weight: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: $transition-color;
+
+  &:hover {
+    color: $accent-color;
+  }
 }

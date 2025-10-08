@@ -6,6 +6,8 @@ import { contactUs } from "../../api/contactApi";
 import { TextInput } from "../../components/forms/TextInput/TextInput";
 import { LoadingButton } from "../../components/LoadingButton";
 import { EmailInput } from "../../components/forms/EmailInput/EmailInput";
+import { useNotification } from "../../context/NotificationContext";
+import { TextArea } from "../../components/forms/TextArea/TextArea";
 
 type ContactFormInputs = {
   name: string;
@@ -18,18 +20,18 @@ const ContactPage: React.FC = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isSubmitSuccessful, isValid },
-    setError,
+    formState: { errors, isSubmitting, isValid },
   } = useForm<ContactFormInputs>({ mode: "onChange" });
+
+  const { showError, showSuccess } = useNotification();
 
   const onSubmit = async (data: ContactFormInputs) => {
     try {
       await contactUs(data);
+      showSuccess("Message envoyé avec succès!");
       reset();
-    } catch {
-      setError("root", {
-        message: "Erreur lors de l'envoi. Veuillez réessayer.",
-      });
+    } catch (error: any) {
+      showError(error.message || "Erreur lors de l'envoi. Veuillez réessayer.");
     }
   };
 
@@ -87,7 +89,7 @@ const ContactPage: React.FC = () => {
           <div className="contact-page__error">{errors.email.message}</div>
         )}
 
-        <TextInput
+        <TextArea
           label="Message"
           type="textarea"
           placeholder="Votre message"
@@ -105,12 +107,6 @@ const ContactPage: React.FC = () => {
           <div className="contact-page__error">{errors.message.message}</div>
         )}
 
-        {isSubmitSuccessful && (
-          <div className="contact-page__success">Message envoyé !</div>
-        )}
-        {errors.root && (
-          <div className="contact-page__error">{errors.root.message}</div>
-        )}
         <LoadingButton
           type="submit"
           text="Envoyer"

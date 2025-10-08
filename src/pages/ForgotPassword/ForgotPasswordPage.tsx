@@ -6,6 +6,7 @@ import { PathnamesApp } from "../../types/Pathnames";
 import { LoadingButton } from "../../components/LoadingButton";
 import { EmailInput } from "../../components/forms/EmailInput/EmailInput";
 import { useForm } from "react-hook-form";
+import { useNotification } from "../../context/NotificationContext";
 
 type ForgotPasswordFormInputs = {
   email: string;
@@ -13,27 +14,27 @@ type ForgotPasswordFormInputs = {
 
 const ForgotPasswordPage: React.FC = () => {
   const navigate = useNavigate();
+  const { showError, showSuccess } = useNotification();
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isSubmitSuccessful, isValid },
-    setError,
-    clearErrors,
+    formState: { errors, isSubmitting, isValid },
   } = useForm<ForgotPasswordFormInputs>({ mode: "onChange" });
 
   const onSubmit = async (data: ForgotPasswordFormInputs) => {
-    clearErrors();
     try {
       await forgotPassword({ email: data.email });
+      showSuccess(
+        "Un lien de réinitialisation du mot de passe a été envoyé à votre adresse e-mail."
+      );
       reset();
     } catch (err: any) {
-      setError("root", {
-        message:
-          err.message ||
-          "Erreur lors de l'envoi de l'e-mail de réinitialisation du mot de passe",
-      });
+      showError(
+        err.message ||
+          "Erreur lors de l'envoi de l'e-mail de réinitialisation du mot de passe"
+      );
     }
   };
 
@@ -57,17 +58,6 @@ const ForgotPasswordPage: React.FC = () => {
         {errors.email && (
           <div className="forgot-password-page__error">
             {errors.email.message}
-          </div>
-        )}
-        {isSubmitSuccessful && (
-          <div className="forgot-password-page__success">
-            Un lien de réinitialisation du mot de passe a été envoyé à votre
-            adresse e-mail.
-          </div>
-        )}
-        {errors.root && (
-          <div className="forgot-password-page__error">
-            {errors.root.message}
           </div>
         )}
 
