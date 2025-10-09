@@ -23,7 +23,7 @@
     justify-content: center;
     cursor: pointer;
     transition: $transition-fast;
-  box-shadow: $shadow-small;
+    box-shadow: $shadow-small;
     position: relative;
     text-decoration: none;
 
@@ -31,18 +31,18 @@
       border-color: $main-color;
       color: $main-color;
       transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba($main-color, 0.15);
+      box-shadow: 0 4px 12px rgba($main-color, 0.15);
     }
 
     &:active:not(.disabled) {
       transform: translateY(0);
-  box-shadow: $shadow-small;
+      box-shadow: $shadow-small;
     }
 
     &:focus {
       outline: none;
       border-color: $main-color;
-  box-shadow: 0 0 0 3px rgba($main-color, 0.2);
+      box-shadow: 0 0 0 3px rgba($main-color, 0.2);
     }
 
     &.disabled {
@@ -51,8 +51,8 @@
       pointer-events: none;
       color: $text-secondary;
       border-color: $border-color;
-    transform: none;
-  box-shadow: $shadow-xsmall;
+      transform: none;
+      box-shadow: $shadow-xsmall;
     }
   }
 
@@ -74,7 +74,7 @@
     justify-content: center;
     cursor: pointer;
     transition: $transition-fast;
-  box-shadow: $shadow-small;
+    box-shadow: $shadow-small;
     position: relative;
     text-decoration: none;
     user-select: none;
@@ -83,18 +83,18 @@
       border-color: $main-color;
       color: $main-color;
       transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba($main-color, 0.15);
+      box-shadow: 0 4px 12px rgba($main-color, 0.15);
     }
 
     &:active {
       transform: translateY(0);
-  box-shadow: $shadow-small;
+      box-shadow: $shadow-small;
     }
 
     &:focus {
       outline: none;
       border-color: $main-color;
-  box-shadow: 0 0 0 3px rgba($main-color, 0.2);
+      box-shadow: 0 0 0 3px rgba($main-color, 0.2);
     }
 
     &.active {
@@ -105,11 +105,11 @@
       );
       color: #fff;
       border: none;
-  box-shadow: 0 4px 12px rgba($main-color, 0.3);
+      box-shadow: 0 4px 12px rgba($main-color, 0.3);
 
       &:hover {
         transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba($main-color, 0.4);
+        box-shadow: 0 6px 16px rgba($main-color, 0.4);
       }
     }
   }
