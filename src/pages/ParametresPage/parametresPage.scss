@@ -15,7 +15,7 @@
   &__form {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  box-shadow: $shadow-small;
     padding: 24px 20px;
     display: flex;
     flex-direction: column;

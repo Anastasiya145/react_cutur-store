@@ -14,7 +14,7 @@
   justify-content: center;
   cursor: pointer;
   transition: $transition-fast;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: $shadow-small;
   position: relative;
   user-select: none;
 
@@ -22,18 +22,18 @@
     border-color: $main-color;
     color: $main-color;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(225, 173, 55, 0.15);
+    box-shadow: 0 4px 12px rgba($main-color, 0.15);
   }
 
   &:active:not(:disabled) {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: $shadow-small;
   }
 
   &:focus {
     outline: none;
     border-color: $main-color;
-    box-shadow: 0 0 0 3px rgba(225, 173, 55, 0.2);
+    box-shadow: 0 0 0 3px rgba($main-color, 0.2);
   }
 
   &:before {
@@ -64,7 +64,7 @@
     color: $text-secondary;
     border-color: $border-color;
     transform: none;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: $shadow-xsmall;
 
     &::before {
       color: $text-secondary;
@@ -99,8 +99,8 @@
     transition: $transition-fast;
 
     &:hover {
-      background: rgba(225, 173, 55, 0.05);
-      border-color: rgba(225, 173, 55, 0.2);
+      background: rgba($main-color, 0.05);
+      border-color: rgba($main-color, 0.2);
     }
   }
 
@@ -108,11 +108,11 @@
     font-size: 0.75rem;
     color: $warning-color;
     font-weight: 500;
-    background: rgba(242, 201, 76, 0.1);
+    background: rgba($main-color, 0.08);
     padding: 4px 8px;
     border-radius: 6px;
     margin: 0;
-    border: 1px solid rgba(242, 201, 76, 0.2);
+    border: 1px solid rgba($main-color, 0.12);
     display: flex;
     align-items: center;
     gap: 6px;

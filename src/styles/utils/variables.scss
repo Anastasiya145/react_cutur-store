@@ -31,9 +31,17 @@ $gap: 16px;
 $header-height: 64px;
 $banner-height: 20px;
 
+$border: 1px solid rgba(34, 60, 80, 0.08);
 $box-shadow-color:
   0 4px 24px 0 rgba(34, 60, 80, 0.1),
   0 1.5px 6px 0 rgba(34, 60, 80, 0.08);
+
+// Common shadow tokens
+$shadow-small: 0 2px 4px rgba(34, 60, 80, 0.1);
+$shadow-medium: 0 4px 12px rgba(34, 60, 80, 0.15);
+
+// Extra tiny shadow used for subtle elevation
+$shadow-xsmall: 0 1px 2px rgba(34, 60, 80, 0.05);
 
 $desktop-media-query: "only screen and (max-width : 1220px)";
 $desktop-smallest-media-query: "only screen and (max-width : 1024px)";

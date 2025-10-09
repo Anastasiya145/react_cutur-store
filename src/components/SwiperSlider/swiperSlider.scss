@@ -67,7 +67,7 @@
 
     &:hover {
       transform: scale(1.08);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 8px 24px rgba(34, 60, 80, 0.12);
       background-color: white;
       color: $accent-color;
     }
@@ -78,7 +78,7 @@
 
       &:hover {
         transform: none;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        box-shadow: $shadow-small;
         color: $main-color;
       }
     }

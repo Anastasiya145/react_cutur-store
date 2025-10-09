@@ -8,16 +8,16 @@
   width: 250px;
   background: white;
   border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: $shadow-medium;
   overflow: hidden;
   transition: $transition-smooth;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: $border;
   text-decoration: none;
   color: inherit;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    box-shadow: $shadow-medium;
     border-color: rgba($main-color, 0.3);
 
     .card__image {
@@ -35,7 +35,7 @@
 
     &:hover {
       transform: none;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      box-shadow: $shadow-medium;
     }
   }
 
