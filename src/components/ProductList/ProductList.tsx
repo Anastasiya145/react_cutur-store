@@ -9,7 +9,7 @@ import { Pagination } from "../Pagination/Pagination";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { NoSearchResults } from "../NoSearchResults/NoSearchResults";
 import "./productList.scss";
-import { Loader } from "../Loader";
+import { Loader } from "../Loader/Loader";
 
 export type Props = {
   products: Product[];

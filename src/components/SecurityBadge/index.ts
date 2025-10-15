@@ -1,1 +1,0 @@
-export { SecurityBadge } from "./SecurityBadge";

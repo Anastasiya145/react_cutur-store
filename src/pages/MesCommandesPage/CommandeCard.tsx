@@ -4,10 +4,10 @@ import { Order, OrderItem, OrderStatus } from "../../types/Order";
 import "./commandeCard.scss";
 import { deleteOrder, updateOrderStatus } from "../../api/ordersApi";
 import { LoadingButton } from "../../components/LoadingButton";
-import { OrderStatusBadge } from "../../components/OrderStatusBadge";
 import { useAuth } from "../../context/AuthContext";
 import { useNotification } from "../../context/NotificationContext";
 import { OrderStatusSelect } from "./OrderStatusSelect";
+import { OrderStatusBadge } from "../../components/OrderStatusBadge/OrderStatusBadge";
 
 type CommandeCardProps = {
   order: Order;

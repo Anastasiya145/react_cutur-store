@@ -5,9 +5,9 @@ import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
 import { NotFound } from "../../components/NotFound/NotFound";
 import { ModelsCounter } from "../../components/ModelsCounter/ModelsCounter";
 import { ProductList } from "../../components/ProductList/ProductList";
-import { Loader } from "../../components/Loader";
 import { getProductByCategory } from "../../api/productsApi";
 import { CATEGORY_NAME_MAP } from "../../types/Pathnames";
+import { Loader } from "../../components/Loader/Loader";
 
 export const CategoryPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);

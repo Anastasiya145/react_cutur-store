@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./breadCrumbs.scss";
 import { CATEGORY_NAME_MAP } from "../../types/Pathnames";
-import { IconHome } from "../Icons";
+import { IconHome } from "../Icons/IconHome";
 
 export interface BreadcrumbItem {
   label: string;

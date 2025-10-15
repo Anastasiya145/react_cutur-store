@@ -1,12 +1,14 @@
 @import "../../styles/common";
 
-.page-highlight-box {
-  margin: 16px 0;
-  padding: 18px 22px;
+.highlight-text-box {
+  width: 100%;
+  display: flex;
+  padding: 10px 20px;
   border-radius: 12px;
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
   border: 2px solid transparent;
 
   &__icon {
@@ -17,6 +19,10 @@
 
   &__text {
     @extend %body-text;
+
+    @include onPhone {
+      text-align: left;
+    }
   }
 
   &--success {

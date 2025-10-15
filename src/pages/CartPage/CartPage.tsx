@@ -4,7 +4,7 @@ import { AppContext } from "../../context/AppContextProvider";
 import { ProductInCart } from "../../types/Product";
 import { CheckoutCard } from "../../components/CheckoutCard/CheckoutCard";
 import { LoadingButton } from "../../components/LoadingButton";
-import { PageLayout } from "../../makets/PageLayout";
+import { PageLayout } from "../../makets/PageLayout/PageLayout";
 import "./cartPage.scss";
 import { PathnamesApp } from "../../types/Pathnames";
 import { BreadCrumbs } from "../../components/BreadCrumbs";

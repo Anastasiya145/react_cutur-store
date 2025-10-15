@@ -12,7 +12,7 @@ import DeliveryOptions from "../../../components/DeliveryOptions/DeliveryOptions
 import Checkbox from "../../../components/forms/Checkbox/Checkbox";
 import { useAuth } from "../../../context/AuthContext";
 import { getUserByEmail } from "../../../api/userApi";
-import { Loader } from "../../../components/Loader";
+import { Loader } from "../../../components/Loader/Loader";
 
 interface CheckoutFormData {
   shippingAddress: Address;

@@ -11,14 +11,12 @@ import "./checkoutPage.scss";
 import "./components/OrderItem.scss";
 import { useNavigate } from "react-router-dom";
 import { PathnamesForUserMenu } from "../../types/Pathnames";
-import {
-  CheckoutHeader,
-  ShippingForm,
-  ConfirmationStep,
-  OrderSummary,
-  EmptyCart,
-} from "./components";
 import { useAuthCheck } from "../../helpers/hooks/useAuthCheck";
+import { EmptyCart } from "./components/EmptyCart";
+import { OrderSummary } from "./components/OrderSummary";
+import { CheckoutHeader } from "./components/CheckoutHeader";
+import { ShippingForm } from "./components/ShippingForm";
+import { ConfirmationStep } from "./components/ConfirmationStep";
 
 type CheckoutFormData = {
   shippingAddress: Address;

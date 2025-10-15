@@ -1,7 +1,7 @@
 import React from "react";
 import { ProductInCart } from "../../../types/Product";
 import { LoadingButton } from "../../../components/LoadingButton";
-import { SecurityBadge } from "../../../components/SecurityBadge";
+import { SecurityBadge } from "../../../components/SecurityBadge/SecurityBadge";
 import { deliveryMessages } from "../../../constants/messages";
 
 interface OrderSummaryProps {

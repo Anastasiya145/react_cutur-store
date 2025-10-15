@@ -1,6 +1,6 @@
 import React from "react";
 import { ProductInCart } from "../../../types/Product";
-import { QuantityBadge } from "../../../components/QuantityBadge";
+import { QuantityBadge } from "../../../components/QuantityBadge/QuantityBadge";
 
 interface OrderItemProps {
   item: ProductInCart;

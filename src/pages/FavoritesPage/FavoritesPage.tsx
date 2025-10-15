@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContextProvider";
 import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
-import { PageLayout } from "../../makets/PageLayout";
+import { PageLayout } from "../../makets/PageLayout/PageLayout";
 import { ModelsCounter } from "../../components/ModelsCounter/ModelsCounter";
 import { ProductList } from "../../components/ProductList/ProductList";
 import "./favoritesPage.scss";

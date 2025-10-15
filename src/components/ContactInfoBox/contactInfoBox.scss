@@ -1,8 +1,8 @@
 @import "../../styles/common";
 
-.page-contact {
+.contact-info {
   margin-top: 48px;
-  padding: 36px 28px;
+  padding: 10px;
   background: linear-gradient(
     135deg,
     rgba($main-color, 0.12) 0%,
@@ -13,10 +13,8 @@
   text-align: center;
 
   &__text {
-    font-weight: 500;
+    @extend %body-text;
     color: $text-primary;
-    margin: 0;
-    font-size: 1.1rem;
     text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   }
 }

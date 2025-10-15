@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { AppContext } from "../../context/AppContextProvider";
 import { Product } from "../../types/Product";
 import { getProductById } from "../../api/productsApi";
-import { Loader } from "../../components/Loader";
 import { BreadCrumbs } from "../../components/BreadCrumbs/BreadCrumbs";
 import { DeliveriesDrawer } from "../DeliveriesPage/DeliveriesDrawer";
 import { ProductImages } from "./ProductImages";
@@ -17,6 +16,7 @@ import AnimatedTextButton from "../../components/AnimatedButton/AnimatedTextButt
 import { SwiperSlider } from "../../components/SwiperSlider/SwiperSlider";
 import { getProducts } from "../../api/productsApi";
 import { SortType } from "../../types/SortType";
+import { Loader } from "../../components/Loader/Loader";
 
 const navigateTo = (pathname: string, paramOld: string, paramNew: string) => {
   const newLink = pathname.replace(

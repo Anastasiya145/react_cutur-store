@@ -1,19 +1,19 @@
 import React from "react";
-import "./pageContact.scss";
+import "./contactInfoBox.scss";
 import { ContactEmailLink } from "../ContactEmailLink/ContactEmailLink";
 
-interface PageContactProps {
+interface ContactInfoBoxProps {
   text: string;
   className?: string;
 }
 
-export const PageContact: React.FC<PageContactProps> = ({
+export const ContactInfoBox: React.FC<ContactInfoBoxProps> = ({
   text,
   className = "",
 }) => {
   return (
-    <div className={`page-contact ${className}`}>
-      <div className="page-contact__text">
+    <div className={`contact-info ${className}`}>
+      <div className="contact-info__text">
         {text}
         <ContactEmailLink />
       </div>

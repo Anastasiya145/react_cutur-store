@@ -10,13 +10,12 @@ import {
 } from "../../api/userApi";
 import { ConnectedUser, Address } from "../../types/User";
 import { Loader } from "../../components/Loader/Loader";
-import {
-  EmailSection,
-  UsernameSection,
-  PasswordSection,
-  AddressSection,
-} from "./components";
+
 import { useAuthCheck } from "../../helpers/hooks/useAuthCheck";
+import { UsernameSection } from "./components/UsernameSection";
+import { PasswordSection } from "./components/PasswordSection";
+import { EmailSection } from "./components/EmailSection";
+import { AddressSection } from "./components/AddressSection";
 
 const ProfilePage: React.FC = () => {
   const { user } = useAuth();

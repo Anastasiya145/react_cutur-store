@@ -4,7 +4,7 @@ import { AuthProvider } from "./context/AuthContext";
 import AppProviderWithAuth from "./context/AppProviderWithAuth";
 import { NotificationProvider } from "./context/NotificationContext";
 import { NotificationContainer } from "./components/NotificationContainer/NotificationContainer";
-import App from "./pages/Page";
+import App from "./pages/Page/App";
 
 const container = document.getElementById("root");
 if (container) {

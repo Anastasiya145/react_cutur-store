@@ -4,18 +4,14 @@
   min-height: 60vh;
   padding: 40px 20px;
 
+  @include onPhone {
+    padding: 0;
+  }
+
   &__content {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-
-    @include onTablet {
-      padding: 40px 30px;
-    }
-
-    @include onPhone {
-      padding: 30px 20px;
-    }
   }
 
   &__icon {
