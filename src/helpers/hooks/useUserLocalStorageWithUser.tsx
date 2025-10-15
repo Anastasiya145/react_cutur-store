@@ -18,7 +18,6 @@ export function useUserLocalStorageWithUser<T>(
       const data = localStorage.getItem(userKey);
       return data ? JSON.parse(data) : initialValueRef.current;
     } catch (error) {
-
       return initialValueRef.current;
     }
   });
@@ -39,7 +38,6 @@ export function useUserLocalStorageWithUser<T>(
 
       // Guest login - transfer data
       if (prevUser === "guest" && currentUser && currentUser !== "guest") {
-
         try {
           const guestKey = `${key}_guest`;
           const guestData = localStorage.getItem(guestKey);

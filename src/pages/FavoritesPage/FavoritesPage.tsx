@@ -14,8 +14,6 @@ export const FavoritesPage: React.FC = () => {
     setProductCount(number);
   };
 
-
-
   return (
     <div className=".favorites-page">
       <BreadCrumbs />

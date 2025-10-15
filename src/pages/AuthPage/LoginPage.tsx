@@ -41,8 +41,6 @@ const LoginPage: React.FC = () => {
     }
   };
 
-
-
   return (
     <div className="auth-page">
       <h1 className="auth-page__title">Connexion</h1>

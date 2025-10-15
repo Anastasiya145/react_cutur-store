@@ -56,7 +56,6 @@ const ProfilePage: React.FC = () => {
       // TODO: Ajouter l'endpoint PUT /users/:email/email sur le backend
       showError("La modification de l'email n'est pas encore disponible");
 
-
       setEditEmail(false);
     } catch (error) {
       console.error("Erreur lors de la mise à jour de l'email:", error);
@@ -118,58 +117,52 @@ const ProfilePage: React.FC = () => {
     }
   };
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (!userData) {
-    return (
-      <div className="profile-page">
-        <div className="profile-page__error">
-          Erreur lors du chargement des données utilisateur
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="profile-page">
-      <div className="profile-page__container">
-        <h1 className="profile-page__title">Mon Profil</h1>
+      {loading && <Loader />}
 
-        <div className="profile-page__content">
-          <EmailSection
-            email={userData.email}
-            isEditing={editEmail}
-            onEdit={() => setEditEmail(true)}
-            onCancel={() => setEditEmail(false)}
-            onSubmit={handleSubmitEmail}
-          />
+      {!loading && !userData && (
+        <div>Erreur lors du chargement des données utilisateur</div>
+      )}
 
-          <UsernameSection
-            username={userData.username}
-            isEditing={editUsername}
-            onEdit={() => setEditUsername(true)}
-            onCancel={() => setEditUsername(false)}
-            onSubmit={handleSubmitUsername}
-          />
+      {!loading && userData && (
+        <div className="profile-page__container">
+          <h1 className="profile-page__title">Mon Profil</h1>
 
-          <PasswordSection
-            isEditing={editPassword}
-            onEdit={() => setEditPassword(true)}
-            onCancel={() => setEditPassword(false)}
-            onSubmit={handleSubmitPassword}
-          />
+          <div className="profile-page__content">
+            <EmailSection
+              email={userData.email}
+              isEditing={editEmail}
+              onEdit={() => setEditEmail(true)}
+              onCancel={() => setEditEmail(false)}
+              onSubmit={handleSubmitEmail}
+            />
 
-          <AddressSection
-            address={userData.address || null}
-            isEditing={editAddress}
-            onEdit={() => setEditAddress(true)}
-            onCancel={() => setEditAddress(false)}
-            onSubmit={handleSubmitAddress}
-          />
+            <UsernameSection
+              username={userData.username}
+              isEditing={editUsername}
+              onEdit={() => setEditUsername(true)}
+              onCancel={() => setEditUsername(false)}
+              onSubmit={handleSubmitUsername}
+            />
+
+            <PasswordSection
+              isEditing={editPassword}
+              onEdit={() => setEditPassword(true)}
+              onCancel={() => setEditPassword(false)}
+              onSubmit={handleSubmitPassword}
+            />
+
+            <AddressSection
+              address={userData.address || null}
+              isEditing={editAddress}
+              onEdit={() => setEditAddress(true)}
+              onCancel={() => setEditAddress(false)}
+              onSubmit={handleSubmitAddress}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
