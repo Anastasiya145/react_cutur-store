@@ -26,7 +26,7 @@
   }
 }
 
-@media #{$desktop-smallest-media-query} {
+@include onDesktopSmallest {
   .page {
     &__container {
       max-width: unset;

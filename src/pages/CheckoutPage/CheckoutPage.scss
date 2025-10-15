@@ -12,11 +12,9 @@
   }
 
   &__header {
-    background: white;
-    border-radius: 12px;
+    @include card-base;
     padding: 32px;
     margin-bottom: 24px;
-    box-shadow: $shadow-small;
   }
 
   &__title {
@@ -26,9 +24,7 @@
   }
 
   &__steps {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexCenter;
     gap: 20px;
   }
 
@@ -50,26 +46,26 @@
   }
 
   &__step-number {
+    @include flexCenter;
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: #e9ecef;
-    color: $light-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: $border-color;
+    color: white;
     font-weight: 600;
+    font-size: 14px;
     transition: $transition-smooth;
   }
 
   &__step-label {
     font-weight: 500;
+    font-size: 14px;
   }
 
   &__step-divider {
     width: 60px;
     height: 2px;
-    background: #e9ecef;
+    background: $border-color;
     border-radius: 1px;
   }
 
@@ -78,20 +74,19 @@
   }
 
   &__content {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 24px;
-
-    @media #{$desktop-smallest-media-query} {
-      grid-template-columns: 1fr;
-    }
+    @include mainSidebarLayout;
   }
 
   &__main {
-    background: white;
-    border-radius: 12px;
+    @include card-base;
     padding: 32px;
-    box-shadow: $shadow-small;
+  }
+
+  &__sidebar {
+    @include card-base;
+    padding: 24px;
+    position: sticky;
+    top: 20px;
   }
 
   &__section-title {
@@ -99,43 +94,50 @@
     margin: 0 0 24px 0;
     color: $dark-blue-color;
     font-size: 20px;
+    font-weight: 600;
+  }
+
+  &__address-form {
+    margin-bottom: 24px;
+  }
+
+  &__shipping {
+    margin-bottom: 32px;
+  }
+
+  &__confirmation {
+    .checkout-page__delivery-info {
+      margin-bottom: 32px;
+    }
   }
 
   &__delivery-info {
-    padding: 20px;
-    background: $light-grey-color;
-    border-radius: 8px;
-    margin-bottom: 32px;
     position: relative;
-  }
 
-  &__address-display {
-    color: $main-color;
-    line-height: 1.5;
+    .checkout-page__edit-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: none;
+      border: none;
+      color: $accent-color;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: underline;
 
-    p {
-      margin: 0 0 4px 0;
-
-      &:last-child {
-        margin-bottom: 0;
+      &:hover {
+        color: $main-color;
       }
     }
   }
 
-  &__edit-btn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: none;
-    border: none;
-    color: $accent-color;
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: underline;
-    transition: $transition-color;
+  &__address-display {
+    margin-bottom: 16px;
 
-    &:hover {
-      color: darken($accent-color, 10%);
+    p {
+      margin: 4px 0;
+      color: $text-primary;
+      line-height: 1.4;
     }
   }
 
@@ -147,173 +149,146 @@
     }
   }
 
-  &__sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  &__summary {
-    background: white;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: $shadow-small;
-    position: sticky;
-    top: 20px;
-  }
-
   &__summary-title {
     @extend %h3;
     margin: 0 0 20px 0;
     color: $dark-blue-color;
-    font-size: 18px;
   }
 
   &__summary-items {
     margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #e9ecef;
   }
 
   &__summary-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
-    font-size: 14px;
+    padding: 8px 0;
+    border-bottom: 1px solid $border-light;
 
     &:last-child {
-      margin-bottom: 0;
+      border-bottom: none;
     }
   }
 
   &__summary-item-name {
-    color: $light-color;
-    flex: 1;
-    margin-right: 8px;
+    color: $text-secondary;
+    font-size: 14px;
   }
 
   &__summary-item-price {
-    color: $main-color;
-    font-weight: 500;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  &__summary-divider {
+    height: 1px;
+    background: $border-light;
+    margin: 16px 0;
   }
 
   &__summary-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
-    color: $main-color;
+    padding: 8px 0;
 
-    &:last-of-type {
-      margin-bottom: 0;
+    &.checkout-page__summary-total {
+      font-weight: 600;
+      font-size: 18px;
+      color: $text-primary;
+      padding-top: 16px;
+      border-top: 2px solid $border-light;
     }
-  }
-
-  &__summary-total {
-    font-weight: 600;
-    font-size: 18px;
-    color: $main-color;
-    padding-top: 16px;
-    border-top: 2px solid #e9ecef;
-    margin-top: 16px;
-  }
-
-  &__summary-divider {
-    height: 1px;
-    background: #e9ecef;
-    margin: 16px 0;
-  }
-
-  &__free-shipping-info {
-    background: rgba($accent-color, 0.1);
-    color: darken($accent-color, 20%);
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    text-align: center;
-    margin: 12px 0;
   }
 
   &__actions {
+    margin-top: 24px;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 24px;
   }
 
   &__back-btn {
-    background: none;
-    border: 2px solid #e9ecef;
-    color: $main-color;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: $transition-smooth;
+    @include button-base;
+    background: $bg-light;
+    color: $text-secondary;
+    border: 1px solid $border-light;
 
     &:hover {
-      background: $light-grey-color;
-      border-color: #dee2e6;
+      background: $border-light;
     }
   }
 
-  &__submit-btn {
-    @include button-square;
-    width: 100% !important;
-    padding: 16px !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-  }
+  &__continue-btn {
+    @include button-base;
+    background: $main-color;
+    color: white;
 
-  &__empty {
-    background: white;
-    border-radius: 12px;
-    padding: 64px 32px;
-    text-align: center;
-    box-shadow: $shadow-small;
-  }
-
-  &__text {
-    @extend %body-text;
-    margin: 16px 0 32px 0;
-    color: $light-color;
-  }
-
-  &__button {
-    @include button-square;
-  }
-
-  @media (max-width: 1024px) {
-    &__content {
-      gap: 20px;
+    &:hover {
+      background: $accent-color;
     }
 
-    &__sidebar {
-      order: -1;
-    }
-
-    &__summary {
-      position: static;
+    &:disabled {
+      background: $border-color;
+      cursor: not-allowed;
     }
   }
 
-  @media (max-width: 640px) {
+  &__billing-section {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid $border-light;
+  }
+
+  &__billing-form {
+    margin-top: 16px;
+  }
+
+  &__subsection-title {
+    @extend %h3;
+    margin: 0 0 16px 0;
+    color: $text-primary;
+    font-size: 16px;
+  }
+
+  &__addresses-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+
+    @include onTablet {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  &__delivery-info,
+  &__billing-info {
+    background: $bg-light;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+  }
+
+  &__same-address {
+    color: $text-secondary;
+    font-style: italic;
+    margin: 0;
+  }
+
+  // Mobile optimizations
+  @include onTablet {
     padding: 16px 0 32px;
 
-    &__container {
-      padding: 0 16px;
-    }
-
     &__header {
-      padding: 24px 20px;
+      padding: 24px;
+      margin-bottom: 20px;
     }
 
-    &__main {
-      padding: 24px 20px;
-    }
-
-    &__summary {
+    &__main,
+    &__sidebar {
       padding: 20px;
     }
 
@@ -327,6 +302,35 @@
 
     &__step-label {
       display: none;
+    }
+  }
+
+  @include onPhone {
+    padding: 12px 0 24px;
+
+    &__container {
+      padding: 0 16px;
+    }
+
+    &__header {
+      padding: 20px;
+    }
+
+    &__main,
+    &__sidebar {
+      padding: 16px;
+    }
+
+    &__steps {
+      gap: 8px;
+
+      .checkout-page__step-divider {
+        width: 30px;
+      }
+    }
+
+    &__addresses-info {
+      gap: 16px;
     }
   }
 }

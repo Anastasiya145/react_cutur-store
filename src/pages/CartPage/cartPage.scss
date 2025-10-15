@@ -2,8 +2,6 @@
 
 .cart-page {
   min-height: 100vh;
-  background: $light-grey-color;
-  padding: 20px 0 40px;
 
   &__container {
     max-width: 1200px;
@@ -21,7 +19,7 @@
 
   &__title {
     @extend %h1;
-    margin: 0;
+    margin: 0 0 20px 0;
   }
 
   &__items-count {
@@ -34,13 +32,7 @@
   }
 
   &__content {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 24px;
-
-    @media #{$desktop-smallest-media-query} {
-      grid-template-columns: 1fr;
-    }
+    @include mainSidebarLayout;
   }
 
   &__main {
@@ -89,13 +81,6 @@
     box-shadow: $shadow-small;
     position: sticky;
     top: 20px;
-  }
-
-  &__title {
-    @extend %h2;
-    margin: 0 0 20px 0;
-    color: $dark-blue-color;
-    font-size: 18px;
   }
 
   &__summary-items {
@@ -217,44 +202,7 @@
     opacity: 0.8;
   }
 
-  // Empty cart styles
-  &__empty {
-    background: white;
-    border-radius: 12px;
-    padding: 64px 32px;
-    text-align: center;
-    box-shadow: $shadow-small;
-  }
-
-  &__empty-icon {
-    font-size: 64px;
-    margin-bottom: 24px;
-    opacity: 0.5;
-  }
-
-  &__empty-title {
-    @extend %h1;
-    margin: 0 0 16px 0;
-    color: $dark-blue-color;
-  }
-
-  &__empty-text {
-    @extend %body-text;
-    margin: 0 0 32px 0;
-    color: $light-color;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  &__empty-button {
-    @include button-square;
-    padding: 16px 32px !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-  }
-
-  @media #{$desktop-smallest-media-query} {
+  @include onDesktopSmallest {
     &__content {
       gap: 20px;
     }
@@ -288,14 +236,6 @@
 
     &__summary {
       padding: 20px;
-    }
-
-    &__empty {
-      padding: 48px 24px;
-    }
-
-    &__empty-icon {
-      font-size: 48px;
     }
   }
 }

@@ -1,0 +1,91 @@
+@import "../../styles/common";
+
+.page-layout {
+  min-height: 60vh;
+  padding: 40px 20px;
+
+  &__content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+
+    @include onTablet {
+      padding: 40px 30px;
+    }
+
+    @include onPhone {
+      padding: 30px 20px;
+    }
+  }
+
+  &__icon {
+    font-size: 4rem;
+    margin-bottom: 24px;
+    display: block;
+
+    @include onTablet {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    @include onPhone {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__title {
+    @extend %h1;
+    color: $text-primary;
+    margin: 0 0 24px 0;
+    font-weight: 600;
+
+    @include onTablet {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    @include onPhone {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__description {
+    color: $text-secondary;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0 0 32px 0;
+    text-align: left;
+    max-width: 100%;
+
+    @include onTablet {
+      font-size: 1rem;
+      margin-bottom: 28px;
+    }
+
+    @include onPhone {
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    p {
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__button {
+    min-width: 200px;
+    margin-top: 20px;
+
+    @include onPhone {
+      min-width: 160px;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+    }
+  }
+}

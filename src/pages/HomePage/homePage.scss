@@ -25,7 +25,7 @@
   }
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .home-page {
     &__section {
       margin-bottom: 60px;

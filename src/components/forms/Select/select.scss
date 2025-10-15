@@ -144,7 +144,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .custom-select {
     &__button {
       padding: 10px 12px;

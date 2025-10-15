@@ -144,7 +144,7 @@
   }
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .commande-card__header {
     flex-direction: column;
 

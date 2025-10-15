@@ -11,7 +11,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .button-remove {
     margin-bottom: 24px;
   }

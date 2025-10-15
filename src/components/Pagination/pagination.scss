@@ -115,7 +115,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .pagination {
     gap: 8px;
 
@@ -132,7 +132,7 @@
   }
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .pagination {
     gap: 6px;
 

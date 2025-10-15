@@ -226,7 +226,7 @@
 //     margin-bottom: 16px;
 //   }
 
-@media #{$desktop-media-query} {
+@include onDesktop {
   .product-details {
     max-width: 700px;
     margin: 0 auto;
@@ -238,7 +238,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .product-details {
     display: flex;
     flex-direction: column;

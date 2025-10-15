@@ -104,7 +104,7 @@
   background: $main-color;
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .badge {
     font-size: 11px;
     padding: 3px 6px;

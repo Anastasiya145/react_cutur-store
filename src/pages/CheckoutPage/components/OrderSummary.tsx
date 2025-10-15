@@ -36,7 +36,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
               {item.name} × {item.count}
             </span>
             <span className="checkout-page__summary-item-price">
-              {(item.price * item.count).toFixed(2)}€
+              {(Number(item.price) * item.count).toFixed(2)}€
             </span>
           </div>
         ))}
@@ -56,11 +56,9 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
         </span>
       </div>
 
-      {total < 50 && (
-        <div className="checkout-page__free-shipping-info">
-          {deliveryMessages.freeShipping}
-        </div>
-      )}
+      <div className="checkout-page__free-shipping-info">
+        {deliveryMessages.freeShipping}
+      </div>
 
       <div className="checkout-page__summary-divider"></div>
 

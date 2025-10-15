@@ -43,11 +43,12 @@ $shadow-medium: 0 4px 12px rgba(34, 60, 80, 0.15);
 // Extra tiny shadow used for subtle elevation
 $shadow-xsmall: 0 1px 2px rgba(34, 60, 80, 0.05);
 
-$desktop-media-query: "only screen and (max-width : 1220px)";
-$desktop-smallest-media-query: "only screen and (max-width : 1024px)";
-$tablet-media-query: "only screen and (max-width : 768px)";
-$phone-media-query: "only screen and (max-width : 540px)";
-$phone-smallest-media-query: "only screen and (max-width : 374px)";
+// Breakpoints теперь используются через миксины в mixins.scss
+// @include onDesktop (max-width: 1220px)
+// @include onDesktopSmallest (max-width: 1024px)
+// @include onTablet (max-width: 768px)
+// @include onPhone (max-width: 540px)
+// @include onPhoneSmallest (max-width: 374px)
 
 // Animation variables
 $transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);

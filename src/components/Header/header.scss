@@ -80,7 +80,7 @@
   }
 }
 
-@media #{$desktop-smallest-media-query} {
+@include onDesktopSmallest {
   .header {
     &__menu-open-button {
       display: block;
@@ -152,7 +152,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .nav {
     flex-direction: column;
 

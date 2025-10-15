@@ -7,7 +7,7 @@ interface OrderItemProps {
 }
 
 export const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
-  const totalPrice = item.price * item.count;
+  const totalPrice = Number(item.price) * item.count;
 
   return (
     <div className="order-item">
@@ -30,7 +30,8 @@ export const OrderItem: React.FC<OrderItemProps> = ({ item }) => {
           <div className="order-item__variant">Couleur: {item.color}</div>
         )}
         <div className="order-item__price">
-          {item.count} × {item.price.toFixed(2)}€ = {totalPrice.toFixed(2)}€
+          {item.count} × {Number(item.price).toFixed(2)}€ ={" "}
+          {totalPrice.toFixed(2)}€
         </div>
       </div>
     </div>

@@ -9,11 +9,11 @@
     width: 100%;
     max-width: 100%;
 
-    @media #{$tablet-media-query} {
+    @include onTablet {
       padding: 0 20px 40px 20px;
     }
 
-    @media #{$phone-media-query} {
+    @include onPhone {
       padding: 0 10px 40px 10px;
     }
   }
@@ -26,13 +26,13 @@
     max-width: none;
 
     // On phones we want a single slide per view (full width)
-    @media #{$phone-media-query} {
+    @include onPhone {
       width: 100% !important;
       max-width: 100% !important;
     }
 
     // On small tablets we can constrain a bit if desired, but keep auto sizing
-    @media #{$tablet-media-query} {
+    @include onTablet {
       // let the card's own width (250-260px) drive how many fit
       width: auto;
     }
@@ -50,9 +50,7 @@
     z-index: 20;
 
     // keep arrows centered visually
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter;
 
     & svg {
       width: 56%;
@@ -92,7 +90,7 @@
     left: 10px;
   }
 
-  @media #{$tablet-media-query} {
+  @include onTablet {
     .swiper-button-next,
     .swiper-button-prev {
       display: none;

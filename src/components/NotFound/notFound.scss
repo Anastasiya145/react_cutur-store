@@ -34,7 +34,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .not-found {
     margin: 50px 0;
   }

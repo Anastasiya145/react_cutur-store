@@ -1,0 +1,142 @@
+@import "../../../styles/common";
+
+.terms-highlight-box {
+  margin: 16px 0;
+  padding: 18px 22px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  animation: slideInLeft 0.6s ease-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: translateX(4px) scale(1.02);
+    box-shadow: $shadow-medium;
+  }
+
+  @include onPhone {
+    padding: 16px 18px;
+    gap: 12px;
+    animation-duration: 0.5s;
+  }
+
+  &__icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    animation: bounce 2s infinite;
+    transition: transform 0.3s ease;
+
+    @include onPhone {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    font-weight: 500;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  // Типы блоков с использованием переменных
+  &--success {
+    background: linear-gradient(
+      135deg,
+      lighten($success-color, 35%) 0%,
+      lighten($success-color, 40%) 100%
+    );
+    border-color: lighten($success-color, 15%);
+    color: darken($success-color, 25%);
+
+    .terms-highlight-box__icon {
+      color: $success-color;
+    }
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        lighten($success-color, 32%) 0%,
+        lighten($success-color, 37%) 100%
+      );
+      border-color: $success-color;
+    }
+  }
+
+  &--info {
+    background: linear-gradient(
+      135deg,
+      lighten($info-color, 35%) 0%,
+      lighten($info-color, 40%) 100%
+    );
+    border-color: lighten($info-color, 15%);
+    color: darken($info-color, 25%);
+
+    .terms-highlight-box__icon {
+      color: $info-color;
+    }
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        lighten($info-color, 32%) 0%,
+        lighten($info-color, 37%) 100%
+      );
+      border-color: $info-color;
+    }
+  }
+
+  &--warning {
+    background: linear-gradient(
+      135deg,
+      lighten($warning-color, 25%) 0%,
+      lighten($warning-color, 30%) 100%
+    );
+    border-color: lighten($warning-color, 10%);
+    color: darken($warning-color, 35%);
+
+    .terms-highlight-box__icon {
+      color: darken($warning-color, 15%);
+    }
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        lighten($warning-color, 22%) 0%,
+        lighten($warning-color, 27%) 100%
+      );
+      border-color: $warning-color;
+    }
+  }
+}
+
+// Анимации
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}

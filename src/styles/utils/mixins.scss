@@ -1,4 +1,59 @@
 /* ============================================
+   MEDIA QUERY MIXINS
+   ============================================ */
+
+// Media query mixins для более чистого кода
+@mixin onDesktop {
+  @media only screen and (max-width: 1220px) {
+    @content;
+  }
+}
+
+@mixin onDesktopSmallest {
+  @media only screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin onTablet {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin onPhone {
+  @media only screen and (max-width: 540px) {
+    @content;
+  }
+}
+
+@mixin onPhoneSmallest {
+  @media only screen and (max-width: 374px) {
+    @content;
+  }
+}
+
+// Дополнительные удобные миксины
+@mixin fromTablet {
+  @media only screen and (min-width: 769px) {
+    @content;
+  }
+}
+
+@mixin fromDesktop {
+  @media only screen and (min-width: 1025px) {
+    @content;
+  }
+}
+
+// Миксин для кастомных брейкпоинтов
+@mixin breakpoint($size) {
+  @media only screen and (max-width: $size) {
+    @content;
+  }
+}
+
+/* ============================================
    MENU SYSTEM MIXINS
    ============================================
    
@@ -327,5 +382,144 @@
   &::placeholder {
     color: $border-color;
     opacity: 1;
+  }
+}
+
+/* ============================================
+   UTILITY MIXINS
+   ============================================ */
+
+// Миксин для flex центрирования
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Миксин для абсолютного центрирования
+@mixin absoluteCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Миксин для скрытия текста (screen reader friendly)
+@mixin visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Миксин для троеточия
+@mixin textEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Миксин для многострочного троеточия
+@mixin textEllipsisMultiline($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Миксин для размеров
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// Миксин для border radius
+@mixin borderRadius($radius) {
+  border-radius: $radius;
+}
+
+// Миксин для тени
+@mixin shadow($shadow: $shadow-medium) {
+  box-shadow: $shadow;
+}
+
+// Миксин для hover эффектов
+@mixin hoverEffect($scale: 1.02, $shadow: $shadow-medium) {
+  transition: $transition-smooth;
+
+  &:hover {
+    transform: scale($scale);
+    box-shadow: $shadow;
+  }
+}
+
+// Миксин для кнопок
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: $transition-fast;
+  text-decoration: none;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Миксин для карточек
+@mixin card-base {
+  background: white;
+  border-radius: 12px;
+  box-shadow: $shadow-small;
+  overflow: hidden;
+  transition: $transition-smooth;
+
+  &:hover {
+    box-shadow: $shadow-medium;
+  }
+}
+
+// Миксин для grid layout
+@mixin grid($columns: 1, $gap: 20px) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Миксин для responsive grid
+@mixin responsiveGrid($desktop: 4, $tablet: 2, $phone: 1, $gap: 20px) {
+  @include grid($desktop, $gap);
+
+  @include onTablet {
+    grid-template-columns: repeat($tablet, 1fr);
+  }
+
+  @include onPhone {
+    grid-template-columns: repeat($phone, 1fr);
+  }
+}
+
+// Миксин для layout main + sidebar
+@mixin mainSidebarLayout($sidebarWidth: 380px, $gap: 24px) {
+  display: grid;
+  grid-template-columns: 1fr $sidebarWidth;
+  gap: $gap;
+
+  @include onDesktopSmallest {
+    grid-template-columns: 1fr;
   }
 }

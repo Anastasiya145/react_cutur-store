@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { UseFormRegister, FieldErrors, UseFormSetValue } from "react-hook-form";
+import {
+  UseFormRegister,
+  FieldErrors,
+  UseFormSetValue,
+  UseFormWatch,
+} from "react-hook-form";
 import { Address } from "../../../types/User";
 import { TextArea } from "../../../components/forms/TextArea/TextArea";
 import AddressForm from "../../../components/forms/AddressForm/AddressForm";
@@ -21,6 +26,7 @@ interface ShippingFormProps {
   errors: FieldErrors<CheckoutFormData>;
   shippingCost: number;
   setValue: UseFormSetValue<CheckoutFormData>;
+  watch: UseFormWatch<CheckoutFormData>;
 }
 
 export const ShippingForm: React.FC<ShippingFormProps> = ({
@@ -28,9 +34,11 @@ export const ShippingForm: React.FC<ShippingFormProps> = ({
   errors,
   shippingCost,
   setValue,
+  watch,
 }) => {
   const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+  const sameAsShipping = watch("sameAsShipping");
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -107,6 +115,42 @@ export const ShippingForm: React.FC<ShippingFormProps> = ({
           name="saveAddress"
           register={register}
         />
+      </div>
+
+      <div className="checkout-page__billing-section">
+        <Checkbox
+          id="sameAsShipping"
+          label="Utiliser la même adresse pour la facturation"
+          name="sameAsShipping"
+          register={register}
+        />
+
+        {!sameAsShipping && (
+          <div className="checkout-page__billing-form">
+            <h3 className="checkout-page__subsection-title">
+              Adresse de facturation
+            </h3>
+            <AddressForm
+              register={register}
+              errors={errors}
+              registerField={(k: string) =>
+                register(`billingAddress.${k}` as unknown as any)
+              }
+              validation={{
+                country: { required: "Le pays est requis" },
+                city: { required: "La ville est requise" },
+                street: { required: "L'adresse est requise" },
+                postalCode: {
+                  required: "Le code postal est requis",
+                  pattern: {
+                    value: /^\d{5}$/,
+                    message: "Code postal invalide",
+                  },
+                },
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

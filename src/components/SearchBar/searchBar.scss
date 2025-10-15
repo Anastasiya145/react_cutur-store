@@ -70,7 +70,7 @@
   transition: $transition-smooth;
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .search-bar_opened {
     position: fixed;
     top: 0;

@@ -58,7 +58,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .contact-page {
     flex-direction: column;
     gap: 0;

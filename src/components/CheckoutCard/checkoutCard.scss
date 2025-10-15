@@ -135,7 +135,7 @@
 }
 
 // Адаптивность для планшетов
-@media #{$tablet-media-query} {
+@include onTablet {
   .checkout-card {
     &__body {
       padding: 0 16px 12px;
@@ -170,7 +170,7 @@
 }
 
 // Адаптивность для мобильных
-@media #{$phone-media-query} {
+@include onPhone {
   .checkout-card {
     margin-bottom: 12px;
 
@@ -234,7 +234,7 @@
 }
 
 // Очень маленькие экраны
-@media #{$phone-smallest-media-query} {
+@include onPhoneSmallest {
   .checkout-card {
     &__title {
       font-size: 0.8rem;

@@ -125,7 +125,7 @@
 }
 
 // Адаптивность
-@media #{$tablet-media-query} {
+@include onTablet {
   .button-more-less {
     height: 36px;
     width: 36px;
@@ -153,7 +153,7 @@
   }
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .button-more-less {
     height: 32px;
     width: 32px;

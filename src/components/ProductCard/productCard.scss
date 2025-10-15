@@ -133,7 +133,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .card {
     &__image {
       height: 200px;
@@ -149,7 +149,7 @@
   }
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .card {
     &__image {
       height: 180px;

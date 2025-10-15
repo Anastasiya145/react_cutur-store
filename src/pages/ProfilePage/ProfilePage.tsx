@@ -56,6 +56,7 @@ const ProfilePage: React.FC = () => {
       // TODO: Ajouter l'endpoint PUT /users/:email/email sur le backend
       showError("La modification de l'email n'est pas encore disponible");
 
+      console.log(data);
       setEditEmail(false);
     } catch (error) {
       console.error("Erreur lors de la mise à jour de l'email:", error);

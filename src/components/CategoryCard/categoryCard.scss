@@ -19,7 +19,7 @@
   }
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .category-card {
     &__title,
     &__counter {

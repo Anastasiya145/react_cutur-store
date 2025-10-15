@@ -54,13 +54,19 @@ const CheckoutPage: React.FC = () => {
         postalCode: "",
         apartment: "",
       },
+      billingAddress: {
+        country: "France",
+        city: "",
+        street: "",
+        postalCode: "",
+        apartment: "",
+      },
     },
   });
 
   const sameAsShipping = watch("sameAsShipping");
   const shippingAddress = watch("shippingAddress");
-
-  // Pre-fill address could be added later when user profile is available
+  const billingAddress = watch("billingAddress");
 
   // Auto-fill billing address when same as shipping is checked
   useEffect(() => {
@@ -69,7 +75,10 @@ const CheckoutPage: React.FC = () => {
     }
   }, [sameAsShipping, shippingAddress, setValue]);
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
+  const total = cart.reduce(
+    (sum, item) => sum + Number(item.price) * item.count,
+    0
+  );
   const shippingCost = total >= 50 ? 0 : 5.99;
   const finalTotal = total + shippingCost;
 
@@ -84,7 +93,7 @@ const CheckoutPage: React.FC = () => {
           showSuccess("Adresse sauvegardée dans le profil");
         }
       } catch (err: any) {
-        showError(err.message || "Erreur lors de la sauvegarde de l'adresse");
+        showError(err.message);
       }
 
       setCurrentStep(2);
@@ -130,12 +139,15 @@ const CheckoutPage: React.FC = () => {
                   errors={errors}
                   shippingCost={shippingCost}
                   setValue={setValue}
+                  watch={watch}
                 />
               )}
 
               {currentStep === 2 && (
                 <ConfirmationStep
                   shippingAddress={shippingAddress}
+                  billingAddress={billingAddress}
+                  sameAsShipping={sameAsShipping}
                   cart={cart}
                   onEditAddress={() => setCurrentStep(1)}
                 />

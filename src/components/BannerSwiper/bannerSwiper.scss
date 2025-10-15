@@ -1,4 +1,4 @@
-@import "../../styles/utils/variables";
+@import "../../styles/common";
 
 .banner-swiper {
   position: relative;
@@ -10,9 +10,7 @@
   }
 
   .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexCenter;
 
     img {
       width: 100%;
@@ -43,7 +41,7 @@
     }
   }
 
-  @media #{$tablet-media-query} {
+  @include onTablet {
     .swiper-pagination {
       bottom: 15px;
 

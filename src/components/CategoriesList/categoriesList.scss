@@ -7,7 +7,7 @@
   margin-bottom: 140px;
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .product-category {
     display: block;
     grid-template-columns: unset;

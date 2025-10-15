@@ -9,9 +9,7 @@
 
   &__content {
     margin-bottom: 40px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); // 4 columns on desktop
-    gap: $gap calc(3 * $gap);
+    @include responsiveGrid(4, 2, 1, $gap);
     align-items: start;
   }
 
@@ -37,7 +35,7 @@
   }
 }
 
-@media #{$desktop-media-query} {
+@include onDesktop {
   .product-list {
     align-items: center;
     display: flex;
@@ -45,7 +43,7 @@
   }
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .product-list {
     &__content {
       flex-direction: column;
@@ -66,22 +64,4 @@
   }
 }
 
-// tablet breakpoint: 2 columns
-@media #{$tablet-media-query} {
-  .product-list {
-    &__content {
-      grid-template-columns: repeat(2, 1fr);
-      gap: calc(2 * $gap) $gap;
-    }
-  }
-}
-
-// phone: single column (override earlier flex-direction change)
-@media #{$phone-media-query} {
-  .product-list {
-    &__content {
-      grid-template-columns: 1fr;
-      gap: $gap $gap;
-    }
-  }
-}
+// Responsive grid уже обрабатывается через @include responsiveGrid(4, 2, 1, $gap)

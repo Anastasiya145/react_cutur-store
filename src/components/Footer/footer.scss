@@ -97,7 +97,7 @@
   }
 }
 
-@media #{$tablet-media-query} {
+@include onTablet {
   .footer {
     height: min-content;
     padding: 20px 0;
@@ -120,7 +120,7 @@
   }
 }
 
-@media #{$phone-media-query} {
+@include onPhone {
   .footer__container {
     flex-direction: column;
     align-items: stretch;
