@@ -35,11 +35,11 @@ const TermsPage: React.FC = () => (
           className="page-section--timing"
           text="Nos produits étant fabriqués sur commande, prévoyez un délai de 1 à 2 semaines avant expédition."
         >
-          <PageHighlightBox type="info" icon="ℹ️">
-            Ce délai peut être prolongé en période de forte demande (fêtes,
-            promotions). Nous vous tiendrons informé par email en cas de retard
-            exceptionnel.
-          </PageHighlightBox>
+          <PageHighlightBox
+            type="info"
+            icon="ℹ️"
+            text="Ce délai peut être prolongé en période de forte demande (fêtes, promotions). Nous vous tiendrons informé par email en cas de retard exceptionnel."
+          />
         </PageSection>
 
         <PageSection
@@ -55,15 +55,11 @@ const TermsPage: React.FC = () => (
           className="page-section--delivery"
           text="La livraison s'effectue à l'adresse que vous indiquez lors de votre commande. Les frais de port sont de 5,99€ pour la France métropolitaine."
         >
-          <PageHighlightBox type="success" icon="🎉">
-            <strong>
-              Bonne nouvelle : la livraison est GRATUITE pour toute commande de
-              50€ et plus !
-            </strong>
-          </PageHighlightBox>
-          {/* <PageText>
-            Les délais de livraison sont de 3 à 5 jours ouvrés après expédition.
-          </PageText> */}
+          <PageHighlightBox
+            type="success"
+            icon="🎉"
+            text="Bonne nouvelle : la livraison est GRATUITE pour toute commande de 50€ et plus !"
+          />
         </PageSection>
 
         <PageSection

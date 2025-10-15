@@ -2,14 +2,14 @@ import React from "react";
 import "./pageHighlightBox.scss";
 
 interface PageHighlightBoxProps {
-  children: React.ReactNode;
+  text: string;
   icon?: React.ReactNode;
   type?: "success" | "info" | "warning";
   className?: string;
 }
 
 export const PageHighlightBox: React.FC<PageHighlightBoxProps> = ({
-  children,
+  text,
   icon,
   type = "info",
   className = "",
@@ -18,6 +18,6 @@ export const PageHighlightBox: React.FC<PageHighlightBoxProps> = ({
     className={`page-highlight-box page-highlight-box--${type} ${className}`}
   >
     {icon && <span className="page-highlight-box__icon">{icon}</span>}
-    <div className="page-highlight-box__content">{children}</div>
+    <div className="page-highlight-box__text">{text}</div>
   </div>
 );
