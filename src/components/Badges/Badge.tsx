@@ -6,6 +6,7 @@ export type BadgeType =
   | "error"
   | "success"
   | "info"
+  | "disabled"
   | "created"
   | "pending"
   | "shipped"
@@ -27,6 +28,8 @@ const BadgeIcons: Record<BadgeType, string> = {
   error: "❌",
   success: "✅",
   info: "ℹ️",
+
+  disabled: "🚫",
 
   created: "📝",
   pending: "⏳",

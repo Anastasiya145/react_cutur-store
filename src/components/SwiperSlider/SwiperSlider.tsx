@@ -31,18 +31,14 @@ export const SwiperSlider: React.FC<Props> = ({ products, sortBy }) => {
         // keep a simple breakpoint: on very small screens show 1 slide
         breakpoints={{
           0: {
-            slidesPerView: 1,
-            spaceBetween: 12,
-          },
-          480: {
-            slidesPerView: 1,
-            spaceBetween: 12,
-          },
-          768: {
-            // from tablet upwards use auto sizing so multiple cards fit
             slidesPerView: "auto",
-            spaceBetween: 16,
+            spaceBetween: 12,
           },
+          // 768: {
+          //   // from tablet upwards use auto sizing so multiple cards fit
+          //   slidesPerView:
+          //   spaceBetween: 16,
+          // },
         }}
         autoplay={
           sortedProducts.length > 4

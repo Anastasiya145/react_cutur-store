@@ -45,6 +45,12 @@
     border: 1px solid rgba($info-color, 0.3);
   }
 
+  &--disabled {
+    background: rgba($dark-blue-color, 0.1);
+    color: darken($dark-blue-color, 20%);
+    border: 1px solid rgba($dark-blue-color, 0.3);
+  }
+
   // Specific order status types
   &--created {
     background: rgba(#ffa726, 0.1);
@@ -96,6 +102,8 @@
 }
 
 .discount-badge {
+  width: min-content;
+
   padding: 4px 8px;
   border-radius: 20px;
   font-size: 0.75rem;

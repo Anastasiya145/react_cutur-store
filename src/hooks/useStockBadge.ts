@@ -44,7 +44,7 @@ export const useStockBadge = ({ items_left, count }: StockInfo): BadgeInfo => {
     // Out of stock
     if (items_left === 0) {
       return {
-        type: "error",
+        type: "disabled",
         text: "Rupture de stock",
         show: true,
       };

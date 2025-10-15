@@ -43,21 +43,23 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           />
         )}
 
-        {product.final_price !== product.price && (
-          <DiscountBadge
-            text={`-${Math.round(((product.price - product.final_price) / product.price) * 100)}%`}
-            className="card__badge"
-          />
-        )}
+        <div className="card__badges">
+          {product.final_price !== product.price && (
+            <DiscountBadge
+              text={`-${Math.round(((product.price - product.final_price) / product.price) * 100)}%`}
+              className="card__badge"
+            />
+          )}
 
-        {stockBadge.show && (
-          <Badge
-            type={stockBadge.type}
-            text={stockBadge.text}
-            icon={false}
-            className="card__badge card__badge--stock"
-          />
-        )}
+          {stockBadge.show && (
+            <Badge
+              type={stockBadge.type}
+              text={stockBadge.text}
+              icon={false}
+              className="card__badge card__badge--stock"
+            />
+          )}
+        </div>
 
         <div className="card__overlay">
           <span className="card__overlay-text">Voir les détails</span>
