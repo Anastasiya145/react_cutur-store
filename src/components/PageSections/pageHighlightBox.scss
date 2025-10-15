@@ -1,14 +1,14 @@
-@import "../../../styles/common";
+@import "../../styles/common";
 
-.terms-highlight-box {
+.page-highlight-box {
   margin: 16px 0;
   padding: 18px 22px;
   border-radius: 12px;
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  animation: slideInLeft 0.6s ease-out;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: $animation-slide-in;
+  transition: $transition-smooth;
   border: 2px solid transparent;
 
   &:hover {
@@ -19,13 +19,13 @@
   @include onPhone {
     padding: 16px 18px;
     gap: 12px;
-    animation-duration: 0.5s;
+    animation-duration: 0.2s;
   }
 
   &__icon {
     font-size: 1.5rem;
     flex-shrink: 0;
-    animation: bounce 2s infinite;
+    animation: $animation-fade-in;
     transition: transform 0.3s ease;
 
     @include onPhone {
@@ -52,7 +52,7 @@
     border-color: lighten($success-color, 15%);
     color: darken($success-color, 25%);
 
-    .terms-highlight-box__icon {
+    .page-highlight-box__icon {
       color: $success-color;
     }
 
@@ -75,7 +75,7 @@
     border-color: lighten($info-color, 15%);
     color: darken($info-color, 25%);
 
-    .terms-highlight-box__icon {
+    .page-highlight-box__icon {
       color: $info-color;
     }
 
@@ -98,7 +98,7 @@
     border-color: lighten($warning-color, 10%);
     color: darken($warning-color, 35%);
 
-    .terms-highlight-box__icon {
+    .page-highlight-box__icon {
       color: darken($warning-color, 15%);
     }
 
@@ -110,33 +110,5 @@
       );
       border-color: $warning-color;
     }
-  }
-}
-
-// Анимации
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-4px);
-  }
-  60% {
-    transform: translateY(-2px);
   }
 }

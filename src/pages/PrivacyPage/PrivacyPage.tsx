@@ -1,18 +1,31 @@
 import React from "react";
-import "./privacyPage.scss";
-import { ContactEmailLink } from "../../components/ContactEmailLink/ContactEmailLink";
+import { PageSection, PageContact } from "../../components/PageSections";
+import { PageLayout } from "../../makets/PageLayout";
 
 const PrivacyPage: React.FC = () => (
-  <div className="privacy-page">
-    <h2 className="privacy-page__title">Politique de confidentialité</h2>
-    <p className="privacy-page__text">
-      Nous respectons votre vie privée. Les données collectées sont utilisées uniquement pour le
-      traitement de votre commande et la gestion de la relation client. Elles ne sont jamais
-      transmises à des tiers sans votre consentement. Vous disposez d'un droit d'accès, de
-      modification et de suppression de vos données personnelles. Pour toute demande, contactez-nous
-      à <ContactEmailLink />.
-    </p>
-  </div>
+  <PageLayout
+    icon="🔒"
+    title="Politique de confidentialité"
+    description=""
+    className="page-layout--privacy"
+  >
+    <div className="privacy-page__content">
+      <PageSection
+        icon="🔒"
+        title="Respect de la vie privée"
+        className="page-section--privacy"
+        text="Nous respectons votre vie privée. Les données collectées sont utilisées uniquement pour le traitement de votre commande et la gestion de la relation client."
+      />
+      <PageSection
+        icon="📦"
+        title="Utilisation des données"
+        className="page-section--highlight"
+        text="Vos informations ne sont jamais transmises à des tiers sans votre consentement. Elles servent uniquement à assurer le bon déroulement de vos achats et à améliorer nos services."
+      />
+
+      <PageContact text="Pour toute question concernant la confidentialité ou vos données personnelles, n'hésitez pas à nous écrire à " />
+    </div>
+  </PageLayout>
 );
 
 export default PrivacyPage;

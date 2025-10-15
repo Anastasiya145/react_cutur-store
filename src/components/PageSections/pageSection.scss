@@ -1,0 +1,68 @@
+@import "../../styles/common";
+
+.page-section {
+  position: relative;
+  margin-bottom: 32px;
+  padding: 28px 24px 24px 70px;
+  border-radius: 16px;
+  border-left: 4px solid $main-color;
+  box-shadow: $shadow-medium;
+
+  &__icon {
+    position: absolute;
+    top: 24px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: linear-gradient(
+      135deg,
+      rgba($main-color, 0.12) 0%,
+      rgba($main-color, 0.06) 100%
+    );
+    border-radius: 50%;
+    border: 2px solid rgba($main-color, 0.2);
+
+    @include onPhone {
+      width: 32px;
+      height: 32px;
+      font-size: 1.2rem;
+      top: 20px;
+      left: 16px;
+    }
+  }
+
+  &__title {
+    @extend %h2;
+    color: $main-color;
+    margin: 0 0 16px 0;
+    font-weight: 600;
+    position: relative;
+    text-align: left;
+
+    @include onPhone {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+  }
+
+  &__text {
+    text-align: left;
+    @extend %body-text;
+    margin: 0 0 16px 0;
+    line-height: 1.7;
+    color: $text-secondary;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: $main-color;
+      font-weight: 600;
+    }
+  }
+}
