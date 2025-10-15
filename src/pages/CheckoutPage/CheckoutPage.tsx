@@ -33,7 +33,7 @@ const CheckoutPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const { cart, clearCart } = useAppContext();
   const { user } = useAuth();
-  useAuthCheck(); // Проверяем аутентификацию
+  useAuthCheck();
   const { showError, showSuccess } = useNotification();
   const navigate = useNavigate();
 

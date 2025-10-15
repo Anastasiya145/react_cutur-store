@@ -1,6 +1,7 @@
 import React, { useState, forwardRef } from "react";
 import "./passwordInput.scss";
 import { VisibilityIcon } from "../../Icons/VisibilityIcon";
+import classNames from "classnames";
 
 export type PasswordInputProps = {
   label: string;
@@ -35,7 +36,10 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             placeholder={placeholder}
             autoComplete={autoComplete}
             required={required}
-            className="password-input__input"
+            // className="password-input__input"
+            className={classNames("password-input__input", {
+              "--error": rest.error,
+            })}
             ref={ref}
             {...rest}
           />
@@ -48,6 +52,8 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             <VisibilityIcon off={show} size={22} />
           </button>
         </div>
+
+        {rest.error && <span className="text-input__error">{rest.error}</span>}
       </label>
     );
   }

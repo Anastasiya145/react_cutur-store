@@ -42,7 +42,7 @@ export const CartPage: React.FC = () => {
     }
 
     setLoading(true);
-    // Симуляция задержки для UX
+
     setTimeout(() => {
       setLoading(false);
       navigate(PathnamesApp.Paiement);

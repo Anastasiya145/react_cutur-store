@@ -7,7 +7,7 @@ import { CommandeCard } from "./CommandeCard";
 import { useAuthCheck } from "../../helpers/hooks/useAuthCheck";
 
 const MesCommandesPage: React.FC = () => {
-  useAuthCheck(); // Проверяем аутентификацию
+  useAuthCheck();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");

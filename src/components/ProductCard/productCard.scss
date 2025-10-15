@@ -135,8 +135,6 @@
 
 @media #{$tablet-media-query} {
   .card {
-    width: 260px;
-
     &__image {
       height: 200px;
     }
@@ -153,9 +151,6 @@
 
 @media #{$phone-media-query} {
   .card {
-    width: 100%;
-    max-width: 320px;
-
     &__image {
       height: 180px;
     }

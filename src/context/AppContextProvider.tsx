@@ -1,6 +1,10 @@
 import React, { createContext, useContext } from "react";
 import { Product, ProductInCart } from "../types/Product";
-import { useLocalStorage } from "../helpers/hooks/useLocalStorage";
+import { useUserLocalStorageWithUser } from "../helpers/hooks/useUserLocalStorageWithUser";
+
+// Constant values to avoid recreation on each render
+const EMPTY_FAVORITES: Product[] = [];
+const EMPTY_CART: ProductInCart[] = [];
 
 export type AppContextType = {
   favorites: Product[];
@@ -13,28 +17,47 @@ export type AppContextType = {
   ) => boolean;
   updateCountInCart: (id: Product["id"], newCount: number) => void;
   clearCart: () => void;
+  clearAllUserData: () => void;
   isDrawerOpen: boolean;
   setIsDrawerOpen: (isOpen: boolean) => void;
 };
 
 export const AppContext = createContext<AppContextType>({
-  favorites: [],
-  cart: [],
+  favorites: EMPTY_FAVORITES,
+  cart: EMPTY_CART,
   toggleToFavorites: () => {},
   toggleToCart: () => {},
   isProductSelected: () => false,
   updateCountInCart: () => {},
   clearCart: () => {},
+  clearAllUserData: () => {},
   isDrawerOpen: false,
   setIsDrawerOpen: () => {},
 });
 
-export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+type AppProviderProps = {
+  children: React.ReactNode;
+  user: string | null;
+};
+
+export const AppProvider: React.FC<AppProviderProps> = ({ children, user }) => {
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  const [favorites, setFavorites] = useLocalStorage<Product[]>("favorites", []);
-  const [cart, setCart] = useLocalStorage<ProductInCart[]>("cart", []);
+  const prevUserRef = React.useRef(user);
+
+  const [favorites, setFavorites, clearUserFavorites] =
+    useUserLocalStorageWithUser<Product[]>("favorites", EMPTY_FAVORITES, user);
+  const [cart, setCart, clearUserCart] = useUserLocalStorageWithUser<
+    ProductInCart[]
+  >("cart", EMPTY_CART, user);
+
+  // Track user logout and clear data
+  React.useEffect(() => {
+    if (prevUserRef.current && prevUserRef.current !== "guest" && !user) {
+      setFavorites(EMPTY_FAVORITES);
+      setCart(EMPTY_CART);
+    }
+    prevUserRef.current = user;
+  }, [user, setFavorites, setCart]);
 
   const isProductSelected = (
     productId: Product["id"],
@@ -74,6 +97,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     setCart(updatedCart);
   };
 
+  const clearAllUserData = () => {
+    clearUserFavorites();
+    clearUserCart();
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -84,6 +112,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
         isProductSelected,
         updateCountInCart,
         clearCart,
+        clearAllUserData,
         isDrawerOpen,
         setIsDrawerOpen,
       }}

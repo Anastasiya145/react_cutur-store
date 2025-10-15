@@ -20,7 +20,7 @@ import { useAuthCheck } from "../../helpers/hooks/useAuthCheck";
 
 const ProfilePage: React.FC = () => {
   const { user } = useAuth();
-  useAuthCheck(); // Проверяем аутентификацию
+  useAuthCheck();
   const { showError, showSuccess } = useNotification();
   const [userData, setUserData] = useState<ConnectedUser | null>(null);
   const [loading, setLoading] = useState(true);
@@ -50,36 +50,18 @@ const ProfilePage: React.FC = () => {
     fetchUserData();
   }, [user]);
 
-  // Обработчики для Email
-  const handleEditEmail = () => {
-    setEditEmail(true);
-  };
-
-  const handleCancelEmailEdit = () => {
-    setEditEmail(false);
-  };
-
   const handleSubmitEmail = async (data: { email: string }) => {
     try {
       if (!userData) return;
       // TODO: Ajouter l'endpoint PUT /users/:email/email sur le backend
       showError("La modification de l'email n'est pas encore disponible");
 
-      console.log("Nouveau email:", data);
+
       setEditEmail(false);
     } catch (error) {
       console.error("Erreur lors de la mise à jour de l'email:", error);
       showError("Erreur lors de la mise à jour de l'email");
     }
-  };
-
-  // Обработчики для Username
-  const handleEditUsername = () => {
-    setEditUsername(true);
-  };
-
-  const handleCancelUsernameEdit = () => {
-    setEditUsername(false);
   };
 
   const handleSubmitUsername = async (data: { username: string }) => {
@@ -96,15 +78,6 @@ const ProfilePage: React.FC = () => {
       );
       showError("Erreur lors de la mise à jour du nom d'utilisateur");
     }
-  };
-
-  // Обработчики для Password
-  const handleEditPassword = () => {
-    setEditPassword(true);
-  };
-
-  const handleCancelPasswordEdit = () => {
-    setEditPassword(false);
   };
 
   const handleSubmitPassword = async (data: {
@@ -130,15 +103,6 @@ const ProfilePage: React.FC = () => {
       console.error("Erreur lors de la mise à jour du mot de passe:", error);
       showError("Erreur lors de la mise à jour du mot de passe");
     }
-  };
-
-  // Обработчики для Address
-  const handleEditAddress = () => {
-    setEditAddress(true);
-  };
-
-  const handleCancelAddressEdit = () => {
-    setEditAddress(false);
   };
 
   const handleSubmitAddress = async (data: Address) => {
@@ -177,31 +141,31 @@ const ProfilePage: React.FC = () => {
           <EmailSection
             email={userData.email}
             isEditing={editEmail}
-            onEdit={handleEditEmail}
-            onCancel={handleCancelEmailEdit}
+            onEdit={() => setEditEmail(true)}
+            onCancel={() => setEditEmail(false)}
             onSubmit={handleSubmitEmail}
           />
 
           <UsernameSection
             username={userData.username}
             isEditing={editUsername}
-            onEdit={handleEditUsername}
-            onCancel={handleCancelUsernameEdit}
+            onEdit={() => setEditUsername(true)}
+            onCancel={() => setEditUsername(false)}
             onSubmit={handleSubmitUsername}
           />
 
           <PasswordSection
             isEditing={editPassword}
-            onEdit={handleEditPassword}
-            onCancel={handleCancelPasswordEdit}
+            onEdit={() => setEditPassword(true)}
+            onCancel={() => setEditPassword(false)}
             onSubmit={handleSubmitPassword}
           />
 
           <AddressSection
             address={userData.address || null}
             isEditing={editAddress}
-            onEdit={handleEditAddress}
-            onCancel={handleCancelAddressEdit}
+            onEdit={() => setEditAddress(true)}
+            onCancel={() => setEditAddress(false)}
             onSubmit={handleSubmitAddress}
           />
         </div>

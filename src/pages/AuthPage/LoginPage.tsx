@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
       const response = await login(data);
 
       if (response.token) {
-        loginUser(response.email, response.token);
+        loginUser(response.email, response.token, response.role);
         navigate(PathnamesApp.Profil);
       } else {
         showError("Erreur d'authentification");
@@ -41,7 +41,7 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  console.log(isValid, isSubmitting);
+
 
   return (
     <div className="auth-page">
@@ -59,10 +59,8 @@ const LoginPage: React.FC = () => {
               message: "Veuillez saisir un e-mail valide",
             },
           })}
+          error={errors.email?.message}
         />
-        {errors.email && (
-          <div className="auth-page__error">{errors.email.message}</div>
-        )}
 
         <PasswordInput
           label="Mot de passe"
@@ -76,10 +74,8 @@ const LoginPage: React.FC = () => {
               message: "Le mot de passe doit contenir au moins 6 caractères",
             },
           })}
+          error={errors.password?.message}
         />
-        {errors.password && (
-          <div className="auth-page__error">{errors.password.message}</div>
-        )}
 
         <LoadingButton
           type="submit"

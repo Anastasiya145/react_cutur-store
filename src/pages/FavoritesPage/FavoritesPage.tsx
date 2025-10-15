@@ -14,7 +14,7 @@ export const FavoritesPage: React.FC = () => {
     setProductCount(number);
   };
 
-  console.log(favorites);
+
 
   return (
     <div className=".favorites-page">

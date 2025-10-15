@@ -6,6 +6,7 @@ import { IconArrowDown } from "../../Icons/IconArrowDown";
 export type SelectOption = {
   value: string;
   label: string;
+  isCanBeChosed?: boolean;
 };
 
 type Props = {

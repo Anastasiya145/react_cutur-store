@@ -31,9 +31,9 @@ export type DeleteOrderRequest = {
   id_commande: number;
 };
 
-// Как приходит заказ с сервера:
+// Order data from server:
 export type OrderItem = {
-  id: number; // id строки в order_items
+  id: number;
   order_id: number;
   product_id: number;
   name: string;
@@ -48,7 +48,7 @@ export type Order = {
   user_email: string;
   status: OrderStatus;
   total: number;
-  items: OrderItem[]; // массив строк заказа
+  items: OrderItem[];
   created_at?: string;
   updated_at?: string;
 };

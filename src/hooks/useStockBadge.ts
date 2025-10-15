@@ -14,7 +14,7 @@ export interface BadgeInfo {
 
 export const useStockBadge = ({ items_left, count }: StockInfo): BadgeInfo => {
   return useMemo(() => {
-    // Максимальное количество достигнуто
+    // Maximum quantity reached
     // if (items_left !== undefined && count >= items_left) {
     //   return {
     //     type: "error",
@@ -23,7 +23,7 @@ export const useStockBadge = ({ items_left, count }: StockInfo): BadgeInfo => {
     //   };
     // }
 
-    // Мало товара в наличии (меньше 5 штук)
+    // Low stock (less than 5 items)
     if (items_left !== undefined && items_left > 1 && items_left < 5) {
       return {
         type: "warning",
@@ -32,7 +32,7 @@ export const useStockBadge = ({ items_left, count }: StockInfo): BadgeInfo => {
       };
     }
 
-    // Товар заканчивается (1 штука)
+    // Last item
     if (items_left === 1) {
       return {
         type: "error",
@@ -41,7 +41,7 @@ export const useStockBadge = ({ items_left, count }: StockInfo): BadgeInfo => {
       };
     }
 
-    // Товар закончился
+    // Out of stock
     if (items_left === 0) {
       return {
         type: "error",

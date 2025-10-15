@@ -1,7 +1,19 @@
 import React from "react";
 import "./badge.scss";
 
-export type BadgeType = "warning" | "error" | "success" | "info";
+export type BadgeType =
+  | "warning"
+  | "error"
+  | "success"
+  | "info"
+  | "created"
+  | "pending"
+  | "shipped"
+  | "delivered"
+  | "cancelled"
+  | "processing"
+  | "payment"
+  | "shipping";
 
 export interface BadgeProps {
   type: BadgeType;
@@ -15,6 +27,16 @@ const BadgeIcons: Record<BadgeType, string> = {
   error: "❌",
   success: "✅",
   info: "ℹ️",
+
+  created: "📝",
+  pending: "⏳",
+  shipped: "🚚",
+  delivered: "📦",
+  cancelled: "❌",
+
+  processing: "⚙️",
+  payment: "💳",
+  shipping: "🚛",
 };
 
 export const Badge: React.FC<BadgeProps> = ({

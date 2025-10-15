@@ -23,11 +23,16 @@ export type LoginRequest = {
   password: string;
 };
 
+export enum UserRole {
+  Admin = "admin",
+  User = "user",
+}
+
 export type LoginResponse = {
   id: number;
   email: string;
   username: string;
-  role: "Admin" | "User";
+  role: UserRole;
   token: string;
 };
 
@@ -37,7 +42,7 @@ export type ForgotPasswordRequest = {
 
 export type ForgotPasswordResponse = {
   message: string;
-  token?: string; // для теста, если возвращаете токен
+  token?: string;
 };
 
 export type ResetPasswordRequest = {

@@ -76,10 +76,8 @@ const RegisterPage: React.FC = () => {
                 "Le nom d'utilisateur doit contenir au moins 2 caractères",
             },
           })}
+          error={errors.username?.message}
         />
-        {errors.username && (
-          <div className="register-page__error">{errors.username.message}</div>
-        )}
 
         <EmailInput
           {...register("email", {
@@ -89,10 +87,8 @@ const RegisterPage: React.FC = () => {
               message: "Veuillez saisir un e-mail valide",
             },
           })}
+          error={errors.email?.message}
         />
-        {errors.email && (
-          <div className="register-page__error">{errors.email.message}</div>
-        )}
 
         <PasswordInput
           label="Mot de passe"
@@ -106,10 +102,8 @@ const RegisterPage: React.FC = () => {
               message: "Le mot de passe doit contenir au moins 6 caractères",
             },
           })}
+          error={errors.password?.message}
         />
-        {errors.password && (
-          <div className="register-page__error">{errors.password.message}</div>
-        )}
 
         <PasswordInput
           label="Confirmez le mot de passe"
@@ -122,16 +116,8 @@ const RegisterPage: React.FC = () => {
               value === watch("password") ||
               "Les mots de passe ne correspondent pas",
           })}
+          error={errors.confirmPassword?.message}
         />
-        {errors.confirmPassword && (
-          <div className="register-page__error">
-            {errors.confirmPassword.message}
-          </div>
-        )}
-
-        {errors.root && (
-          <div className="register-page__error">{errors.root.message}</div>
-        )}
 
         <LoadingButton
           type="submit"

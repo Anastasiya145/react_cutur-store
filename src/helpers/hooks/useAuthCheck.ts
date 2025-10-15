@@ -11,13 +11,13 @@ export const useAuthCheck = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    // Если нет токена или пользователя, это означает что сессия недействительна
+    // Invalid session - no token or user
     if (!token || !user) {
-      // Очищаем все данные авторизации
+      // Clear auth data
       localStorage.removeItem("user");
       localStorage.removeItem("token");
 
-      // Запускаем событие истечения токена для перенаправления
+      // Trigger token expiration event
       window.dispatchEvent(new CustomEvent("token-expired"));
     }
   }, [user]);

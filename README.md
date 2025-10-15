@@ -1,6 +1,17 @@
-# Apple store
+# Cutur Store
 
-This application is designed as a single-page online store with various features for users. It allows users to explore products, add them to their cart or favorites, search for specific items, sort products according to their preferences, modify the number of products in their cart, and view detailed information about each product.
+Modern e-commerce application built with React and TypeScript. Features user authentication, cart management, order tracking, and admin functionality.
+
+## ✨ Features
+
+- 🛒 Shopping cart with user-specific storage
+- ❤️ Favorites system with guest-to-user data transfer
+- 🔐 User authentication with JWT tokens
+- 📱 Responsive design for mobile and desktop
+- 👨‍💼 Admin panel for order management
+- 🎨 Modern UI with custom Badge components
+- 🔍 Product search and filtering
+- 📦 Order status tracking with visual badges
 
 ## 🔗 Link: [Demo](https://anastasiya145.github.io/react_cutur-store)
 

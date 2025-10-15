@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
-import { AppProvider } from "./context/AppContextProvider";
 import { AuthProvider } from "./context/AuthContext";
+import AppProviderWithAuth from "./context/AppProviderWithAuth";
 import { NotificationProvider } from "./context/NotificationContext";
 import { NotificationContainer } from "./components/NotificationContainer/NotificationContainer";
 import App from "./pages/Page";
@@ -11,15 +11,15 @@ if (container) {
   const root = createRoot(container);
 
   root.render(
-    <AppProvider>
-      <HashRouter>
-        <AuthProvider>
+    <HashRouter>
+      <AuthProvider>
+        <AppProviderWithAuth>
           <NotificationProvider>
             <App />
             <NotificationContainer />
           </NotificationProvider>
-        </AuthProvider>
-      </HashRouter>
-    </AppProvider>
+        </AppProviderWithAuth>
+      </AuthProvider>
+    </HashRouter>
   );
 }

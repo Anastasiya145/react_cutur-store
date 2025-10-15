@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge } from "../Badges/Badge";
+import { Badge, BadgeType } from "../Badges/Badge";
 import { OrderStatus, ORDER_STATUS_LABELS } from "../../types/Order";
 
 export interface OrderStatusBadgeProps {
@@ -7,20 +7,20 @@ export interface OrderStatusBadgeProps {
   className?: string;
 }
 
-const getStatusBadgeType = (status: OrderStatus) => {
+const getStatusBadgeType = (status: OrderStatus): BadgeType => {
   switch (status) {
     case OrderStatus.Created:
-      return "success";
+      return "created";
     case OrderStatus.Pending:
-      return "info";
+      return "pending";
     case OrderStatus.Shipped:
-      return "info";
+      return "shipped";
     case OrderStatus.Delivered:
-      return "success";
+      return "delivered";
     case OrderStatus.Cancelled:
-      return "error";
+      return "cancelled";
     default:
-      return "info";
+      return "created";
   }
 };
 

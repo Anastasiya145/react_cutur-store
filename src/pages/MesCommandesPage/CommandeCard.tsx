@@ -2,9 +2,12 @@ import { FC, useState } from "react";
 import { useFormatDate } from "../../helpers/hooks/useFormatDate";
 import { Order, OrderItem, OrderStatus } from "../../types/Order";
 import "./commandeCard.scss";
-import { deleteOrder } from "../../api/ordersApi";
+import { deleteOrder, updateOrderStatus } from "../../api/ordersApi";
 import { LoadingButton } from "../../components/LoadingButton";
 import { OrderStatusBadge } from "../../components/OrderStatusBadge";
+import { useAuth } from "../../context/AuthContext";
+import { useNotification } from "../../context/NotificationContext";
+import { OrderStatusSelect } from "./OrderStatusSelect";
 
 type CommandeCardProps = {
   order: Order;
@@ -18,13 +21,14 @@ export const CommandeCard: FC<CommandeCardProps> = ({
   orderNumber,
 }) => {
   const formatDate = useFormatDate();
+  const { isAdmin } = useAuth();
+  const { showError } = useNotification();
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [statusLoading, setStatusLoading] = useState(false);
 
   const handleOrderCancel = async () => {
     setLoading(true);
-    setError(null);
     try {
       await deleteOrder({
         id_commande: order.id,
@@ -32,25 +36,45 @@ export const CommandeCard: FC<CommandeCardProps> = ({
       });
       loadOrders();
     } catch (err: any) {
-      setError(err.message || "Erreur lors de l'annulation.");
+      showError(err.message || "Erreur lors de l'annulation.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleStatusChange = async (newStatus: string) => {
+    setStatusLoading(true);
+    try {
+      await updateOrderStatus(order.id, newStatus as OrderStatus);
+      loadOrders();
+    } catch (err: any) {
+      showError(err.message);
+    } finally {
+      setStatusLoading(false);
     }
   };
 
   return (
     <div className="commande-card">
       <div className="commande-card__header">
-        <div>
+        <div className="commande-card__header-info">
           <span className="commande-card__id">Commande n°{orderNumber}</span>
           <span className="commande-card__date">
             {formatDate(order.created_at)}
           </span>
         </div>
-        <OrderStatusBadge
-          status={order.status}
-          className="commande-card__status"
-        />
+        {isAdmin ? (
+          <OrderStatusSelect
+            currentStatus={order.status}
+            onChange={handleStatusChange}
+            loading={statusLoading}
+          />
+        ) : (
+          <OrderStatusBadge
+            status={order.status}
+            className="commande-card__status"
+          />
+        )}
       </div>
       <div className="commande-card__items">
         {order.items.map((item: OrderItem) => (
@@ -87,7 +111,6 @@ export const CommandeCard: FC<CommandeCardProps> = ({
           />
         )}
       </div>
-      {error && <div className="commande-card__error">{error}</div>}
     </div>
   );
 };

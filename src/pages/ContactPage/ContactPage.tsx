@@ -71,11 +71,8 @@ const ContactPage: React.FC = () => {
               message: "Le nom doit contenir au moins 2 caractères",
             },
           })}
+          error={errors.name?.message}
         />
-        {errors.name && (
-          <div className="contact-page__error">{errors.name.message}</div>
-        )}
-
         <EmailInput
           {...register("email", {
             required: "L'e-mail est requis",
@@ -84,10 +81,8 @@ const ContactPage: React.FC = () => {
               message: "Veuillez saisir un e-mail valide",
             },
           })}
+          error={errors.email?.message}
         />
-        {errors.email && (
-          <div className="contact-page__error">{errors.email.message}</div>
-        )}
 
         <TextArea
           label="Message"
@@ -102,10 +97,8 @@ const ContactPage: React.FC = () => {
               message: "Le message doit contenir au moins 10 caractères",
             },
           })}
+          error={errors.message?.message}
         />
-        {errors.message && (
-          <div className="contact-page__error">{errors.message.message}</div>
-        )}
 
         <LoadingButton
           type="submit"

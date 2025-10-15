@@ -54,12 +54,8 @@ const ForgotPasswordPage: React.FC = () => {
               message: "Veuillez saisir un e-mail valide",
             },
           })}
+          error={errors.email?.message}
         />
-        {errors.email && (
-          <div className="forgot-password-page__error">
-            {errors.email.message}
-          </div>
-        )}
 
         <LoadingButton
           type="submit"

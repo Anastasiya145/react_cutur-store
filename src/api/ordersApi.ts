@@ -1,4 +1,9 @@
-import { CreateOrderRequest, DeleteOrderRequest, Order } from "../types/Order";
+import {
+  CreateOrderRequest,
+  DeleteOrderRequest,
+  Order,
+  OrderStatus,
+} from "../types/Order";
 import { request } from "./api";
 
 export const getOrdersForConnectedUser = () => request<Order[]>("/commandes");
@@ -15,4 +20,10 @@ export const deleteOrder = (data: DeleteOrderRequest) =>
   request<Order>(`/commande/${data.id_commande}`, {
     method: "DELETE",
     body: JSON.stringify({ user_email: data.user_email }),
+  });
+
+export const updateOrderStatus = (orderId: number, status: OrderStatus) =>
+  request<Order>(`/commande/${orderId}/status`, {
+    method: "PATCH",
+    body: JSON.stringify({ status }),
   });
