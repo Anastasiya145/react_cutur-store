@@ -15,7 +15,7 @@ export type Props = {
 export const CheckoutCard: React.FC<Props> = ({ item }) => {
   const { toggleToCart, updateCountInCart } = useContext(AppContext);
   const [count, setCount] = useState(item.count);
-  const stockBadge = useStockBadge({ itemsleft: item.itemsleft, count });
+  const stockBadge = useStockBadge({ items_left: item.items_left, count });
 
   useEffect(() => {
     updateCountInCart(item.id, count);
@@ -30,12 +30,12 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
   };
 
   const handleIncrease = () => {
-    if (item.itemsleft === undefined || count < item.itemsleft) {
+    if (item.items_left === undefined || count < item.items_left) {
       setCount((prevCount: number) => prevCount + 1);
     }
   };
 
-  const maxReached = item.itemsleft !== undefined && count >= item.itemsleft;
+  const maxReached = item.items_left !== undefined && count >= item.items_left;
 
   return (
     <div className="checkout-card">
@@ -47,7 +47,7 @@ export const CheckoutCard: React.FC<Props> = ({ item }) => {
         <div className="checkout-card__image-container">
           <img
             alt={item.name}
-            src={`img/products/${item.mainimage}.jpg`}
+            src={`img/products/${item.main_image}.jpg`}
             className="checkout-card__image"
             loading="lazy"
           />

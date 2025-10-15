@@ -19,8 +19,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   const isProductSelectedinFav = isProductSelected(product.id, favorites);
   const isProductSelectedinCart = isProductSelected(product.id, cart);
-  const isOutOfStock = product.itemsleft === 0;
-  const stockBadge = useStockBadge({ itemsleft: product.itemsleft, count: 1 });
+  const isOutOfStock = product.items_left === 0;
+  const stockBadge = useStockBadge({
+    items_left: product.items_left,
+    count: 1,
+  });
 
   return (
     <Link
@@ -35,7 +38,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           <img
             className="card__image"
             alt={product.name}
-            src={`img/products/${product.mainimage}.jpg`}
+            src={`img/products/${product.main_image}.jpg`}
             loading="lazy"
           />
         )}
@@ -51,6 +54,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           <Badge
             type={stockBadge.type}
             text={stockBadge.text}
+            icon={false}
             className="card__badge card__badge--stock"
           />
         )}

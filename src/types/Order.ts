@@ -1,5 +1,7 @@
+import { Product } from "./Product";
+
 export type CreateOrderItem = {
-  id: number;
+  id: Product["id"];
   quantity: number;
 };
 

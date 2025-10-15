@@ -12,7 +12,7 @@ export const CartPage: React.FC = () => {
   const navigate = useNavigate();
 
   const unavailableItems = useMemo(
-    () => cart.filter((item) => item.itemsleft === 0),
+    () => cart.filter((item) => item.items_left === 0),
     [cart]
   );
   const hasUnavailable = unavailableItems.length > 0;

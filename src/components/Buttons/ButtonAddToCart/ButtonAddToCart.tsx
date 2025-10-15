@@ -25,16 +25,16 @@ export const ButtonAddToCart: React.FC<Props> = ({
         type="button"
         className={classNames("button button_add-to-cart", {
           selected: isProductInCart,
-          disabled: product.itemsleft === 0,
+          disabled: product.items_left === 0,
         })}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          product.itemsleft !== 0 && toggleToCart(product);
+          product.items_left !== 0 && toggleToCart(product);
         }}
-        disabled={product.itemsleft === 0}
+        disabled={product.items_left === 0}
       >
-        {product.itemsleft === 0
+        {product.items_left === 0
           ? "Rupture de stock"
           : isProductInCart
             ? "Dans le panier"

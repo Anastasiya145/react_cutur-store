@@ -47,7 +47,7 @@ export const ItemPage: React.FC = () => {
       try {
         const productFromServer = await getProductById(productId);
         setProduct(productFromServer);
-        setMainImg(productFromServer.mainimage);
+        setMainImg(productFromServer.main_image);
 
         // Загружаем продукты той же категории
         await loadRelatedProducts(productFromServer.category);
@@ -64,7 +64,7 @@ export const ItemPage: React.FC = () => {
         const allProducts = await getProducts();
         // Filter products of the same category, excluding the current product
         const sameCategory = allProducts.filter(
-          (p) => p.category === category && p.id.toString() !== itemId
+          (p) => p.category === category && p.id !== itemId
         );
         setRelatedProducts(sameCategory);
       } catch (error) {
@@ -113,9 +113,9 @@ export const ItemPage: React.FC = () => {
                 )}
               </div>
               <div className="product-details__column">
-                {product.colorsavailable && (
+                {product.colors_available && (
                   <ProductColors
-                    colorsAvailable={product.colorsavailable}
+                    colorsAvailable={product.colors_available}
                     currentColor={product.color}
                     pathname={pathname}
                     navigateTo={navigateTo}

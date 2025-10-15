@@ -5,7 +5,7 @@ import { colors, ColorsType } from "../../types/ProductColors";
 import { Product } from "../../types/Product";
 
 type Props = {
-  colorsAvailable: Product["colorsavailable"];
+  colorsAvailable: Product["colors_available"];
   currentColor: Product["color"];
   pathname: string;
   navigateTo: (pathname: string, paramOld: string, paramNew: string) => string;

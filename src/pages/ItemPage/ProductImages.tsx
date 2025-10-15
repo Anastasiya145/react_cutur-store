@@ -4,7 +4,7 @@ import { Product } from "../../types/Product";
 
 type Props = {
   images: Product["images"];
-  mainImg: Product["mainimage"];
+  mainImg: Product["main_image"];
   onChangeImage: (img: Product["images"][number]) => void;
 };
 
