@@ -8,6 +8,7 @@ import { LoadingButton } from "../../components/LoadingButton";
 import { EmailInput } from "../../components/forms/EmailInput/EmailInput";
 import { useNotification } from "../../context/NotificationContext";
 import { TextArea } from "../../components/forms/TextArea/TextArea";
+import { HighlightTextBoxWithIcon } from "../../components/HighlightTextBox/HighlightTextBoxWithIcon";
 
 type ContactFormInputs = {
   name: string;
@@ -31,7 +32,7 @@ const ContactPage: React.FC = () => {
       showSuccess("Message envoyé avec succès!");
       reset();
     } catch (error: any) {
-      showError(error.message || "Erreur lors de l'envoi. Veuillez réessayer.");
+      showError(error.message);
     }
   };
 
@@ -42,16 +43,15 @@ const ContactPage: React.FC = () => {
         <p className="contact-page__desc">
           Contactez-nous via ce formulaire ou à <ContactEmailLink />
         </p>
-        <div className="contact-page__important">
-          <span className="contact-page__important-icon">✨ Important :</span>
-          Nos articles sont fabriqués à la main exclusivement pour vous. Le
+        <HighlightTextBoxWithIcon
+          icon="✨"
+          type="warning"
+          className="contact-page__highlight"
+          text="Nos articles sont fabriqués à la main exclusivement pour vous. Le
           délai de fabrication est de 3 à 6 semaines à partir de la date de
-          commande.
-          <br />
-          Malheureusement, nous ne pouvons pas être plus précis sur ce délai.
-          <br />
-          Merci de votre compréhension.
-        </div>
+          commande. Malheureusement, nous ne pouvons pas être plus précis sur ce délai.
+          Merci de votre compréhension."
+        ></HighlightTextBoxWithIcon>
       </div>
 
       <form

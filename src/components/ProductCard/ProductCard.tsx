@@ -22,7 +22,6 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const isOutOfStock = product.items_left === 0;
   const stockBadge = useStockBadge({
     items_left: product.items_left,
-    count: 1,
   });
 
   return (

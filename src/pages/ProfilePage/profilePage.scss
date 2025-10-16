@@ -1,17 +1,6 @@
 @import "../../styles/common";
 
 .profile-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-
-  &__container {
-    background: white;
-    border-radius: 12px;
-    padding: 32px;
-    box-shadow: $shadow-small;
-  }
-
   &__title {
     @extend %h1;
     margin-bottom: 32px;
@@ -105,6 +94,7 @@
 
   &__label {
     @extend %body-text;
+    text-align: left;
     min-width: 140px;
 
     @media (max-width: 640px) {
@@ -114,11 +104,15 @@
 
   &__value {
     @extend %body-text;
+    text-align: left;
     flex: 1;
   }
 
   &__edit-btn {
-    @include button-square;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: $main-color;
 
     &--desktop {
       @media (max-width: 640px) {
@@ -179,7 +173,7 @@
   }
 
   &__save-btn {
-    @include button-square(120px, 40px);
+    @include button-square;
 
     @media (max-width: 640px) {
       width: 100%;
@@ -187,7 +181,7 @@
   }
 
   &__cancel-btn {
-    @include button-square-outline(120px, 40px);
+    @include button-square-outline;
 
     @media (max-width: 640px) {
       width: 100%;
@@ -198,17 +192,5 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-  }
-
-  @media (max-width: 640px) {
-    padding: 16px;
-
-    &__container {
-      padding: 20px;
-    }
-
-    &__section {
-      padding: 16px;
-    }
   }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import AddressForm from "../../../components/forms/AddressForm/AddressForm";
 import { LoadingButton } from "../../../components/LoadingButton";
@@ -13,6 +13,10 @@ interface AddressSectionProps {
   onSubmit: (data: Address) => Promise<void>;
 }
 
+type AddressFormData = {
+  shippingAddress: Address;
+};
+
 export const AddressSection: React.FC<AddressSectionProps> = ({
   address,
   isEditing,
@@ -20,29 +24,29 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
   onCancel,
   onSubmit,
 }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<Address>({
-    defaultValues: {
+  const defaultValues = {
+    shippingAddress: {
       country: address?.country || "",
       city: address?.city || "",
       street: address?.street || "",
       postalCode: address?.postalCode || "",
       apartment: address?.apartment || "",
     },
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<AddressFormData>({
+    defaultValues: defaultValues,
+    reValidateMode: "onChange",
+    // criteriaMode: "all",
   });
 
-  React.useEffect(() => {
-    reset({
-      country: address?.country || "",
-      city: address?.city || "",
-      street: address?.street || "",
-      postalCode: address?.postalCode || "",
-      apartment: address?.apartment || "",
-    });
+  useEffect(() => {
+    reset(defaultValues);
   }, [address, reset]);
 
   const formatAddress = (address: Address | null): string => {
@@ -59,18 +63,12 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
     return parts.length > 0 ? parts.join(", ") : "Adresse non renseignée";
   };
 
-  const handleFormSubmit = async (data: Address) => {
-    await onSubmit(data);
+  const handleFormSubmit = async (data: AddressFormData) => {
+    await onSubmit(data.shippingAddress);
   };
 
   const handleCancel = () => {
-    reset({
-      country: address?.country || "",
-      city: address?.city || "",
-      street: address?.street || "",
-      postalCode: address?.postalCode || "",
-      apartment: address?.apartment || "",
-    });
+    reset(defaultValues);
     onCancel();
   };
 
@@ -96,17 +94,9 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
           className="profile-page__form"
         >
           <AddressForm
-            register={register}
             errors={errors}
-            validation={{
-              country: { required: "Le pays est requis" },
-              city: { required: "La ville est requise" },
-              street: { required: "La rue est requise" },
-              postalCode: {
-                required: "Le code postal est requis",
-                pattern: { value: /^\d{5}$/, message: "Code postal invalide" },
-              },
-            }}
+            register={register}
+            fieldName="shippingAddress"
           />
 
           <div className="profile-page__form-actions">

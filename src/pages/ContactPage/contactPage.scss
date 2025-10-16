@@ -23,25 +23,7 @@
 
   &__desc {
     @extend %body-text;
-  }
-
-  &__important {
-    @extend %body-text;
-    font-style: italic;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5em;
-    color: $main-color;
-    background: rgba($main-color, 0.08);
-    border-radius: 0.75em;
-    padding: 1em;
-    margin-top: 16px;
-    flex-direction: column;
-
-    &-icon {
-      font-weight: 600;
-      flex-shrink: 0;
-    }
+    margin-bottom: 16px;
   }
 
   &__form {

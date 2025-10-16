@@ -3,16 +3,9 @@
 .button-remove {
   background-color: unset;
   border: none;
-  margin-right: 16px;
   transition: $transition-smooth;
 
   &:hover {
     color: $accent-color;
-  }
-}
-
-@include onTablet {
-  .button-remove {
-    margin-bottom: 24px;
   }
 }

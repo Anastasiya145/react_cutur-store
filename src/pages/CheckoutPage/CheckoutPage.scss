@@ -105,40 +105,12 @@
     margin-bottom: 32px;
   }
 
-  &__confirmation {
-    .checkout-page__delivery-info {
-      margin-bottom: 32px;
-    }
-  }
-
-  &__delivery-info {
-    position: relative;
-
-    .checkout-page__edit-btn {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: none;
-      border: none;
-      color: $accent-color;
-      cursor: pointer;
-      font-size: 14px;
-      text-decoration: underline;
-
-      &:hover {
-        color: $main-color;
-      }
-    }
-  }
-
-  &__address-display {
-    margin-bottom: 16px;
-
-    p {
-      margin: 4px 0;
-      color: $text-primary;
-      line-height: 1.4;
-    }
+  &__address-display,
+  &__same-address {
+    @extend %body-text;
+    color: $text-secondary;
+    font-style: italic;
+    margin: 0;
   }
 
   &__items-review {
@@ -220,6 +192,13 @@
     }
   }
 
+  &__edit-btn {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: $main-color;
+  }
+
   &__continue-btn {
     @include button-base;
     background: $main-color;
@@ -270,12 +249,6 @@
     border-radius: 8px;
     padding: 20px;
     position: relative;
-  }
-
-  &__same-address {
-    color: $text-secondary;
-    font-style: italic;
-    margin: 0;
   }
 
   // Mobile optimizations

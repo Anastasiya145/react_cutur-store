@@ -1,6 +1,8 @@
 @import "../../../styles/common";
 
 .text-input {
+  text-align: left;
+
   &__input {
     @include form-input;
     margin-top: 8px;

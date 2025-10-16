@@ -251,9 +251,10 @@
   }
 }
 
-@mixin button-square($width: 176px, $height: 40px) {
-  height: $height;
-  width: $width;
+@mixin button-square() {
+  height: 100%;
+  width: 100%;
+  padding: 10px 20px;
   background: $accent-color;
   color: white;
   border: none;
@@ -280,9 +281,10 @@
   }
 }
 
-@mixin button-square-outline($width: 176px, $height: 40px) {
-  height: $height;
-  width: $width;
+@mixin button-square-outline() {
+  height: 100%;
+  width: 100%;
+  padding: 10px 20px;
   background: transparent;
   color: $main-color;
   border: 1px solid $border-color;

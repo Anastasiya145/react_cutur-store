@@ -1,5 +1,4 @@
 import React from "react";
-import { LoadingButton } from "../../components/LoadingButton";
 import "./pageLayout.scss";
 
 interface PageLayoutProps {
@@ -8,7 +7,6 @@ interface PageLayoutProps {
   description: string;
   buttonText?: string;
   onButtonClick?: () => void;
-  loading?: boolean;
   className?: string;
   children?: React.ReactNode;
 }
@@ -19,7 +17,6 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   description,
   buttonText,
   onButtonClick,
-  loading = false,
   className = "",
   children,
 }) => {
@@ -31,12 +28,9 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
         <div className="page-layout__description">{description}</div>
         {children}
         {buttonText && onButtonClick && (
-          <LoadingButton
-            text={buttonText}
-            loading={loading}
-            className="page-layout__button"
-            onClick={onButtonClick}
-          />
+          <button className="page-layout__button" onClick={onButtonClick}>
+            {buttonText}
+          </button>
         )}
       </div>
     </div>

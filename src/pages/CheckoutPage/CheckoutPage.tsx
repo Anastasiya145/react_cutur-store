@@ -40,8 +40,9 @@ const CheckoutPage: React.FC = () => {
     handleSubmit,
     watch,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<CheckoutFormData>({
+    mode: "onChange",
     defaultValues: {
       sameAsShipping: true,
       saveAddress: false,
@@ -60,6 +61,8 @@ const CheckoutPage: React.FC = () => {
         apartment: "",
       },
     },
+    reValidateMode: "onChange",
+    // criteriaMode: "all",
   });
 
   const sameAsShipping = watch("sameAsShipping");
@@ -123,6 +126,8 @@ const CheckoutPage: React.FC = () => {
     return <EmptyCart />;
   }
 
+  console.log("Form errors:", errors, isValid);
+
   return (
     <div className="checkout-page">
       <div className="checkout-page__container">
@@ -134,10 +139,10 @@ const CheckoutPage: React.FC = () => {
               {currentStep === 1 && (
                 <ShippingForm
                   register={register}
-                  errors={errors}
                   shippingCost={shippingCost}
                   setValue={setValue}
                   watch={watch}
+                  errors={errors}
                 />
               )}
 
@@ -162,6 +167,7 @@ const CheckoutPage: React.FC = () => {
                 loading={loading}
                 onBack={() => setCurrentStep(1)}
                 onContinue={handleSubmit(onSubmit)}
+                isValid={isValid}
               />
             </div>
           </div>

@@ -16,6 +16,7 @@ import { UsernameSection } from "./components/UsernameSection";
 import { PasswordSection } from "./components/PasswordSection";
 import { EmailSection } from "./components/EmailSection";
 import { AddressSection } from "./components/AddressSection";
+import { PageLayout } from "../../makets/PageLayout/PageLayout";
 
 const ProfilePage: React.FC = () => {
   const { user } = useAuth();
@@ -118,17 +119,16 @@ const ProfilePage: React.FC = () => {
   };
 
   return (
-    <div className="profile-page">
+    <PageLayout
+      icon="👤"
+      title="Mon Profil"
+      description="Gérez vos informations personnelles et vos préférences."
+      className="profile-page"
+    >
       {loading && <Loader />}
-
-      {!loading && !userData && (
-        <div>Erreur lors du chargement des données utilisateur</div>
-      )}
 
       {!loading && userData && (
         <div className="profile-page__container">
-          <h1 className="profile-page__title">Mon Profil</h1>
-
           <div className="profile-page__content">
             <EmailSection
               email={userData.email}
@@ -163,7 +163,7 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+    </PageLayout>
   );
 };
 

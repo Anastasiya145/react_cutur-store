@@ -42,6 +42,11 @@
     z-index: 1;
   }
 
+  &__logo {
+    border-radius: 50%;
+    max-width: 100px;
+  }
+
   &__link {
     color: $second-accent-color;
     @extend %body-text;

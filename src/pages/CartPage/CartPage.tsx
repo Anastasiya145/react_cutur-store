@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContextProvider";
 import { ProductInCart } from "../../types/Product";
 import { CheckoutCard } from "../../components/CheckoutCard/CheckoutCard";
-import { LoadingButton } from "../../components/LoadingButton";
 import { PageLayout } from "../../makets/PageLayout/PageLayout";
 import "./cartPage.scss";
 import { PathnamesApp } from "../../types/Pathnames";
@@ -39,7 +38,7 @@ export const CartPage: React.FC = () => {
 
   const handleCheckout = async () => {
     if (!isAuthenticated) {
-      navigate("/auth");
+      navigate(PathnamesApp.Connexion);
       return;
     }
 
@@ -126,17 +125,15 @@ export const CartPage: React.FC = () => {
                 </div>
 
                 <div className="cart-page__actions">
-                  <LoadingButton
-                    text={
-                      !isAuthenticated
-                        ? "Se connecter pour commander"
-                        : "Passer la commande"
-                    }
-                    loading={loading}
+                  <button
                     disabled={hasUnavailable || loading}
                     className="cart-page__checkout-btn"
                     onClick={handleCheckout}
-                  />
+                  >
+                    {!isAuthenticated
+                      ? "Se connecter pour commander"
+                      : "Passer la commande"}
+                  </button>
 
                   <button
                     type="button"

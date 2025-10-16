@@ -10,9 +10,6 @@ export const Footer: React.FC = () => {
     <div className="footer">
       <div className="footer__container">
         <div className="footer__left">
-          {/* <Link to={PathnamesApp.Livraisons} className="footer__link">
-            Livraisons
-          </Link> */}
           <Link to={PathnamesApp.Conditions} className="footer__link">
             Conditions Générales
           </Link>
@@ -28,7 +25,7 @@ export const Footer: React.FC = () => {
         </Link>
         <div className=" footer__right">
           <a
-            href="https://instagram.com/yourbrand" // замените на ваш инстаграм
+            href="https://instagram.com/yourbrand"
             target="_blank"
             rel="noopener noreferrer"
             className="footer__icon-link"

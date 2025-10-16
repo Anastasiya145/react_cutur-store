@@ -6,6 +6,7 @@
   gap: 8px;
   width: 100%;
   min-width: 200px;
+  text-align: left;
 
   &__label {
     @extend %body-text;

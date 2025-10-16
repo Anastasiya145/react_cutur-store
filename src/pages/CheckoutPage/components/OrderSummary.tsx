@@ -13,6 +13,7 @@ interface OrderSummaryProps {
   loading: boolean;
   onBack: () => void;
   onContinue: () => void;
+  isValid: boolean;
 }
 
 export const OrderSummary: React.FC<OrderSummaryProps> = ({
@@ -24,6 +25,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
   loading,
   onBack,
   onContinue,
+  isValid,
 }) => {
   return (
     <div className="checkout-page__summary">
@@ -83,7 +85,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
         <LoadingButton
           text={currentStep === 1 ? "Continuer" : "Confirmer la commande"}
           loading={loading}
-          disabled={loading}
+          disabled={loading || !isValid}
           className="checkout-page__submit-btn"
           onClick={onContinue}
         />

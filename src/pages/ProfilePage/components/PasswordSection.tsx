@@ -58,7 +58,6 @@ export const PasswordSection: React.FC<PasswordSectionProps> = ({
       title="Mot de passe"
       isEditing={isEditing}
       onEdit={onEdit}
-      editButtonText="Changer"
       hasValue={hasValue}
     >
       {isEditing ? (

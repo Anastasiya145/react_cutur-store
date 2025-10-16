@@ -12,6 +12,7 @@
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    align-items: center;
   }
 
   &__icon {
@@ -52,16 +53,10 @@
     font-size: 1.1rem;
     line-height: 1.7;
     margin: 0 0 32px 0;
-    text-align: left;
+    text-align: center;
     max-width: 100%;
 
     @include onTablet {
-      font-size: 1rem;
-      margin-bottom: 28px;
-    }
-
-    @include onPhone {
-      font-size: 0.95rem;
       margin-bottom: 24px;
     }
 
@@ -77,6 +72,8 @@
   &__button {
     min-width: 200px;
     margin-top: 20px;
+    @include button-square-outline;
+    max-width: 64px;
 
     @include onPhone {
       min-width: 160px;

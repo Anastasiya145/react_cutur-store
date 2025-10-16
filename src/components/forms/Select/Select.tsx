@@ -33,6 +33,7 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
       defaultValue,
       onChange,
       disabled = false,
+      id,
       ...rest
     },
     ref
@@ -123,13 +124,19 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
       }
     };
 
+    // Generate a unique id if not provided
+    const selectId =
+      id ||
+      rest.name ||
+      `custom-select-${Math.random().toString(36).slice(2, 10)}`;
+
     return (
       <div
         className={classNames("custom-select", {
           "custom-select--disabled": disabled,
         })}
       >
-        <label className="custom-select__label">
+        <label className="custom-select__label" htmlFor={selectId}>
           {label}
           {required && <span className="custom-select__required">*</span>}
         </label>
@@ -137,6 +144,7 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
         <div className="custom-select__wrapper" ref={selectRef}>
           <select
             {...rest}
+            id={selectId}
             ref={ref}
             value={selectedValue}
             disabled={disabled}
@@ -170,6 +178,7 @@ export const Select = forwardRef<HTMLSelectElement, Props>(
             aria-expanded={isOpen}
             aria-haspopup="listbox"
             aria-disabled={disabled}
+            id={selectId + "-button"}
           >
             <span
               className={classNames("custom-select__text", {

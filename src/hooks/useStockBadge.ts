@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { BadgeType } from "../components/Badges/Badge";
 
 export interface StockInfo {
-  items_left?: number;
-  count: number;
+  items_left: number;
+  count?: number;
 }
 
 export interface BadgeInfo {
@@ -15,13 +15,13 @@ export interface BadgeInfo {
 export const useStockBadge = ({ items_left, count }: StockInfo): BadgeInfo => {
   return useMemo(() => {
     // Maximum quantity reached
-    // if (items_left !== undefined && count >= items_left) {
-    //   return {
-    //     type: "error",
-    //     text: "Stock maximal atteint",
-    //     show: true,
-    //   };
-    // }
+    if (count && count >= items_left) {
+      return {
+        type: "error",
+        text: "Stock maximal atteint",
+        show: true,
+      };
+    }
 
     // Low stock (less than 5 items)
     if (items_left !== undefined && items_left > 1 && items_left < 5) {
@@ -35,17 +35,8 @@ export const useStockBadge = ({ items_left, count }: StockInfo): BadgeInfo => {
     // Last item
     if (items_left === 1) {
       return {
-        type: "error",
-        text: "Dernière pièce !",
-        show: true,
-      };
-    }
-
-    // Out of stock
-    if (items_left === 0) {
-      return {
         type: "disabled",
-        text: "Rupture de stock",
+        text: "Dernière pièce !",
         show: true,
       };
     }
