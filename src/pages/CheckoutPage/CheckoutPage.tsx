@@ -61,8 +61,6 @@ const CheckoutPage: React.FC = () => {
         apartment: "",
       },
     },
-    reValidateMode: "onChange",
-    // criteriaMode: "all",
   });
 
   const sameAsShipping = watch("sameAsShipping");

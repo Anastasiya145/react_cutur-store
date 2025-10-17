@@ -108,6 +108,7 @@ export const CommandeCard: FC<CommandeCardProps> = ({
             loading={loading}
             onClick={handleOrderCancel}
             disabled={loading}
+            className="commande-card__cancel-btn"
           />
         )}
       </div>

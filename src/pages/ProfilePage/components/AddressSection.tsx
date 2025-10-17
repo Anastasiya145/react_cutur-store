@@ -37,10 +37,11 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
     reset,
   } = useForm<AddressFormData>({
     defaultValues: defaultValues,
+    mode: "onChange",
     reValidateMode: "onChange",
     // criteriaMode: "all",
   });
@@ -48,6 +49,8 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
   useEffect(() => {
     reset(defaultValues);
   }, [address, reset]);
+
+  console.log("AddressSection address:", address, errors);
 
   const formatAddress = (address: Address | null): string => {
     if (!address) return "Adresse non renseignée";
@@ -104,6 +107,7 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
               type="submit"
               loading={isSubmitting}
               text="Enregistrer"
+              disabled={!isValid}
               className="profile-page__save-btn"
             />
             <button
