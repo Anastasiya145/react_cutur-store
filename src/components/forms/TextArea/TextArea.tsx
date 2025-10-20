@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import classNames from "classnames";
 import "./textArea.scss";
 
 type Props = {
@@ -33,7 +34,9 @@ export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
         name={name}
         placeholder={placeholder}
         required={required}
-        className={`text-area__input ${error ? "text-area__input--error" : ""}`}
+        className={classNames("text-area__input", {
+          "text-area__input--error": !!error,
+        })}
         rows={rows}
         ref={ref}
         {...rest}

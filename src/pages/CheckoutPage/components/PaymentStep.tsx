@@ -1,19 +1,20 @@
-import React, { useMemo } from "react";
-import { UseFormRegister, UseFormWatch } from "react-hook-form";
+import React, { useMemo, useEffect } from "react";
+import {
+  UseFormRegister,
+  UseFormWatch,
+  UseFormSetValue,
+} from "react-hook-form";
 import { TextInput } from "../../../components/forms/TextInput/TextInput";
 import { Select } from "../../../components/forms/Select/Select";
+import classNames from "classnames";
 import "./paymentStep.scss";
 
 type Props = {
   register: UseFormRegister<any>;
   watch: UseFormWatch<any>;
+  setValue: UseFormSetValue<any>;
   errors: any;
 };
-
-const cardTypes = [
-  { value: "visa", label: "Visa" },
-  { value: "mastercard", label: "Mastercard" },
-];
 
 function luhnCheck(value: string) {
   const v = value.replace(/\s+/g, "");
@@ -31,19 +32,33 @@ function luhnCheck(value: string) {
   return sum % 10 === 0;
 }
 
-export const PaymentStep: React.FC<Props> = ({ register, watch, errors }) => {
-  const method = watch("payment.method");
+const cardTypes = [
+  { value: "visa", label: "Visa", img: "/img/cards/visa.svg" },
+  {
+    value: "mastercard",
+    label: "Mastercard",
+    img: "/img/cards/mastercard.svg",
+  },
+];
 
-  const cardNumberRules = useMemo(
-    () => ({
+export const PaymentStep: React.FC<Props> = ({
+  register,
+  watch,
+  setValue,
+  errors,
+}) => {
+  const method = watch("payment.method");
+  const cardNumber = watch("payment.cardNumber") || "";
+
+  const cardNumberRules = useMemo(() => {
+    return {
       required: "Numéro de carte requis",
       pattern: { value: /^[0-9\s]+$/, message: "Seulement chiffres" },
       validate: (v: string) => luhnCheck(v) || "Numéro de carte invalide",
-      minLength: { value: 12, message: "Numéro trop court" },
+      minLength: { value: 13, message: "Numéro trop court" },
       maxLength: { value: 19, message: "Numéro trop long" },
-    }),
-    []
-  );
+    };
+  }, []);
 
   const expiryRules = useMemo(
     () => ({
@@ -53,13 +68,33 @@ export const PaymentStep: React.FC<Props> = ({ register, watch, errors }) => {
     []
   );
 
-  const cvcRules = useMemo(
-    () => ({
+  const cvcRules = useMemo(() => {
+    return {
       required: "CVC requis",
-      pattern: { value: /^[0-9]{3,4}$/, message: "3 ou 4 chiffres" },
-    }),
-    []
-  );
+      pattern: { value: /^[0-9]{3}$/, message: "3 chiffres" },
+    };
+  }, []);
+
+  // simple card type detection
+  const detectCardType = (num: string) => {
+    const v = num.replace(/\s+/g, "");
+    if (!v) return "";
+    if (/^4/.test(v)) return "visa";
+    if (/^(34|37)/.test(v)) return "amex";
+    if (
+      /^5[1-5]/.test(v) ||
+      /^(222[1-9]|22[3-9]\d|2[3-6]\d{2}|27[01]\d|2720)/.test(v)
+    )
+      return "mastercard";
+    return "";
+  };
+
+  useEffect(() => {
+    const type = detectCardType(cardNumber);
+    setValue("payment.cardType", type, { shouldValidate: false });
+  }, [cardNumber, setValue]);
+
+  const detectedType = detectCardType(cardNumber);
 
   return (
     <div className="checkout-page__payment">
@@ -107,21 +142,33 @@ export const PaymentStep: React.FC<Props> = ({ register, watch, errors }) => {
             />
           </div>
 
-          <Select
-            label="Type de carte"
-            options={cardTypes}
-            {...register("payment.cardType")}
-          />
-
           <div className="checkout-page__card-hints">
-            <img src="/img/cards/visa.svg" alt="Visa" />
-            <img src="/img/cards/mastercard.svg" alt="Mastercard" />
-            <img src="/img/cards/amex.svg" alt="Amex" />
-            <img
-              src="/img/cards/apple-pay.svg"
-              alt="Apple Pay"
-              className="apple-pay-icon"
-            />
+            <div className="card-icons">
+              {cardTypes.map((t) => (
+                <img
+                  key={t.value}
+                  src={t.img}
+                  alt={t.label}
+                  className={classNames("card-icon", {
+                    active: detectedType === t.value,
+                  })}
+                />
+              ))}
+              <img
+                src="/img/cards/apple-pay.svg"
+                alt="Apple Pay"
+                className="apple-pay-icon"
+              />
+            </div>
+
+            <div className="checkout-page__detected-type-label">
+              {detectedType ? (
+                <span>Détecté: {detectedType.toUpperCase()}</span>
+              ) : (
+                <span className="not-detected">Type non détecté</span>
+              )}
+            </div>
+
             <span className="checkout-page__secure">Paiement sécurisé</span>
           </div>
         </div>

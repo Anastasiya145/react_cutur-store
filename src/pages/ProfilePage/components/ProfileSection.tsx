@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 
 interface ProfileSectionProps {
   title: string;
@@ -29,7 +30,9 @@ export const ProfileSection: React.FC<ProfileSectionProps> = ({
 
   return (
     <div
-      className={`profile-page__section ${className} ${isDisabled ? "profile-page__section--disabled" : ""}`}
+      className={classNames("profile-page__section", className, {
+        "profile-page__section--disabled": isDisabled,
+      })}
     >
       <div className="profile-page__section-header">
         <h2 className="profile-page__section-title">{title}</h2>

@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Link, useLocation } from "react-router-dom";
 import { IconUser } from "./IconUser";
 import { PathnamesApp } from "../../types/Pathnames";
@@ -19,7 +20,7 @@ const UserIconLink: React.FC<UserIconLinkProps> = ({
   return (
     <Link
       to={PathnamesApp.Connexion}
-      className={className + (isSelected ? " selected" : "")}
+      className={classNames(className, { selected: isSelected })}
     >
       <IconUser className="icon__img" style={{ width: 24, height: 24 }} />
     </Link>

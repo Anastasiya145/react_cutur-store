@@ -29,7 +29,9 @@ export const ConfirmationStep: React.FC<ConfirmationStepProps> = ({
           </h3>
           <div className="checkout-page__address-display">
             <p>{shippingAddress.street}</p>
-            {shippingAddress.apartment && <p>{shippingAddress.apartment}</p>}
+            {shippingAddress.apartment && (
+              <p>{`Appartement N. - ${shippingAddress.apartment}`}</p>
+            )}
             <p>
               {shippingAddress.postalCode} {shippingAddress.city}
             </p>

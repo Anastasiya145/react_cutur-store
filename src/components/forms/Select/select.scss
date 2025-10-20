@@ -76,10 +76,10 @@
     &--disabled {
       opacity: 0.6;
       cursor: not-allowed;
-      background: $bg-lighter;
+      background: $bg-light;
 
       &:hover {
-        background: $bg-lighter;
+        background: $bg-light;
       }
 
       .custom-select__text {

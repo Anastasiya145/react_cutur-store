@@ -1,8 +1,3 @@
-/* ============================================
-   MEDIA QUERY MIXINS
-   ============================================ */
-
-// Media query mixins для более чистого кода
 @mixin onDesktop {
   @media only screen and (max-width: 1220px) {
     @content;
@@ -252,6 +247,7 @@
 }
 
 @mixin button-square() {
+  max-height: min-content;
   height: 100%;
   width: 100%;
   padding: 10px 20px;
@@ -294,11 +290,11 @@
   cursor: pointer;
 
   &:hover {
-    background: $bg-lighter;
+    background: $bg-light;
   }
 
   &:active {
-    background: darken($bg-lighter, 5%);
+    background: darken($bg-light, 5%);
   }
 
   &.disabled {
@@ -489,10 +485,6 @@
   box-shadow: $shadow-small;
   overflow: hidden;
   transition: $transition-smooth;
-
-  &:hover {
-    box-shadow: $shadow-medium;
-  }
 }
 
 // Миксин для grid layout

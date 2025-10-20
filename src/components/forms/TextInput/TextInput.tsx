@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import classNames from "classnames";
 import "./textInput.scss";
 
 type Props = {
@@ -39,7 +40,9 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
-        className={`text-input__input ${error ? "text-input__input--error" : ""}`}
+        className={classNames("text-input__input", {
+          "text-input__input--error": !!error,
+        })}
         autoFocus={autoFocus}
         ref={ref}
         {...rest}

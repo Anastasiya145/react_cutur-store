@@ -10,10 +10,10 @@ import { updateUserAddress } from "../../api/userApi";
 import "./checkoutPage.scss";
 import "./components/OrderItem.scss";
 import { useNavigate } from "react-router-dom";
-import { PathnamesForUserMenu } from "../../types/Pathnames";
+import { PathnamesApp, PathnamesForUserMenu } from "../../types/Pathnames";
 import { useAuthCheck } from "../../helpers/hooks/useAuthCheck";
 import { EmptyCart } from "./components/EmptyCart";
-import { OrderSummary } from "./components/OrderSummary";
+import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import { CheckoutHeader } from "./components/CheckoutHeader";
 import { ShippingForm } from "./components/ShippingForm";
 import { ConfirmationStep } from "./components/ConfirmationStep";
@@ -96,7 +96,6 @@ const CheckoutPage: React.FC = () => {
     0
   );
   const shippingCost = total >= 50 ? 0 : 5.99;
-  const finalTotal = total + shippingCost;
 
   const onSubmit = async () => {
     if (currentStep === 1) {
@@ -145,8 +144,6 @@ const CheckoutPage: React.FC = () => {
     return <EmptyCart />;
   }
 
-  console.log("Form errors:", errors, isValid);
-
   return (
     <div className="checkout-page">
       <div className="checkout-page__container">
@@ -178,24 +175,26 @@ const CheckoutPage: React.FC = () => {
                 <PaymentStep
                   register={register}
                   watch={watch}
+                  setValue={setValue}
                   errors={errors}
                 />
               )}
             </div>
 
-            <div className="checkout-page__sidebar">
-              <OrderSummary
-                cart={cart}
-                total={total}
-                shippingCost={shippingCost}
-                finalTotal={finalTotal}
-                currentStep={currentStep}
-                loading={loading}
-                onBack={() => setCurrentStep(1)}
-                onContinue={handleSubmit(onSubmit)}
-                isValid={isValid}
-              />
-            </div>
+            <OrderSummary
+              cart={cart}
+              totalSum={total}
+              onCheckout={onSubmit}
+              onContinue={() =>
+                currentStep > 1
+                  ? setCurrentStep(currentStep - 1)
+                  : navigate(PathnamesApp.Panier)
+              }
+              isDeliveryPriceShown={true}
+              buttonContinueLoading={loading}
+              isButtonContinueDisabled={!isValid}
+              badgeType="paiement"
+            />
           </div>
         </form>
       </div>

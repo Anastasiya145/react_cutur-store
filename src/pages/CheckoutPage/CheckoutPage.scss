@@ -11,64 +11,6 @@
     padding: 0 20px;
   }
 
-  &__header {
-    @include card-base;
-    padding: 32px;
-    margin-bottom: 24px;
-  }
-
-  &__title {
-    @extend %h1;
-    margin: 0 0 24px 0;
-    text-align: center;
-  }
-
-  &__steps {
-    @include flexCenter;
-    gap: 20px;
-  }
-
-  &__step {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: $light-color;
-    transition: $transition-color;
-
-    &.active {
-      color: $accent-color;
-
-      .checkout-page__step-number {
-        background: $accent-color;
-        color: white;
-      }
-    }
-  }
-
-  &__step-number {
-    @include flexCenter;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: $border-color;
-    color: white;
-    font-weight: 600;
-    font-size: 14px;
-    transition: $transition-smooth;
-  }
-
-  &__step-label {
-    font-weight: 500;
-    font-size: 14px;
-  }
-
-  &__step-divider {
-    width: 60px;
-    height: 2px;
-    background: $border-color;
-    border-radius: 1px;
-  }
-
   &__form {
     width: 100%;
   }
@@ -82,19 +24,10 @@
     padding: 32px;
   }
 
-  &__sidebar {
-    @include card-base;
-    padding: 24px;
-    position: sticky;
-    top: 20px;
-  }
-
   &__section-title {
     @extend %h2;
-    margin: 0 0 24px 0;
     color: $dark-blue-color;
-    font-size: 20px;
-    font-weight: 600;
+    margin-bottom: 16px;
   }
 
   &__address-form {
@@ -121,97 +54,11 @@
     }
   }
 
-  &__summary-title {
-    @extend %h3;
-    margin: 0 0 20px 0;
-    color: $dark-blue-color;
-  }
-
-  &__summary-items {
-    margin-bottom: 16px;
-  }
-
-  &__summary-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid $border-light;
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-
-  &__summary-item-name {
-    color: $text-secondary;
-    font-size: 14px;
-  }
-
-  &__summary-item-price {
-    font-weight: 600;
-    color: $text-primary;
-  }
-
-  &__summary-divider {
-    height: 1px;
-    background: $border-light;
-    margin: 16px 0;
-  }
-
-  &__summary-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-
-    &.checkout-page__summary-total {
-      font-weight: 600;
-      font-size: 18px;
-      color: $text-primary;
-      padding-top: 16px;
-      border-top: 2px solid $border-light;
-    }
-  }
-
-  &__actions {
-    margin-top: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  &__back-btn {
-    @include button-base;
-    background: $bg-light;
-    color: $text-secondary;
-    border: 1px solid $border-light;
-
-    &:hover {
-      background: $border-light;
-    }
-  }
-
   &__edit-btn {
     background: none;
     border: none;
     text-decoration: underline;
     color: $main-color;
-  }
-
-  &__continue-btn {
-    @include button-base;
-    background: $main-color;
-    color: white;
-
-    &:hover {
-      background: $accent-color;
-    }
-
-    &:disabled {
-      background: $border-color;
-      cursor: not-allowed;
-    }
   }
 
   &__billing-section {
@@ -255,22 +102,9 @@
   @include onTablet {
     padding: 16px 0 32px;
 
-    &__header {
-      padding: 24px;
-      margin-bottom: 20px;
-    }
-
     &__main,
     &__sidebar {
       padding: 20px;
-    }
-
-    &__steps {
-      gap: 12px;
-
-      .checkout-page__step-divider {
-        width: 40px;
-      }
     }
 
     &__step-label {
@@ -285,21 +119,9 @@
       padding: 0 16px;
     }
 
-    &__header {
-      padding: 20px;
-    }
-
     &__main,
     &__sidebar {
       padding: 16px;
-    }
-
-    &__steps {
-      gap: 8px;
-
-      .checkout-page__step-divider {
-        width: 30px;
-      }
     }
 
     &__addresses-info {

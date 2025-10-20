@@ -1,6 +1,11 @@
 /* Minimal styles for PaymentStep */
+
 .checkout-page__payment {
   padding: 16px;
+
+  &-method {
+    margin-bottom: 16px;
+  }
 }
 .checkout-page__card-form {
   display: flex;

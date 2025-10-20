@@ -1,15 +1,19 @@
 import React from "react";
+import classNames from "classnames";
 import "./icon.scss";
 
-export const IconCart: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+export const IconCart: React.FC<React.SVGProps<SVGSVGElement>> = ({
+  className,
+  ...rest
+}) => (
   <svg
+    className={classNames("icon", className)}
+    width="24"
+    height="24"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    width="1em"
-    height="1em"
-    className={`icon ${props.className || ""}`}
-    {...props}
+    {...rest}
   >
     <circle cx="9" cy="21" r="1" fill="currentColor" />
     <circle cx="19" cy="21" r="1" fill="currentColor" />

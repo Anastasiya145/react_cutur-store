@@ -1,0 +1,81 @@
+@import "../../styles/common";
+
+.sidebar {
+  position: sticky;
+}
+
+.order-summary {
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: $shadow-medium;
+  position: sticky;
+  top: 20px;
+
+  &__title {
+    @extend %h2;
+    color: $dark-blue-color;
+    margin-bottom: 24px;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__item-name {
+    color: $light-color;
+    flex: 1;
+    margin-right: 8px;
+  }
+
+  &__item-price {
+    color: $main-color;
+    font-weight: 500;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    color: $main-color;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__total {
+    font-weight: 600;
+    font-size: 18px;
+    color: $main-color;
+    padding-top: 16px;
+    border-top: 1px solid $border-color;
+    margin-top: 16px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  &__checkout-btn {
+    @include button-square;
+    padding: 16px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+  }
+
+  &__continue-shopping {
+    @include button-square-outline;
+  }
+}

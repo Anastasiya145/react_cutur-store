@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContextProvider";
 import { ProductInCart } from "../../types/Product";
@@ -7,6 +7,7 @@ import { PageLayout } from "../../makets/PageLayout/PageLayout";
 import "./cartPage.scss";
 import { PathnamesApp } from "../../types/Pathnames";
 import { BreadCrumbs } from "../../components/BreadCrumbs";
+import OrderSummary from "../../components/OrderSummary/OrderSummary";
 
 export const CartPage: React.FC = () => {
   const { cart } = useContext(AppContext);
@@ -17,19 +18,11 @@ export const CartPage: React.FC = () => {
     [cart]
   );
   const hasUnavailable = unavailableItems.length > 0;
-  const [loading, setLoading] = useState(false);
 
   const totalSum = useMemo(() => {
     return cart.reduce(
       (accumulator, item: ProductInCart) =>
         accumulator + item.price * item.count,
-      0
-    );
-  }, [cart]);
-
-  const totalModelsCount = useMemo(() => {
-    return cart.reduce(
-      (accumulator, item: ProductInCart) => accumulator + item.count,
       0
     );
   }, [cart]);
@@ -42,18 +35,12 @@ export const CartPage: React.FC = () => {
       return;
     }
 
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-      navigate(PathnamesApp.Paiement);
-    }, 500);
+    navigate(PathnamesApp.Paiement);
   };
 
   return (
     <div className="cart-page">
       <BreadCrumbs />
-      <h1 className="cart-page__title">Mon Panier</h1>
 
       {!cart.length ? (
         <PageLayout
@@ -92,71 +79,19 @@ export const CartPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="cart-page__sidebar">
-              <div className="cart-page__summary">
-                <h2 className="cart-page__summary-title">Résumé de commande</h2>
-
-                <div className="cart-page__summary-items">
-                  {cart.map((item) => (
-                    <div key={item.id} className="cart-page__summary-item">
-                      <span className="cart-page__summary-item-name">
-                        {item.name} × {item.count}
-                      </span>
-                      <span className="cart-page__summary-item-price">
-                        {(Number(item.price) * item.count).toFixed(2)}€
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="cart-page__summary-divider"></div>
-
-                <div className="cart-page__summary-row">
-                  <span>
-                    Sous-total ({totalModelsCount} article
-                    {totalModelsCount > 1 ? "s" : ""})
-                  </span>
-                  <span>{Number(totalSum).toFixed(2)}€</span>
-                </div>
-
-                <div className="cart-page__summary-row cart-page__summary-total">
-                  <span>Total</span>
-                  <span>{Number(totalSum).toFixed(2)}€</span>
-                </div>
-
-                <div className="cart-page__actions">
-                  <button
-                    disabled={hasUnavailable || loading}
-                    className="cart-page__checkout-btn"
-                    onClick={handleCheckout}
-                  >
-                    {!isAuthenticated
-                      ? "Se connecter pour commander"
-                      : "Passer la commande"}
-                  </button>
-
-                  <button
-                    type="button"
-                    className="cart-page__continue-shopping"
-                    onClick={() => navigate("/")}
-                  >
-                    Continuer mes achats
-                  </button>
-                </div>
-
-                <div className="cart-page__security">
-                  <div className="cart-page__security-icon">🔒</div>
-                  <div className="cart-page__security-text">
-                    <div className="cart-page__security-title">
-                      Achat sécurisé
-                    </div>
-                    <div className="cart-page__security-desc">
-                      Vos données sont protégées
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <OrderSummary
+              onCheckout={handleCheckout}
+              onContinue={() => navigate(PathnamesApp.Accueil)}
+              cart={cart}
+              totalSum={totalSum}
+              buttonContinueText={
+                !isAuthenticated
+                  ? "Se connecter pour commander"
+                  : "Passer la commande"
+              }
+              buttonBackText="Continuer mes achats"
+              badgeType="achat"
+            />
           </div>
         </div>
       )}
