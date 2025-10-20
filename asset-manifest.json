@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/react_cutur-store/static/css/main.5ce380d7.css",
-    "main.js": "/react_cutur-store/static/js/main.6510fd4f.js",
+    "main.css": "/react_cutur-store/static/css/main.f88e2153.css",
+    "main.js": "/react_cutur-store/static/js/main.8e1e678c.js",
     "static/media/Mont-Regular.otf": "/react_cutur-store/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/Mont-SemiBold.otf": "/react_cutur-store/static/media/Mont-SemiBold.8979d71a3146ca1d761f.otf",
     "static/media/Mont-Bold.otf": "/react_cutur-store/static/media/Mont-Bold.03c8c2f6127c1da0fc39.otf",
     "static/media/logo.svg": "/react_cutur-store/static/media/logo.792e50bc659e6c4f39e2c61cae0c1913.svg",
     "index.html": "/react_cutur-store/index.html",
-    "main.5ce380d7.css.map": "/react_cutur-store/static/css/main.5ce380d7.css.map",
-    "main.6510fd4f.js.map": "/react_cutur-store/static/js/main.6510fd4f.js.map"
+    "main.f88e2153.css.map": "/react_cutur-store/static/css/main.f88e2153.css.map",
+    "main.8e1e678c.js.map": "/react_cutur-store/static/js/main.8e1e678c.js.map"
   },
   "entrypoints": [
-    "static/css/main.5ce380d7.css",
-    "static/js/main.6510fd4f.js"
+    "static/css/main.f88e2153.css",
+    "static/js/main.8e1e678c.js"
   ]
 }
