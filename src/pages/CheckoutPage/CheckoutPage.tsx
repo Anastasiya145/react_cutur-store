@@ -17,6 +17,7 @@ import { OrderSummary } from "./components/OrderSummary";
 import { CheckoutHeader } from "./components/CheckoutHeader";
 import { ShippingForm } from "./components/ShippingForm";
 import { ConfirmationStep } from "./components/ConfirmationStep";
+import PaymentStep from "./components/PaymentStep";
 
 type CheckoutFormData = {
   shippingAddress: Address;
@@ -24,6 +25,14 @@ type CheckoutFormData = {
   sameAsShipping: boolean;
   saveAddress?: boolean;
   notes?: string;
+  payment?: {
+    method?: string;
+    cardName?: string;
+    cardNumber?: string;
+    expiry?: string;
+    cvc?: string;
+    cardType?: string;
+  };
 };
 
 const CheckoutPage: React.FC = () => {
@@ -59,6 +68,14 @@ const CheckoutPage: React.FC = () => {
         street: "",
         postalCode: "",
         apartment: "",
+      },
+      payment: {
+        method: "card",
+        cardName: "",
+        cardNumber: "",
+        expiry: "",
+        cvc: "",
+        cardType: "",
       },
     },
   });
@@ -96,6 +113,10 @@ const CheckoutPage: React.FC = () => {
       }
 
       setCurrentStep(2);
+      return;
+    }
+    if (currentStep === 2) {
+      setCurrentStep(3);
       return;
     }
 
@@ -151,6 +172,13 @@ const CheckoutPage: React.FC = () => {
                   sameAsShipping={sameAsShipping}
                   cart={cart}
                   onEditAddress={() => setCurrentStep(1)}
+                />
+              )}
+              {currentStep === 3 && (
+                <PaymentStep
+                  register={register}
+                  watch={watch}
+                  errors={errors}
                 />
               )}
             </div>
