@@ -102,14 +102,21 @@
 }
 
 .discount-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: min-content;
-
   padding: 4px 8px;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
   color: white;
   background: $main-color;
+  white-space: nowrap;
+
+  &__text {
+    line-height: 1;
+  }
 }
 
 @include onPhone {

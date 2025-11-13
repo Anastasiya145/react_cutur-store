@@ -23,7 +23,6 @@
     background-position: center;
     background-repeat: no-repeat;
     border: none;
-
     margin-right: 16px;
   }
 
@@ -47,9 +46,16 @@
     background: none;
     border: none;
   }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: $header-height;
+    width: 100%;
+  }
 }
 
-// User dropdown menu
 .header__user-menu {
   position: absolute;
   top: 110%;
@@ -72,7 +78,7 @@
 .nav {
   display: flex;
   gap: $gap;
-  height: v;
+  height: 100%;
 
   &__item {
     @include nav-link;
@@ -80,6 +86,7 @@
   }
 }
 
+// Media queries - от большего к меньшему
 @include onDesktopSmallest {
   .header {
     &__menu-open-button {
@@ -88,17 +95,12 @@
       border: none;
     }
 
-    & .nav {
-      display: none;
+    &__box {
+      margin-bottom: 32px;
     }
 
-    &__box {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: $header-height;
-      width: 100%;
-      margin-bottom: 32px;
+    .nav {
+      display: none;
     }
   }
 
@@ -122,7 +124,7 @@
       transform: translateX(0);
     }
 
-    & .nav {
+    .nav {
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -133,18 +135,18 @@
       }
     }
 
-    & .header__container {
+    .header__container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       width: 100%;
     }
 
-    & .icon {
+    .icon {
       width: 100%;
       display: flex;
       justify-content: center;
 
-      & .icon__count {
+      .icon__count {
         top: 40%;
         left: 50%;
       }

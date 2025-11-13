@@ -107,8 +107,9 @@ const CheckoutPage: React.FC = () => {
           await updateUserAddress(user, shippingAddress);
           showSuccess("Adresse sauvegardée dans le profil");
         }
-      } catch (err: any) {
-        showError(err.message);
+      } catch (err) {
+        const error = err as Error;
+        showError(error.message || "Erreur lors de la sauvegarde de l'adresse");
       }
 
       setCurrentStep(2);
@@ -133,8 +134,9 @@ const CheckoutPage: React.FC = () => {
       showSuccess("Commande passée avec succès!");
       clearCart();
       navigate(PathnamesForUserMenu.Commandes);
-    } catch (err: any) {
-      showError(err.message || "Erreur lors de la commande.");
+    } catch (err) {
+      const error = err as Error;
+      showError(error.message || "Erreur lors de la commande.");
     } finally {
       setLoading(false);
     }

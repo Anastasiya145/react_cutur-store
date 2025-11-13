@@ -10,3 +10,32 @@
     margin-bottom: 36px;
   }
 }
+
+// Media queries
+@include onTablet {
+  .favorites-page {
+    &__section {
+      margin-bottom: 28px;
+    }
+
+    &__title {
+      margin-bottom: 28px;
+      font-size: 28px;
+    }
+  }
+}
+
+@include onPhone {
+  .favorites-page {
+    padding: 0 16px;
+
+    &__section {
+      margin-bottom: 24px;
+    }
+
+    &__title {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+  }
+}

@@ -1,25 +1,23 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, InputHTMLAttributes } from "react";
 import "./passwordInput.scss";
 import { VisibilityIcon } from "../../Icons/VisibilityIcon";
 import classNames from "classnames";
 
-export type PasswordInputProps = {
+export type PasswordInputProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "type"
+> & {
   label: string;
-  name?: string;
-  placeholder?: string;
-  autoComplete?: string;
-  required?: boolean;
-  [key: string]: any;
+  error?: string;
 };
 
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
   (
     {
       label,
-      name,
       placeholder = "Entrer le mot de passe",
-      autoComplete,
       required = false,
+      error,
       ...rest
     },
     ref
@@ -32,13 +30,10 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         <div className="password-input__field">
           <input
             type={show ? "text" : "password"}
-            name={name}
             placeholder={placeholder}
-            autoComplete={autoComplete}
             required={required}
-            // className="password-input__input"
             className={classNames("password-input__input", {
-              "--error": rest.error,
+              "--error": error,
             })}
             ref={ref}
             {...rest}
@@ -53,7 +48,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           </button>
         </div>
 
-        {rest.error && <span className="text-input__error">{rest.error}</span>}
+        {error && <span className="text-input__error">{error}</span>}
       </label>
     );
   }

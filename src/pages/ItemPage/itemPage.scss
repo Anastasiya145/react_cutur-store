@@ -181,11 +181,13 @@
   }
 }
 
-// .capacity {
-
 .description {
   &__item {
     margin-bottom: 32px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__title {
@@ -213,19 +215,31 @@
   &__advice-icon {
     font-size: 1.2em;
   }
+}
 
-  &:last-child {
-    margin-bottom: 0;
+// Секция с похожими продуктами
+.product-details {
+  &__related {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid $border-color;
+
+    &-title {
+      @extend %h2;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+  }
+
+  &__loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
   }
 }
 
-// .tech-specifications {
-//   &__item {
-//     display: flex;
-//     justify-content: space-between;
-//     margin-bottom: 16px;
-//   }
-
+// Media queries - от большего к меньшему
 @include onDesktop {
   .product-details {
     max-width: 700px;
@@ -265,33 +279,13 @@
     flex-direction: row;
   }
 
-  .product-details__related {
-    margin-top: 40px;
+  .product-details {
+    &__related {
+      margin-top: 40px;
 
-    &-title {
-      margin-bottom: 20px;
+      &-title {
+        margin-bottom: 20px;
+      }
     }
-  }
-}
-
-// Стили для секции с похожими продуктами
-.product-details {
-  &__related {
-    margin-top: 80px;
-    padding-top: 40px;
-    border-top: 1px solid $border-color;
-
-    &-title {
-      @extend %h2;
-      margin-bottom: 32px;
-      text-align: left;
-    }
-  }
-
-  &__loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
   }
 }

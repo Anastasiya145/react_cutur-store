@@ -3,17 +3,34 @@ import {
   UseFormRegister,
   UseFormWatch,
   UseFormSetValue,
+  FieldErrors,
 } from "react-hook-form";
 import { TextInput } from "../../../components/forms/TextInput/TextInput";
 import { Select } from "../../../components/forms/Select/Select";
+import { Address } from "../../../types/User";
 import classNames from "classnames";
 import "./paymentStep.scss";
 
+interface PaymentFormData {
+  shippingAddress: Address;
+  billingAddress: Address;
+  sameAsShipping: boolean;
+  notes?: string;
+  payment?: {
+    method?: string;
+    cardName?: string;
+    cardNumber?: string;
+    expiry?: string;
+    cvc?: string;
+    cardType?: string;
+  };
+}
+
 type Props = {
-  register: UseFormRegister<any>;
-  watch: UseFormWatch<any>;
-  setValue: UseFormSetValue<any>;
-  errors: any;
+  register: UseFormRegister<PaymentFormData>;
+  watch: UseFormWatch<PaymentFormData>;
+  setValue: UseFormSetValue<PaymentFormData>;
+  errors: FieldErrors<PaymentFormData>;
 };
 
 function luhnCheck(value: string) {
@@ -54,7 +71,8 @@ export const PaymentStep: React.FC<Props> = ({
     return {
       required: "Numéro de carte requis",
       pattern: { value: /^[0-9\s]+$/, message: "Seulement chiffres" },
-      validate: (v: string) => luhnCheck(v) || "Numéro de carte invalide",
+      validate: (v: string | undefined) =>
+        !v || luhnCheck(v) || "Numéro de carte invalide",
       minLength: { value: 13, message: "Numéro trop court" },
       maxLength: { value: 19, message: "Numéro trop long" },
     };

@@ -59,32 +59,6 @@
     transition: $transition-color;
   }
 
-  @media (max-width: 900px) {
-    &__container {
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-      gap: 16px 0;
-      min-height: unset;
-    }
-    &__logo-link {
-      order: 1;
-      margin: 0 auto 12px auto;
-    }
-    &__left {
-      order: 2;
-      position: static;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    &__right {
-      order: 3;
-      position: static;
-      justify-content: center;
-      margin-top: 12px;
-    }
-  }
-
   &__licence {
     margin-top: 36px;
     text-align: center;
@@ -98,6 +72,38 @@
       &:hover {
         text-decoration: underline;
       }
+    }
+  }
+}
+
+// Media queries - от большего к меньшему
+@media (max-width: 900px) {
+  .footer {
+    &__container {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 16px 0;
+      min-height: unset;
+    }
+
+    &__logo-link {
+      order: 1;
+      margin: 0 auto 12px auto;
+    }
+
+    &__left {
+      order: 2;
+      position: static;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    &__right {
+      order: 3;
+      position: static;
+      justify-content: center;
+      margin-top: 12px;
     }
   }
 }
@@ -126,29 +132,34 @@
 }
 
 @include onPhone {
-  .footer__container {
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    position: static;
-    gap: $gap;
-  }
-  .footer__left,
-  .footer__right {
-    position: static;
-    align-items: center;
-    padding: 0;
-    margin-bottom: 0;
-    min-width: unset;
-    gap: $gap;
-  }
-  .footer__logo-link {
-    display: flex;
-    justify-content: center;
-    margin: 16px 0;
+  .footer {
+    &__container {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      position: static;
+      gap: $gap;
+    }
+
+    &__left,
+    &__right {
+      position: static;
+      align-items: center;
+      padding: 0;
+      margin-bottom: 0;
+      min-width: unset;
+      gap: $gap;
+    }
+
+    &__logo-link {
+      display: flex;
+      justify-content: center;
+      margin: 16px 0;
+    }
   }
 }
 
+// Поддержка iOS Safari
 @supports (-webkit-touch-callout: none) {
   .footer {
     padding-bottom: 100px;

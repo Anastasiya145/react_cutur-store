@@ -46,3 +46,37 @@
     }
   }
 }
+
+// Media queries
+@include onTablet {
+  .register-page {
+    padding: 32px 16px;
+
+    &__form {
+      padding: 28px 20px;
+    }
+  }
+}
+
+@include onPhone {
+  .register-page {
+    min-height: 50vh;
+    padding: 24px 16px;
+
+    &__title {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    &__form {
+      padding: 24px 16px;
+      gap: 16px;
+    }
+
+    &__footer {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+}

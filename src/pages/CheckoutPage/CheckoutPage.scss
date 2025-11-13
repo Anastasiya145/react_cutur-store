@@ -47,11 +47,13 @@
   }
 
   &__items-review {
-    .checkout-page__items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+    margin-bottom: 24px;
+  }
+
+  &__items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
   &__edit-btn {
@@ -97,9 +99,11 @@
     padding: 20px;
     position: relative;
   }
+}
 
-  // Mobile optimizations
-  @include onTablet {
+// Media queries - от большего к меньшему
+@include onTablet {
+  .checkout-page {
     padding: 16px 0 32px;
 
     &__main,
@@ -110,9 +114,16 @@
     &__step-label {
       display: none;
     }
-  }
 
-  @include onPhone {
+    &__addresses-info {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+}
+
+@include onPhone {
+  .checkout-page {
     padding: 12px 0 24px;
 
     &__container {

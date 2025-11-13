@@ -3,6 +3,7 @@ import {
   UseFormRegister,
   UseFormSetValue,
   UseFormWatch,
+  FieldErrors,
 } from "react-hook-form";
 import { Address } from "../../../types/User";
 import { TextArea } from "../../../components/forms/TextArea/TextArea";
@@ -25,7 +26,7 @@ interface ShippingFormProps {
   shippingCost: number;
   setValue: UseFormSetValue<CheckoutFormData>;
   watch: UseFormWatch<CheckoutFormData>;
-  errors: any;
+  errors: FieldErrors<CheckoutFormData>;
 }
 
 export const ShippingForm: React.FC<ShippingFormProps> = ({

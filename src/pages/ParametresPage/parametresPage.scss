@@ -38,3 +38,40 @@
     }
   }
 }
+
+// Media queries
+@include onTablet {
+  .parametres-page {
+    padding: 24px 16px;
+
+    &__title {
+      font-size: 1.75rem;
+      margin-bottom: 24px;
+    }
+
+    &__form {
+      padding: 20px 16px;
+    }
+  }
+}
+
+@include onPhone {
+  .parametres-page {
+    padding: 20px 12px;
+
+    &__title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    &__form {
+      padding: 18px 14px;
+      gap: 14px;
+    }
+
+    &__button {
+      width: 100%;
+      padding: 12px;
+    }
+  }
+}

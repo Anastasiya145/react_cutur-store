@@ -1,5 +1,5 @@
 import React from "react";
-import { UseFormRegister } from "react-hook-form";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { TextInput } from "../TextInput/TextInput";
 import { Select } from "../Select/Select";
 import { loadPostalCodes } from "../../../utils/postalCodes";
@@ -9,7 +9,7 @@ type Option = { value: string; label: string };
 
 interface AddressFormProps {
   register: UseFormRegister<any>;
-  errors: any;
+  errors: FieldErrors<any>;
   fieldName: string;
 }
 
@@ -96,8 +96,10 @@ export const AddressForm: React.FC<AddressFormProps> = ({
   const reg = (key: AddressFieldKey) =>
     register(`${fieldName}.${key}`, validationAddressForm[key]);
 
-  const getError = (key: AddressFieldKey) =>
-    errors?.[fieldName]?.[key]?.message;
+  const getError = (key: AddressFieldKey): string | undefined => {
+    const fieldErrors = errors?.[fieldName] as any;
+    return fieldErrors?.[key]?.message;
+  };
 
   return (
     <div className="address-form">

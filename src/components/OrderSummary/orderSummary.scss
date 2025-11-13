@@ -78,4 +78,16 @@
   &__continue-shopping {
     @include button-square-outline;
   }
+
+  &__free-shipping-hint {
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, $border-color);
+    border-left: 3px solid $light-color;
+    border-radius: 4px;
+    font-size: 13px;
+    color: $text-primary;
+    font-weight: 500;
+    text-align: center;
+  }
 }

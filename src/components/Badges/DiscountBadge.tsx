@@ -10,6 +10,7 @@ export const DiscountBadge: React.FC<DiscountBadgeProps> = ({
   text,
   className,
 }) => {
+  console.log(text);
   return (
     <span className={`discount-badge ${className}`}>
       <span className="discount-badge__text">{text}</span>

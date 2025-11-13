@@ -29,7 +29,7 @@ export const OrderSummary: React.FC<Props> = ({
   isDeliveryPriceShown = false,
   badgeType,
 }) => {
-  const shippingCost = isDeliveryPriceShown ? (totalSum > 50 ? 5.99 : 0) : 0;
+  const shippingCost = isDeliveryPriceShown ? (totalSum >= 50 ? 0 : 5.99) : 0;
 
   return (
     <div className="sidebar">
@@ -57,8 +57,22 @@ export const OrderSummary: React.FC<Props> = ({
             </div>
             <div className="order-summary__row order-summary__total">
               <span> Livraison</span>
-              <span>{Number(shippingCost).toFixed(2)}€</span>
+              <span>
+                {shippingCost === 0 ? (
+                  <span className="order-summary__free-shipping">
+                    Gratuite (dès 50€)
+                  </span>
+                ) : (
+                  `${Number(shippingCost).toFixed(2)}€`
+                )}
+              </span>
             </div>
+            {totalSum < 50 && shippingCost > 0 && (
+              <div className="order-summary__free-shipping-hint">
+                Plus que {(50 - totalSum).toFixed(2)}€ pour la livraison
+                gratuite !
+              </div>
+            )}
           </>
         )}
 

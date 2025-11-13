@@ -1,0 +1,29 @@
+{
+  "validAddress": {
+    "firstName": "Jean",
+    "lastName": "Dupont",
+    "email": "jean.dupont@example.com",
+    "phone": "0612345678",
+    "address": "123 Rue de la Paix",
+    "city": "Paris",
+    "postalCode": "75001"
+  },
+  "anotherValidAddress": {
+    "firstName": "Marie",
+    "lastName": "Martin",
+    "email": "marie.martin@example.com",
+    "phone": "0698765432",
+    "address": "45 Avenue des Champs-Élysées",
+    "city": "Paris",
+    "postalCode": "75008"
+  },
+  "invalidAddress": {
+    "firstName": "",
+    "lastName": "",
+    "email": "invalid-email",
+    "phone": "123",
+    "address": "",
+    "city": "",
+    "postalCode": "99999"
+  }
+}
