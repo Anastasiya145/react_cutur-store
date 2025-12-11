@@ -85,11 +85,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 32px;
     margin-bottom: 32px;
-
-    @include onTablet {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
   }
 
   &__delivery-info,
@@ -101,7 +96,6 @@
   }
 }
 
-// Media queries - от большего к меньшему
 @include onTablet {
   .checkout-page {
     padding: 16px 0 32px;

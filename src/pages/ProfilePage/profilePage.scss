@@ -17,7 +17,7 @@
     border: 1px solid $border-color;
     border-radius: 8px;
     padding: 24px;
-    background: #fafafa;
+    background: $bg-light;
     transition: $transition-fast;
 
     &:hover {
@@ -26,8 +26,8 @@
 
     &--disabled {
       opacity: 0.7;
-      background: #f8f8f8;
-      border-color: #ddd;
+      background: $bg-light;
+      border-color: $border-light;
 
       &:hover {
         box-shadow: none;
@@ -84,22 +84,12 @@
     display: flex;
     gap: 12px;
     align-items: center;
-
-    @media (max-width: 640px) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 4px;
-    }
   }
 
   &__label {
     @extend %body-text;
     text-align: left;
     min-width: 140px;
-
-    @media (max-width: 640px) {
-      min-width: auto;
-    }
   }
 
   &__value {
@@ -115,19 +105,12 @@
     color: $main-color;
 
     &--desktop {
-      @media (max-width: 640px) {
-        display: none;
-      }
+      // Desktop only
     }
 
     &--mobile {
       display: none;
       margin-top: 16px;
-
-      @media (max-width: 640px) {
-        display: block;
-        width: 100%;
-      }
     }
   }
 
@@ -135,7 +118,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background: white;
+    background: $site-background-color;
     padding: 20px;
     border-radius: 8px;
     border: 1px solid $border-color;
@@ -153,11 +136,6 @@
       > * {
         flex: 1;
       }
-
-      @media (max-width: 640px) {
-        flex-direction: column;
-        gap: 8px;
-      }
     }
   }
 
@@ -166,31 +144,60 @@
     gap: 12px;
     justify-content: flex-end;
     margin-top: 20px;
-
-    @media (max-width: 640px) {
-      flex-direction: column;
-    }
   }
 
   &__save-btn {
     @include button-square;
-
-    @media (max-width: 640px) {
-      width: 100%;
-    }
   }
 
   &__cancel-btn {
     @include button-square-outline;
-
-    @media (max-width: 640px) {
-      width: 100%;
-    }
   }
 
   &__input-wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
+  }
+}
+
+@include onMobileLarge {
+  .profile-page {
+    &__field {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    &__label {
+      min-width: auto;
+    }
+
+    &__edit-btn {
+      &--desktop {
+        display: none;
+      }
+
+      &--mobile {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    &__form-row {
+      &--split {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    &__form-actions {
+      flex-direction: column;
+    }
+
+    &__save-btn,
+    &__cancel-btn {
+      width: 100%;
+    }
   }
 }

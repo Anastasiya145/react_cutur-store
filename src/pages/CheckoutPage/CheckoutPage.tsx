@@ -84,7 +84,6 @@ const CheckoutPage: React.FC = () => {
   const shippingAddress = watch("shippingAddress");
   const billingAddress = watch("billingAddress");
 
-  // Auto-fill billing address when same as shipping is checked
   useEffect(() => {
     if (sameAsShipping) {
       setValue("billingAddress", shippingAddress);

@@ -93,7 +93,6 @@ export const PaymentStep: React.FC<Props> = ({
     };
   }, []);
 
-  // simple card type detection
   const detectCardType = (num: string) => {
     const v = num.replace(/\s+/g, "");
     if (!v) return "";

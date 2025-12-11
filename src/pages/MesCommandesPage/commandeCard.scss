@@ -3,7 +3,6 @@
 .commande-card {
   border-radius: 16px;
   box-shadow: $box-shadow-color;
-  // margin-bottom: 32px;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -56,7 +55,6 @@
     height: 48px;
     object-fit: cover;
     border-radius: 8px;
-    // background: #fff;
     border: 1px solid $border-color;
   }
 

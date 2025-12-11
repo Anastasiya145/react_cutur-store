@@ -52,7 +52,7 @@
     font-weight: 500;
   }
 
-  @media (max-width: 640px) {
+  @include onMobileLarge {
     gap: 12px;
 
     &__img {

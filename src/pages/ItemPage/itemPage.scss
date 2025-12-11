@@ -138,7 +138,7 @@
   }
 
   &_small {
-    border: 1px solid #c4c4c4;
+    border: 1px solid $border-color;
     transition: $transition-smooth;
     cursor: pointer;
 
@@ -162,7 +162,7 @@
       max-height: 50px;
       aspect-ratio: 1/1;
       background: transparent;
-      border: 1px solid #e2e6e9;
+      border: 1px solid $border-light;
     }
   }
 }
@@ -217,7 +217,7 @@
   }
 }
 
-// Секция с похожими продуктами
+// Related products section
 .product-details {
   &__related {
     margin-top: 80px;
@@ -239,7 +239,6 @@
   }
 }
 
-// Media queries - от большего к меньшему
 @include onDesktop {
   .product-details {
     max-width: 700px;

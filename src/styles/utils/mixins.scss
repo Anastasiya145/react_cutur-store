@@ -1,49 +1,53 @@
 @mixin onDesktop {
-  @media only screen and (max-width: 1220px) {
+  @media only screen and (max-width: $breakpoint-desktop) {
     @content;
   }
 }
 
 @mixin onDesktopSmallest {
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: $breakpoint-desktop-small) {
+    @content;
+  }
+}
+
+@mixin onTabletLarge {
+  @media only screen and (max-width: $breakpoint-tablet-large) {
     @content;
   }
 }
 
 @mixin onTablet {
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin onMobileLarge {
+  @media only screen and (max-width: $breakpoint-mobile-large) {
     @content;
   }
 }
 
 @mixin onPhone {
-  @media only screen and (max-width: 540px) {
+  @media only screen and (max-width: $breakpoint-phone) {
     @content;
   }
 }
 
 @mixin onPhoneSmallest {
-  @media only screen and (max-width: 374px) {
+  @media only screen and (max-width: $breakpoint-phone-small) {
     @content;
   }
 }
 
-// Дополнительные удобные миксины
 @mixin fromTablet {
-  @media only screen and (min-width: 769px) {
+  @media only screen and (min-width: ($breakpoint-tablet + 1px)) {
     @content;
   }
 }
 
 @mixin fromDesktop {
-  @media only screen and (min-width: 1025px) {
-    @content;
-  }
-}
-
-// Миксин для кастомных брейкпоинтов
-@mixin breakpoint($size) {
-  @media only screen and (max-width: $size) {
+  @media only screen and (min-width: ($breakpoint-desktop-small + 1px)) {
     @content;
   }
 }
@@ -52,20 +56,20 @@
    MENU SYSTEM MIXINS
    ============================================
    
-   Универсальная система стилей для меню с активными состояниями:
+   Universal menu style system with active states:
    
-   @mixin menu-item-base - Базовые стили для всех элементов меню
-   @mixin menu-item-vertical - Вертикальные меню (dropdown, user menu) с палочкой слева
-   @mixin menu-item-horizontal - Горизонтальная навигация с палочкой снизу
-   @mixin nav-link - Алиас для горизонтальной навигации (обратная совместимость)
+   @mixin menu-item-base - Base styles for all menu items
+   @mixin menu-item-vertical - Vertical menus (dropdown, user menu) with a bar on the left
+   @mixin menu-item-horizontal - Horizontal navigation with a bar at the bottom
+   @mixin nav-link - Alias for horizontal navigation (backward compatibility)
    
-   Использование:
+   Usage:
    - Dropdown: @include menu-item-vertical
    - User Menu: @include menu-item-vertical  
-   - Header Nav: @include menu-item-horizontal или @include nav-link
+   - Header Nav: @include menu-item-horizontal or @include nav-link
 */
 
-// Общие стили для активных элементов меню
+// Common styles for active menu items
 @mixin menu-item-base {
   color: $accent-color;
   font-weight: 500;
@@ -93,7 +97,7 @@
   }
 }
 
-// Миксин для вертикального меню (dropdown, user menu) - палочка слева
+// Mixin for vertical menu (dropdown, user menu) - bar on the left
 @mixin menu-item-vertical {
   @include menu-item-base;
   display: block;
@@ -134,7 +138,7 @@
   }
 }
 
-// Миксин для горизонтальной навигации - палочка снизу
+// Mixin for horizontal navigation - bar at the bottom
 @mixin menu-item-horizontal {
   @include menu-item-base;
   height: 100%;
@@ -326,7 +330,7 @@
   padding: 0;
 }
 
-@mixin button-circle($size: 32px, $borderColor: #fff) {
+@mixin button-circle($size: 32px, $borderColor: $site-background-color) {
   flex: 0 0 auto;
   width: $size;
   height: $size;
@@ -387,14 +391,14 @@
    UTILITY MIXINS
    ============================================ */
 
-// Миксин для flex центрирования
+// Mixin for flex centering
 @mixin flexCenter {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-// Миксин для абсолютного центрирования
+// Mixin for absolute centering
 @mixin absoluteCenter {
   position: absolute;
   top: 50%;
@@ -402,7 +406,7 @@
   transform: translate(-50%, -50%);
 }
 
-// Миксин для скрытия текста (screen reader friendly)
+// Mixin for hiding text (screen reader friendly)
 @mixin visuallyHidden {
   position: absolute;
   width: 1px;
@@ -415,14 +419,14 @@
   border: 0;
 }
 
-// Миксин для троеточия
+// Mixin for ellipsis
 @mixin textEllipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-// Миксин для многострочного троеточия
+// Mixin for multiline ellipsis
 @mixin textEllipsisMultiline($lines: 2) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;
@@ -431,23 +435,23 @@
   text-overflow: ellipsis;
 }
 
-// Миксин для размеров
+// Mixin for sizes
 @mixin size($width, $height: $width) {
   width: $width;
   height: $height;
 }
 
-// Миксин для border radius
+// Mixin for border radius
 @mixin borderRadius($radius) {
   border-radius: $radius;
 }
 
-// Миксин для тени
+// Mixin for shadow
 @mixin shadow($shadow: $shadow-medium) {
   box-shadow: $shadow;
 }
 
-// Миксин для hover эффектов
+// Mixin for hover effects
 @mixin hoverEffect($scale: 1.02, $shadow: $shadow-medium) {
   transition: $transition-smooth;
 
@@ -457,7 +461,7 @@
   }
 }
 
-// Миксин для кнопок
+// Mixin for buttons
 @mixin button-base {
   display: inline-flex;
   align-items: center;
@@ -478,7 +482,7 @@
   }
 }
 
-// Миксин для карточек
+// Mixin for cards
 @mixin card-base {
   background: white;
   border-radius: 12px;
@@ -487,14 +491,14 @@
   transition: $transition-smooth;
 }
 
-// Миксин для grid layout
+// Mixin for grid layout
 @mixin grid($columns: 1, $gap: 20px) {
   display: grid;
   grid-template-columns: repeat($columns, 1fr);
   gap: $gap;
 }
 
-// Миксин для responsive grid
+// Mixin for responsive grid
 @mixin responsiveGrid($desktop: 4, $tablet: 2, $phone: 1, $gap: 20px) {
   @include grid($desktop, $gap);
 
@@ -507,7 +511,7 @@
   }
 }
 
-// Миксин для layout main + sidebar
+// Mixin for main + sidebar layout
 @mixin mainSidebarLayout($sidebarWidth: 380px, $gap: 24px) {
   display: grid;
   grid-template-columns: 1fr $sidebarWidth;

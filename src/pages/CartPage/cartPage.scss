@@ -73,7 +73,6 @@
   }
 }
 
-// Media queries - от большего к меньшему
 @include onDesktopSmallest {
   .cart-page {
     &__content {
@@ -90,7 +89,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@include onMobileLarge {
   .cart-page {
     padding: 16px 0 32px;
 

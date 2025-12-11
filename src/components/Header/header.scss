@@ -61,7 +61,7 @@
   top: 110%;
   right: 0;
   min-width: 200px;
-  background: white;
+  background: $site-background-color;
   border-radius: 12px;
   border: 2px solid rgba($main-color, 0.1);
   box-shadow: 0 8px 32px rgba(34, 60, 80, 0.12);
@@ -86,7 +86,6 @@
   }
 }
 
-// Media queries - от большего к меньшему
 @include onDesktopSmallest {
   .header {
     &__menu-open-button {

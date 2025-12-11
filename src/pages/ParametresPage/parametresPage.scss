@@ -13,7 +13,7 @@
   }
 
   &__form {
-    background: #fff;
+    background: $site-background-color;
     border-radius: 12px;
     box-shadow: $shadow-small;
     padding: 24px 20px;
@@ -24,7 +24,7 @@
 
   &__button {
     background: $accent-color;
-    color: #fff;
+    color: $second-accent-color;
     border: none;
     border-radius: 6px;
     padding: 10px 18px;
@@ -39,7 +39,6 @@
   }
 }
 
-// Media queries
 @include onTablet {
   .parametres-page {
     padding: 24px 16px;

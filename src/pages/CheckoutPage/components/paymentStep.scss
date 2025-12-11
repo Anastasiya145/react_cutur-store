@@ -1,4 +1,4 @@
-/* Minimal styles for PaymentStep */
+@import "../../../styles/utils/variables.scss";
 
 .checkout-page__payment {
   padding: 16px;
@@ -7,33 +7,39 @@
     margin-bottom: 16px;
   }
 }
+
 .checkout-page__card-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
+
 .checkout-page__card-row {
   display: flex;
   gap: 12px;
 }
+
 .checkout-page__card-hints {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 8px;
+
+  img {
+    height: 24px;
+    width: auto;
+  }
 }
-.checkout-page__card-hints img {
-  height: 24px;
-  width: auto;
-}
+
 .apple-pay-btn {
   background: #000;
-  color: #fff;
+  color: $site-background-color;
   padding: 12px 16px;
   border-radius: 8px;
 }
+
 .checkout-page__secure {
   margin-left: 8px;
   font-size: 12px;
-  color: #666;
+  color: $text-secondary;
 }
