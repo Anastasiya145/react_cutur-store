@@ -1,3 +1,11 @@
+$breakpoint-desktop: 1220px;
+$breakpoint-desktop-small: 1024px;
+$breakpoint-tablet-large: 900px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile-large: 640px;
+$breakpoint-phone: 540px;
+$breakpoint-phone-small: 374px;
+
 @mixin onDesktop {
   @media only screen and (max-width: $breakpoint-desktop) {
     @content;

@@ -2,7 +2,7 @@ import React from "react";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { TextInput } from "../TextInput/TextInput";
 import { Select } from "../Select/Select";
-import { loadPostalCodes } from "../../../utils/postalCodes";
+// import { loadPostalCodes } from "../../../utils/postalCodes";
 import "./addressForm.scss";
 
 type Option = { value: string; label: string };
@@ -14,24 +14,10 @@ interface AddressFormProps {
 }
 
 export const validationAddressForm = {
-  country: { required: "Le pays est requis" },
+  country: { required: false },
   city: {
     required: "La ville est requise",
-    validate: async (value: string) => {
-      console.log("Validating city:", value);
-      if (!value || !value.trim()) return "La ville est requise";
-      try {
-        const list = await loadPostalCodes();
-        if (!list || list.length === 0) return true;
-        const found = list.some(
-          (c) => c.name.toLowerCase() === value.trim().toLowerCase()
-        );
-        return found || "Ville non trouvée dans la liste";
-      } catch (err) {
-        // If postal codes couldn't be loaded, don't block the form; assume valid
-        return true;
-      }
-    },
+    minLength: { value: 2, message: "Au moins 2 caractères" },
   },
   street: { required: "L'adresse est requise" },
   postalCode: {
@@ -42,34 +28,6 @@ export const validationAddressForm = {
     },
     minLength: { value: 5, message: "5 chiffres requis" },
     maxLength: { value: 5, message: "5 chiffres requis" },
-    validate: async (value: string) => {
-      try {
-        // Find the city input within the same form as the currently active element
-        const active = document.activeElement as HTMLElement | null;
-        let form: HTMLFormElement | null = null;
-        if (active) form = active.closest("form");
-        if (!form) form = document.querySelector("form");
-
-        const cityInput = form?.querySelector(
-          'input[name$=".city"]'
-        ) as HTMLInputElement | null;
-        const city = cityInput?.value;
-        if (!city || !city.trim()) return true; // let city validator handle required
-
-        const list = await loadPostalCodes();
-        if (!list || list.length === 0) return true; // can't verify
-
-        const matches = list.filter(
-          (c) => c.name.toLowerCase() === city.trim().toLowerCase()
-        );
-        if (matches.length === 0) return true; // city invalid -> city validator will report
-
-        const ok = matches.some((m) => m.postalCode === value?.trim());
-        return ok || "Le code postal ne correspond pas à la ville";
-      } catch (err) {
-        return true; // don't block on unexpected errors
-      }
-    },
   },
   apartment: {
     minLength: { value: 1, message: "Numéro trop court" },
@@ -103,14 +61,15 @@ export const AddressForm: React.FC<AddressFormProps> = ({
 
   return (
     <div className="address-form">
+      <input type="hidden" {...reg("country")} value="France" />
       <Select
         label="Pays"
-        required
+        required={false}
         options={options}
         defaultValue={options[0]?.value}
         disabled
         placeholder="Sélectionnez un pays"
-        {...reg("country")}
+        value={options[0]?.value}
         error={getError("country")}
       />
 

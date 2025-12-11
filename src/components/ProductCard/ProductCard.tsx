@@ -4,8 +4,8 @@ import { AppContext } from "../../context/AppContextProvider";
 import { Product } from "../../types/Product";
 import { ProductPrice } from "../ProductPrice/ProductPrice";
 import { ButtonAddToCart } from "../Buttons/ButtonAddToCart/ButtonAddToCart";
-import { Badge } from "../Badges/Badge";
-import { useStockBadge } from "../../hooks/useStockBadge";
+// import { Badge } from "../Badges/Badge";
+// import { useStockBadge } from "../../hooks/useStockBadge";
 import "./productCard.scss";
 import classNames from "classnames";
 import { DiscountBadge } from "../Badges/DiscountBadge";
@@ -20,9 +20,9 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const isProductSelectedinFav = isProductSelected(product.id, favorites);
   const isProductSelectedinCart = isProductSelected(product.id, cart);
   const isOutOfStock = product.items_left === 0;
-  const stockBadge = useStockBadge({
-    items_left: product.items_left,
-  });
+  // const stockBadge = useStockBadge({
+  //   items_left: product.items_left,
+  // });
 
   return (
     <Link
@@ -50,14 +50,14 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             />
           )}
 
-          {stockBadge.show && (
+          {/* {stockBadge.show && (
             <Badge
               type={stockBadge.type}
               text={stockBadge.text}
               icon={false}
               className="card__badge card__badge--stock"
             />
-          )}
+          )} */}
         </div>
 
         <div className="card__overlay">

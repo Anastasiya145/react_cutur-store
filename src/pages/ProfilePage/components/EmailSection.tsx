@@ -97,7 +97,9 @@ export const EmailSection: React.FC<EmailSectionProps> = ({
         <div className="profile-page__info">
           <div className="profile-page__field">
             <span className="profile-page__label">Email:</span>
-            <span className="profile-page__value">{email}</span>
+            <span className="profile-page__value" data-cy="profile-email">
+              {email}
+            </span>
           </div>
         </div>
       )}

@@ -97,6 +97,10 @@ const CheckoutPage: React.FC = () => {
   const shippingCost = total >= 50 ? 0 : 5.99;
 
   const onSubmit = async () => {
+    console.log("CheckoutPage onSubmit called, currentStep:", currentStep);
+    console.log("Form errors:", errors);
+    console.log("Form isValid:", isValid);
+
     if (currentStep === 1) {
       // If user chose to save address, persist it to their profile
       try {

@@ -50,6 +50,7 @@ const LoginPage: React.FC = () => {
         noValidate
       >
         <EmailInput
+          data-cy="login-email"
           {...register("email", {
             required: "L'e-mail est requis",
             pattern: {
@@ -61,6 +62,7 @@ const LoginPage: React.FC = () => {
         />
 
         <PasswordInput
+          data-cy="login-password"
           label="Mot de passe"
           placeholder="Entrez votre mot de passe"
           autoComplete="current-password"
@@ -76,6 +78,7 @@ const LoginPage: React.FC = () => {
         />
 
         <LoadingButton
+          data-cy="login-submit"
           type="submit"
           text="Se connecter"
           loading={isSubmitting}

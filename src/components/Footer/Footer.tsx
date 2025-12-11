@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
         </Link>
         <div className=" footer__right">
           <a
-            href="https://instagram.com/yourbrand"
+            href="https://www.instagram.com/ma_douce_layette"
             target="_blank"
             rel="noopener noreferrer"
             className="footer__icon-link"

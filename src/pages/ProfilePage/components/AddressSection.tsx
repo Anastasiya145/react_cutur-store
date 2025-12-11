@@ -26,7 +26,7 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
 }) => {
   const defaultValues = {
     shippingAddress: {
-      country: address?.country || "",
+      country: address?.country || "France",
       city: address?.city || "",
       street: address?.street || "",
       postalCode: address?.postalCode || "",

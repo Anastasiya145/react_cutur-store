@@ -10,6 +10,7 @@ type LoadingButtonProps = {
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "button" | "submit" | "reset";
+  [key: string]: any;
 };
 
 export const LoadingButton: React.FC<LoadingButtonProps> = ({
@@ -19,12 +20,14 @@ export const LoadingButton: React.FC<LoadingButtonProps> = ({
   disabled = false,
   onClick,
   type = "button",
+  ...rest
 }) => (
   <button
     type={type}
     className={classNames("button-loading", className, { disabled })}
     disabled={disabled || loading}
     onClick={onClick}
+    {...rest}
   >
     {loading ? <Loader variant="small" /> : text}
   </button>

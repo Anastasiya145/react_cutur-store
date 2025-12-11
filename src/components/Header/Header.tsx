@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <div id="header" className="header">
+      <div id="header" data-cy="header" className="header">
         <div className="header__content">
           <div className="header__logo" onClick={() => navigate("/")} />
           <div className="nav">
